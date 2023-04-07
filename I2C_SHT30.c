@@ -8,20 +8,17 @@
 int16_t Temperature ;
 int16_t Humidity;
 
-struct Command_SHT30
-{
-    uint16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
-    uint16_t SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
-    uint16_t SHT30_CMD_MEASURE_L_Enable = 0x2C10;
-    uint16_t SHT30_CMD_MEASURE_H_Disable = 0x2400;
-    uint16_t SHT30_CMD_MEASURE_M_Disable = 0x240B;
-    uint16_t SHT30_CMD_MEASURE_L_Disable = 0x2416;
-};
+#define SHT30_CMD_MEASURE_H_Enable = 0x2C06;
+#define SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
+#define SHT30_CMD_MEASURE_L_Enable = 0x2C10;
+#define SHT30_CMD_MEASURE_H_Disable = 0x2400;
+#define SHT30_CMD_MEASURE_M_Disable = 0x240B;
+#define SHT30_CMD_MEASURE_L_Disable = 0x2416;
 
 typedef struct  
 {
     uint16_t Address;
-    Command_SHT30 Command;
+    uint16_t Command;
     uint8_t *Buff;
     uint8_t Length;
 }I2C_Sequential;
@@ -50,7 +47,7 @@ static void I2C_MasterSetIrq(void);
 static void I2C_MasterSetIrq(void);
 static void I2C_MasterWaitForEvent(void);
 
-void 
+
 void ReadData(void);
 
 
@@ -71,7 +68,7 @@ static bool I2C_MasterOpen()
 
 static void I2C_MasterClose()
 {
-    SSPCON1bits_t.SSPEN = 0;
+    SSPCON1bits.SSPEN = 0;
 }
 
 static uint8_t I2C_MasterGetRxData()
@@ -128,7 +125,7 @@ static void I2C_MasterSendNack(void)
 
 static bool I2C_MasterIsRxBufFull(void)
 {
-    return SSPSTATbits_t.BF;
+    return SSPSTATbits.BF;
 }
 
 static void I2C_MasterEnableIrq(void)
