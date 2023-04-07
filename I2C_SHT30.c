@@ -13,16 +13,15 @@ struct Command_SHT30
     uint16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
     uint16_t SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
     uint16_t SHT30_CMD_MEASURE_L_Enable = 0x2C10;
-    uint16_t SHT30_CMD_MEASURE_H_Enable = 0x2400;
-    uint16_t SHT30_CMD_MEASURE_M_Enable = 0x240B;
-    uint16_t SHT30_CMD_MEASURE_L_Enable = 0x2416;
+    uint16_t SHT30_CMD_MEASURE_H_Disable = 0x2400;
+    uint16_t SHT30_CMD_MEASURE_M_Disable = 0x240B;
+    uint16_t SHT30_CMD_MEASURE_L_Disable = 0x2416;
 };
 
 typedef struct  
 {
     uint16_t Address;
-    uint8_t ByteHigh;
-    uint8_t ByteLow;
+    Command_SHT30 Command;
     uint8_t *Buff;
     uint8_t Length;
 }I2C_Sequential;
@@ -51,6 +50,7 @@ static void I2C_MasterSetIrq(void);
 static void I2C_MasterSetIrq(void);
 static void I2C_MasterWaitForEvent(void);
 
+void 
 void ReadData(void);
 
 
