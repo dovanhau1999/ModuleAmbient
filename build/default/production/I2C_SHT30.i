@@ -5415,13 +5415,13 @@ static void Write_to_SHT30 (uint16_t command_SHT30)
     I2C_MasterClearIrq();
 }
 
-static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData)
+static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData)
 {
     uint8_t TemperatureHi, TemperatureLo, TempeCheckSum, HumidityHi, HumidityLo, HumiCheckSum;
-    uint16_t *pTemperature, *pHumidity;
+    int16_t *pTemperature, *pHumidity;
 
-    pTemperature = (uint16_t*) TempData;
-    pHumidity = (uint16_t*) HumiData;
+    pTemperature = (int16_t*) TempData;
+    pHumidity = (int16_t*) HumiData;
 
 
     I2C_MasterStart();

@@ -8,5 +8,8 @@
 # 2 "<built-in>" 2
 # 1 "Mobbus_Slave.c" 2
 # 1 "./Modbus_Slave.h" 1
+# 11 "./Modbus_Slave.h"
+void ModbusSalve_Init(void);
+void ModbusSlave_Process(int16_t )
 # 1 "Mobbus_Slave.c" 2
 
