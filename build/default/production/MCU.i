@@ -4,28 +4,28 @@
 # 288 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "D:/MBLAP/MPLAB_v6.0/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
+# 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "MCU.c" 2
 # 1 "./MCU.h" 1
 # 11 "./MCU.h"
 # 1 "./I2C_SHT30.h" 1
 # 11 "./I2C_SHT30.h"
-# 1 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdio.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 1 3
 
 
 
-# 1 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\musl_xc8.h" 1 3
-# 5 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdio.h" 2 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\musl_xc8.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
 
 
 
 
 
-# 1 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\features.h" 1 3
-# 11 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdio.h" 2 3
-# 24 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdio.h" 3
-# 1 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\features.h" 1 3
+# 11 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
+# 24 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
 
 
 
@@ -37,20 +37,20 @@ typedef void * va_list[1];
 
 
 typedef void * __isoc_va_list[1];
-# 122 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 3
+# 122 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef unsigned size_t;
-# 137 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 3
+# 137 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long ssize_t;
-# 168 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 3
+# 168 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef __int24 int24_t;
-# 204 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 3
+# 204 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 246 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 3
+# 246 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long long off_t;
-# 399 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\bits/alltypes.h" 3
+# 399 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef struct _IO_FILE FILE;
-# 25 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdio.h" 3
+# 25 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
 typedef union _G_fpos64_t {
  char __opaque[16];
  double __align;
@@ -177,7 +177,7 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 11 "./I2C_SHT30.h" 2
 
-# 1 "D:\\MBLAP\\MPLAB_v6.0\\XC8\\pic\\include\\c99\\stdbool.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
 # 12 "./I2C_SHT30.h" 2
 
 

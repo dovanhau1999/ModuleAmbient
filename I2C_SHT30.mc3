@@ -3623,23 +3623,7 @@
          <value>OFF</value>
       </entry>
    </tokenMap>
-   <generatedFileHashHistoryMap class="java.util.HashMap">
-      <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>587572bb6564610346cc1fc14a2c194a24c27e2f3b5c4654cb23f018e852ec46</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\mcc.h</file>
-         <hash>e8ddd265cd4ed8b6e3737d17ea8f99de6281e7ad8e328e049a868b1b06d7a242</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\device_config.h</file>
-         <hash>4f100cf941210fba253d3eeedbfadc183c9b31d1063a5fcf8620730a563aa9b2</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\i2c_master.c</file>
-         <hash>5c66a777582435bafec992bb2808facb94117da6099afda34612f32742120045</hash>
-      </entry>
+   <generatedFileHashHistoryMap class="java.util.TreeMap">
       <entry>
          <file>main.c</file>
          <hash>b37775c4a15082807ac2b898058ec6a9e1e15d355b902e76bd8dc2857c45bbd7</hash>
@@ -3649,40 +3633,56 @@
          <hash>a9ff97070f6df4256a2410ac3650247cb0c85fce052bb7ed5dee338f9d8eebfc</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\i2c_master.h</file>
-         <hash>0affa2356eaa514d7523d244a0f66d7cfc38b917899d754389ba738de9bb4599</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.h</file>
-         <hash>81ffaf61ddb3d7a0f7b514d0cd2671dfba339b854bbe68a57d8ae1e9c69aab79</hash>
+         <file>mcc_generated_files\device_config.h</file>
+         <hash>4f100cf941210fba253d3eeedbfadc183c9b31d1063a5fcf8620730a563aa9b2</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eusart.c</file>
          <hash>51606d6b7dac2e5c8d662708a90d9f37bd9bc71bbee534c1450cb285606ad46c</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\pin_manager.c</file>
-         <hash>32d95d0c3aa0c4f0a08edb3eeb60aecf2d288f6a49c67f36ce732060c46f762b</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\eusart.h</file>
          <hash>3fa82ead7f48c2b167226a2519058b18fede6d6841377727b779c04834a388bd</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\examples\i2c_master_example.h</file>
-         <hash>a5462e6e8c2ca5b6154ac21ecea6c8b09fe7546aec0b2580c1d94cfefc3f5ae7</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\examples\i2c_master_example.c</file>
          <hash>1430274ae25df08e08d0bb72e3f3a61979d0acf58db245f33110f6a1f06da82d</hash>
       </entry>
       <entry>
+         <file>mcc_generated_files\examples\i2c_master_example.h</file>
+         <hash>a5462e6e8c2ca5b6154ac21ecea6c8b09fe7546aec0b2580c1d94cfefc3f5ae7</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\i2c_master.c</file>
+         <hash>5c66a777582435bafec992bb2808facb94117da6099afda34612f32742120045</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\i2c_master.h</file>
+         <hash>0affa2356eaa514d7523d244a0f66d7cfc38b917899d754389ba738de9bb4599</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
          <hash>0f3d6c8f42fbc592f62cd225241b126b8d390caabaaacf4cb7015f5defaf3227</hash>
       </entry>
       <entry>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>587572bb6564610346cc1fc14a2c194a24c27e2f3b5c4654cb23f018e852ec46</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\mcc.c</file>
          <hash>cc7865b23bb33bc78c1b3a8bd804466ee94c0a6e5f097a326ec632badf897ec3</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\mcc.h</file>
+         <hash>e8ddd265cd4ed8b6e3737d17ea8f99de6281e7ad8e328e049a868b1b06d7a242</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.c</file>
+         <hash>32d95d0c3aa0c4f0a08edb3eeb60aecf2d288f6a49c67f36ce732060c46f762b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.h</file>
+         <hash>81ffaf61ddb3d7a0f7b514d0cd2671dfba339b854bbe68a57d8ae1e9c69aab79</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

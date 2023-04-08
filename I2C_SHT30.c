@@ -1,6 +1,7 @@
 #include "I2C_SHT30.h"
 #include "mcc_generated_files/pin_manager.h"
 #include "mcc_generated_files/eusart.h"
+#include "mcc_generated_files/i2c_master.h"
 
 #define Address_and_Write_bit      0x88
 #define Address_and_Read_bit       0x89
@@ -8,12 +9,12 @@
 int16_t Temperature ;
 int16_t Humidity;
 
-#define SHT30_CMD_MEASURE_H_Enable = 0x2C06;
-#define SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
-#define SHT30_CMD_MEASURE_L_Enable = 0x2C10;
-#define SHT30_CMD_MEASURE_H_Disable = 0x2400;
-#define SHT30_CMD_MEASURE_M_Disable = 0x240B;
-#define SHT30_CMD_MEASURE_L_Disable = 0x2416;
+int16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
+int16_t SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
+int16_t SHT30_CMD_MEASURE_L_Enable = 0x2C10;
+int16_t SHT30_CMD_MEASURE_H_Disable = 0x2400;
+int16_t SHT30_CMD_MEASURE_M_Disable = 0x240B;
+int16_t SHT30_CMD_MEASURE_L_Disable = 0x2416;
 
 typedef struct  
 {
@@ -33,7 +34,7 @@ static void I2C_MasterDisableRestart(void);
 static void I2C_MasterStartRx(void);
 static void I2C_MasterStart(void);
 static void I2C_MasterStop(void);
-static void I2C_WaitACK(void);
+static void I2C_MasterWaitACK(void);
 static void I2C_MasterSendACK(void);
 static void I2C_MasterSendNACK(void);
 static bool I2C_MasterIsRxBufFull(void);
@@ -47,6 +48,8 @@ static void I2C_MasterSetIrq(void);
 static void I2C_MasterSetIrq(void);
 static void I2C_MasterWaitForEvent(void);
 
+static void Write_to_SHT30  (uint16_t command_SHT30);
+static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData);
 
 void ReadData(void);
 
@@ -73,12 +76,21 @@ static void I2C_MasterClose()
 
 static uint8_t I2C_MasterGetRxData()
 {
-    return SSPBUF;
+    uint8_t GetData;
+    SSPCON2bits.RCEN = 1;
+    /* Wait read done */
+    while ( !I2C_MasterIsRxBufFull());
+    
+    GetData = SSPBUF;
+    I2C_MasterClearIrq();
+    return GetData;
 }
 
 static void I2C_MasterSendTxData(uint8_t data)
 {
     SSPBUF  = data;
+    /* wait register BUF set 1 */
+    while (I2C_MasterIsRxBufFull());
 }
 
 static void I2C_MasterEnableRestart(void)
@@ -106,21 +118,23 @@ static void I2C_MasterStop(void)
     SSPCON2bits.PEN = 1;
 }
 
-static void I2C_WaitACK(void)
+static void I2C_MasterWaitACK(void)
 {
     while(SSPCON2bits.ACKSTAT);
 }
 
-static void I2C_MasterSendAck(void)
+static void I2C_MasterSendACK(void)
 {
     SSPCON2bits.ACKDT = 0;
     SSPCON2bits.ACKEN = 1;
+    while (SSPCON2bits.ACKEN);
 }
 
-static void I2C_MasterSendNack(void)
+static void I2C_MasterSendNACK(void)
 {
     SSPCON2bits.ACKDT = 1;
     SSPCON2bits.ACKEN = 1;
+    while (SSPCON2bits.ACKEN);
 }
 
 static bool I2C_MasterIsRxBufFull(void)
@@ -164,10 +178,121 @@ static void I2C_MasterWaitForEvent(void)
     }
 }
 
-void ReadData(void)
+static void Write_to_SHT30  (uint16_t command_SHT30)
 {
+    /* Start */
     I2C_MasterStart();
     
+    /* Send address to slave */
+    I2C_MasterSendTxData(Address_and_Write_bit);
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    /* Wait ACK from Slave */
+    I2C_MasterWaitACK();
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Send High command to slave */
+    I2C_MasterSendTxData(command_SHT30 >> 8);
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    /* Wait ACK from Slave */
+    I2C_MasterWaitACK();
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Send Low command to slave */
+    I2C_MasterSendTxData(command_SHT30 >> 8);
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    /* Wait ACK from Slave */
+    I2C_MasterWaitACK();
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Stop transmit */
+    I2C_MasterStop();
+    /* Wait interrupt */
+    I2C_MasterWaitForEvent();
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+}
+
+static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData)
+{
+    uint8_t TemperatureHi, TemperatureLo, TempeCheckSum, HumidityHi, HumidityLo, HumiCheckSum;
+    uint16_t *pTemperature, *pHumidity;
+    
+    pTemperature = (uint16_t*) TempData;
+    pHumidity = (uint16_t*) HumiData;
+    
+    /* Start */
+    I2C_MasterStart();
+    
+    /* Send address to slave */
+    I2C_MasterSendTxData(Address_and_Write_bit);
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    /* Wait ACK from Slave */
+    I2C_MasterWaitACK();
+    /* Clear interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Read data from BUF */
+    TemperatureHi = I2C_MasterGetRxData();
+    /* Send ACK to Slave */
+    I2C_MasterSendACK();
+    /* Clear Interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Read data from BUF */
+    TemperatureLo = I2C_MasterGetRxData();
+    /* Send ACK to Slave */
+    I2C_MasterSendACK();
+    /* Clear Interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Read data from BUF */
+    TempeCheckSum = I2C_MasterGetRxData();
+    /* Send ACK to Slave */
+    I2C_MasterSendACK();
+    /* Clear Interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Read data from BUF */
+    HumidityHi = I2C_MasterGetRxData();
+    /* Send ACK to Slave */
+    I2C_MasterSendACK();
+    /* Clear Interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Read data from BUF */
+    HumidityHi = I2C_MasterGetRxData();
+    /* Send ACK to Slave */
+    I2C_MasterSendACK();
+    /* Clear Interrupt */
+    I2C_MasterClearIrq();
+    
+    /* Read data from BUF */
+    HumiCheckSum = I2C_MasterGetRxData();
+    /* Send ACK to Slave */
+    I2C_MasterSendNACK();
+    /* Clear Interrupt */
+    I2C_MasterClearIrq();
+    
+    I2C_MasterStop();
+    
+    *pTemperature = (((*pTemperature) & 0xFF) | (TemperatureLo | 0xFF)) << 8;
+    *pTemperature = (*pTemperature | (TemperatureLo | 0xFF));
+    
+    *pHumidity  = (((*pHumidity) & 0xFFFF) | (HumidityHi | 0xFF)) << 8 ;
+    *pHumidity = (*pHumidity | (HumidityLo | 0xFF));
     
 }
 
+void ReadData(void)
+{
+    Write_to_SHT30(SHT30_CMD_MEASURE_H_Enable);
+    
+    Read_to_SHT30(&Temperature, &Humidity);
+}
