@@ -6,15 +6,15 @@
 #define Address_and_Write_bit      0x88
 #define Address_and_Read_bit       0x89
 
-uint16_t Temperature ;
-uint16_t Humidity;
+int16_t Temperature ;
+int16_t Humidity;
 
-uint16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
-uint16_t SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
-uint16_t SHT30_CMD_MEASURE_L_Enable = 0x2C10;
-uint16_t SHT30_CMD_MEASURE_H_Disable = 0x2400;
-uint16_t SHT30_CMD_MEASURE_M_Disable = 0x240B;
-uint16_t SHT30_CMD_MEASURE_L_Disable = 0x2416;
+int16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
+int16_t SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
+int16_t SHT30_CMD_MEASURE_L_Enable = 0x2C10;
+int16_t SHT30_CMD_MEASURE_H_Disable = 0x2400;
+int16_t SHT30_CMD_MEASURE_M_Disable = 0x240B;
+int16_t SHT30_CMD_MEASURE_L_Disable = 0x2416;
 
 typedef struct  
 {
@@ -218,13 +218,13 @@ static void Write_to_SHT30  (uint16_t command_SHT30)
     I2C_MasterClearIrq();
 }
 
-static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData)
+static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData)
 {
     uint8_t TemperatureHi, TemperatureLo, TempeCheckSum, HumidityHi, HumidityLo, HumiCheckSum;
-    uint16_t *pTemperature, *pHumidity;
+    int16_t *pTemperature, *pHumidity;
     
-    pTemperature = (uint16_t*) TempData;
-    pHumidity = (uint16_t*) HumiData;
+    pTemperature = (int16_t*) TempData;
+    pHumidity = (int16_t*) HumiData;
     
     /* Start */
     I2C_MasterStart();

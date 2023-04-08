@@ -9,7 +9,7 @@
 #define	MODBUS_SLAVE_H
 
 void ModbusSalve_Init(void);
-void ModbusSlave_Process(void);
+void ModbusSlave_Process(int16_t )
 
 #ifdef	__cplusplus
 extern "C" {
