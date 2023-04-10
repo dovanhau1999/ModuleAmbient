@@ -1,1 +1,10 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"14 ./MCU.h
+[; ;./MCU.h: 14: _Bool LED_Statuc;
+[v _LED_Statuc `a ~T0 @X0 1 e ]
+"15
+[; ;./MCU.h: 15: int8_t SW_Ad;
+[v _SW_Ad `c ~T0 @X0 1 e ]
+"16
+[; ;./MCU.h: 16: int8_t f_Indicator;
+[v _f_Indicator `c ~T0 @X0 1 e ]

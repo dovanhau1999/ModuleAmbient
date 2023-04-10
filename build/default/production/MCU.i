@@ -276,5 +276,15 @@ typedef uint32_t uint_fast32_t;
 void ModbusSalve_Init(void);
 void ModbusSlave_Process(int16_t *reg, int8_t size);
 # 12 "./MCU.h" 2
+
+
+_Bool LED_Statuc;
+int8_t SW_Ad;
+int8_t f_Indicator;
+
+void Device_Init(void);
+void Task_MB(void);
+void Task_Sensor(void);
+void Task_Indicator(void);
 # 1 "MCU.c" 2
 

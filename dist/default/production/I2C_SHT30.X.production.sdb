@@ -53,13 +53,13 @@ I2C_NULL 5
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "77 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
-[v _I2C_MasterGetRxData@I2C_SHT30$F1124 I2C_MasterGetRxData `(uc  1 s 1 I2C_MasterGetRxData ]
+[v _I2C_MasterGetRxData@I2C_SHT30$F1127 I2C_MasterGetRxData `(uc  1 s 1 I2C_MasterGetRxData ]
 "89
-[v _I2C_MasterSendTxData@I2C_SHT30$F1126 I2C_MasterSendTxData `(v  1 s 1 I2C_MasterSendTxData ]
+[v _I2C_MasterSendTxData@I2C_SHT30$F1129 I2C_MasterSendTxData `(v  1 s 1 I2C_MasterSendTxData ]
 "111
-[v _I2C_MasterStart@I2C_SHT30$F1131 I2C_MasterStart `(v  1 s 1 I2C_MasterStart ]
+[v _I2C_MasterStart@I2C_SHT30$F1134 I2C_MasterStart `(v  1 s 1 I2C_MasterStart ]
 "116
-[v _I2C_MasterStop@I2C_SHT30$F1132 I2C_MasterStop `(v  1 s 1 I2C_MasterStop ]
+[v _I2C_MasterStop@I2C_SHT30$F1135 I2C_MasterStop `(v  1 s 1 I2C_MasterStop ]
 "121
 [v _I2C_MasterWaitACK I2C_MasterWaitACK `(v  1 s 1 I2C_MasterWaitACK ]
 "126
@@ -67,11 +67,11 @@ I2C_NULL 5
 "133
 [v _I2C_MasterSendNACK I2C_MasterSendNACK `(v  1 s 1 I2C_MasterSendNACK ]
 "140
-[v _I2C_MasterIsRxBufFull@I2C_SHT30$F1068 I2C_MasterIsRxBufFull `(a  1 s 1 I2C_MasterIsRxBufFull ]
+[v _I2C_MasterIsRxBufFull@I2C_SHT30$F1071 I2C_MasterIsRxBufFull `(a  1 s 1 I2C_MasterIsRxBufFull ]
 "160
-[v _I2C_MasterClearIrq@I2C_SHT30$F1073 I2C_MasterClearIrq `(v  1 s 1 I2C_MasterClearIrq ]
+[v _I2C_MasterClearIrq@I2C_SHT30$F1076 I2C_MasterClearIrq `(v  1 s 1 I2C_MasterClearIrq ]
 "170
-[v _I2C_MasterWaitForEvent@I2C_SHT30$F1142 I2C_MasterWaitForEvent `(v  1 s 1 I2C_MasterWaitForEvent ]
+[v _I2C_MasterWaitForEvent@I2C_SHT30$F1145 I2C_MasterWaitForEvent `(v  1 s 1 I2C_MasterWaitForEvent ]
 "181
 [v _Write_to_SHT30 Write_to_SHT30 `(v  1 s 1 Write_to_SHT30 ]
 "221
@@ -399,9 +399,9 @@ I2C_NULL 5
 [u S401 . 1 `S392 1 . 1 0 ]
 [v _SSPCON2bits SSPCON2bits `VES401  1 e 1 @534 ]
 "9 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
-[v _Temperature Temperature `us  1 e 2 0 ]
+[v _Temperature Temperature `s  1 e 2 0 ]
 "10
-[v _Humidity Humidity `us  1 e 2 0 ]
+[v _Humidity Humidity `s  1 e 2 0 ]
 "62 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/eusart.c
 [v _eusartTxHead eusartTxHead `VEuc  1 e 1 0 ]
 "63

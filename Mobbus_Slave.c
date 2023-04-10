@@ -2,6 +2,9 @@
 
 #include "Modbus_Slave.h"
 
+int8_t MB_UID;
+int16_t MB_Register[2];
+
 static void validateRequest(void);
 static void buildException(int8_t exception);
 static void ModbusSlaveF04(uint16_t *reg, int8_t size);

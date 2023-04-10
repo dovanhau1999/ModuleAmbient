@@ -268,6 +268,9 @@ void ModbusSlave_Process(int16_t *reg, int8_t size);
 # 3 "Mobbus_Slave.c" 2
 
 
+int8_t MB_UID;
+int16_t MB_Register[2];
+
 static void validateRequest(void);
 static void buildException(int8_t exception);
 static void ModbusSlaveF04(uint16_t *reg, int8_t size);

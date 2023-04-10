@@ -11,6 +11,15 @@
 #include "I2C_SHT30.h"
 #include "Modbus_Slave.h"
 
+bool LED_Statuc;
+int8_t SW_Ad;
+int8_t f_Indicator;
+
+void Device_Init(void);
+void Task_MB(void);
+void Task_Sensor(void);
+void Task_Indicator(void);
+
 #ifdef	__cplusplus
 extern "C" {
 #endif

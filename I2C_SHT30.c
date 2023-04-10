@@ -6,8 +6,8 @@
 #define Address_and_Write_bit      0x88
 #define Address_and_Read_bit       0x89
 
-uint16_t Temperature ;
-uint16_t Humidity;
+int16_t Temperature ;
+int16_t Humidity;
 
 uint16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
 uint16_t SHT30_CMD_MEASURE_M_Enable = 0x2C0D;
@@ -49,7 +49,7 @@ static void I2C_MasterSetIrq(void);
 static void I2C_MasterWaitForEvent(void);
 
 static void Write_to_SHT30  (uint16_t command_SHT30);
-static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData);
+static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData);
 
 void ReadData(void);
 
@@ -218,7 +218,7 @@ static void Write_to_SHT30  (uint16_t command_SHT30)
     I2C_MasterClearIrq();
 }
 
-static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData)
+static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData)
 {
     uint8_t TemperatureHi, TemperatureLo, TempeCheckSum, HumidityHi, HumidityLo, HumiCheckSum;
     uint16_t *pTemperature, *pHumidity;

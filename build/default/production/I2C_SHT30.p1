@@ -579,11 +579,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./mcc_generated_files/i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
 [v _MSSP_InterruptHandler `*F3156 ~T0 @X0 1 e ]
 "9 I2C_SHT30.c
-[; ;I2C_SHT30.c: 9: uint16_t Temperature ;
-[v _Temperature `us ~T0 @X0 1 e ]
+[; ;I2C_SHT30.c: 9: int16_t Temperature ;
+[v _Temperature `s ~T0 @X0 1 e ]
 "10
-[; ;I2C_SHT30.c: 10: uint16_t Humidity;
-[v _Humidity `us ~T0 @X0 1 e ]
+[; ;I2C_SHT30.c: 10: int16_t Humidity;
+[v _Humidity `s ~T0 @X0 1 e ]
 "12
 [; ;I2C_SHT30.c: 12: uint16_t SHT30_CMD_MEASURE_H_Enable = 0x2C06;
 [v _SHT30_CMD_MEASURE_H_Enable `us ~T0 @X0 1 e ]
@@ -1081,16 +1081,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 400 ]
 }
 "221
-[; ;I2C_SHT30.c: 221: static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData)
-[v _Read_to_SHT30 `(v ~T0 @X0 1 sf2`*us`*us ]
+[; ;I2C_SHT30.c: 221: static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData)
+[v _Read_to_SHT30 `(v ~T0 @X0 1 sf2`*s`*s ]
 "222
 [; ;I2C_SHT30.c: 222: {
 {
 [e :U _Read_to_SHT30 ]
 "221
-[; ;I2C_SHT30.c: 221: static void Read_to_SHT30 (uint16_t* TempData, uint16_t* HumiData)
-[v _TempData `*us ~T0 @X0 1 r1 ]
-[v _HumiData `*us ~T0 @X0 1 r2 ]
+[; ;I2C_SHT30.c: 221: static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData)
+[v _TempData `*s ~T0 @X0 1 r1 ]
+[v _HumiData `*s ~T0 @X0 1 r2 ]
 "222
 [; ;I2C_SHT30.c: 222: {
 [f ]
@@ -1108,10 +1108,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _pHumidity `*us ~T0 @X0 1 a ]
 "226
 [; ;I2C_SHT30.c: 226:     pTemperature = (uint16_t*) TempData;
-[e = _pTemperature _TempData ]
+[e = _pTemperature -> _TempData `*us ]
 "227
 [; ;I2C_SHT30.c: 227:     pHumidity = (uint16_t*) HumiData;
-[e = _pHumidity _HumiData ]
+[e = _pHumidity -> _HumiData `*us ]
 "230
 [; ;I2C_SHT30.c: 230:     I2C_MasterStart();
 [e ( _I2C_MasterStart ..  ]
