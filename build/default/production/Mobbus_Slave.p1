@@ -1,7 +1,0 @@
-Version 4.0 HI-TECH Software Intermediate Code
-"5 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 5: int8_t MB_UID;
-[v _MB_UID `c ~T0 @X0 1 e ]
-"6
-[; ;Mobbus_Slave.c: 6: int16_t MB_Register[2];
-[v _MB_Register `s ~T0 @X0 -> 2 `i e ]

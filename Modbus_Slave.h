@@ -9,6 +9,10 @@
 #define	MODBUS_SLAVE_H
 
 #include <stdint.h>
+#include "ModbusRTU/ModbusRTU.h"
+#include "tick.h"
+#include "mcc_generated_files/eusart.h"
+#include "stdbool.h"
 
 void ModbusSalve_Init(void);
 void ModbusSlave_Process(int16_t *reg, int8_t size);
