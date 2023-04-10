@@ -5226,8 +5226,9 @@ void ReadData (void);
 # 11 "./MCU.h" 2
 
 # 1 "./Modbus_Slave.h" 1
-# 11 "./Modbus_Slave.h"
+# 13 "./Modbus_Slave.h"
 void ModbusSalve_Init(void);
+void ModbusSlave_Process(int16_t *reg, int8_t size);
 # 12 "./MCU.h" 2
 # 45 "main.c" 2
 

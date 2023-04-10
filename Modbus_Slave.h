@@ -8,8 +8,10 @@
 #ifndef MODBUS_SLAVE_H
 #define	MODBUS_SLAVE_H
 
+#include <stdint.h>
+
 void ModbusSalve_Init(void);
-//void ModbusSlave_Process(int16_t )
+void ModbusSlave_Process(int16_t *reg, int8_t size);
 
 #ifdef	__cplusplus
 extern "C" {
