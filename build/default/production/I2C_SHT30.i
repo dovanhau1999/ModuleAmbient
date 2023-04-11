@@ -5130,8 +5130,11 @@ void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
 void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 3 "I2C_SHT30.c" 2
 
-# 1 "./mcc_generated_files/i2c_master.h" 1
-# 58 "./mcc_generated_files/i2c_master.h"
+
+# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
+# 52 "./mcc_generated_files/examples/i2c_master_example.h"
+# 1 "./mcc_generated_files/examples/../i2c_master.h" 1
+# 58 "./mcc_generated_files/examples/../i2c_master.h"
 typedef enum {
     I2C_NOERR,
     I2C_BUSY,
@@ -5164,11 +5167,11 @@ i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
 
 
 void I2C_Initialize(void);
-# 101 "./mcc_generated_files/i2c_master.h"
+# 101 "./mcc_generated_files/examples/../i2c_master.h"
 i2c_error_t I2C_Open(i2c_address_t address);
-# 111 "./mcc_generated_files/i2c_master.h"
+# 111 "./mcc_generated_files/examples/../i2c_master.h"
 i2c_error_t I2C_Close(void);
-# 123 "./mcc_generated_files/i2c_master.h"
+# 123 "./mcc_generated_files/examples/../i2c_master.h"
 i2c_error_t I2C_MasterOperation(_Bool read);
 
 
@@ -5180,28 +5183,27 @@ i2c_error_t I2C_MasterWrite(void);
 
 
 i2c_error_t I2C_MasterRead(void);
-# 142 "./mcc_generated_files/i2c_master.h"
+# 142 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetTimeout(uint8_t timeOut);
-# 152 "./mcc_generated_files/i2c_master.h"
+# 152 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetBuffer(void *buffer, size_t bufferSize);
-# 164 "./mcc_generated_files/i2c_master.h"
+# 164 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
-# 174 "./mcc_generated_files/i2c_master.h"
+# 174 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
-# 184 "./mcc_generated_files/i2c_master.h"
+# 184 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
-# 194 "./mcc_generated_files/i2c_master.h"
+# 194 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
-# 204 "./mcc_generated_files/i2c_master.h"
+# 204 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
-# 213 "./mcc_generated_files/i2c_master.h"
+# 213 "./mcc_generated_files/examples/../i2c_master.h"
 void (*MSSP_InterruptHandler)(void);
-# 222 "./mcc_generated_files/i2c_master.h"
+# 222 "./mcc_generated_files/examples/../i2c_master.h"
 void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
-# 4 "I2C_SHT30.c" 2
+# 52 "./mcc_generated_files/examples/i2c_master_example.h" 2
 
-# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
-# 54 "./mcc_generated_files/examples/i2c_master_example.h"
+
 uint8_t I2C_Read1ByteRegister(i2c_address_t address, uint8_t reg);
 uint16_t I2C_Read2ByteRegister(i2c_address_t address, uint8_t reg);
 void I2C_Write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);

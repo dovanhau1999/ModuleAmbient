@@ -1,7 +1,7 @@
 #include "I2C_SHT30.h"
 #include "mcc_generated_files/pin_manager.h"
 #include "mcc_generated_files/eusart.h"
-#include "mcc_generated_files/i2c_master.h"
+//#include "mcc_generated_files/i2c_master.h"
 #include "mcc_generated_files/examples/i2c_master_example.h"
 
 #define Address_and_Write_bit      0x88
@@ -12,7 +12,7 @@ int16_t Humidity;
 
 
 
-/*
+/* Note:
  MSB_ENABLED = 0x2C;    
  MSB_DISABLED = 0x24;
  LSB_ENABLED_HIGH = 0x06;

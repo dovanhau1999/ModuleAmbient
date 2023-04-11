@@ -8,8 +8,8 @@
 #define word(h, l) (l & 0xff) | ((h & 0xff) << 8)
 #define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
-int8_t MB_UID;
-int16_t MB_Register[2];
+uint8_t MB_UID = 1;
+uint16_t MB_Register[2];
 
 static const unsigned char fctsupported[] =
 {
@@ -37,9 +37,10 @@ static uint16_t Modbus_calcCRC(uint8_t len);
                                
                                
 /*==================================================================================*/
-extern volatile uint8_t eusartRxTail;
-extern volatile uint8_t eusartRxHead;
-static uint8_t EUSART_RxDataAvailable(void);
+//extern volatile uint8_t eusartRxTail;
+//extern volatile uint8_t eusartRxHead;
+extern volatile uint8_t eusartRxCount;
+//static uint8_t EUSART_RxDataAvailable(void);
 
 
 /*==================================================================================*/
@@ -79,7 +80,6 @@ static void buildException(uint8_t exception)
     SES_Modbus.u8BufferSize         = EXCEPTION_SIZE;
 }
 
-
 static int8_t Modbus_getRxBuff(void)
 {
     bool bBuffOverflow = false;
@@ -90,7 +90,7 @@ static int8_t Modbus_getRxBuff(void)
     }
     
     SES_Modbus.u8BufferSize = 0;
-    while (EUSART_RxDataAvailable())
+    while (eusartRxCount)
     {
         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
         SES_Modbus.u8BufferSize++;
@@ -140,15 +140,13 @@ static uint8_t validateRequest(void)
     return 0;
 }
 
-
-
 static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
 {
     
     SES_Modbus.u8regsize = size;
     uint8_t u8Current;
     
-    u8Current = EUSART_RxDataAvailable();
+    u8Current = eusartRxCount;
     
     if (u8Current == 0) return 0;
     
@@ -190,27 +188,27 @@ static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
     return i8state;
 }
 
-static uint8_t EUSART_RxDataAvailable(void)
-{
-    uint8_t size;
-    uint8_t snapshot_rxTail = (uint8_t) eusartRxTail;
-    
-    if (snapshot_rxTail < eusartRxHead)
-    {
-        size = ( 16 - ( eusartRxHead - snapshot_rxTail )); //64 is SIZE of BUFFER Receive ( 16 is defined in file 'eusart.h')
-    }
-    else
-    {
-        size = ( (snapshot_rxTail - eusartRxHead));
-    }
-    
-    if (size > 0xFF)
-    {
-        return size;
-    }
-    
-    return size;
-}
+//static uint8_t EUSART_RxDataAvailable(void)
+//{
+//    uint8_t size;
+//    uint8_t snapshot_rxTail = (uint8_t) eusartRxTail;
+//    
+//    if (snapshot_rxTail < eusartRxHead)
+//    {
+//        size = ( 16 - ( eusartRxHead - snapshot_rxTail )); //64 is SIZE of BUFFER Receive ( 16 is defined in file 'eusart.h')
+//    }
+//    else
+//    {
+//        size = ( (snapshot_rxTail - eusartRxHead));
+//    }
+//    
+//    if (size > 0xFF)
+//    {
+//        return size;
+//    }
+//    
+//    return size;
+//}
 
 static void Modbus_sendTxBuff(void)
 {
@@ -286,7 +284,7 @@ static uint16_t Modbus_calcCRC(uint8_t len)
 
 void ModbusSalve_Init(void)
 {
-    SES_Modbus.u8id = 1; // slave number = 1...247
+    SES_Modbus.u8id = MB_UID; // slave number = 1...247
     SES_Modbus.u8txenpin = RS485; //Set pin EN of chip modbus
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
