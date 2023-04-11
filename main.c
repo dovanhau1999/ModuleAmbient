@@ -42,7 +42,7 @@
 */
 
 #include "mcc_generated_files/mcc.h"
-
+#include "MCU.h"
 /*
                          Main application
  */
