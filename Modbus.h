@@ -11,6 +11,15 @@
 
 #define MAX_BUFFER 250
 
+enum ERR_LIST
+{
+    ERR_NOT_MASTER                = -1,
+    ERR_POLLING                   = -2,
+    ERR_BUFF_OVERFLOW             = -3,
+    ERR_BAD_CRC                   = -4,
+    ERR_EXCEPTION                 = -5
+};
+
 enum MB_FC
 {
     MB_FC_NONE                     = 0,   /*!< null operator */

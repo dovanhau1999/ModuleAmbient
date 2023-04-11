@@ -44,8 +44,8 @@ I2C_DATA_NACK 3
 I2C_TIMEOUT 4
 I2C_NULL 5
 ]
-"10 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
-[e E36 MB_FC `uc
+"14 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+[e E42 MB_FC `uc
 MB_FC_NONE 0
 MB_FC_READ_COILS 1
 MB_FC_READ_DISCRETE_INPUT 2
@@ -56,16 +56,8 @@ MB_FC_WRITE_REGISTER 6
 MB_FC_WRITE_MULTIPLE_COILS 15
 MB_FC_WRITE_MULTIPLE_REGISTERS 16
 ]
-"52
-[e E46 . `uc
-NO_REPLY 255
-EXC_FUNC_CODE 1
-EXC_ADDR_RANGE 2
-EXC_REGS_QUANT 3
-EXC_EXECUTE 4
-]
-"60
-[e E76 MESSAGE_MODBUS_RTU `uc
+"49
+[e E408 MESSAGE_MODBUS_RTU `uc
 ID 0
 FUNC 1
 ADD_HI 2
@@ -73,6 +65,34 @@ ADD_LO 3
 NB_HI 4
 NB_LO 5
 BYTE_CNT 6
+]
+"79
+[e E404 . `uc
+RESPONSE_SIZE 6
+EXCEPTION_SIZE 3
+CHECKSUM_SIZE 2
+]
+"105
+[e E36 ERR_LIST `c
+ERR_NOT_MASTER -1
+ERR_POLLING -2
+ERR_BUFF_OVERFLOW -3
+ERR_BAD_CRC -4
+ERR_EXCEPTION -5
+]
+"120
+[e E52 . `uc
+NO_REPLY 255
+EXC_FUNC_CODE 1
+EXC_ADDR_RANGE 2
+EXC_REGS_QUANT 3
+EXC_EXECUTE 4
+]
+"290
+[e E400 TYPE_CONNECTION `uc
+USB 0
+RS232 1
+RS485 2
 ]
 "67 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/examples/i2c_master_example.c
 [e E358 . `uc
@@ -124,6 +144,12 @@ I2C_RESET_LINK 5
 [v _main main `(v  1 e 1 0 ]
 "88 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/eusart.c
 [v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
+"142
+[v _EUSART_is_tx_done EUSART_is_tx_done `(a  1 e 1 0 ]
+"151
+[v _EUSART_Read EUSART_Read `(uc  1 e 1 0 ]
+"173
+[v _EUSART_Write EUSART_Write `(v  1 e 1 0 ]
 "197
 [v _EUSART_Transmit_ISR EUSART_Transmit_ISR `(v  1 e 1 0 ]
 "216
@@ -274,13 +300,21 @@ I2C_RESET_LINK 5
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
 "182
 [v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
-"43 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+"47 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+[v _ModbusSlaveF04 ModbusSlaveF04 `(c  1 s 1 ModbusSlaveF04 ]
+"71
+[v _buildException buildException `(v  1 s 1 buildException ]
+"83
+[v _Modbus_getRxBuff Modbus_getRxBuff `(c  1 s 1 Modbus_getRxBuff ]
+"111
 [v _validateRequest validateRequest `(uc  1 s 1 validateRequest ]
-"125
+"145
+[v _ModbusRTU_Slave_Poll ModbusRTU_Slave_Poll `(c  1 s 1 ModbusRTU_Slave_Poll ]
+"193
 [v _EUSART_RxDataAvailable EUSART_RxDataAvailable `(uc  1 s 1 EUSART_RxDataAvailable ]
-"147
+"215
 [v _Modbus_sendTxBuff Modbus_sendTxBuff `(v  1 s 1 Modbus_sendTxBuff ]
-"152
+"261
 [v _Modbus_calcCRC Modbus_calcCRC `(us  1 s 2 Modbus_calcCRC ]
 "12 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
 [v _rtcc_handle rtcc_handle `(v  1 e 1 0 ]
@@ -335,7 +369,7 @@ I2C_RESET_LINK 5
 [v _TMR1H TMR1H `VEuc  1 e 1 @23 ]
 "869
 [v _T1CON T1CON `VEuc  1 e 1 @24 ]
-[s S1486 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S1508 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
@@ -345,15 +379,15 @@ I2C_RESET_LINK 5
 `uc 1 TMR1CS1 1 0 :1:7 
 ]
 "891
-[s S1495 . 1 `uc 1 . 1 0 :4:0 
+[s S1517 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 T1CKPS 1 0 :2:4 
 `uc 1 TMR1CS 1 0 :2:6 
 ]
-[u S1499 . 1 `S1486 1 . 1 0 `S1495 1 . 1 0 ]
-[v _T1CONbits T1CONbits `VES1499  1 e 1 @24 ]
+[u S1521 . 1 `S1508 1 . 1 0 `S1517 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES1521  1 e 1 @24 ]
 "941
 [v _T1GCON T1GCON `VEuc  1 e 1 @25 ]
-[s S1516 . 1 `uc 1 T1GSS0 1 0 :1:0 
+[s S1538 . 1 `uc 1 T1GSS0 1 0 :1:0 
 `uc 1 T1GSS1 1 0 :1:1 
 `uc 1 T1GVAL 1 0 :1:2 
 `uc 1 T1GGO_nDONE 1 0 :1:3 
@@ -363,12 +397,12 @@ I2C_RESET_LINK 5
 `uc 1 TMR1GE 1 0 :1:7 
 ]
 "963
-[s S1525 . 1 `uc 1 T1GSS 1 0 :2:0 
+[s S1547 . 1 `uc 1 T1GSS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 T1GGO 1 0 :1:3 
 ]
-[u S1529 . 1 `S1516 1 . 1 0 `S1525 1 . 1 0 ]
-[v _T1GCONbits T1GCONbits `VES1529  1 e 1 @25 ]
+[u S1551 . 1 `S1538 1 . 1 0 `S1547 1 . 1 0 ]
+[v _T1GCONbits T1GCONbits `VES1551  1 e 1 @25 ]
 "1223
 [v _TRISA TRISA `VEuc  1 e 1 @140 ]
 "1285
@@ -430,7 +464,7 @@ I2C_RESET_LINK 5
 [v _LATB LATB `VEuc  1 e 1 @269 ]
 "2312
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S1258 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S1254 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -440,8 +474,8 @@ I2C_RESET_LINK 5
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2329
-[u S1267 . 1 `S1258 1 . 1 0 ]
-[v _LATCbits LATCbits `VES1267  1 e 1 @270 ]
+[u S1263 . 1 `S1254 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1263  1 e 1 @270 ]
 "2374
 [v _LATE LATE `VEuc  1 e 1 @272 ]
 "2667
@@ -595,10 +629,12 @@ I2C_RESET_LINK 5
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"10 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+"12 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+[v _MB_Register MB_Register `[2]s  1 e 4 0 ]
+"14
 [v _fctsupported fctsupported `DC[8]uc  1 s 8 fctsupported ]
 [s S1191 . 284 `uc 1 u8id 1 0 `uc 1 u8txenpin 1 1 `uc 1 u8state 1 2 `uc 1 u8lastError 1 3 `[250]uc 1 au8Buffer 250 4 `uc 1 u8BufferSize 1 254 `uc 1 u8lastRec 1 255 `*.39us 1 au16regs 2 256 `us 1 u16InCnt 2 258 `us 1 u16OutCnt 2 260 `us 1 u16errCnt 2 262 `us 1 u16timeOut 2 264 `ul 1 u32time 4 266 `ul 1 u32timeOut 4 270 `ul 1 u32overTime 4 274 `us 1 u8regsize 2 278 `*.39us 1 HOLDING_REGS 2 280 `*.39us 1 INPUT_REGS 2 282 ]
-"22
+"26
 [v _SES_Modbus SES_Modbus `S1191  1 s 284 SES_Modbus ]
 "4 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
 [v _device_time device_time `VEul  1 s 4 device_time ]

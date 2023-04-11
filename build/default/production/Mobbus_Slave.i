@@ -120,6 +120,15 @@ typedef uint32_t uint_fast32_t;
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
 # 14 "./ModbusRTU/../Modbus.h"
+enum ERR_LIST
+{
+    ERR_NOT_MASTER = -1,
+    ERR_POLLING = -2,
+    ERR_BUFF_OVERFLOW = -3,
+    ERR_BAD_CRC = -4,
+    ERR_EXCEPTION = -5
+};
+
 enum MB_FC
 {
     MB_FC_NONE = 0,
@@ -164,8 +173,170 @@ typedef struct
 # 11 "./ModbusRTU/ModbusRTU.h" 2
 
 
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 1 3
+# 10 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\features.h" 1 3
+# 11 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
+# 24 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
 
 
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 122 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned size_t;
+# 137 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+int getch(void);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+void putch(char);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 13 "./ModbusRTU/ModbusRTU.h" 2
+
+
+
+
+
+
+enum TYPE_CONNECTION
+{
+    USB = 0,
+    RS232 = 1,
+    RS485 = 2
+ };
 
 
 enum
@@ -190,15 +361,6 @@ enum MESSAGE_MODBUS_RTU
     NB_LO,
     BYTE_CNT
 };
-
-
-
-enum TYPE_CONNECTION
-{
-    USB = 0,
-    RS232 = 1,
-    RS485 = 2
- };
 # 12 "./Modbus_Slave.h" 2
 
 # 1 "./tick.h" 1
@@ -223,15 +385,10 @@ extern double __fpnormalize(double);
 
 
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 1 3
-# 10 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\features.h" 1 3
-# 11 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 2 3
 # 21 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 3
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long int wchar_t;
-# 122 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned size_t;
 # 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 2 3
 
 int atoi (const char *);
@@ -5074,8 +5231,9 @@ void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 
 
+
 void ModbusSalve_Init(void);
-void ModbusSlave_Process(int16_t *reg, int8_t size);
+void ModbusSlave_Process();
 # 1 "Mobbus_Slave.c" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
@@ -5084,11 +5242,7 @@ void PIN_MANAGER_Initialize (void);
 # 211 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 2 "Mobbus_Slave.c" 2
-
-
-
-
-
+# 11 "Mobbus_Slave.c"
 int8_t MB_UID;
 int16_t MB_Register[2];
 
@@ -5109,9 +5263,9 @@ static MODBUS SES_Modbus;
 
 
 static uint8_t validateRequest(void);
-static void buildException(int8_t exception);
+static void buildException(uint8_t exception);
 static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
-static void ModbusSlaveF04(uint16_t *reg, int8_t size);
+static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
@@ -5124,6 +5278,70 @@ static uint8_t EUSART_RxDataAvailable(void);
 
 
 
+
+static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
+{
+    uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
+    uint8_t u8regsno = (SES_Modbus.au8Buffer[ NB_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ NB_HI ] & 0xff) << 8);
+    uint8_t u8CopyBufferSize;
+    uint16_t i;
+
+    SES_Modbus.au8Buffer[ 2 ] = u8regsno * 2;
+    SES_Modbus.u8BufferSize = 3;
+
+    for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++)
+    {
+        SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) >> 8));
+        SES_Modbus.u8BufferSize++;
+        SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) & 0xff));
+        SES_Modbus.u8BufferSize++;
+    }
+    u8CopyBufferSize = SES_Modbus.u8BufferSize +2;
+    Modbus_sendTxBuff();
+
+    return u8CopyBufferSize;
+}
+
+
+static void buildException(uint8_t exception)
+{
+
+    uint8_t u8func = SES_Modbus.au8Buffer[ FUNC ];
+
+    SES_Modbus.au8Buffer[ ID ] = SES_Modbus.u8id;
+    SES_Modbus.au8Buffer[ FUNC ] = u8func + 0x80;
+    SES_Modbus.au8Buffer[ 2 ] = exception;
+    SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
+}
+
+
+static int8_t Modbus_getRxBuff(void)
+{
+    _Bool bBuffOverflow = 0;
+
+    if (SES_Modbus.u8txenpin > 1)
+    {
+
+    }
+
+    SES_Modbus.u8BufferSize = 0;
+    while (EUSART_RxDataAvailable())
+    {
+        SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
+        SES_Modbus.u8BufferSize++;
+
+        if(SES_Modbus.u8BufferSize >= 250) bBuffOverflow = 1;
+    }
+    SES_Modbus.u16InCnt++;
+
+    if(bBuffOverflow)
+    {
+        SES_Modbus.u16errCnt++;
+        return ERR_BUFF_OVERFLOW;
+    }
+
+    return SES_Modbus.u8BufferSize;
+}
 
 static uint8_t validateRequest(void)
 {
@@ -5179,7 +5397,7 @@ static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
     if ((unsigned long)(Get_millis() - SES_Modbus.u32time) < (unsigned long)3) return 0;
 
     SES_Modbus.u8lastRec = 0;
-    uint8_t i8state = Modbus_getRxBuff();
+    int8_t i8state = Modbus_getRxBuff();
     SES_Modbus.u8lastError = i8state;
     if (i8state < 7) return i8state;
 
@@ -5231,7 +5449,48 @@ static uint8_t EUSART_RxDataAvailable(void)
 
 static void Modbus_sendTxBuff(void)
 {
+    uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
+    SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc >> 8;
+    SES_Modbus.u8BufferSize++;
+    SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc & 0x00ff;
+    SES_Modbus.u8BufferSize++;
 
+
+    if (SES_Modbus.u8txenpin > 1)
+    {
+        do { LATCbits.LATC5 = 1; } while(0);
+
+
+    }
+
+
+    for (int index = 0; index < SES_Modbus.u8BufferSize; index++)
+    {
+        EUSART_Write(SES_Modbus.au8Buffer[index]);
+    }
+
+    if (SES_Modbus.u8txenpin > 1)
+    {
+
+
+
+
+
+
+        while (! EUSART_is_tx_done());
+        volatile uint32_t u32overTimecountDown = SES_Modbus.u32overTime;
+
+        while (u32overTimecountDown-- > 0);
+        do { LATCbits.LATC5 = 0; } while(0);
+    }
+
+    SES_Modbus.u8BufferSize = 0;
+
+
+    SES_Modbus.u32timeOut = Get_millis();
+
+
+    SES_Modbus.u16OutCnt++;
 }
 
 static uint16_t Modbus_calcCRC(uint8_t len)
@@ -5263,19 +5522,19 @@ static uint16_t Modbus_calcCRC(uint8_t len)
 void ModbusSalve_Init(void)
 {
     SES_Modbus.u8id = 1;
-    SES_Modbus.u8txenpin = 1;
+    SES_Modbus.u8txenpin = RS485;
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
 
-    if (SES_Modbus.u8txenpin == 1) do { LATCbits.LATC5 = 0; } while(0); else do { LATCbits.LATC5 = 1; } while(0);
+
 
     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
 }
 
-void ModbusSlave_Process(int16_t *reg, int8_t size)
+void ModbusSlave_Process(void)
 {
     int8_t state = 0;
-
+    state = ModbusRTU_Slave_Poll(MB_Register, 2);
 
 }

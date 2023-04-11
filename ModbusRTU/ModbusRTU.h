@@ -9,9 +9,19 @@
 #define	MODBUSRTU_H
 
 #include "../Modbus.h"
+#include <stdint.h>
+#include <stdio.h>
 
 #define T35  3
 
+
+
+enum TYPE_CONNECTION
+{
+    USB = 0,
+    RS232 = 1,
+    RS485 = 2
+ };
 
 
 enum
@@ -37,14 +47,6 @@ enum MESSAGE_MODBUS_RTU
     BYTE_CNT  //!< byte counter
 };
 
-
-
-enum TYPE_CONNECTION
-{
-    USB = 0,
-    RS232 = 1,
-    RS485 = 2
- };
 
 #ifdef	__cplusplus
 extern "C" {

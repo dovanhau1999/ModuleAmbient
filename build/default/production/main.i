@@ -5260,6 +5260,15 @@ void ReadData (void);
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
 # 14 "./ModbusRTU/../Modbus.h"
+enum ERR_LIST
+{
+    ERR_NOT_MASTER = -1,
+    ERR_POLLING = -2,
+    ERR_BUFF_OVERFLOW = -3,
+    ERR_BAD_CRC = -4,
+    ERR_EXCEPTION = -5
+};
+
 enum MB_FC
 {
     MB_FC_NONE = 0,
@@ -5308,6 +5317,16 @@ typedef struct
 
 
 
+
+
+enum TYPE_CONNECTION
+{
+    USB = 0,
+    RS232 = 1,
+    RS485 = 2
+ };
+
+
 enum
 {
     RESPONSE_SIZE = 6,
@@ -5330,15 +5349,6 @@ enum MESSAGE_MODBUS_RTU
     NB_LO,
     BYTE_CNT
 };
-
-
-
-enum TYPE_CONNECTION
-{
-    USB = 0,
-    RS232 = 1,
-    RS485 = 2
- };
 # 12 "./Modbus_Slave.h" 2
 
 # 1 "./tick.h" 1
@@ -5351,8 +5361,9 @@ uint32_t Get_millis(void);
 
 
 
+
 void ModbusSalve_Init(void);
-void ModbusSlave_Process(int16_t *reg, int8_t size);
+void ModbusSlave_Process();
 # 12 "./MCU.h" 2
 
 

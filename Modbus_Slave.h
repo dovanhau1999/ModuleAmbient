@@ -12,10 +12,11 @@
 #include "ModbusRTU/ModbusRTU.h"
 #include "tick.h"
 #include "mcc_generated_files/eusart.h"
-#include "stdbool.h"
+#include <stdbool.h>
+#include <stdio.h>
 
 void ModbusSalve_Init(void);
-void ModbusSlave_Process(int16_t *reg, int8_t size);
+void ModbusSlave_Process();
 
 #ifdef	__cplusplus
 extern "C" {

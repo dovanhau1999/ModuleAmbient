@@ -3,6 +3,10 @@
 
 #define millis() Get_millis()
 
+#define lowByte(w) ((uint8_t) ((w) & 0xff))
+#define highByte(w) ((uint8_t) ((w) >> 8))
+#define word(h, l) (l & 0xff) | ((h & 0xff) << 8)
+#define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
 int8_t MB_UID;
 int16_t MB_Register[2];
@@ -24,9 +28,9 @@ static MODBUS SES_Modbus;
 /*                                      MODBUS                                      */                                 
 /*==================================================================================*/
 static uint8_t validateRequest(void);
-static void buildException(int8_t exception);
+static void buildException(uint8_t exception);
 static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
-static void ModbusSlaveF04(uint16_t *reg, int8_t size);
+static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
@@ -39,6 +43,70 @@ static uint8_t EUSART_RxDataAvailable(void);
 
 
 /*==================================================================================*/
+
+static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
+{
+    uint16_t u8StartAdd = word( SES_Modbus.au8Buffer[ ADD_HI ], SES_Modbus.au8Buffer[ ADD_LO ] );
+    uint8_t u8regsno = word( SES_Modbus.au8Buffer[ NB_HI ], SES_Modbus.au8Buffer[ NB_LO ] );
+    uint8_t u8CopyBufferSize;
+    uint16_t i;
+
+    SES_Modbus.au8Buffer[ 2 ]       = u8regsno * 2;
+    SES_Modbus.u8BufferSize         = 3;
+
+    for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++)
+    {
+        SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = highByte(reg[i]);
+        SES_Modbus.u8BufferSize++;
+        SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = lowByte(reg[i]);
+        SES_Modbus.u8BufferSize++;
+    }
+    u8CopyBufferSize = SES_Modbus.u8BufferSize +2;
+    Modbus_sendTxBuff();
+    
+    return u8CopyBufferSize;
+}
+
+
+static void buildException(uint8_t exception)
+{
+    /* get the original FUNC code */
+    uint8_t u8func = SES_Modbus.au8Buffer[ FUNC ];  
+
+    SES_Modbus.au8Buffer[ ID ]      = SES_Modbus.u8id;
+    SES_Modbus.au8Buffer[ FUNC ]    = u8func + 0x80;
+    SES_Modbus.au8Buffer[ 2 ]       = exception;
+    SES_Modbus.u8BufferSize         = EXCEPTION_SIZE;
+}
+
+
+static int8_t Modbus_getRxBuff(void)
+{
+    bool bBuffOverflow = false;
+    
+    if (SES_Modbus.u8txenpin > 1)
+    {
+        
+    }
+    
+    SES_Modbus.u8BufferSize = 0;
+    while (EUSART_RxDataAvailable())
+    {
+        SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
+        SES_Modbus.u8BufferSize++;
+        
+        if(SES_Modbus.u8BufferSize >= MAX_BUFFER) bBuffOverflow = true;
+    }
+    SES_Modbus.u16InCnt++;
+    
+    if(bBuffOverflow)
+    {
+        SES_Modbus.u16errCnt++;
+        return ERR_BUFF_OVERFLOW;
+    }
+    
+    return SES_Modbus.u8BufferSize;
+}
 
 static uint8_t validateRequest(void)
 {
@@ -94,7 +162,7 @@ static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
     if ((unsigned long)(millis() - SES_Modbus.u32time) < (unsigned long)T35) return 0;
     
     SES_Modbus.u8lastRec = 0;
-    uint8_t i8state = Modbus_getRxBuff();
+    int8_t i8state = Modbus_getRxBuff();
     SES_Modbus.u8lastError = i8state;
     if (i8state < 7) return i8state;
 
@@ -146,7 +214,48 @@ static uint8_t EUSART_RxDataAvailable(void)
 
 static void Modbus_sendTxBuff(void)
 {
+    uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
+    SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc >> 8;
+    SES_Modbus.u8BufferSize++;
+    SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc & 0x00ff;
+    SES_Modbus.u8BufferSize++;
+
     
+    if (SES_Modbus.u8txenpin > 1)
+    {
+        EN_SetHigh();
+        /* set RS485 transceiver to transmit mode */
+//        printf ( EN_GetValue(), HIGH );
+    }
+    
+    /* transfer buffer to serial line */
+    for (int index = 0; index < SES_Modbus.u8BufferSize; index++)
+    {
+        EUSART_Write(SES_Modbus.au8Buffer[index]);
+    }
+    
+    if (SES_Modbus.u8txenpin > 1)
+    {
+        /*
+         must wait transmission end before changing pin state
+        soft serial does not need it since it is blocking
+        ...but the implementation in SoftwareSerial does nothing
+        anyway, so no harm in calling it.
+         */
+        while (! EUSART_is_tx_done());
+        volatile uint32_t u32overTimecountDown = SES_Modbus.u32overTime;
+        
+        while (u32overTimecountDown-- > 0);
+        EN_SetLow();
+    }
+    
+    SES_Modbus.u8BufferSize = 0;
+    
+    /* set time-out for master */
+    SES_Modbus.u32timeOut = millis();
+    
+    /* increase message counter */
+    SES_Modbus.u16OutCnt++;
 }
 
 static uint16_t Modbus_calcCRC(uint8_t len)
@@ -178,20 +287,20 @@ static uint16_t Modbus_calcCRC(uint8_t len)
 void ModbusSalve_Init(void)
 {
     SES_Modbus.u8id = 1; // slave number = 1...247
-    SES_Modbus.u8txenpin = 1; //Set pin EN of chip modbus
+    SES_Modbus.u8txenpin = RS485; //Set pin EN of chip modbus
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
     
-    if (SES_Modbus.u8txenpin == 1) EN_SetLow(); else EN_SetHigh();
+//    if (SES_Modbus.u8txenpin > 1) EN_SetLow(); else EN_SetHigh();
     
     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
 }
 
-void ModbusSlave_Process(int16_t *reg, int8_t size)
+void ModbusSlave_Process(void)
 {
     int8_t state = 0;
-//    state = ModbusRTU_Slave_Poll();
+    state = ModbusRTU_Slave_Poll(MB_Register, 2);
     
 }
 
