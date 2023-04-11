@@ -181,6 +181,7 @@ char *tempnam(const char *, const char *);
 # 12 "./I2C_SHT30.h" 2
 
 
+
 void ReadData (void);
 # 11 "./MCU.h" 2
 

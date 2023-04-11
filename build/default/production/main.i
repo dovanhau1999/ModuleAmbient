@@ -5250,7 +5250,7 @@ void WDT_Initialize(void);
 # 1 "./MCU.h" 1
 # 11 "./MCU.h"
 # 1 "./I2C_SHT30.h" 1
-# 14 "./I2C_SHT30.h"
+# 15 "./I2C_SHT30.h"
 void ReadData (void);
 # 11 "./MCU.h" 2
 
