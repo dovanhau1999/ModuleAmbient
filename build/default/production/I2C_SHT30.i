@@ -178,6 +178,101 @@ char *tempnam(const char *, const char *);
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
 # 12 "./I2C_SHT30.h" 2
 
+# 1 "./tick.h" 1
+# 11 "./tick.h"
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 1 3
+# 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 127 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long uintptr_t;
+# 142 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long intptr_t;
+# 158 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef signed char int8_t;
+
+
+
+
+typedef short int16_t;
+# 173 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long int32_t;
+
+
+
+
+
+typedef long long int64_t;
+# 188 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long intmax_t;
+
+
+
+
+
+typedef unsigned char uint8_t;
+
+
+
+
+typedef unsigned short uint16_t;
+# 209 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long uint32_t;
+
+
+
+
+
+typedef unsigned long long uint64_t;
+# 229 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long long uintmax_t;
+# 23 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
+
+typedef int8_t int_fast8_t;
+
+typedef int64_t int_fast64_t;
+
+
+typedef int8_t int_least8_t;
+typedef int16_t int_least16_t;
+
+typedef int24_t int_least24_t;
+typedef int24_t int_fast24_t;
+
+typedef int32_t int_least32_t;
+
+typedef int64_t int_least64_t;
+
+
+typedef uint8_t uint_fast8_t;
+
+typedef uint64_t uint_fast64_t;
+
+
+typedef uint8_t uint_least8_t;
+typedef uint16_t uint_least16_t;
+
+typedef uint24_t uint_least24_t;
+typedef uint24_t uint_fast24_t;
+
+typedef uint32_t uint_least32_t;
+
+typedef uint64_t uint_least64_t;
+# 144 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/stdint.h" 1 3
+typedef int16_t int_fast16_t;
+typedef int32_t int_fast32_t;
+typedef uint16_t uint_fast16_t;
+typedef uint32_t uint_fast32_t;
+# 145 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
+# 11 "./tick.h" 2
+
+
+void Tick_Init_SES(void);
+void rtcc_handle(void);
+void delay_ms(uint16_t count);
+uint32_t Get_millis(void);
+# 13 "./I2C_SHT30.h" 2
+
 
 
 void ReadData (void);
@@ -274,91 +369,7 @@ extern void __builtin_software_breakpoint(void);
 
 
 
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 1 3
-# 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 127 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long uintptr_t;
-# 142 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long intptr_t;
-# 158 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef signed char int8_t;
 
-
-
-
-typedef short int16_t;
-# 173 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long int32_t;
-
-
-
-
-
-typedef long long int64_t;
-# 188 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long intmax_t;
-
-
-
-
-
-typedef unsigned char uint8_t;
-
-
-
-
-typedef unsigned short uint16_t;
-# 209 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long uint32_t;
-
-
-
-
-
-typedef unsigned long long uint64_t;
-# 229 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long long uintmax_t;
-# 23 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
-
-typedef int8_t int_fast8_t;
-
-typedef int64_t int_fast64_t;
-
-
-typedef int8_t int_least8_t;
-typedef int16_t int_least16_t;
-
-typedef int24_t int_least24_t;
-typedef int24_t int_fast24_t;
-
-typedef int32_t int_least32_t;
-
-typedef int64_t int_least64_t;
-
-
-typedef uint8_t uint_fast8_t;
-
-typedef uint64_t uint_fast64_t;
-
-
-typedef uint8_t uint_least8_t;
-typedef uint16_t uint_least16_t;
-
-typedef uint24_t uint_least24_t;
-typedef uint24_t uint_fast24_t;
-
-typedef uint32_t uint_least32_t;
-
-typedef uint64_t uint_least64_t;
-# 144 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/stdint.h" 1 3
-typedef int16_t int_fast16_t;
-typedef int32_t int_fast32_t;
-typedef uint16_t uint_fast16_t;
-typedef uint32_t uint_fast32_t;
-# 145 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
-# 5 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\builtins.h" 2 3
 
 
 #pragma intrinsic(__nop)
@@ -5217,9 +5228,10 @@ void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t
 
 
 
-int16_t Temperature ;
+
+int16_t Temperature;
 int16_t Humidity;
-# 25 "I2C_SHT30.c"
+# 26 "I2C_SHT30.c"
 uint8_t SHT30_CMD_MEASURE_H_Enable[2] = {0x2C , 0x06};
 uint8_t SHT30_CMD_MEASURE_M_Enable [2] = {0x2C, 0x0D};
 uint8_t SHT30_CMD_MEASURE_L_Enable [2] = {0x2C, 0x10};
@@ -5227,6 +5239,13 @@ uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
 uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
 uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
+typedef union
+{
+    uint8_t _Byte[2];
+    uint16_t _Value;
+}Make16bit;
+static Make16bit _Temperature;
+static Make16bit _Humidity;
 
 typedef struct
 {
@@ -5266,29 +5285,27 @@ static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData);
 
 
 void ReadData(void);
-static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value);
-# 309 "I2C_SHT30.c"
-static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value)
-{
-    uint16_t OutData;
-
-    OutData = OutData | (H_Value & 0xFF);
-    OutData = OutData << 8;
-    OutData = OutData | (L_value &0xFF);
-
-    return OutData;
-}
-
+# 317 "I2C_SHT30.c"
 void ReadData(void)
 {
     uint8_t aData[6];
-    uint16_t *TempData = &Temperature;
-    uint16_t *HumiData = &Humidity;
+    int16_t *pTempData = &Temperature;
+    int16_t *pHumiData = &Humidity;
+    uint32_t valTime;
 
     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
+    valTime = Get_millis();
+    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2);
+
     I2C_ReadNBytes(0x89, aData, 6);
-    *TempData = Make16bit(aData[0], aData[1]);
-    *HumiData = Make16bit(aData[3], aData[4]);
+
+    _Temperature._Byte[1] = aData[0];
+    _Temperature._Byte[0] = aData[1];
+    *pTempData = (int16_t) _Temperature._Value;
+
+    _Humidity._Byte[1] = aData[3];
+    _Humidity._Byte[0] = aData[4];
+    *pHumiData = (int16_t)_Humidity._Value;
 
 
 

@@ -5248,11 +5248,21 @@ void WDT_Initialize(void);
 # 44 "main.c" 2
 
 # 1 "./MCU.h" 1
-# 11 "./MCU.h"
+# 10 "./MCU.h"
 # 1 "./I2C_SHT30.h" 1
-# 15 "./I2C_SHT30.h"
+# 13 "./I2C_SHT30.h"
+# 1 "./tick.h" 1
+# 13 "./tick.h"
+void Tick_Init_SES(void);
+void rtcc_handle(void);
+void delay_ms(uint16_t count);
+uint32_t Get_millis(void);
+# 13 "./I2C_SHT30.h" 2
+
+
+
 void ReadData (void);
-# 11 "./MCU.h" 2
+# 10 "./MCU.h" 2
 
 # 1 "./Modbus_Slave.h" 1
 # 12 "./Modbus_Slave.h"
@@ -5351,25 +5361,16 @@ enum MESSAGE_MODBUS_RTU
 };
 # 12 "./Modbus_Slave.h" 2
 
-# 1 "./tick.h" 1
-# 11 "./tick.h"
-void Tick_Init_SES(void);
-void rtcc_handle(void);
-uint32_t Get_millis(void);
-# 13 "./Modbus_Slave.h" 2
 
 
 
 
 
-void ModbusSalve_Init(void);
+void ModbusSlave_Init(void);
 void ModbusSlave_Process();
-# 12 "./MCU.h" 2
+# 11 "./MCU.h" 2
 
 
-_Bool LED_Statuc;
-int8_t SW_Ad;
-int8_t f_Indicator;
 
 void Device_Init(void);
 void Task_MB(void);
@@ -5384,7 +5385,9 @@ void main(void)
 {
 
     SYSTEM_Initialize();
-# 69 "main.c"
+    Tick_Init_SES();
+    ModbusSlave_Init();
+# 70 "main.c"
     while (1)
     {
 

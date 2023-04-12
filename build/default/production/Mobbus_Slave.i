@@ -364,9 +364,10 @@ enum MESSAGE_MODBUS_RTU
 # 12 "./Modbus_Slave.h" 2
 
 # 1 "./tick.h" 1
-# 11 "./tick.h"
+# 13 "./tick.h"
 void Tick_Init_SES(void);
 void rtcc_handle(void);
+void delay_ms(uint16_t count);
 uint32_t Get_millis(void);
 # 13 "./Modbus_Slave.h" 2
 
@@ -5232,7 +5233,7 @@ void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 
 
-void ModbusSalve_Init(void);
+void ModbusSlave_Init(void);
 void ModbusSlave_Process();
 # 1 "Mobbus_Slave.c" 2
 
@@ -5243,8 +5244,12 @@ void PIN_MANAGER_Initialize (void);
 void PIN_MANAGER_IOC(void);
 # 2 "Mobbus_Slave.c" 2
 # 11 "Mobbus_Slave.c"
-uint8_t MB_UID = 1;
-uint16_t MB_Register[2];
+extern int8_t SW_Ad;
+extern int16_t Temperature;
+extern int16_t Humidity;
+
+static int8_t MB_UID;
+static int16_t MB_Register[2];
 
 static const unsigned char fctsupported[] =
 {
@@ -5264,7 +5269,7 @@ static MODBUS SES_Modbus;
 
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
+static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
@@ -5375,7 +5380,7 @@ static uint8_t validateRequest(void)
     return 0;
 }
 
-static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
+static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 {
 
     SES_Modbus.u8regsize = size;
@@ -5418,11 +5423,11 @@ static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
     SES_Modbus.u32timeOut = Get_millis();
     SES_Modbus.u8lastError = 0;
 
-    ModbusSlaveF04( reg, size );
+    ModbusSlaveF04((uint16_t) reg, size );
 
     return i8state;
 }
-# 213 "Mobbus_Slave.c"
+# 217 "Mobbus_Slave.c"
 static void Modbus_sendTxBuff(void)
 {
     uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
@@ -5495,9 +5500,12 @@ static uint16_t Modbus_calcCRC(uint8_t len)
     return temp;
 }
 
-void ModbusSalve_Init(void)
+void ModbusSlave_Init(void)
 {
-    SES_Modbus.u8id = MB_UID;
+    MB_UID = SW_Ad;
+    MB_Register[0] = Temperature;
+    MB_Register[1] = Humidity;
+    SES_Modbus.u8id = (uint8_t) MB_UID;
     SES_Modbus.u8txenpin = RS485;
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
@@ -5512,5 +5520,4 @@ void ModbusSlave_Process(void)
 {
     int8_t state = 0;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);
-
 }

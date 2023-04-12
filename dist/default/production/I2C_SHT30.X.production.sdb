@@ -58,7 +58,13 @@ I2C_DATA_NACK 3
 I2C_TIMEOUT 4
 I2C_NULL 5
 ]
-"14 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+"27 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\MCU.c
+[e E3154 LED_STATUS `uc
+OFF_Sensor 0
+ON_Sensor 1
+ERR_Sensor 2
+]
+"18 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
 [e E42 MB_FC `uc
 MB_FC_NONE 0
 MB_FC_READ_COILS 1
@@ -70,7 +76,7 @@ MB_FC_WRITE_REGISTER 6
 MB_FC_WRITE_MULTIPLE_COILS 15
 MB_FC_WRITE_MULTIPLE_REGISTERS 16
 ]
-"50
+"54
 [e E408 MESSAGE_MODBUS_RTU `uc
 ID 0
 FUNC 1
@@ -80,13 +86,13 @@ NB_HI 4
 NB_LO 5
 BYTE_CNT 6
 ]
-"80
+"84
 [e E404 . `uc
 RESPONSE_SIZE 6
 EXCEPTION_SIZE 3
 CHECKSUM_SIZE 2
 ]
-"105
+"109
 [e E36 ERR_LIST `c
 ERR_NOT_MASTER -1
 ERR_POLLING -2
@@ -94,7 +100,7 @@ ERR_BUFF_OVERFLOW -3
 ERR_BAD_CRC -4
 ERR_EXCEPTION -5
 ]
-"120
+"124
 [e E52 . `uc
 NO_REPLY 255
 EXC_FUNC_CODE 1
@@ -102,7 +108,7 @@ EXC_ADDR_RANGE 2
 EXC_REGS_QUANT 3
 EXC_EXECUTE 4
 ]
-"288
+"295
 [e E400 TYPE_CONNECTION `uc
 USB 0
 RS232 1
@@ -116,8 +122,8 @@ RS485 2
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"309 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
-[v _Make16bit Make16bit `(us  1 s 2 Make16bit ]
+"317 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
+[v _ReadData ReadData `(v  1 e 1 0 ]
 "49 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\main.c
 [v _main main `(v  1 e 1 0 ]
 "88 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/eusart.c
@@ -282,21 +288,27 @@ RS485 2
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
 "182
 [v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
-"48 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+"52 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
 [v _ModbusSlaveF04 ModbusSlaveF04 `(c  1 s 1 ModbusSlaveF04 ]
-"72
+"76
 [v _buildException buildException `(v  1 s 1 buildException ]
-"83
+"87
 [v _Modbus_getRxBuff Modbus_getRxBuff `(c  1 s 1 Modbus_getRxBuff ]
-"111
+"115
 [v _validateRequest validateRequest `(uc  1 s 1 validateRequest ]
-"143
+"147
 [v _ModbusRTU_Slave_Poll ModbusRTU_Slave_Poll `(c  1 s 1 ModbusRTU_Slave_Poll ]
-"213
+"217
 [v _Modbus_sendTxBuff Modbus_sendTxBuff `(v  1 s 1 Modbus_sendTxBuff ]
-"259
+"263
 [v _Modbus_calcCRC Modbus_calcCRC `(us  1 s 2 Modbus_calcCRC ]
-"12 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
+"289
+[v _ModbusSlave_Init ModbusSlave_Init `(v  1 e 1 0 ]
+"305
+[v _ModbusSlave_Process ModbusSlave_Process `(v  1 e 1 0 ]
+"6 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
+[v _Tick_Init_SES Tick_Init_SES `(v  1 e 1 0 ]
+"12
 [v _rtcc_handle rtcc_handle `(v  1 e 1 0 ]
 "17
 [v _Get_millis Get_millis `(ul  1 e 4 0 ]
@@ -319,6 +331,18 @@ RS485 2
 ]
 [u S852 . 1 `S838 1 . 1 0 `S847 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES852  1 e 1 @11 ]
+[s S1396 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+"447
+[u S1405 . 1 `S1396 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES1405  1 e 1 @12 ]
 [s S613 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -444,7 +468,7 @@ RS485 2
 [v _LATB LATB `VEuc  1 e 1 @269 ]
 "2312
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S1419 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S1375 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -454,8 +478,8 @@ RS485 2
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2329
-[u S1428 . 1 `S1419 1 . 1 0 ]
-[v _LATCbits LATCbits `VES1428  1 e 1 @270 ]
+[u S1384 . 1 `S1375 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1384  1 e 1 @270 ]
 "2374
 [v _LATE LATE `VEuc  1 e 1 @272 ]
 "2667
@@ -556,12 +580,17 @@ RS485 2
 "4065
 [u S538 . 1 `S529 1 . 1 0 ]
 [v _SSPCON2bits SSPCON2bits `VES538  1 e 1 @534 ]
-"10 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
+"11 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
 [v _Temperature Temperature `s  1 e 2 0 ]
-"11
+"12
 [v _Humidity Humidity `s  1 e 2 0 ]
-"28
+"29
 [v _SHT30_CMD_MEASURE_H_Disable SHT30_CMD_MEASURE_H_Disable `[2]uc  1 e 2 0 ]
+[u S1331 . 2 `[2]uc 1 _Byte 2 0 `us 1 _Value 2 0 ]
+"38
+[v __Temperature _Temperature `S1331  1 s 2 _Temperature ]
+"39
+[v __Humidity _Humidity `S1331  1 s 2 _Humidity ]
 "62 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/eusart.c
 [v _eusartTxHead eusartTxHead `VEuc  1 e 1 0 ]
 "63
@@ -611,19 +640,30 @@ RS485 2
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"12 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
-[v _MB_Register MB_Register `[2]us  1 e 4 0 ]
-"14
+"7 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\MCU.c
+[v _SW_Ad SW_Ad `c  1 e 1 0 ]
+"8
+[v _f_Indicator f_Indicator `c  1 e 1 0 ]
+"15 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+[v _MB_UID MB_UID `c  1 s 1 MB_UID ]
+"16
+[v _MB_Register MB_Register `[2]s  1 s 4 MB_Register ]
+"18
 [v _fctsupported fctsupported `DC[8]uc  1 s 8 fctsupported ]
-[s S1361 . 284 `uc 1 u8id 1 0 `uc 1 u8txenpin 1 1 `uc 1 u8state 1 2 `uc 1 u8lastError 1 3 `[250]uc 1 au8Buffer 250 4 `uc 1 u8BufferSize 1 254 `uc 1 u8lastRec 1 255 `*.39us 1 au16regs 2 256 `us 1 u16InCnt 2 258 `us 1 u16OutCnt 2 260 `us 1 u16errCnt 2 262 `us 1 u16timeOut 2 264 `ul 1 u32time 4 266 `ul 1 u32timeOut 4 270 `ul 1 u32overTime 4 274 `us 1 u8regsize 2 278 `*.39us 1 HOLDING_REGS 2 280 `*.39us 1 INPUT_REGS 2 282 ]
-"26
-[v _SES_Modbus SES_Modbus `S1361  1 s 284 SES_Modbus ]
+[s S1459 . 284 `uc 1 u8id 1 0 `uc 1 u8txenpin 1 1 `uc 1 u8state 1 2 `uc 1 u8lastError 1 3 `[250]uc 1 au8Buffer 250 4 `uc 1 u8BufferSize 1 254 `uc 1 u8lastRec 1 255 `*.39us 1 au16regs 2 256 `us 1 u16InCnt 2 258 `us 1 u16OutCnt 2 260 `us 1 u16errCnt 2 262 `us 1 u16timeOut 2 264 `ul 1 u32time 4 266 `ul 1 u32timeOut 4 270 `ul 1 u32overTime 4 274 `us 1 u8regsize 2 278 `*.39us 1 HOLDING_REGS 2 280 `*.39us 1 INPUT_REGS 2 282 ]
+"30
+[v _SES_Modbus SES_Modbus `S1459  1 s 284 SES_Modbus ]
 "4 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
 [v _device_time device_time `VEul  1 s 4 device_time ]
 "49 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"73
+"74
+} 0
+"6 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
+[v _Tick_Init_SES Tick_Init_SES `(v  1 e 1 0 ]
+{
+"10
 } 0
 "50 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -695,6 +735,11 @@ RS485 2
 {
 [v EUSART_SetErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 0 ]
 "274
+} 0
+"289 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
+[v _ModbusSlave_Init ModbusSlave_Init `(v  1 e 1 0 ]
+{
+"303
 } 0
 "52 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]

@@ -10,6 +10,7 @@
 
 #include "stdio.h"
 #include "stdbool.h"
+#include "tick.h"
 
 
 void ReadData (void);

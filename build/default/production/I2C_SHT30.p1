@@ -1,9 +1,16 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3156 `(v ~T0 @X0 0 tf ]
+[v F3161 `(v ~T0 @X0 0 tf ]
+"34 I2C_SHT30.c
+[; ;I2C_SHT30.c: 34: {
+[u S360 `uc -> 2 `i `us 1 ]
+[n S360 . _Byte _Value ]
 "58 ./mcc_generated_files/examples/i2c_master_example.h
 [; ;./mcc_generated_files/examples/i2c_master_example.h: 58: void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
 [v _I2C_WriteNBytes `(v ~T0 @X0 0 ef3`uc`*uc`ui ]
-"59
+"16 ./tick.h
+[; ;./tick.h: 16: uint32_t Get_millis(void);
+[v _Get_millis `(ul ~T0 @X0 0 ef ]
+"59 ./mcc_generated_files/examples/i2c_master_example.h
 [; ;./mcc_generated_files/examples/i2c_master_example.h: 59: void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
 [v _I2C_ReadNBytes `(v ~T0 @X0 0 ef3`uc`*uc`ui ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
@@ -503,15 +510,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FEFh ;# ">
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3156 ~T0 @X0 1 e ]
-"10 I2C_SHT30.c
-[; ;I2C_SHT30.c: 10: int16_t Temperature ;
+[v _MSSP_InterruptHandler `*F3161 ~T0 @X0 1 e ]
+"11 I2C_SHT30.c
+[; ;I2C_SHT30.c: 11: int16_t Temperature;
 [v _Temperature `s ~T0 @X0 1 e ]
-"11
-[; ;I2C_SHT30.c: 11: int16_t Humidity;
+"12
+[; ;I2C_SHT30.c: 12: int16_t Humidity;
 [v _Humidity `s ~T0 @X0 1 e ]
-"25
-[; ;I2C_SHT30.c: 25: uint8_t SHT30_CMD_MEASURE_H_Enable[2] = {0x2C , 0x06};
+"26
+[; ;I2C_SHT30.c: 26: uint8_t SHT30_CMD_MEASURE_H_Enable[2] = {0x2C , 0x06};
 [v _SHT30_CMD_MEASURE_H_Enable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_H_Enable
 :U ..
@@ -519,8 +526,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 6 `i `uc
 ..
 ]
-"26
-[; ;I2C_SHT30.c: 26: uint8_t SHT30_CMD_MEASURE_M_Enable [2] = {0x2C, 0x0D};
+"27
+[; ;I2C_SHT30.c: 27: uint8_t SHT30_CMD_MEASURE_M_Enable [2] = {0x2C, 0x0D};
 [v _SHT30_CMD_MEASURE_M_Enable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_M_Enable
 :U ..
@@ -528,8 +535,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 13 `i `uc
 ..
 ]
-"27
-[; ;I2C_SHT30.c: 27: uint8_t SHT30_CMD_MEASURE_L_Enable [2] = {0x2C, 0x10};
+"28
+[; ;I2C_SHT30.c: 28: uint8_t SHT30_CMD_MEASURE_L_Enable [2] = {0x2C, 0x10};
 [v _SHT30_CMD_MEASURE_L_Enable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_L_Enable
 :U ..
@@ -537,8 +544,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 16 `i `uc
 ..
 ]
-"28
-[; ;I2C_SHT30.c: 28: uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
+"29
+[; ;I2C_SHT30.c: 29: uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
 [v _SHT30_CMD_MEASURE_H_Disable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_H_Disable
 :U ..
@@ -546,8 +553,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-"29
-[; ;I2C_SHT30.c: 29: uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
+"30
+[; ;I2C_SHT30.c: 30: uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
 [v _SHT30_CMD_MEASURE_M_Disable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_M_Disable
 :U ..
@@ -555,8 +562,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 11 `i `uc
 ..
 ]
-"30
-[; ;I2C_SHT30.c: 30: uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
+"31
+[; ;I2C_SHT30.c: 31: uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 [v _SHT30_CMD_MEASURE_L_Disable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_L_Disable
 :U ..
@@ -564,72 +571,69 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 22 `i `uc
 ..
 ]
-"309
-[; ;I2C_SHT30.c: 309: static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value)
-[v _Make16bit `(us ~T0 @X0 1 sf2`uc`uc ]
-"310
-[; ;I2C_SHT30.c: 310: {
-{
-[e :U _Make16bit ]
-"309
-[; ;I2C_SHT30.c: 309: static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value)
-[v _H_Value `uc ~T0 @X0 1 r1 ]
-[v _L_value `uc ~T0 @X0 1 r2 ]
-"310
-[; ;I2C_SHT30.c: 310: {
-[f ]
-"311
-[; ;I2C_SHT30.c: 311:     uint16_t OutData;
-[v _OutData `us ~T0 @X0 1 a ]
-"313
-[; ;I2C_SHT30.c: 313:     OutData = OutData | (H_Value & 0xFF);
-[e = _OutData -> | -> _OutData `ui -> & -> _H_Value `i -> 255 `i `ui `us ]
-"314
-[; ;I2C_SHT30.c: 314:     OutData = OutData << 8;
-[e = _OutData -> << -> _OutData `ui -> 8 `i `us ]
-"315
-[; ;I2C_SHT30.c: 315:     OutData = OutData | (L_value &0xFF);
-[e = _OutData -> | -> _OutData `ui -> & -> _L_value `i -> 255 `i `ui `us ]
+"38
+[; ;I2C_SHT30.c: 38: static Make16bit _Temperature;
+[v __Temperature `S360 ~T0 @X0 1 s ]
+"39
+[; ;I2C_SHT30.c: 39: static Make16bit _Humidity;
+[v __Humidity `S360 ~T0 @X0 1 s ]
 "317
-[; ;I2C_SHT30.c: 317:     return OutData;
-[e ) _OutData ]
-[e $UE 361  ]
-"318
-[; ;I2C_SHT30.c: 318: }
-[e :UE 361 ]
-}
-"320
-[; ;I2C_SHT30.c: 320: void ReadData(void)
+[; ;I2C_SHT30.c: 317: void ReadData(void)
 [v _ReadData `(v ~T0 @X0 1 ef ]
-"321
-[; ;I2C_SHT30.c: 321: {
+"318
+[; ;I2C_SHT30.c: 318: {
 {
 [e :U _ReadData ]
 [f ]
-"322
-[; ;I2C_SHT30.c: 322:     uint8_t aData[6];
+"319
+[; ;I2C_SHT30.c: 319:     uint8_t aData[6];
 [v _aData `uc ~T0 @X0 -> 6 `i a ]
-"323
-[; ;I2C_SHT30.c: 323:     uint16_t *TempData = &Temperature;
-[v _TempData `*us ~T0 @X0 1 a ]
-[e = _TempData -> &U _Temperature `*us ]
+"320
+[; ;I2C_SHT30.c: 320:     int16_t *pTempData = &Temperature;
+[v _pTempData `*s ~T0 @X0 1 a ]
+[e = _pTempData &U _Temperature ]
+"321
+[; ;I2C_SHT30.c: 321:     int16_t *pHumiData = &Humidity;
+[v _pHumiData `*s ~T0 @X0 1 a ]
+[e = _pHumiData &U _Humidity ]
+"322
+[; ;I2C_SHT30.c: 322:     uint32_t valTime;
+[v _valTime `ul ~T0 @X0 1 a ]
 "324
-[; ;I2C_SHT30.c: 324:     uint16_t *HumiData = &Humidity;
-[v _HumiData `*us ~T0 @X0 1 a ]
-[e = _HumiData -> &U _Humidity `*us ]
-"326
-[; ;I2C_SHT30.c: 326:     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
+[; ;I2C_SHT30.c: 324:     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
 [e ( _I2C_WriteNBytes (3 , , -> -> 136 `i `uc &U _SHT30_CMD_MEASURE_H_Disable -> -> 2 `i `ui ]
-"327
-[; ;I2C_SHT30.c: 327:     I2C_ReadNBytes(0x89, aData, 6);
-[e ( _I2C_ReadNBytes (3 , , -> -> 137 `i `uc &U _aData -> -> 6 `i `ui ]
+"325
+[; ;I2C_SHT30.c: 325:     valTime = Get_millis();
+[e = _valTime ( _Get_millis ..  ]
+"326
+[; ;I2C_SHT30.c: 326:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2);
+[e $U 363  ]
+[e :U 364 ]
+[e :U 363 ]
+[e $ < - ( _Get_millis ..  _valTime -> -> 2 `i `ul 364  ]
+[e :U 365 ]
 "328
-[; ;I2C_SHT30.c: 328:     *TempData = Make16bit(aData[0], aData[1]);
-[e = *U _TempData ( _Make16bit (2 , *U + &U _aData * -> -> -> 0 `i `ui `ux -> -> # *U &U _aData `ui `ux *U + &U _aData * -> -> -> 1 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"329
-[; ;I2C_SHT30.c: 329:     *HumiData = Make16bit(aData[3], aData[4]);
-[e = *U _HumiData ( _Make16bit (2 , *U + &U _aData * -> -> -> 3 `i `ui `ux -> -> # *U &U _aData `ui `ux *U + &U _aData * -> -> -> 4 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
+[; ;I2C_SHT30.c: 328:     I2C_ReadNBytes(0x89, aData, 6);
+[e ( _I2C_ReadNBytes (3 , , -> -> 137 `i `uc &U _aData -> -> 6 `i `ui ]
+"330
+[; ;I2C_SHT30.c: 330:     _Temperature._Byte[1] = aData[0];
+[e = *U + &U . __Temperature 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . __Temperature 0 `ui `ux *U + &U _aData * -> -> -> 0 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
+"331
+[; ;I2C_SHT30.c: 331:     _Temperature._Byte[0] = aData[1];
+[e = *U + &U . __Temperature 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . __Temperature 0 `ui `ux *U + &U _aData * -> -> -> 1 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
+"332
+[; ;I2C_SHT30.c: 332:     *pTempData = (int16_t) _Temperature._Value;
+[e = *U _pTempData -> . __Temperature 1 `s ]
 "334
-[; ;I2C_SHT30.c: 334: }
+[; ;I2C_SHT30.c: 334:     _Humidity._Byte[1] = aData[3];
+[e = *U + &U . __Humidity 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . __Humidity 0 `ui `ux *U + &U _aData * -> -> -> 3 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
+"335
+[; ;I2C_SHT30.c: 335:     _Humidity._Byte[0] = aData[4];
+[e = *U + &U . __Humidity 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . __Humidity 0 `ui `ux *U + &U _aData * -> -> -> 4 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
+"336
+[; ;I2C_SHT30.c: 336:     *pHumiData = (int16_t)_Humidity._Value;
+[e = *U _pHumiData -> . __Humidity 1 `s ]
+"341
+[; ;I2C_SHT30.c: 341: }
 [e :UE 362 ]
 }

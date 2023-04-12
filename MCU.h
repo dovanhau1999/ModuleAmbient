@@ -7,13 +7,9 @@
 
 #ifndef MCU_H
 #define	MCU_H
-
 #include "I2C_SHT30.h"
 #include "Modbus_Slave.h"
 
-bool LED_Statuc;
-int8_t SW_Ad;
-int8_t f_Indicator;
 
 void Device_Init(void);
 void Task_MB(void);

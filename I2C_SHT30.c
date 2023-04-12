@@ -6,9 +6,10 @@
 
 #define Address_and_Write_bit      0x88
 #define Address_and_Read_bit       0x89
+#define Timer_SCL_free             2
 
-int16_t Temperature ;
-int16_t Humidity;
+int16_t Temperature;
+int16_t Humidity; 
 
 
 
@@ -29,6 +30,13 @@ uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
 uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
 uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
+typedef union
+{
+    uint8_t _Byte[2];
+    uint16_t _Value;
+}Make16bit;
+static Make16bit _Temperature;
+static Make16bit _Humidity;
 
 typedef struct  
 {
@@ -68,7 +76,6 @@ static void Read_to_SHT30 (int16_t* TempData, int16_t* HumiData);
 /*==================================================================================*/
 
 void ReadData(void);
-static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value);
 
 ///* I2C Register Level interface */
 //static bool I2C_MasterOpen()
@@ -306,27 +313,27 @@ static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value);
 //    
 //}
 
-static uint16_t Make16bit(uint8_t H_Value, uint8_t L_value)
-{
-    uint16_t OutData;
-    
-    OutData = OutData | (H_Value & 0xFF);
-    OutData = OutData << 8;
-    OutData = OutData | (L_value &0xFF);
-    
-    return OutData;
-}
 
 void ReadData(void)
 {
     uint8_t aData[6];
-    uint16_t *TempData = &Temperature;
-    uint16_t *HumiData = &Humidity;
+    int16_t *pTempData = &Temperature;
+    int16_t *pHumiData = &Humidity;
+    uint32_t valTime;
     
     I2C_WriteNBytes(Address_and_Write_bit, SHT30_CMD_MEASURE_H_Disable, 2);
+    valTime = Get_millis();
+    while (((uint32_t) Get_millis() - valTime) < (uint32_t) Timer_SCL_free); 
+    
     I2C_ReadNBytes(Address_and_Read_bit, aData, 6);
-    *TempData = Make16bit(aData[0], aData[1]);
-    *HumiData = Make16bit(aData[3], aData[4]);
+    
+    _Temperature._Byte[1] = aData[0];
+    _Temperature._Byte[0] = aData[1];
+    *pTempData = (int16_t) _Temperature._Value;
+    
+    _Humidity._Byte[1] = aData[3];
+    _Humidity._Byte[0] = aData[4];
+    *pHumiData = (int16_t)_Humidity._Value;
 
 //    Write_to_SHT30(SHT30_CMD_MEASURE_H_Enable);
 //    

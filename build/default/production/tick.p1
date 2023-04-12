@@ -4,8 +4,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "403 ./mcc_generated_files/tmr1.h
 [; ;./mcc_generated_files/tmr1.h: 403:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F3126 ]
-"12 ./tick.h
-[; ;./tick.h: 12: void rtcc_handle(void);
+"14 ./tick.h
+[; ;./tick.h: 14: void rtcc_handle(void);
 [v _rtcc_handle `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
@@ -556,4 +556,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20
 [; ;tick.c: 20: }
 [e :UE 362 ]
+}
+"22
+[; ;tick.c: 22: void delay_ms(uint16_t count)
+[v _delay_ms `(v ~T0 @X0 1 ef1`us ]
+"23
+[; ;tick.c: 23: {
+{
+[e :U _delay_ms ]
+"22
+[; ;tick.c: 22: void delay_ms(uint16_t count)
+[v _count `us ~T0 @X0 1 r1 ]
+"23
+[; ;tick.c: 23: {
+[f ]
+"24
+[; ;tick.c: 24:     volatile uint32_t _DowCount;
+[v __DowCount `Vul ~T0 @X0 1 a ]
+"25
+[; ;tick.c: 25:     _DowCount = Get_millis();
+[e = __DowCount ( _Get_millis ..  ]
+"26
+[; ;tick.c: 26:     while (((uint32_t)Get_millis() - (uint32_t)_DowCount) <= (uint32_t)count);
+[e $U 364  ]
+[e :U 365 ]
+[e :U 364 ]
+[e $ <= - ( _Get_millis ..  __DowCount -> _count `ul 365  ]
+[e :U 366 ]
+"27
+[; ;tick.c: 27: }
+[e :UE 363 ]
 }

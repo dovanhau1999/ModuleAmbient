@@ -8,9 +8,13 @@
 #ifndef TICK_H
 #define	TICK_H
 
+#include <stdint.h>
+
 void Tick_Init_SES(void);
 void rtcc_handle(void);
+void delay_ms(uint16_t count);
 uint32_t Get_millis(void);
+
 
 #ifdef	__cplusplus
 extern "C" {

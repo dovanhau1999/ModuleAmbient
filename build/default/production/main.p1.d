@@ -9,7 +9,7 @@ mcc_generated_files/tmr1.h  \
 mcc_generated_files/eusart.h  \
 MCU.h  \
 I2C_SHT30.h  \
+tick.h  \
 Modbus_Slave.h  \
 ModbusRTU/ModbusRTU.h  \
-ModbusRTU/../Modbus.h  \
-tick.h 
+ModbusRTU/../Modbus.h 

@@ -8,8 +8,12 @@
 #define word(h, l) (l & 0xff) | ((h & 0xff) << 8)
 #define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
-uint8_t MB_UID = 1;
-uint16_t MB_Register[2];
+extern int8_t SW_Ad;
+extern int16_t Temperature;
+extern int16_t Humidity; 
+
+static int8_t MB_UID;
+static int16_t MB_Register[2];
 
 static const unsigned char fctsupported[] =
 {
@@ -29,7 +33,7 @@ static MODBUS SES_Modbus;
 /*==================================================================================*/
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
+static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
@@ -140,7 +144,7 @@ static uint8_t validateRequest(void)
     return 0;
 }
 
-static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
+static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 {
     
     SES_Modbus.u8regsize = size;
@@ -183,7 +187,7 @@ static int8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size)
     SES_Modbus.u32timeOut = millis();
     SES_Modbus.u8lastError = 0;
     
-    ModbusSlaveF04( reg, size );
+    ModbusSlaveF04((uint16_t) reg, size );
     
     return i8state;
 }
@@ -282,9 +286,12 @@ static uint16_t Modbus_calcCRC(uint8_t len)
     return temp;
 }
 
-void ModbusSalve_Init(void)
+void ModbusSlave_Init(void)
 {
-    SES_Modbus.u8id = MB_UID; // slave number = 1...247
+    MB_UID = SW_Ad;
+    MB_Register[0] = Temperature;
+    MB_Register[1] = Humidity;
+    SES_Modbus.u8id = (uint8_t) MB_UID; // slave number = 1...247
     SES_Modbus.u8txenpin = RS485; //Set pin EN of chip modbus
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
@@ -299,8 +306,4 @@ void ModbusSlave_Process(void)
 {
     int8_t state = 0;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);
-    
 }
-
-
-

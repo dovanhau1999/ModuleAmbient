@@ -18,3 +18,10 @@ uint32_t Get_millis(void)
 {
     return device_time;
 }
+
+void delay_ms(uint16_t count)
+{
+    volatile uint32_t _DowCount;
+    _DowCount = Get_millis();
+    while (((uint32_t)Get_millis() - (uint32_t)_DowCount) <= (uint32_t)count);
+}

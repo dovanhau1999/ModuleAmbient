@@ -8,7 +8,7 @@
 # 2 "<built-in>" 2
 # 1 "MCU.c" 2
 # 1 "./MCU.h" 1
-# 11 "./MCU.h"
+# 10 "./MCU.h"
 # 1 "./I2C_SHT30.h" 1
 # 11 "./I2C_SHT30.h"
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 1 3
@@ -180,13 +180,8 @@ char *tempnam(const char *, const char *);
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
 # 12 "./I2C_SHT30.h" 2
 
-
-
-void ReadData (void);
-# 11 "./MCU.h" 2
-
-# 1 "./Modbus_Slave.h" 1
-# 11 "./Modbus_Slave.h"
+# 1 "./tick.h" 1
+# 11 "./tick.h"
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -271,8 +266,22 @@ typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 145 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
-# 11 "./Modbus_Slave.h" 2
+# 11 "./tick.h" 2
 
+
+void Tick_Init_SES(void);
+void rtcc_handle(void);
+void delay_ms(uint16_t count);
+uint32_t Get_millis(void);
+# 13 "./I2C_SHT30.h" 2
+
+
+
+void ReadData (void);
+# 10 "./MCU.h" 2
+
+# 1 "./Modbus_Slave.h" 1
+# 12 "./Modbus_Slave.h"
 # 1 "./ModbusRTU/ModbusRTU.h" 1
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
@@ -368,12 +377,6 @@ enum MESSAGE_MODBUS_RTU
 };
 # 12 "./Modbus_Slave.h" 2
 
-# 1 "./tick.h" 1
-# 11 "./tick.h"
-void Tick_Init_SES(void);
-void rtcc_handle(void);
-uint32_t Get_millis(void);
-# 13 "./Modbus_Slave.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 54 "./mcc_generated_files/eusart.h"
@@ -5234,14 +5237,11 @@ void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 
 
-void ModbusSalve_Init(void);
+void ModbusSlave_Init(void);
 void ModbusSlave_Process();
-# 12 "./MCU.h" 2
+# 11 "./MCU.h" 2
 
 
-_Bool LED_Statuc;
-int8_t SW_Ad;
-int8_t f_Indicator;
 
 void Device_Init(void);
 void Task_MB(void);
@@ -5249,3 +5249,102 @@ void Task_Sensor(void);
 void Task_Indicator(void);
 # 1 "MCU.c" 2
 
+# 1 "./mcc_generated_files/pin_manager.h" 1
+# 199 "./mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize (void);
+# 211 "./mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_IOC(void);
+# 2 "MCU.c" 2
+
+
+
+
+
+int8_t SW_Ad;
+int8_t f_Indicator;
+
+enum LED_STATUS
+{
+    OFF_Sensor = 0,
+    ON_Sensor = 1,
+    ERR_Sensor = 2
+};
+
+extern int16_t Temperature;
+extern int16_t Humidity;
+
+
+void Task_Sensor(void)
+{
+    static uint32_t valTime = 0;
+    static int16_t *_pTemp = &Temperature;
+    static int16_t *_pHumi = &Humidity;
+
+    f_Indicator = OFF_Sensor;
+
+    valTime = Get_millis();
+
+    if (((uint32_t) Get_millis() - valTime) >= (uint32_t) 2000)
+    {
+        f_Indicator = ON_Sensor;
+        ReadData();
+        if ( (Temperature < 0) || (Humidity < 0) )
+        {
+            *_pTemp = 0x8000;
+            *_pHumi = 0x8000;
+            f_Indicator = ERR_Sensor;
+        }
+    }
+}
+
+void Task_MB(void)
+{
+    static _Bool f_Modbus_Init = 0;
+    if (!f_Modbus_Init)
+    {
+        ModbusSlave_Init();
+        f_Modbus_Init = 1;
+    } else
+    {
+        ModbusSlave_Process();
+    }
+}
+
+void Task_Indicator()
+{
+    switch (f_Indicator)
+    {
+        case OFF_Sensor:
+        {
+            do { LATCbits.LATC1 = 1; } while(0);
+            do { LATCbits.LATC0 = 1; } while(0);
+            break;
+        }
+        case ON_Sensor:
+        {
+            do { LATCbits.LATC1 = 0; } while(0);
+            do { LATCbits.LATC0 = 1; } while(0);
+            break;
+        }
+        case ERR_Sensor:
+        {
+            do { LATCbits.LATC1 = 1; } while(0);
+            do { LATCbits.LATC0 = 0; } while(0);
+            break;
+        }
+    }
+}
+
+void Device_Init(void)
+{
+    static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
+    static int8_t *pWS_Ad = &SW_Ad;
+
+    value_SW1 = PORTAbits.RA0;
+    value_SW2 = PORTAbits.RA1;
+    value_SW3 = PORTAbits.RA2;
+    value_SW4 = PORTAbits.RA3;
+
+
+    *pWS_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x03) | (value_SW4 & 0x04)) & (0xFF));
+}

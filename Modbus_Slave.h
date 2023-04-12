@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-void ModbusSalve_Init(void);
+void ModbusSlave_Init(void);
 void ModbusSlave_Process();
 
 #ifdef	__cplusplus
