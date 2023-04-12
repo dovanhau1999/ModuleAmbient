@@ -5233,7 +5233,7 @@ void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 
 
-void ModbusSlave_Init(void);
+void ModbusSlave_Init(int8_t _SW_Ad);
 void ModbusSlave_Process();
 # 1 "Mobbus_Slave.c" 2
 
@@ -5244,7 +5244,6 @@ void PIN_MANAGER_Initialize (void);
 void PIN_MANAGER_IOC(void);
 # 2 "Mobbus_Slave.c" 2
 # 11 "Mobbus_Slave.c"
-extern int8_t SW_Ad;
 extern int16_t Temperature;
 extern int16_t Humidity;
 
@@ -5427,7 +5426,7 @@ static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 
     return i8state;
 }
-# 217 "Mobbus_Slave.c"
+# 216 "Mobbus_Slave.c"
 static void Modbus_sendTxBuff(void)
 {
     uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
@@ -5500,12 +5499,9 @@ static uint16_t Modbus_calcCRC(uint8_t len)
     return temp;
 }
 
-void ModbusSlave_Init(void)
+void ModbusSlave_Init(int8_t _SW_Ad)
 {
-    MB_UID = SW_Ad;
-    MB_Register[0] = Temperature;
-    MB_Register[1] = Humidity;
-    SES_Modbus.u8id = (uint8_t) MB_UID;
+    SES_Modbus.u8id = (uint8_t) _SW_Ad;
     SES_Modbus.u8txenpin = RS485;
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
@@ -5518,6 +5514,8 @@ void ModbusSlave_Init(void)
 
 void ModbusSlave_Process(void)
 {
+    MB_Register[0] = Temperature;
+    MB_Register[1] = Humidity;
     int8_t state = 0;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);
 }

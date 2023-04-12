@@ -11,10 +11,13 @@
 #include "Modbus_Slave.h"
 
 
-void Device_Init(void);
+static void Device_Init(void);
 void Task_MB(void);
 void Task_Sensor(void);
 void Task_Indicator(void);
+
+void App_Init(void);
+void App_Process(void);
 
 #ifdef	__cplusplus
 extern "C" {

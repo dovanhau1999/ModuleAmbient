@@ -5237,16 +5237,19 @@ void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 
 
-void ModbusSlave_Init(void);
+void ModbusSlave_Init(int8_t _SW_Ad);
 void ModbusSlave_Process();
 # 11 "./MCU.h" 2
 
 
 
-void Device_Init(void);
+static void Device_Init(void);
 void Task_MB(void);
 void Task_Sensor(void);
 void Task_Indicator(void);
+
+void App_Init(void);
+void App_Process(void);
 # 1 "MCU.c" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
@@ -5256,11 +5259,40 @@ void PIN_MANAGER_Initialize (void);
 void PIN_MANAGER_IOC(void);
 # 2 "MCU.c" 2
 
+# 1 "./mcc_generated_files/tmr1.h" 1
+# 101 "./mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+# 130 "./mcc_generated_files/tmr1.h"
+void TMR1_StartTimer(void);
+# 162 "./mcc_generated_files/tmr1.h"
+void TMR1_StopTimer(void);
+# 197 "./mcc_generated_files/tmr1.h"
+uint16_t TMR1_ReadTimer(void);
+# 236 "./mcc_generated_files/tmr1.h"
+void TMR1_WriteTimer(uint16_t timerVal);
+# 272 "./mcc_generated_files/tmr1.h"
+void TMR1_Reload(void);
+# 311 "./mcc_generated_files/tmr1.h"
+void TMR1_StartSinglePulseAcquisition(void);
+# 350 "./mcc_generated_files/tmr1.h"
+uint8_t TMR1_CheckGateValueStatus(void);
+# 368 "./mcc_generated_files/tmr1.h"
+void TMR1_ISR(void);
+# 385 "./mcc_generated_files/tmr1.h"
+void TMR1_CallBack(void);
+# 403 "./mcc_generated_files/tmr1.h"
+ void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+# 421 "./mcc_generated_files/tmr1.h"
+extern void (*TMR1_InterruptHandler)(void);
+# 439 "./mcc_generated_files/tmr1.h"
+void TMR1_DefaultInterruptHandler(void);
+# 3 "MCU.c" 2
 
 
 
 
-int8_t SW_Ad;
+
+static int8_t SW_Ad;
 int8_t f_Indicator;
 
 enum LED_STATUS
@@ -5277,21 +5309,20 @@ extern int16_t Humidity;
 void Task_Sensor(void)
 {
     static uint32_t valTime = 0;
-    static int16_t *_pTemp = &Temperature;
-    static int16_t *_pHumi = &Humidity;
 
     f_Indicator = OFF_Sensor;
 
-    valTime = Get_millis();
 
-    if (((uint32_t) Get_millis() - valTime) >= (uint32_t) 2000)
+    if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2000) |
+            (((uint32_t) Get_millis() - valTime) < 0))
     {
+        valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
         if ( (Temperature < 0) || (Humidity < 0) )
         {
-            *_pTemp = 0x8000;
-            *_pHumi = 0x8000;
+            Temperature = 0x8000;
+            Temperature = 0x8000;
             f_Indicator = ERR_Sensor;
         }
     }
@@ -5302,7 +5333,7 @@ void Task_MB(void)
     static _Bool f_Modbus_Init = 0;
     if (!f_Modbus_Init)
     {
-        ModbusSlave_Init();
+        ModbusSlave_Init(SW_Ad);
         f_Modbus_Init = 1;
     } else
     {
@@ -5335,10 +5366,9 @@ void Task_Indicator()
     }
 }
 
-void Device_Init(void)
+static void Device_Init(void)
 {
     static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
-    static int8_t *pWS_Ad = &SW_Ad;
 
     value_SW1 = PORTAbits.RA0;
     value_SW2 = PORTAbits.RA1;
@@ -5346,5 +5376,19 @@ void Device_Init(void)
     value_SW4 = PORTAbits.RA3;
 
 
-    *pWS_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x03) | (value_SW4 & 0x04)) & (0xFF));
+    SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
+}
+
+void App_Init(void)
+{
+    Device_Init();
+    TMR1_StartTimer();
+    Tick_Init_SES();
+}
+
+void App_Process(void)
+{
+    Task_Sensor();
+    Task_MB();
+    Task_Indicator();
 }

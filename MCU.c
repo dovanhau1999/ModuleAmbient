@@ -1,10 +1,11 @@
 #include "MCU.h"
 #include "mcc_generated_files/pin_manager.h"
+#include "mcc_generated_files/tmr1.h"
 
 #define _CheckTimeTick              2000
 
 //bool LED_Statuc;
-int8_t SW_Ad;
+static int8_t SW_Ad;
 int8_t f_Indicator;
 
 enum LED_STATUS
@@ -21,21 +22,20 @@ extern int16_t Humidity;
 void Task_Sensor(void)
 {
     static uint32_t valTime = 0; 
-    static int16_t *_pTemp = &Temperature;
-    static int16_t *_pHumi = &Humidity;
     
     f_Indicator = OFF_Sensor;
     
-    valTime = Get_millis();
     /* Check Timer Tick*/
-    if (((uint32_t) Get_millis() - valTime) >= (uint32_t) _CheckTimeTick) 
+    if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) _CheckTimeTick) | 
+            (((uint32_t) Get_millis() - valTime) < 0)) 
     {
+        valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
         if ( (Temperature < 0) || (Humidity < 0) )
         {
-            *_pTemp = 0x8000;
-            *_pHumi = 0x8000;
+            Temperature = 0x8000;
+            Temperature = 0x8000;
             f_Indicator = ERR_Sensor;
         } 
     }
@@ -46,7 +46,7 @@ void Task_MB(void)
     static bool f_Modbus_Init = false;
     if (!f_Modbus_Init)
     {
-        ModbusSlave_Init();
+        ModbusSlave_Init(SW_Ad);
         f_Modbus_Init = true;
     } else 
     {
@@ -79,10 +79,9 @@ void Task_Indicator()
     }
 }
 
-void Device_Init(void)
+static void Device_Init(void)
 {
     static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
-    static int8_t *pWS_Ad = &SW_Ad;
     
     value_SW1 = SW1_GetValue();
     value_SW2 = SW2_GetValue();
@@ -90,5 +89,19 @@ void Device_Init(void)
     value_SW4 = SW4_GetValue();
     
     /* Tinh dia chi cua Device */
-    *pWS_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x03) | (value_SW4 & 0x04)) & (0xFF));
+    SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
+}
+
+void App_Init(void)
+{
+    Device_Init();
+    TMR1_StartTimer();
+    Tick_Init_SES();
+}
+
+void App_Process(void)
+{
+    Task_Sensor();
+    Task_MB();
+    Task_Indicator();
 }

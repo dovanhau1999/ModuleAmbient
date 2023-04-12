@@ -5289,8 +5289,6 @@ void ReadData(void);
 void ReadData(void)
 {
     uint8_t aData[6];
-    int16_t *pTempData = &Temperature;
-    int16_t *pHumiData = &Humidity;
     uint32_t valTime;
 
     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
@@ -5301,11 +5299,11 @@ void ReadData(void)
 
     _Temperature._Byte[1] = aData[0];
     _Temperature._Byte[0] = aData[1];
-    *pTempData = (int16_t) _Temperature._Value;
+    Temperature = (int16_t) _Temperature._Value;
 
     _Humidity._Byte[1] = aData[3];
     _Humidity._Byte[0] = aData[4];
-    *pHumiData = (int16_t)_Humidity._Value;
+    Humidity = (int16_t)_Humidity._Value;
 
 
 

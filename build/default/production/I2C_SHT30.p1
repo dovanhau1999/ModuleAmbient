@@ -589,51 +589,43 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;I2C_SHT30.c: 319:     uint8_t aData[6];
 [v _aData `uc ~T0 @X0 -> 6 `i a ]
 "320
-[; ;I2C_SHT30.c: 320:     int16_t *pTempData = &Temperature;
-[v _pTempData `*s ~T0 @X0 1 a ]
-[e = _pTempData &U _Temperature ]
-"321
-[; ;I2C_SHT30.c: 321:     int16_t *pHumiData = &Humidity;
-[v _pHumiData `*s ~T0 @X0 1 a ]
-[e = _pHumiData &U _Humidity ]
-"322
-[; ;I2C_SHT30.c: 322:     uint32_t valTime;
+[; ;I2C_SHT30.c: 320:     uint32_t valTime;
 [v _valTime `ul ~T0 @X0 1 a ]
-"324
-[; ;I2C_SHT30.c: 324:     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
+"322
+[; ;I2C_SHT30.c: 322:     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
 [e ( _I2C_WriteNBytes (3 , , -> -> 136 `i `uc &U _SHT30_CMD_MEASURE_H_Disable -> -> 2 `i `ui ]
-"325
-[; ;I2C_SHT30.c: 325:     valTime = Get_millis();
+"323
+[; ;I2C_SHT30.c: 323:     valTime = Get_millis();
 [e = _valTime ( _Get_millis ..  ]
-"326
-[; ;I2C_SHT30.c: 326:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2);
+"324
+[; ;I2C_SHT30.c: 324:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2);
 [e $U 363  ]
 [e :U 364 ]
 [e :U 363 ]
 [e $ < - ( _Get_millis ..  _valTime -> -> 2 `i `ul 364  ]
 [e :U 365 ]
-"328
-[; ;I2C_SHT30.c: 328:     I2C_ReadNBytes(0x89, aData, 6);
+"326
+[; ;I2C_SHT30.c: 326:     I2C_ReadNBytes(0x89, aData, 6);
 [e ( _I2C_ReadNBytes (3 , , -> -> 137 `i `uc &U _aData -> -> 6 `i `ui ]
-"330
-[; ;I2C_SHT30.c: 330:     _Temperature._Byte[1] = aData[0];
+"328
+[; ;I2C_SHT30.c: 328:     _Temperature._Byte[1] = aData[0];
 [e = *U + &U . __Temperature 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . __Temperature 0 `ui `ux *U + &U _aData * -> -> -> 0 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"331
-[; ;I2C_SHT30.c: 331:     _Temperature._Byte[0] = aData[1];
+"329
+[; ;I2C_SHT30.c: 329:     _Temperature._Byte[0] = aData[1];
 [e = *U + &U . __Temperature 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . __Temperature 0 `ui `ux *U + &U _aData * -> -> -> 1 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
+"330
+[; ;I2C_SHT30.c: 330:     Temperature = (int16_t) _Temperature._Value;
+[e = _Temperature -> . __Temperature 1 `s ]
 "332
-[; ;I2C_SHT30.c: 332:     *pTempData = (int16_t) _Temperature._Value;
-[e = *U _pTempData -> . __Temperature 1 `s ]
-"334
-[; ;I2C_SHT30.c: 334:     _Humidity._Byte[1] = aData[3];
+[; ;I2C_SHT30.c: 332:     _Humidity._Byte[1] = aData[3];
 [e = *U + &U . __Humidity 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . __Humidity 0 `ui `ux *U + &U _aData * -> -> -> 3 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"335
-[; ;I2C_SHT30.c: 335:     _Humidity._Byte[0] = aData[4];
+"333
+[; ;I2C_SHT30.c: 333:     _Humidity._Byte[0] = aData[4];
 [e = *U + &U . __Humidity 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . __Humidity 0 `ui `ux *U + &U _aData * -> -> -> 4 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"336
-[; ;I2C_SHT30.c: 336:     *pHumiData = (int16_t)_Humidity._Value;
-[e = *U _pHumiData -> . __Humidity 1 `s ]
-"341
-[; ;I2C_SHT30.c: 341: }
+"334
+[; ;I2C_SHT30.c: 334:     Humidity = (int16_t)_Humidity._Value;
+[e = _Humidity -> . __Humidity 1 `s ]
+"339
+[; ;I2C_SHT30.c: 339: }
 [e :UE 362 ]
 }

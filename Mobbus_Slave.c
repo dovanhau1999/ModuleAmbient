@@ -8,7 +8,6 @@
 #define word(h, l) (l & 0xff) | ((h & 0xff) << 8)
 #define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
-extern int8_t SW_Ad;
 extern int16_t Temperature;
 extern int16_t Humidity; 
 
@@ -286,12 +285,9 @@ static uint16_t Modbus_calcCRC(uint8_t len)
     return temp;
 }
 
-void ModbusSlave_Init(void)
+void ModbusSlave_Init(int8_t _SW_Ad)
 {
-    MB_UID = SW_Ad;
-    MB_Register[0] = Temperature;
-    MB_Register[1] = Humidity;
-    SES_Modbus.u8id = (uint8_t) MB_UID; // slave number = 1...247
+    SES_Modbus.u8id = (uint8_t) _SW_Ad; // slave number = 1...247
     SES_Modbus.u8txenpin = RS485; //Set pin EN of chip modbus
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
@@ -304,6 +300,8 @@ void ModbusSlave_Init(void)
 
 void ModbusSlave_Process(void)
 {
+    MB_Register[0] = Temperature;
+    MB_Register[1] = Humidity;
     int8_t state = 0;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);
 }

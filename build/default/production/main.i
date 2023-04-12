@@ -5366,16 +5366,19 @@ enum MESSAGE_MODBUS_RTU
 
 
 
-void ModbusSlave_Init(void);
+void ModbusSlave_Init(int8_t _SW_Ad);
 void ModbusSlave_Process();
 # 11 "./MCU.h" 2
 
 
 
-void Device_Init(void);
+static void Device_Init(void);
 void Task_MB(void);
 void Task_Sensor(void);
 void Task_Indicator(void);
+
+void App_Init(void);
+void App_Process(void);
 # 45 "main.c" 2
 
 
@@ -5385,11 +5388,11 @@ void main(void)
 {
 
     SYSTEM_Initialize();
-    Tick_Init_SES();
-    ModbusSlave_Init();
-# 70 "main.c"
+    App_Init();
+# 69 "main.c"
     while (1)
     {
 
+        App_Process();
     }
 }

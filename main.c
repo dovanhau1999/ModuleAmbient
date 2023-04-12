@@ -50,8 +50,7 @@ void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-    Tick_Init_SES();
-    ModbusSlave_Init();
+    App_Init();
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -70,6 +69,7 @@ void main(void)
     while (1)
     {
         // Add your application code
+        App_Process();
     }
 }
 /**

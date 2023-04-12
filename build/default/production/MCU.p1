@@ -1,23 +1,23 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"17 MCU.c
-[; ;MCU.c: 17: extern int16_t Temperature;
-[v _Temperature `s ~T0 @X0 0 e ]
-"18
-[; ;MCU.c: 18: extern int16_t Humidity;
-[v _Humidity `s ~T0 @X0 0 e ]
-"27
-[; ;MCU.c: 27:     f_Indicator = OFF_Sensor;
-[c E3154 0 1 2 .. ]
-[n E3154 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
+"26 MCU.c
+[; ;MCU.c: 26:     f_Indicator = OFF_Sensor;
+[c E3175 0 1 2 .. ]
+[n E3175 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
 "16 ./tick.h
 [; ;./tick.h: 16: uint32_t Get_millis(void);
 [v _Get_millis `(ul ~T0 @X0 0 ef ]
 "16 ./I2C_SHT30.h
 [; ;./I2C_SHT30.h: 16: void ReadData (void);
 [v _ReadData `(v ~T0 @X0 0 ef ]
+"18 MCU.c
+[; ;MCU.c: 18: extern int16_t Temperature;
+[v _Temperature `s ~T0 @X0 0 e ]
+"19
+[; ;MCU.c: 19: extern int16_t Humidity;
+[v _Humidity `s ~T0 @X0 0 e ]
 "18 ./Modbus_Slave.h
-[; ;./Modbus_Slave.h: 18: void ModbusSlave_Init(void);
-[v _ModbusSlave_Init `(v ~T0 @X0 0 ef ]
+[; ;./Modbus_Slave.h: 18: void ModbusSlave_Init(int8_t _SW_Ad);
+[v _ModbusSlave_Init `(v ~T0 @X0 0 ef1`c ]
 "19
 [; ;./Modbus_Slave.h: 19: void ModbusSlave_Process();
 [v _ModbusSlave_Process `(v ~T0 @X0 0 e? ]
@@ -43,6 +43,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "447
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 447: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x00C)));
 [v _PORTAbits `VS36 ~T0 @X0 0 e@12 ]
+"130 ./mcc_generated_files/tmr1.h
+[; ;./mcc_generated_files/tmr1.h: 130: void TMR1_StartTimer(void);
+[v _TMR1_StartTimer `(v ~T0 @X0 0 ef ]
+"13 ./tick.h
+[; ;./tick.h: 13: void Tick_Init_SES(void);
+[v _Tick_Init_SES `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -538,53 +544,41 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7116
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"7 MCU.c
-[; ;MCU.c: 7: int8_t SW_Ad;
-[v _SW_Ad `c ~T0 @X0 1 e ]
-"8
-[; ;MCU.c: 8: int8_t f_Indicator;
+"8 MCU.c
+[; ;MCU.c: 8: static int8_t SW_Ad;
+[v _SW_Ad `c ~T0 @X0 1 s ]
+"9
+[; ;MCU.c: 9: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
-"21
-[; ;MCU.c: 21: void Task_Sensor(void)
-[v _Task_Sensor `(v ~T0 @X0 1 ef ]
 "22
-[; ;MCU.c: 22: {
+[; ;MCU.c: 22: void Task_Sensor(void)
+[v _Task_Sensor `(v ~T0 @X0 1 ef ]
+"23
+[; ;MCU.c: 23: {
 {
 [e :U _Task_Sensor ]
 [f ]
-"23
-[; ;MCU.c: 23:     static uint32_t valTime = 0;
-[v F3161 `ul ~T0 @X0 1 s valTime ]
-[i F3161
+"24
+[; ;MCU.c: 24:     static uint32_t valTime = 0;
+[v F3182 `ul ~T0 @X0 1 s valTime ]
+[i F3182
 -> -> -> 0 `i `l `ul
 ]
-"24
-[; ;MCU.c: 24:     static int16_t *_pTemp = &Temperature;
-[v F3162 `*s ~T0 @X0 1 s _pTemp ]
-[i F3162
-&U _Temperature
-]
-"25
-[; ;MCU.c: 25:     static int16_t *_pHumi = &Humidity;
-[v F3163 `*s ~T0 @X0 1 s _pHumi ]
-[i F3163
-&U _Humidity
-]
-"27
-[; ;MCU.c: 27:     f_Indicator = OFF_Sensor;
-[e = _f_Indicator -> . `E3154 0 `c ]
+"26
+[; ;MCU.c: 26:     f_Indicator = OFF_Sensor;
+[e = _f_Indicator -> . `E3175 0 `c ]
 "29
-[; ;MCU.c: 29:     valTime = Get_millis();
-[e = F3161 ( _Get_millis ..  ]
+[; ;MCU.c: 29:     if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2000) |
+[e $ ! | >= - ( _Get_millis ..  F3182 -> -> 2000 `i `ul < - ( _Get_millis ..  F3182 -> -> -> 0 `i `l `ul 362  ]
 "31
-[; ;MCU.c: 31:     if (((uint32_t) Get_millis() - valTime) >= (uint32_t) 2000)
-[e $ ! >= - ( _Get_millis ..  F3161 -> -> 2000 `i `ul 362  ]
-"32
-[; ;MCU.c: 32:     {
+[; ;MCU.c: 31:     {
 {
+"32
+[; ;MCU.c: 32:         valTime = Get_millis();
+[e = F3182 ( _Get_millis ..  ]
 "33
 [; ;MCU.c: 33:         f_Indicator = ON_Sensor;
-[e = _f_Indicator -> . `E3154 1 `c ]
+[e = _f_Indicator -> . `E3175 1 `c ]
 "34
 [; ;MCU.c: 34:         ReadData();
 [e ( _ReadData ..  ]
@@ -595,14 +589,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCU.c: 36:         {
 {
 "37
-[; ;MCU.c: 37:             *_pTemp = 0x8000;
-[e = *U F3162 -> -> 32768 `ui `s ]
+[; ;MCU.c: 37:             Temperature = 0x8000;
+[e = _Temperature -> -> 32768 `ui `s ]
 "38
-[; ;MCU.c: 38:             *_pHumi = 0x8000;
-[e = *U F3163 -> -> 32768 `ui `s ]
+[; ;MCU.c: 38:             Temperature = 0x8000;
+[e = _Temperature -> -> 32768 `ui `s ]
 "39
 [; ;MCU.c: 39:             f_Indicator = ERR_Sensor;
-[e = _f_Indicator -> . `E3154 2 `c ]
+[e = _f_Indicator -> . `E3175 2 `c ]
 "40
 [; ;MCU.c: 40:         }
 }
@@ -625,22 +619,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "46
 [; ;MCU.c: 46:     static _Bool f_Modbus_Init = 0;
-[v F3165 `a ~T0 @X0 1 s f_Modbus_Init ]
-[i F3165
+[v F3184 `a ~T0 @X0 1 s f_Modbus_Init ]
+[i F3184
 -> -> 0 `i `a
 ]
 "47
 [; ;MCU.c: 47:     if (!f_Modbus_Init)
-[e $ ! ! != -> F3165 `i -> 0 `i 365  ]
+[e $ ! ! != -> F3184 `i -> 0 `i 365  ]
 "48
 [; ;MCU.c: 48:     {
 {
 "49
-[; ;MCU.c: 49:         ModbusSlave_Init();
-[e ( _ModbusSlave_Init ..  ]
+[; ;MCU.c: 49:         ModbusSlave_Init(SW_Ad);
+[e ( _ModbusSlave_Init (1 _SW_Ad ]
 "50
 [; ;MCU.c: 50:         f_Modbus_Init = 1;
-[e = F3165 -> -> 1 `i `a ]
+[e = F3184 -> -> 1 `i `a ]
 "51
 [; ;MCU.c: 51:     } else
 }
@@ -757,9 +751,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 368  ]
 [e :U 369 ]
-[e [\ -> _f_Indicator `i , $ . `E3154 0 370
- , $ . `E3154 1 377
- , $ . `E3154 2 384
+[e [\ -> _f_Indicator `i , $ . `E3175 0 370
+ , $ . `E3175 1 377
+ , $ . `E3175 2 384
  368 ]
 [e :U 368 ]
 "80
@@ -767,8 +761,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 367 ]
 }
 "82
-[; ;MCU.c: 82: void Device_Init(void)
-[v _Device_Init `(v ~T0 @X0 1 ef ]
+[; ;MCU.c: 82: static void Device_Init(void)
+[v _Device_Init `(v ~T0 @X0 1 sf ]
 "83
 [; ;MCU.c: 83: {
 {
@@ -776,32 +770,68 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "84
 [; ;MCU.c: 84:     static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
-[v F3168 `c ~T0 @X0 1 s value_SW1 ]
-[v F3169 `c ~T0 @X0 1 s value_SW2 ]
-[v F3170 `c ~T0 @X0 1 s value_SW3 ]
-[v F3171 `c ~T0 @X0 1 s value_SW4 ]
-"85
-[; ;MCU.c: 85:     static int8_t *pWS_Ad = &SW_Ad;
-[v F3172 `*c ~T0 @X0 1 s pWS_Ad ]
-[i F3172
-&U _SW_Ad
-]
+[v F3187 `c ~T0 @X0 1 s value_SW1 ]
+[v F3188 `c ~T0 @X0 1 s value_SW2 ]
+[v F3189 `c ~T0 @X0 1 s value_SW3 ]
+[v F3190 `c ~T0 @X0 1 s value_SW4 ]
+"86
+[; ;MCU.c: 86:     value_SW1 = PORTAbits.RA0;
+[e = F3187 -> . . _PORTAbits 0 0 `c ]
 "87
-[; ;MCU.c: 87:     value_SW1 = PORTAbits.RA0;
-[e = F3168 -> . . _PORTAbits 0 0 `c ]
+[; ;MCU.c: 87:     value_SW2 = PORTAbits.RA1;
+[e = F3188 -> . . _PORTAbits 0 1 `c ]
 "88
-[; ;MCU.c: 88:     value_SW2 = PORTAbits.RA1;
-[e = F3169 -> . . _PORTAbits 0 1 `c ]
+[; ;MCU.c: 88:     value_SW3 = PORTAbits.RA2;
+[e = F3189 -> . . _PORTAbits 0 2 `c ]
 "89
-[; ;MCU.c: 89:     value_SW3 = PORTAbits.RA2;
-[e = F3170 -> . . _PORTAbits 0 2 `c ]
-"90
-[; ;MCU.c: 90:     value_SW4 = PORTAbits.RA3;
-[e = F3171 -> . . _PORTAbits 0 3 `c ]
+[; ;MCU.c: 89:     value_SW4 = PORTAbits.RA3;
+[e = F3190 -> . . _PORTAbits 0 3 `c ]
+"92
+[; ;MCU.c: 92:     SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
+[e = _SW_Ad -> & | | | & -> F3187 `i -> 1 `i & -> F3188 `i -> 2 `i & -> F3189 `i -> 4 `i & -> F3190 `i -> 8 `i -> 255 `i `c ]
 "93
-[; ;MCU.c: 93:     *pWS_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x03) | (value_SW4 & 0x04)) & (0xFF));
-[e = *U F3172 -> & | | | & -> F3168 `i -> 1 `i & -> F3169 `i -> 2 `i & -> F3170 `i -> 3 `i & -> F3171 `i -> 4 `i -> 255 `i `c ]
-"94
-[; ;MCU.c: 94: }
+[; ;MCU.c: 93: }
 [e :UE 391 ]
+}
+"95
+[; ;MCU.c: 95: void App_Init(void)
+[v _App_Init `(v ~T0 @X0 1 ef ]
+"96
+[; ;MCU.c: 96: {
+{
+[e :U _App_Init ]
+[f ]
+"97
+[; ;MCU.c: 97:     Device_Init();
+[e ( _Device_Init ..  ]
+"98
+[; ;MCU.c: 98:     TMR1_StartTimer();
+[e ( _TMR1_StartTimer ..  ]
+"99
+[; ;MCU.c: 99:     Tick_Init_SES();
+[e ( _Tick_Init_SES ..  ]
+"100
+[; ;MCU.c: 100: }
+[e :UE 392 ]
+}
+"102
+[; ;MCU.c: 102: void App_Process(void)
+[v _App_Process `(v ~T0 @X0 1 ef ]
+"103
+[; ;MCU.c: 103: {
+{
+[e :U _App_Process ]
+[f ]
+"104
+[; ;MCU.c: 104:     Task_Sensor();
+[e ( _Task_Sensor ..  ]
+"105
+[; ;MCU.c: 105:     Task_MB();
+[e ( _Task_MB ..  ]
+"106
+[; ;MCU.c: 106:     Task_Indicator();
+[e ( _Task_Indicator ..  ]
+"107
+[; ;MCU.c: 107: }
+[e :UE 393 ]
 }
