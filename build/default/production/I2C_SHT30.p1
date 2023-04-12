@@ -1,13 +1,13 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F3160 `(v ~T0 @X0 0 tf ]
-"17 ./I2C_SHT30.h
-[; ;./I2C_SHT30.h: 17: {
-[u S360 `uc -> 2 `i `s 1 ]
-[n S360 . _Byte Val16 ]
-"23
-[; ;./I2C_SHT30.h: 23: {
-[s S361 `S360 1 `S360 1 ]
-[n S361 . T H ]
+"30 ./main.h
+[; ;./main.h: 30: typedef union {
+[u S361 `uc -> 2 `i `s 1 ]
+[n S361 . _Byte Val16 ]
+"35
+[; ;./main.h: 35: typedef struct {
+[s S362 `S361 1 `S361 1 ]
+[n S362 . T H ]
 "58 ./mcc_generated_files/examples/i2c_master_example.h
 [; ;./mcc_generated_files/examples/i2c_master_example.h: 58: void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
 [v _I2C_WriteNBytes `(v ~T0 @X0 0 ef3`uc`*uc`ui ]
@@ -17,6 +17,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "59 ./mcc_generated_files/examples/i2c_master_example.h
 [; ;./mcc_generated_files/examples/i2c_master_example.h: 59: void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
 [v _I2C_ReadNBytes `(v ~T0 @X0 0 ef3`uc`*uc`ui ]
+"47 I2C_SHT30.c
+[; ;I2C_SHT30.c: 47:     f_Indicator = OFF_Sensor;
+[c E3271 0 1 2 .. ]
+[n E3271 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -515,11 +519,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
 [v _MSSP_InterruptHandler `*F3160 ~T0 @X0 1 e ]
-"8 I2C_SHT30.c
-[; ;I2C_SHT30.c: 8: SENSOR_AMBIENT SensorAmbient;
-[v _SensorAmbient `S361 ~T0 @X0 1 e ]
-"20
-[; ;I2C_SHT30.c: 20: uint8_t SHT30_CMD_MEASURE_H_Enable[2] = {0x2C, 0x06};
+"20 ./main.h
+[; ;./main.h: 20: int8_t SW_Ad;
+[v _SW_Ad `c ~T0 @X0 1 e ]
+"21
+[; ;./main.h: 21: int8_t f_Indicator;
+[v _f_Indicator `c ~T0 @X0 1 e ]
+"22
+[; ;./main.h: 22: int16_t MB_Register[2];
+[v _MB_Register `s ~T0 @X0 -> 2 `i e ]
+"40
+[; ;./main.h: 40: SENSOR_AMBIENT SensorAmbient;
+[v _SensorAmbient `S362 ~T0 @X0 1 e ]
+"19 I2C_SHT30.c
+[; ;I2C_SHT30.c: 19: uint8_t SHT30_CMD_MEASURE_H_Enable[2] = {0x2C, 0x06};
 [v _SHT30_CMD_MEASURE_H_Enable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_H_Enable
 :U ..
@@ -527,8 +540,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 6 `i `uc
 ..
 ]
-"21
-[; ;I2C_SHT30.c: 21: uint8_t SHT30_CMD_MEASURE_M_Enable [2] = {0x2C, 0x0D};
+"20
+[; ;I2C_SHT30.c: 20: uint8_t SHT30_CMD_MEASURE_M_Enable [2] = {0x2C, 0x0D};
 [v _SHT30_CMD_MEASURE_M_Enable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_M_Enable
 :U ..
@@ -536,8 +549,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 13 `i `uc
 ..
 ]
-"22
-[; ;I2C_SHT30.c: 22: uint8_t SHT30_CMD_MEASURE_L_Enable [2] = {0x2C, 0x10};
+"21
+[; ;I2C_SHT30.c: 21: uint8_t SHT30_CMD_MEASURE_L_Enable [2] = {0x2C, 0x10};
 [v _SHT30_CMD_MEASURE_L_Enable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_L_Enable
 :U ..
@@ -545,8 +558,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 16 `i `uc
 ..
 ]
-"23
-[; ;I2C_SHT30.c: 23: uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
+"22
+[; ;I2C_SHT30.c: 22: uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
 [v _SHT30_CMD_MEASURE_H_Disable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_H_Disable
 :U ..
@@ -554,8 +567,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-"24
-[; ;I2C_SHT30.c: 24: uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
+"23
+[; ;I2C_SHT30.c: 23: uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
 [v _SHT30_CMD_MEASURE_M_Disable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_M_Disable
 :U ..
@@ -563,8 +576,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 11 `i `uc
 ..
 ]
-"25
-[; ;I2C_SHT30.c: 25: uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
+"24
+[; ;I2C_SHT30.c: 24: uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 [v _SHT30_CMD_MEASURE_L_Disable `uc ~T0 @X0 -> 2 `i e ]
 [i _SHT30_CMD_MEASURE_L_Disable
 :U ..
@@ -572,91 +585,100 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 22 `i `uc
 ..
 ]
-"29
-[; ;I2C_SHT30.c: 29: void ReadData(void) {
+"27
+[; ;I2C_SHT30.c: 27: void ReadData(void) {
 [v _ReadData `(v ~T0 @X0 1 ef ]
 {
 [e :U _ReadData ]
 [f ]
-"30
-[; ;I2C_SHT30.c: 30:     uint8_t aData[6];
+"28
+[; ;I2C_SHT30.c: 28:     uint8_t aData[6];
 [v _aData `uc ~T0 @X0 -> 6 `i a ]
-"31
-[; ;I2C_SHT30.c: 31:     uint32_t valTime;
+"29
+[; ;I2C_SHT30.c: 29:     uint32_t valTime;
 [v _valTime `ul ~T0 @X0 1 a ]
-"33
-[; ;I2C_SHT30.c: 33:     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
+"31
+[; ;I2C_SHT30.c: 31:     I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
 [e ( _I2C_WriteNBytes (3 , , -> -> 136 `i `uc &U _SHT30_CMD_MEASURE_H_Disable -> -> 2 `i `ui ]
-"34
-[; ;I2C_SHT30.c: 34:     valTime = Get_millis();
+"32
+[; ;I2C_SHT30.c: 32:     valTime = Get_millis();
 [e = _valTime ( _Get_millis ..  ]
-"35
-[; ;I2C_SHT30.c: 35:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
-[e $U 363  ]
-[e :U 364 ]
-[e :U 363 ]
-[e $ < - ( _Get_millis ..  _valTime * -> -> 2 `i `ul -> -> -> 1 `i `l `ul 364  ]
+"33
+[; ;I2C_SHT30.c: 33:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
+[e $U 364  ]
 [e :U 365 ]
-"37
-[; ;I2C_SHT30.c: 37:     I2C_ReadNBytes(0x89, aData, 6);
+[e :U 364 ]
+[e $ < - ( _Get_millis ..  _valTime * -> -> 2 `i `ul -> -> -> 1 `i `l `ul 365  ]
+[e :U 366 ]
+"35
+[; ;I2C_SHT30.c: 35:     I2C_ReadNBytes(0x89, aData, 6);
 [e ( _I2C_ReadNBytes (3 , , -> -> 137 `i `uc &U _aData -> -> 6 `i `ui ]
-"39
-[; ;I2C_SHT30.c: 39:     SensorAmbient.T._Byte[1] = aData[0];
+"37
+[; ;I2C_SHT30.c: 37:     SensorAmbient.T._Byte[1] = aData[0];
 [e = *U + &U . . _SensorAmbient 0 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . . _SensorAmbient 0 0 `ui `ux *U + &U _aData * -> -> -> 0 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"40
-[; ;I2C_SHT30.c: 40:     SensorAmbient.T._Byte[0] = aData[1];
+"38
+[; ;I2C_SHT30.c: 38:     SensorAmbient.T._Byte[0] = aData[1];
 [e = *U + &U . . _SensorAmbient 0 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . . _SensorAmbient 0 0 `ui `ux *U + &U _aData * -> -> -> 1 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"42
-[; ;I2C_SHT30.c: 42:     SensorAmbient.H._Byte[1] = aData[3];
+"40
+[; ;I2C_SHT30.c: 40:     SensorAmbient.H._Byte[1] = aData[3];
 [e = *U + &U . . _SensorAmbient 1 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . . _SensorAmbient 1 0 `ui `ux *U + &U _aData * -> -> -> 3 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"43
-[; ;I2C_SHT30.c: 43:     SensorAmbient.H._Byte[0] = aData[4];
+"41
+[; ;I2C_SHT30.c: 41:     SensorAmbient.H._Byte[0] = aData[4];
 [e = *U + &U . . _SensorAmbient 1 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . . _SensorAmbient 1 0 `ui `ux *U + &U _aData * -> -> -> 4 `i `ui `ux -> -> # *U &U _aData `ui `ux ]
-"44
-[; ;I2C_SHT30.c: 44: }
-[e :UE 362 ]
+"42
+[; ;I2C_SHT30.c: 42: }
+[e :UE 363 ]
 }
-"46
-[; ;I2C_SHT30.c: 46: void Task_Sensor(void) {
+"44
+[; ;I2C_SHT30.c: 44: void Task_Sensor(void) {
 [v _Task_Sensor `(v ~T0 @X0 1 ef ]
 {
 [e :U _Task_Sensor ]
 [f ]
-"47
-[; ;I2C_SHT30.c: 47:     static uint32_t valTime = 0;
-[v F3236 `ul ~T0 @X0 1 s valTime ]
-[i F3236
+"45
+[; ;I2C_SHT30.c: 45:     static uint32_t valTime = 0;
+[v F3296 `ul ~T0 @X0 1 s valTime ]
+[i F3296
 -> -> -> 0 `i `l `ul
 ]
+"47
+[; ;I2C_SHT30.c: 47:     f_Indicator = OFF_Sensor;
+[e = _f_Indicator -> . `E3271 0 `c ]
+"50
+[; ;I2C_SHT30.c: 50:     if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2 * 1000)) {
+[e $ ! >= - ( _Get_millis ..  F3296 * -> -> 2 `i `ul -> -> -> 1000 `i `l `ul 368  ]
+{
+"51
+[; ;I2C_SHT30.c: 51:         valTime = Get_millis();
+[e = F3296 ( _Get_millis ..  ]
 "52
-[; ;I2C_SHT30.c: 52:     if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2 * 1000)) {
-[e $ ! >= - ( _Get_millis ..  F3236 * -> -> 2 `i `ul -> -> -> 1000 `i `l `ul 367  ]
-{
+[; ;I2C_SHT30.c: 52:         f_Indicator = ON_Sensor;
+[e = _f_Indicator -> . `E3271 1 `c ]
 "53
-[; ;I2C_SHT30.c: 53:         valTime = Get_millis();
-[e = F3236 ( _Get_millis ..  ]
-"55
-[; ;I2C_SHT30.c: 55:         ReadData();
+[; ;I2C_SHT30.c: 53:         ReadData();
 [e ( _ReadData ..  ]
-"56
-[; ;I2C_SHT30.c: 56:         if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
-[e $ ! || < -> . . _SensorAmbient 0 1 `i -> 0 `i < -> . . _SensorAmbient 1 1 `i -> 0 `i 368  ]
+"54
+[; ;I2C_SHT30.c: 54:         if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
+[e $ ! || < -> . . _SensorAmbient 0 1 `i -> 0 `i < -> . . _SensorAmbient 1 1 `i -> 0 `i 369  ]
 {
-"57
-[; ;I2C_SHT30.c: 57:             SensorAmbient.T.Val16 = 0x8000;
+"55
+[; ;I2C_SHT30.c: 55:             SensorAmbient.T.Val16 = 0x8000;
 [e = . . _SensorAmbient 0 1 -> -> 32768 `ui `s ]
-"58
-[; ;I2C_SHT30.c: 58:             SensorAmbient.H.Val16 = 0x8000;
+"56
+[; ;I2C_SHT30.c: 56:             SensorAmbient.H.Val16 = 0x8000;
 [e = . . _SensorAmbient 1 1 -> -> 32768 `ui `s ]
-"60
-[; ;I2C_SHT30.c: 60:         }
+"57
+[; ;I2C_SHT30.c: 57:             f_Indicator = ERR_Sensor;
+[e = _f_Indicator -> . `E3271 2 `c ]
+"58
+[; ;I2C_SHT30.c: 58:         }
+}
+[e :U 369 ]
+"59
+[; ;I2C_SHT30.c: 59:     }
 }
 [e :U 368 ]
-"61
-[; ;I2C_SHT30.c: 61:     }
-}
-[e :U 367 ]
-"62
-[; ;I2C_SHT30.c: 62: }
-[e :UE 366 ]
+"60
+[; ;I2C_SHT30.c: 60: }
+[e :UE 367 ]
 }

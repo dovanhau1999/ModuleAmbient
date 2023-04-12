@@ -1,73 +1,57 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3160 `(v ~T0 @X0 0 tf ]
-"30 ./main.h
-[; ;./main.h: 30: typedef union {
-[u S361 `uc -> 2 `i `s 1 ]
-[n S361 . _Byte Val16 ]
-"35
-[; ;./main.h: 35: typedef struct {
-[s S362 `S361 1 `S361 1 ]
-[n S362 . T H ]
-"12 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 12: static const unsigned char fctsupported[] = {
-[c E3216 0 1 2 3 4 5 6 15 16 .. ]
-[n E3216 MB_FC MB_FC_NONE MB_FC_READ_COILS MB_FC_READ_DISCRETE_INPUT MB_FC_READ_HOLD_REGISTERS MB_FC_READ_INPUT_REGISTER MB_FC_WRITE_COIL MB_FC_WRITE_REGISTER MB_FC_WRITE_MULTIPLE_COILS MB_FC_WRITE_MULTIPLE_REGISTERS  ]
-"42 ./ModbusRTU/../Modbus.h
-[; ;./ModbusRTU/../Modbus.h: 42: typedef struct {
-[s S360 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 250 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
-[n S360 . u8id u8txenpin u8state u8lastError au8Buffer u8BufferSize u8lastRec au16regs u16InCnt u16OutCnt u16errCnt u16timeOut u32time u32timeOut u32overTime u8regsize HOLDING_REGS INPUT_REGS ]
-"38 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 38:     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
-[c E3260 0 1 2 3 4 5 6 .. ]
-[n E3260 MESSAGE_MODBUS_RTU ID FUNC ADD_HI ADD_LO NB_HI NB_LO BYTE_CNT  ]
-"31
-[; ;Mobbus_Slave.c: 31: static void Modbus_sendTxBuff(void);
-[v _Modbus_sendTxBuff `(v ~T0 @X0 0 sf ]
-"65
-[; ;Mobbus_Slave.c: 65:     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
-[c E3256 6 3 2 .. ]
-[n E3256 . RESPONSE_SIZE EXCEPTION_SIZE CHECKSUM_SIZE  ]
-"328 ./mcc_generated_files/eusart.h
-[; ;./mcc_generated_files/eusart.h: 328: uint8_t EUSART_Read(void);
-[v _EUSART_Read `(uc ~T0 @X0 0 ef ]
-"89
-[; ;./mcc_generated_files/eusart.h: 89: extern volatile uint8_t eusartRxCount;
-[v _eusartRxCount `Vuc ~T0 @X0 0 e ]
-"86 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 86:         return ERR_BUFF_OVERFLOW;
-[c E3210 -1 -2 -3 -4 -5 .. ]
-[n E3210 ERR_LIST ERR_NOT_MASTER ERR_POLLING ERR_BUFF_OVERFLOW ERR_BAD_CRC ERR_EXCEPTION  ]
-"32
-[; ;Mobbus_Slave.c: 32: static uint16_t Modbus_calcCRC(uint8_t len);
-[v _Modbus_calcCRC `(us ~T0 @X0 0 sf1`uc ]
-"99
-[; ;Mobbus_Slave.c: 99:         return NO_REPLY;
-[c E3226 255 1 2 3 4 .. ]
-[n E3226 . NO_REPLY EXC_FUNC_CODE EXC_ADDR_RANGE EXC_REGS_QUANT EXC_EXECUTE  ]
-"16 ./tick.h
-[; ;./tick.h: 16: uint32_t Get_millis(void);
-[v _Get_millis `(ul ~T0 @X0 0 ef ]
-"2318 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2318:     struct {
-[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S121 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
-"2317
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2317: typedef union {
-[u S120 `S121 1 ]
-[n S120 . . ]
-"2329
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2329: extern volatile LATCbits_t LATCbits __attribute__((address(0x10E)));
-[v _LATCbits `VS120 ~T0 @X0 0 e@270 ]
-"348 ./mcc_generated_files/eusart.h
-[; ;./mcc_generated_files/eusart.h: 348: void EUSART_Write(uint8_t txData);
-[v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
-"260
-[; ;./mcc_generated_files/eusart.h: 260: _Bool EUSART_is_tx_done(void);
-[v _EUSART_is_tx_done `(a ~T0 @X0 0 ef ]
-"230 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 230:     SES_Modbus.u8txenpin = RS485;
-[c E3252 0 1 2 .. ]
-[n E3252 TYPE_CONNECTION USB RS232 RS485  ]
+"3306 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3306:     struct {
+[s S169 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S169 . RD WR WREN WRERR FREE LWLO CFGS EEPGD ]
+"3305
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3305: typedef union {
+[u S168 `S169 1 ]
+[n S168 . . ]
+"3317
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3317: extern volatile EECON1bits_t EECON1bits __attribute__((address(0x195)));
+[v _EECON1bits `VS168 ~T0 @X0 0 e@405 ]
+"3188
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3188: extern volatile unsigned short EEADR __attribute__((address(0x191)));
+[v _EEADR `Vus ~T0 @X0 0 e@401 ]
+"3300
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3300: extern volatile unsigned char EECON1 __attribute__((address(0x195)));
+[v _EECON1 `Vuc ~T0 @X0 0 e@405 ]
+"3247
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3247: extern volatile unsigned char EEDATA __attribute__((address(0x193)));
+[v _EEDATA `Vuc ~T0 @X0 0 e@403 ]
+"119
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 119:     struct {
+[s S13 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S13 . C DC Z nPD nTO ]
+"126
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 126:     struct {
+[s S14 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S14 . CARRY . ZERO ]
+"118
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 118: typedef union {
+[u S12 `S13 1 `S14 1 ]
+[n S12 . . . ]
+"132
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 132: extern volatile STATUSbits_t STATUSbits __attribute__((address(0x003)));
+[v _STATUSbits `VS12 ~T0 @X0 0 e@3 ]
+"358
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 358:     struct {
+[s S31 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S31 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
+"368
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 368:     struct {
+[s S32 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S32 . . T0IF . T0IE ]
+"357
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 357: typedef union {
+[u S30 `S31 1 `S32 1 ]
+[n S30 . . . ]
+"375
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 375: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS30 ~T0 @X0 0 e@11 ]
+"3362
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 3362: extern volatile unsigned char EECON2 __attribute__((address(0x196)));
+[v _EECON2 `Vuc ~T0 @X0 0 e@406 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -563,686 +547,515 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7116
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"213 ./mcc_generated_files/examples/../i2c_master.h
-[; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3160 ~T0 @X0 1 e ]
-"20 ./main.h
-[; ;./main.h: 20: int8_t SW_Ad;
-[v _SW_Ad `c ~T0 @X0 1 e ]
-"21
-[; ;./main.h: 21: int8_t f_Indicator;
-[v _f_Indicator `c ~T0 @X0 1 e ]
-"22
-[; ;./main.h: 22: int16_t MB_Register[2];
-[v _MB_Register `s ~T0 @X0 -> 2 `i e ]
-"40
-[; ;./main.h: 40: SENSOR_AMBIENT SensorAmbient;
-[v _SensorAmbient `S362 ~T0 @X0 1 e ]
-"12 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 12: static const unsigned char fctsupported[] = {
-[v _fctsupported `Cuc ~T0 @X0 -> 8 `i s ]
-[i _fctsupported
-:U ..
--> . `E3216 1 `uc
--> . `E3216 2 `uc
--> . `E3216 3 `uc
--> . `E3216 4 `uc
--> . `E3216 5 `uc
--> . `E3216 6 `uc
--> . `E3216 7 `uc
--> . `E3216 8 `uc
-..
-]
-"23
-[; ;Mobbus_Slave.c: 23: static MODBUS SES_Modbus;
-[v _SES_Modbus `S360 ~T0 @X0 1 s ]
-"37
-[; ;Mobbus_Slave.c: 37: static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size) {
-[v _ModbusSlaveF04 `(c ~T0 @X0 1 sf2`*us`uc ]
+"6 C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: __eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: }
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: }
+[v ___eecpymem `(v ~T0 @X0 1 ef3`*Vuc`*Euc`uc ]
+"7
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: {
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: unsigned int
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: 
 {
-[e :U _ModbusSlaveF04 ]
-[v _reg `*us ~T0 @X0 1 r1 ]
-[v _size `uc ~T0 @X0 1 r2 ]
+[e :U ___eecpymem ]
+"6
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: __eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: }
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 6: }
+[v _to `*Vuc ~T0 @X0 1 r1 ]
+[v _from `*Euc ~T0 @X0 1 r2 ]
+[v _size `uc ~T0 @X0 1 r3 ]
+"7
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: {
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: unsigned int
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 7: 
 [f ]
-"38
-[; ;Mobbus_Slave.c: 38:     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
-[v _u8StartAdd `us ~T0 @X0 1 a ]
-[e = _u8StartAdd -> | & -> *U + &U . _SES_Modbus 4 * -> . `E3260 3 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i << & -> *U + &U . _SES_Modbus 4 * -> . `E3260 2 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i -> 8 `i `us ]
-"39
-[; ;Mobbus_Slave.c: 39:     uint8_t u8regsno = (SES_Modbus.au8Buffer[ NB_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ NB_HI ] & 0xff) << 8);
-[v _u8regsno `uc ~T0 @X0 1 a ]
-[e = _u8regsno -> | & -> *U + &U . _SES_Modbus 4 * -> . `E3260 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i << & -> *U + &U . _SES_Modbus 4 * -> . `E3260 4 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i -> 8 `i `uc ]
-"40
-[; ;Mobbus_Slave.c: 40:     uint8_t u8CopyBufferSize;
-[v _u8CopyBufferSize `uc ~T0 @X0 1 a ]
-"41
-[; ;Mobbus_Slave.c: 41:     uint16_t i;
-[v _i `us ~T0 @X0 1 a ]
-"43
-[; ;Mobbus_Slave.c: 43:     SES_Modbus.au8Buffer[ 2 ] = u8regsno * 2;
-[e = *U + &U . _SES_Modbus 4 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> * -> _u8regsno `i -> 2 `i `uc ]
-"44
-[; ;Mobbus_Slave.c: 44:     SES_Modbus.u8BufferSize = 3;
-[e = . _SES_Modbus 5 -> -> 3 `i `uc ]
-"46
-[; ;Mobbus_Slave.c: 46:     for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++) {
+"8
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 8:  volatile unsigned char *cp = to;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 8: __itoee(__eeprom void *addr, unsigned int data)
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 8: double
+[v _cp `*Vuc ~T0 @X0 1 a ]
+[e = _cp _to ]
+"10
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 10:  while (EECON1bits.WR) continue;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 10:  __memcpyee(addr,(unsigned char *) &data,2);
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 10: {
+[e $U 357  ]
+[e :U 358 ]
+[e $U 357  ]
+[e :U 357 ]
+[e $ != -> . . _EECON1bits 0 1 `i -> 0 `i 358  ]
+[e :U 359 ]
+"11
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 11:  EEADR = (unsigned char)from;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 11:  return data;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 11:  double data;
+[e = _EEADR -> -> _from `uc `us ]
+"12
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 12:  while(size--) {
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 12: }
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 12:  __eecpymem((unsigned char *) &data,addr,4);
+[e $U 360  ]
+[e :U 361 ]
 {
-[e = _i _u8StartAdd ]
-[e $U 367  ]
+"13
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 13:   while (EECON1bits.WR) continue;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 13: 
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 13:  return data;
+[e $U 363  ]
 [e :U 364 ]
-{
-"47
-[; ;Mobbus_Slave.c: 47:         SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) >> 8));
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> >> -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `ui -> 8 `i `uc ]
-"48
-[; ;Mobbus_Slave.c: 48:         SES_Modbus.u8BufferSize++;
-[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"49
-[; ;Mobbus_Slave.c: 49:         SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) & 0xff));
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `ui -> -> 255 `i `ui `uc ]
-"50
-[; ;Mobbus_Slave.c: 50:         SES_Modbus.u8BufferSize++;
-[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"51
-[; ;Mobbus_Slave.c: 51:     }
-}
-[e ++ _i -> -> 1 `i `us ]
-[e :U 367 ]
-[e $ < -> _i `ui + -> _u8StartAdd `ui -> _u8regsno `ui 364  ]
+[e $U 363  ]
+[e :U 363 ]
+[e $ != -> . . _EECON1bits 0 1 `i -> 0 `i 364  ]
 [e :U 365 ]
+"15
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 15:   EECON1 &= 0x7F;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 15: 
+[e =& _EECON1 -> -> 127 `i `Vuc ]
+"17
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 17:   EECON1bits.RD = 1;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 17: __fttoee(__eeprom void *addr, float data)
+[e = . . _EECON1bits 0 0 -> -> 1 `i `uc ]
+"18
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 18:   *cp++ = EEDATA;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 18: {
+[e = *U ++ _cp * -> -> 1 `i `x -> -> # *U _cp `i `x _EEDATA ]
+"19
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 19:   ++EEADR;
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 19:  __memcpyee(addr,(unsigned char *) &data,3);
+[e =+ _EEADR -> -> 1 `i `Vus ]
+"20
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 20:  }
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 20:  return data;
 }
-"52
-[; ;Mobbus_Slave.c: 52:     u8CopyBufferSize = SES_Modbus.u8BufferSize + 2;
-[e = _u8CopyBufferSize -> + -> . _SES_Modbus 5 `i -> 2 `i `uc ]
-"53
-[; ;Mobbus_Slave.c: 53:     Modbus_sendTxBuff();
-[e ( _Modbus_sendTxBuff ..  ]
-"55
-[; ;Mobbus_Slave.c: 55:     return u8CopyBufferSize;
-[e ) -> _u8CopyBufferSize `c ]
-[e $UE 363  ]
-"56
-[; ;Mobbus_Slave.c: 56: }
-[e :UE 363 ]
+[e :U 360 ]
+"12
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 12:  while(size--) {
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 12: }
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 12:  __eecpymem((unsigned char *) &data,addr,4);
+[e $ != -> -- _size -> -> 1 `i `uc `i -> 0 `i 361  ]
+[e :U 362 ]
+"36
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 36: }
+[e :UE 356 ]
 }
-"58
-[; ;Mobbus_Slave.c: 58: static void buildException(uint8_t exception) {
-[v _buildException `(v ~T0 @X0 1 sf1`uc ]
+"39
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 39: __memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
+[v ___memcpyee `(v ~T0 @X0 1 ef3`*Euc`*Cuc`uc ]
+"40
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 40: {
 {
-[e :U _buildException ]
-[v _exception `uc ~T0 @X0 1 r1 ]
+[e :U ___memcpyee ]
+"39
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 39: __memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
+[v _to `*Euc ~T0 @X0 1 r1 ]
+[v _from `*Cuc ~T0 @X0 1 r2 ]
+[v _size `uc ~T0 @X0 1 r3 ]
+"40
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 40: {
 [f ]
-"60
-[; ;Mobbus_Slave.c: 60:     uint8_t u8func = SES_Modbus.au8Buffer[ FUNC ];
-[v _u8func `uc ~T0 @X0 1 a ]
-[e = _u8func *U + &U . _SES_Modbus 4 * -> . `E3260 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ]
-"62
-[; ;Mobbus_Slave.c: 62:     SES_Modbus.au8Buffer[ ID ] = SES_Modbus.u8id;
-[e = *U + &U . _SES_Modbus 4 * -> . `E3260 0 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux . _SES_Modbus 0 ]
-"63
-[; ;Mobbus_Slave.c: 63:     SES_Modbus.au8Buffer[ FUNC ] = u8func + 0x80;
-[e = *U + &U . _SES_Modbus 4 * -> . `E3260 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> + -> _u8func `i -> 128 `i `uc ]
-"64
-[; ;Mobbus_Slave.c: 64:     SES_Modbus.au8Buffer[ 2 ] = exception;
-[e = *U + &U . _SES_Modbus 4 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux _exception ]
-"65
-[; ;Mobbus_Slave.c: 65:     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
-[e = . _SES_Modbus 5 -> . `E3256 1 `uc ]
-"66
-[; ;Mobbus_Slave.c: 66: }
-[e :UE 368 ]
-}
-"68
-[; ;Mobbus_Slave.c: 68: static int8_t Modbus_getRxBuff(void) {
-[v _Modbus_getRxBuff `(c ~T0 @X0 1 sf ]
-{
-[e :U _Modbus_getRxBuff ]
-[f ]
-"69
-[; ;Mobbus_Slave.c: 69:     _Bool bBuffOverflow = 0;
-[v _bBuffOverflow `a ~T0 @X0 1 a ]
-[e = _bBuffOverflow -> -> 0 `i `a ]
-"71
-[; ;Mobbus_Slave.c: 71:     if (SES_Modbus.u8txenpin > 1) {
-[e $ ! > -> . _SES_Modbus 1 `i -> 1 `i 370  ]
-{
-"73
-[; ;Mobbus_Slave.c: 73:     }
-}
-[e :U 370 ]
-"75
-[; ;Mobbus_Slave.c: 75:     SES_Modbus.u8BufferSize = 0;
-[e = . _SES_Modbus 5 -> -> 0 `i `uc ]
-"76
-[; ;Mobbus_Slave.c: 76:     while (eusartRxCount) {
-[e $U 371  ]
-[e :U 372 ]
-{
-"77
-[; ;Mobbus_Slave.c: 77:         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ( _EUSART_Read ..  ]
-"78
-[; ;Mobbus_Slave.c: 78:         SES_Modbus.u8BufferSize++;
-[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"80
-[; ;Mobbus_Slave.c: 80:         if (SES_Modbus.u8BufferSize >= 250) bBuffOverflow = 1;
-[e $ ! >= -> . _SES_Modbus 5 `i -> 250 `i 374  ]
-[e = _bBuffOverflow -> -> 1 `i `a ]
-[e :U 374 ]
-"81
-[; ;Mobbus_Slave.c: 81:     }
-}
+"41
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 41:  const unsigned char *ptr =from;
+[v _ptr `*Cuc ~T0 @X0 1 a ]
+[e = _ptr _from ]
+"43
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 43:  while (EECON1bits.WR) continue;
+[e $U 367  ]
+[e :U 368 ]
+[e $U 367  ]
+[e :U 367 ]
+[e $ != -> . . _EECON1bits 0 1 `i -> 0 `i 368  ]
+[e :U 369 ]
+"44
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 44:  EEADR = (unsigned char)to - 1U;
+[e = _EEADR -> - -> -> _to `uc `ui -> 1 `ui `us ]
+"46
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 46:  EECON1 &= 0x7F;
+[e =& _EECON1 -> -> 127 `i `Vuc ]
+"48
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 48:  while(size--) {
+[e $U 370  ]
 [e :U 371 ]
-"76
-[; ;Mobbus_Slave.c: 76:     while (eusartRxCount) {
-[e $ != -> _eusartRxCount `i -> 0 `i 372  ]
+{
+"49
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 49:   while (EECON1bits.WR) {
+[e $U 373  ]
+[e :U 374 ]
+{
+"50
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 50:    continue;
+[e $U 373  ]
+"51
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 51:   }
+}
 [e :U 373 ]
-"82
-[; ;Mobbus_Slave.c: 82:     SES_Modbus.u16InCnt++;
-[e ++ . _SES_Modbus 8 -> -> 1 `i `us ]
-"84
-[; ;Mobbus_Slave.c: 84:     if (bBuffOverflow) {
-[e $ ! != -> _bBuffOverflow `i -> 0 `i 375  ]
-{
-"85
-[; ;Mobbus_Slave.c: 85:         SES_Modbus.u16errCnt++;
-[e ++ . _SES_Modbus 10 -> -> 1 `i `us ]
-"86
-[; ;Mobbus_Slave.c: 86:         return ERR_BUFF_OVERFLOW;
-[e ) -> . `E3210 2 `c ]
-[e $UE 369  ]
-"87
-[; ;Mobbus_Slave.c: 87:     }
-}
+"49
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 49:   while (EECON1bits.WR) {
+[e $ != -> . . _EECON1bits 0 1 `i -> 0 `i 374  ]
 [e :U 375 ]
-"89
-[; ;Mobbus_Slave.c: 89:     return SES_Modbus.u8BufferSize;
-[e ) -> . _SES_Modbus 5 `c ]
-[e $UE 369  ]
-"90
-[; ;Mobbus_Slave.c: 90: }
-[e :UE 369 ]
+"52
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 52:   EEDATA = *ptr++;
+[e = _EEDATA *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x ]
+"53
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 53:   ++EEADR;
+[e =+ _EEADR -> -> 1 `i `Vus ]
+"54
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 54:   STATUSbits.CARRY = 0;
+[e = . . _STATUSbits 1 0 -> -> 0 `i `uc ]
+"55
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 55:   if (INTCONbits.GIE) {
+[e $ ! != -> . . _INTCONbits 0 7 `i -> 0 `i 376  ]
+{
+"56
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 56:    STATUSbits.CARRY = 1;
+[e = . . _STATUSbits 1 0 -> -> 1 `i `uc ]
+"57
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 57:   }
 }
-"92
-[; ;Mobbus_Slave.c: 92: static uint8_t validateRequest(void) {
-[v _validateRequest `(uc ~T0 @X0 1 sf ]
+[e :U 376 ]
+"58
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 58:   INTCONbits.GIE = 0;
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"59
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 59:   EECON1bits.WREN = 1;
+[e = . . _EECON1bits 0 2 -> -> 1 `i `uc ]
+"60
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 60:   EECON2 = 0x55;
+[e = _EECON2 -> -> 85 `i `uc ]
+"61
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 61:   EECON2 = 0xAA;
+[e = _EECON2 -> -> 170 `i `uc ]
+"62
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 62:   EECON1bits.WR = 1;
+[e = . . _EECON1bits 0 1 -> -> 1 `i `uc ]
+"63
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 63:   EECON1bits.WREN = 0;
+[e = . . _EECON1bits 0 2 -> -> 0 `i `uc ]
+"64
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 64:   if (STATUSbits.CARRY) {
+[e $ ! != -> . . _STATUSbits 1 0 `i -> 0 `i 377  ]
 {
-[e :U _validateRequest ]
-[f ]
-"94
-[; ;Mobbus_Slave.c: 94:     uint16_t u16MsgCRC =
-[v _u16MsgCRC `us ~T0 @X0 1 a ]
-[e = _u16MsgCRC -> | << -> *U + &U . _SES_Modbus 4 * -> -> - -> . _SES_Modbus 5 `i -> 2 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 8 `i -> *U + &U . _SES_Modbus 4 * -> -> - -> . _SES_Modbus 5 `i -> 1 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i `us ]
-"97
-[; ;Mobbus_Slave.c: 97:     if (Modbus_calcCRC(SES_Modbus.u8BufferSize - 2) != u16MsgCRC) {
-[e $ ! != -> ( _Modbus_calcCRC (1 -> - -> . _SES_Modbus 5 `i -> 2 `i `uc `ui -> _u16MsgCRC `ui 377  ]
-{
-"98
-[; ;Mobbus_Slave.c: 98:         SES_Modbus.u16errCnt++;
-[e ++ . _SES_Modbus 10 -> -> 1 `i `us ]
-"99
-[; ;Mobbus_Slave.c: 99:         return NO_REPLY;
-[e ) -> . `E3226 0 `uc ]
-[e $UE 376  ]
-"100
-[; ;Mobbus_Slave.c: 100:     }
+"65
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 65:    INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"66
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 66:   }
 }
 [e :U 377 ]
-"103
-[; ;Mobbus_Slave.c: 103:     _Bool isSupported = 0;
-[v _isSupported `a ~T0 @X0 1 a ]
-[e = _isSupported -> -> 0 `i `a ]
+"67
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 67:  }
+}
+[e :U 370 ]
+"48
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 48:  while(size--) {
+[e $ != -> -- _size -> -> 1 `i `uc `i -> 0 `i 371  ]
+[e :U 372 ]
+"101
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 101: }
+[e :UE 366 ]
+}
 "104
-[; ;Mobbus_Slave.c: 104:     uint8_t i = 0;
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 104: __eetoc(__eeprom void *addr)
+[v ___eetoc `(uc ~T0 @X0 1 ef1`*Ev ]
 "105
-[; ;Mobbus_Slave.c: 105:     for (i = 0; i< sizeof ( fctsupported); i++) {
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 105: {
 {
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `ui -> # _fctsupported `ui 378  ]
-[e $U 379  ]
-[e :U 378 ]
-{
+[e :U ___eetoc ]
+"104
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 104: __eetoc(__eeprom void *addr)
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"105
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 105: {
+[f ]
 "106
-[; ;Mobbus_Slave.c: 106:         if (fctsupported[i] == SES_Modbus.au8Buffer[FUNC]) {
-[e $ ! == -> *U + &U _fctsupported * -> _i `ux -> -> # *U &U _fctsupported `ui `ux `i -> *U + &U . _SES_Modbus 4 * -> . `E3260 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i 381  ]
-{
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 106:  unsigned char data;
+[v _data `uc ~T0 @X0 1 a ]
 "107
-[; ;Mobbus_Slave.c: 107:             isSupported = 1;
-[e = _isSupported -> -> 1 `i `a ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 107:  __eecpymem((unsigned char *) &data,addr,1);
+[e ( ___eecpymem (3 , , -> &U _data `*Vuc -> _addr `*Euc -> -> 1 `i `uc ]
 "108
-[; ;Mobbus_Slave.c: 108:             break;
-[e $U 379  ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 108:  return data;
+[e ) _data ]
+[e $UE 378  ]
 "109
-[; ;Mobbus_Slave.c: 109:         }
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 109: }
+[e :UE 378 ]
 }
-[e :U 381 ]
-"110
-[; ;Mobbus_Slave.c: 110:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `ui -> # _fctsupported `ui 378  ]
-[e :U 379 ]
-}
-"111
-[; ;Mobbus_Slave.c: 111:     if (!isSupported) {
-[e $ ! ! != -> _isSupported `i -> 0 `i 382  ]
-{
 "112
-[; ;Mobbus_Slave.c: 112:         SES_Modbus.u16errCnt++;
-[e ++ . _SES_Modbus 10 -> -> 1 `i `us ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 112: __eetoi(__eeprom void *addr)
+[v ___eetoi `(ui ~T0 @X0 1 ef1`*Ev ]
 "113
-[; ;Mobbus_Slave.c: 113:         return EXC_FUNC_CODE;
-[e ) -> . `E3226 1 `uc ]
-[e $UE 376  ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 113: {
+{
+[e :U ___eetoi ]
+"112
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 112: __eetoi(__eeprom void *addr)
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"113
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 113: {
+[f ]
 "114
-[; ;Mobbus_Slave.c: 114:     }
-}
-[e :U 382 ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 114:  unsigned int data;
+[v _data `ui ~T0 @X0 1 a ]
+"115
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 115:  __eecpymem((unsigned char *) &data,addr,2);
+[e ( ___eecpymem (3 , , -> -> &U _data `*uc `*Vuc -> _addr `*Euc -> -> 2 `i `uc ]
 "116
-[; ;Mobbus_Slave.c: 116:     return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 376  ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 116:  return data;
+[e ) _data ]
+[e $UE 379  ]
 "117
-[; ;Mobbus_Slave.c: 117: }
-[e :UE 376 ]
+[; ;C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\pic\__eeprom.c: 117: }
+[e :UE 379 ]
 }
 "119
-[; ;Mobbus_Slave.c: 119: int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
-[v _ModbusRTU_Slave_Poll `(c ~T0 @X0 1 ef2`*s`us ]
-{
-[e :U _ModbusRTU_Slave_Poll ]
-[v _reg `*s ~T0 @X0 1 r1 ]
-[v _size `us ~T0 @X0 1 r2 ]
-[f ]
-"121
-[; ;Mobbus_Slave.c: 121:     SES_Modbus.u8regsize = size;
-[e = . _SES_Modbus 15 _size ]
+[p k ]
+"120
+[p n 2040 ]
 "122
-[; ;Mobbus_Slave.c: 122:     uint8_t u8Current;
-[v _u8Current `uc ~T0 @X0 1 a ]
+[v ___eetom `(um ~T0 @X0 1 ef1`*Ev ]
+"123
+{
+[e :U ___eetom ]
+"122
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"123
+[f ]
 "124
-[; ;Mobbus_Slave.c: 124:     u8Current = eusartRxCount;
-[e = _u8Current _eusartRxCount ]
+[v _data `um ~T0 @X0 1 a ]
+"125
+[e ( ___eecpymem (3 , , -> -> &U _data `*uc `*Vuc -> _addr `*Euc -> -> 3 `i `uc ]
 "126
-[; ;Mobbus_Slave.c: 126:     if (u8Current == 0) return 0;
-[e $ ! == -> _u8Current `i -> 0 `i 384  ]
-[e ) -> -> 0 `i `c ]
-[e $UE 383  ]
-[e :U 384 ]
-"129
-[; ;Mobbus_Slave.c: 129:     if (u8Current != SES_Modbus.u8lastRec) {
-[e $ ! != -> _u8Current `i -> . _SES_Modbus 6 `i 385  ]
-{
-"130
-[; ;Mobbus_Slave.c: 130:         SES_Modbus.u8lastRec = u8Current;
-[e = . _SES_Modbus 6 _u8Current ]
+[e ) _data ]
+[e $UE 380  ]
+"127
+[e :UE 380 ]
+}
+"128
+[p o ]
 "131
-[; ;Mobbus_Slave.c: 131:         SES_Modbus.u32time = Get_millis();
-[e = . _SES_Modbus 12 ( _Get_millis ..  ]
+[v ___eetol `(ul ~T0 @X0 1 ef1`*Ev ]
 "132
-[; ;Mobbus_Slave.c: 132:         return 0;
-[e ) -> -> 0 `i `c ]
-[e $UE 383  ]
+{
+[e :U ___eetol ]
+"131
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"132
+[f ]
 "133
-[; ;Mobbus_Slave.c: 133:     }
-}
-[e :U 385 ]
+[v _data `ul ~T0 @X0 1 a ]
 "134
-[; ;Mobbus_Slave.c: 134:     if ((unsigned long) (Get_millis() - SES_Modbus.u32time) < (unsigned long) 3) return 0;
-[e $ ! < - ( _Get_millis ..  . _SES_Modbus 12 -> -> 3 `i `ul 386  ]
-[e ) -> -> 0 `i `c ]
-[e $UE 383  ]
-[e :U 386 ]
+[e ( ___eecpymem (3 , , -> -> &U _data `*uc `*Vuc -> _addr `*Euc -> -> 4 `i `uc ]
+"135
+[e ) _data ]
+[e $UE 381  ]
 "136
-[; ;Mobbus_Slave.c: 136:     SES_Modbus.u8lastRec = 0;
-[e = . _SES_Modbus 6 -> -> 0 `i `uc ]
-"137
-[; ;Mobbus_Slave.c: 137:     int8_t i8state = Modbus_getRxBuff();
-[v _i8state `c ~T0 @X0 1 a ]
-[e = _i8state ( _Modbus_getRxBuff ..  ]
+[e :UE 381 ]
+}
 "138
-[; ;Mobbus_Slave.c: 138:     SES_Modbus.u8lastError = i8state;
-[e = . _SES_Modbus 3 -> _i8state `uc ]
+[p k ]
 "139
-[; ;Mobbus_Slave.c: 139:     if (i8state < 7) return i8state;
-[e $ ! < -> _i8state `i -> 7 `i 387  ]
-[e ) _i8state ]
-[e $UE 383  ]
-[e :U 387 ]
+[p n 1516 ]
+"141
+[v ___eetoo `(uo ~T0 @X0 1 ef1`*Ev ]
 "142
-[; ;Mobbus_Slave.c: 142:     if (SES_Modbus.au8Buffer[ ID ] != SES_Modbus.u8id) return 0;
-[e $ ! != -> *U + &U . _SES_Modbus 4 * -> . `E3260 0 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> . _SES_Modbus 0 `i 388  ]
-[e ) -> -> 0 `i `c ]
-[e $UE 383  ]
-[e :U 388 ]
+{
+[e :U ___eetoo ]
+"141
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"142
+[f ]
+"143
+[v _data `uo ~T0 @X0 1 a ]
+"144
+[e ( ___eecpymem (3 , , -> -> &U _data `*uc `*Vuc -> _addr `*Euc -> -> 8 `i `uc ]
 "145
-[; ;Mobbus_Slave.c: 145:     uint8_t u8exception = validateRequest();
-[v _u8exception `uc ~T0 @X0 1 a ]
-[e = _u8exception ( _validateRequest ..  ]
+[e ) _data ]
+[e $UE 382  ]
 "146
-[; ;Mobbus_Slave.c: 146:     if (u8exception > 0) {
-[e $ ! > -> _u8exception `i -> 0 `i 389  ]
-{
+[e :UE 382 ]
+}
 "147
-[; ;Mobbus_Slave.c: 147:         if (u8exception != NO_REPLY) {
-[e $ ! != -> _u8exception `i -> . `E3226 0 `i 390  ]
-{
-"148
-[; ;Mobbus_Slave.c: 148:             buildException(u8exception);
-[e ( _buildException (1 _u8exception ]
-"149
-[; ;Mobbus_Slave.c: 149:             Modbus_sendTxBuff();
-[e ( _Modbus_sendTxBuff ..  ]
+[p o ]
 "150
-[; ;Mobbus_Slave.c: 150:         }
-}
-[e :U 390 ]
+[v ___ctoee `(uc ~T0 @X0 1 ef2`*Ev`uc ]
 "151
-[; ;Mobbus_Slave.c: 151:         SES_Modbus.u8lastError = u8exception;
-[e = . _SES_Modbus 3 _u8exception ]
+{
+[e :U ___ctoee ]
+"150
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r2 ]
+"151
+[f ]
 "152
-[; ;Mobbus_Slave.c: 152:         return u8exception;
-[e ) -> _u8exception `c ]
-[e $UE 383  ]
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> &U _data `*Cuc -> -> 1 `i `uc ]
 "153
-[; ;Mobbus_Slave.c: 153:     }
-}
-[e :U 389 ]
-"155
-[; ;Mobbus_Slave.c: 155:     SES_Modbus.u32timeOut = Get_millis();
-[e = . _SES_Modbus 13 ( _Get_millis ..  ]
-"156
-[; ;Mobbus_Slave.c: 156:     SES_Modbus.u8lastError = 0;
-[e = . _SES_Modbus 3 -> -> 0 `i `uc ]
-"158
-[; ;Mobbus_Slave.c: 158:     ModbusSlaveF04((uint16_t) reg, size);
-[e ( _ModbusSlaveF04 (2 , -> -> _reg `us `*us -> _size `uc ]
-"160
-[; ;Mobbus_Slave.c: 160:     return i8state;
-[e ) _i8state ]
+[e ) _data ]
 [e $UE 383  ]
-"161
-[; ;Mobbus_Slave.c: 161: }
+"154
 [e :UE 383 ]
 }
+"157
+[v ___itoee `(ui ~T0 @X0 1 ef2`*Ev`ui ]
+"158
+{
+[e :U ___itoee ]
+"157
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `ui ~T0 @X0 1 r2 ]
+"158
+[f ]
+"159
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> -> &U _data `*uc `*Cuc -> -> 2 `i `uc ]
+"160
+[e ) _data ]
+[e $UE 384  ]
+"161
+[e :UE 384 ]
+}
 "163
-[; ;Mobbus_Slave.c: 163: static void Modbus_sendTxBuff(void) {
-[v _Modbus_sendTxBuff `(v ~T0 @X0 1 sf ]
-{
-[e :U _Modbus_sendTxBuff ]
-[f ]
+[p k ]
 "164
-[; ;Mobbus_Slave.c: 164:     uint16_t u16crc = Modbus_calcCRC(SES_Modbus.u8BufferSize);
-[v _u16crc `us ~T0 @X0 1 a ]
-[e = _u16crc ( _Modbus_calcCRC (1 . _SES_Modbus 5 ]
-"165
-[; ;Mobbus_Slave.c: 165:     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc >> 8;
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> >> -> _u16crc `ui -> 8 `i `uc ]
+[p n 2040 ]
 "166
-[; ;Mobbus_Slave.c: 166:     SES_Modbus.u8BufferSize++;
-[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
+[v ___mtoee `(um ~T0 @X0 1 ef2`*Ev`um ]
 "167
-[; ;Mobbus_Slave.c: 167:     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc & 0x00ff;
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> _u16crc `ui -> -> 255 `i `ui `uc ]
+{
+[e :U ___mtoee ]
+"166
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `um ~T0 @X0 1 r2 ]
+"167
+[f ]
 "168
-[; ;Mobbus_Slave.c: 168:     SES_Modbus.u8BufferSize++;
-[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> -> &U _data `*uc `*Cuc -> -> 3 `i `uc ]
+"169
+[e ) _data ]
+[e $UE 385  ]
+"170
+[e :UE 385 ]
+}
 "171
-[; ;Mobbus_Slave.c: 171:     if (SES_Modbus.u8txenpin > 1) {
-[e $ ! > -> . _SES_Modbus 1 `i -> 1 `i 392  ]
-{
-"172
-[; ;Mobbus_Slave.c: 172:         do { LATCbits.LATC5 = 1; } while(0);
-[e :U 395 ]
-{
-[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
-}
-[e :U 394 ]
+[p o ]
+"174
+[v ___ltoee `(ul ~T0 @X0 1 ef2`*Ev`ul ]
 "175
-[; ;Mobbus_Slave.c: 175:     }
-}
-[e :U 392 ]
+{
+[e :U ___ltoee ]
+"174
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `ul ~T0 @X0 1 r2 ]
+"175
+[f ]
+"176
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> -> &U _data `*uc `*Cuc -> -> 4 `i `uc ]
+"177
+[e ) _data ]
+[e $UE 386  ]
 "178
-[; ;Mobbus_Slave.c: 178:     for (int index = 0; index < SES_Modbus.u8BufferSize; index++) {
-{
-[v _index `i ~T0 @X0 1 a ]
-[e = _index -> 0 `i ]
-[e $U 399  ]
-[e :U 396 ]
-{
-"179
-[; ;Mobbus_Slave.c: 179:         EUSART_Write(SES_Modbus.au8Buffer[index]);
-[e ( _EUSART_Write (1 *U + &U . _SES_Modbus 4 * -> -> _index `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ]
+[e :UE 386 ]
+}
 "180
-[; ;Mobbus_Slave.c: 180:     }
-}
-[e ++ _index -> 1 `i ]
-[e :U 399 ]
-[e $ < _index -> . _SES_Modbus 5 `i 396  ]
-[e :U 397 ]
-}
-"182
-[; ;Mobbus_Slave.c: 182:     if (SES_Modbus.u8txenpin > 1) {
-[e $ ! > -> . _SES_Modbus 1 `i -> 1 `i 400  ]
+[p k ]
+"181
+[p n 1516 ]
+"183
+[v ___otoee `(uo ~T0 @X0 1 ef2`*Ev`uo ]
+"184
 {
-"189
-[; ;Mobbus_Slave.c: 189:         while (!EUSART_is_tx_done());
-[e $U 401  ]
-[e :U 402 ]
-[e :U 401 ]
-[e $ ! != -> ( _EUSART_is_tx_done ..  `i -> 0 `i 402  ]
-[e :U 403 ]
-"190
-[; ;Mobbus_Slave.c: 190:         volatile uint32_t u32overTimecountDown = SES_Modbus.u32overTime;
-[v _u32overTimecountDown `Vul ~T0 @X0 1 a ]
-[e = _u32overTimecountDown . _SES_Modbus 14 ]
+[e :U ___otoee ]
+"183
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `uo ~T0 @X0 1 r2 ]
+"184
+[f ]
+"185
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> -> &U _data `*uc `*Cuc -> -> 8 `i `uc ]
+"186
+[e ) _data ]
+[e $UE 387  ]
+"187
+[e :UE 387 ]
+}
+"188
+[p o ]
+"191
+[v ___eetoft `(f ~T0 @X0 1 ef1`*Ev ]
 "192
-[; ;Mobbus_Slave.c: 192:         while (u32overTimecountDown-- > 0);
-[e $U 404  ]
-[e :U 405 ]
-[e :U 404 ]
-[e $ > -- _u32overTimecountDown -> -> 1 `i `Vul -> -> -> 0 `i `l `ul 405  ]
-[e :U 406 ]
+{
+[e :U ___eetoft ]
+"191
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"192
+[f ]
 "193
-[; ;Mobbus_Slave.c: 193:         do { LATCbits.LATC5 = 0; } while(0);
-[e :U 409 ]
-{
-[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
-}
-[e :U 408 ]
+[v _data `f ~T0 @X0 1 a ]
 "194
-[; ;Mobbus_Slave.c: 194:     }
-}
-[e :U 400 ]
+[e ( ___eecpymem (3 , , -> -> &U _data `*uc `*Vuc -> _addr `*Euc -> -> 3 `i `uc ]
+"195
+[e ) _data ]
+[e $UE 388  ]
 "196
-[; ;Mobbus_Slave.c: 196:     SES_Modbus.u8BufferSize = 0;
-[e = . _SES_Modbus 5 -> -> 0 `i `uc ]
+[e :UE 388 ]
+}
 "199
-[; ;Mobbus_Slave.c: 199:     SES_Modbus.u32timeOut = Get_millis();
-[e = . _SES_Modbus 13 ( _Get_millis ..  ]
+[v ___eetofl `(d ~T0 @X0 1 ef1`*Ev ]
+"200
+{
+[e :U ___eetofl ]
+"199
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+"200
+[f ]
+"201
+[v _data `d ~T0 @X0 1 a ]
 "202
-[; ;Mobbus_Slave.c: 202:     SES_Modbus.u16OutCnt++;
-[e ++ . _SES_Modbus 9 -> -> 1 `i `us ]
+[e ( ___eecpymem (3 , , -> -> &U _data `*uc `*Vuc -> _addr `*Euc -> -> 4 `i `uc ]
 "203
-[; ;Mobbus_Slave.c: 203: }
-[e :UE 391 ]
+[e ) _data ]
+[e $UE 389  ]
+"204
+[e :UE 389 ]
 }
-"205
-[; ;Mobbus_Slave.c: 205: static uint16_t Modbus_calcCRC(uint8_t len) {
-[v _Modbus_calcCRC `(us ~T0 @X0 1 sf1`uc ]
-{
-[e :U _Modbus_calcCRC ]
-[v _len `uc ~T0 @X0 1 r1 ]
-[f ]
-"206
-[; ;Mobbus_Slave.c: 206:     unsigned int temp, temp2, flag;
-[v _temp `ui ~T0 @X0 1 a ]
-[v _temp2 `ui ~T0 @X0 1 a ]
-[v _flag `ui ~T0 @X0 1 a ]
 "207
-[; ;Mobbus_Slave.c: 207:     temp = 0xFFFF;
-[e = _temp -> 65535 `ui ]
+[v ___fttoee `(f ~T0 @X0 1 ef2`*Ev`f ]
 "208
-[; ;Mobbus_Slave.c: 208:     unsigned char i = 0;
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
+{
+[e :U ___fttoee ]
+"207
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `f ~T0 @X0 1 r2 ]
+"208
+[f ]
 "209
-[; ;Mobbus_Slave.c: 209:     for (i = 0; i < len; i++) {
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 414  ]
-[e :U 411 ]
-{
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> -> &U _data `*uc `*Cuc -> -> 3 `i `uc ]
 "210
-[; ;Mobbus_Slave.c: 210:         temp = temp ^ SES_Modbus.au8Buffer[i];
-[e = _temp ^ _temp -> *U + &U . _SES_Modbus 4 * -> _i `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `ui ]
+[e ) _data ]
+[e $UE 390  ]
 "211
-[; ;Mobbus_Slave.c: 211:         unsigned char j = 0;
-[v _j `uc ~T0 @X0 1 a ]
-[e = _j -> -> 0 `i `uc ]
-"212
-[; ;Mobbus_Slave.c: 212:         for (j = 1; j <= 8; j++) {
-{
-[e = _j -> -> 1 `i `uc ]
-[e $ <= -> _j `i -> 8 `i 415  ]
-[e $U 416  ]
-[e :U 415 ]
-{
-"213
-[; ;Mobbus_Slave.c: 213:             flag = temp & 0x0001;
-[e = _flag & _temp -> -> 1 `i `ui ]
+[e :UE 390 ]
+}
 "214
-[; ;Mobbus_Slave.c: 214:             temp >>= 1;
-[e =>> _temp -> -> 1 `i `ui ]
+[v ___fltoee `(d ~T0 @X0 1 ef2`*Ev`d ]
 "215
-[; ;Mobbus_Slave.c: 215:             if (flag)
-[e $ ! != _flag -> -> 0 `i `ui 418  ]
+{
+[e :U ___fltoee ]
+"214
+[v _addr `*Ev ~T0 @X0 1 r1 ]
+[v _data `d ~T0 @X0 1 r2 ]
+"215
+[f ]
 "216
-[; ;Mobbus_Slave.c: 216:                 temp ^= 0xA001;
-[e =^ _temp -> 40961 `ui ]
-[e :U 418 ]
+[e ( ___memcpyee (3 , , -> _addr `*Euc -> -> &U _data `*uc `*Cuc -> -> 4 `i `uc ]
 "217
-[; ;Mobbus_Slave.c: 217:         }
-}
-[e ++ _j -> -> 1 `i `uc ]
-[e $ <= -> _j `i -> 8 `i 415  ]
-[e :U 416 ]
-}
+[e ) _data ]
+[e $UE 391  ]
 "218
-[; ;Mobbus_Slave.c: 218:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 414 ]
-[e $ < -> _i `i -> _len `i 411  ]
-[e :U 412 ]
-}
-"220
-[; ;Mobbus_Slave.c: 220:     temp2 = temp >> 8;
-[e = _temp2 >> _temp -> 8 `i ]
-"221
-[; ;Mobbus_Slave.c: 221:     temp = (temp << 8) | temp2;
-[e = _temp | << _temp -> 8 `i _temp2 ]
-"222
-[; ;Mobbus_Slave.c: 222:     temp &= 0xFFFF;
-[e =& _temp -> 65535 `ui ]
-"225
-[; ;Mobbus_Slave.c: 225:     return temp;
-[e ) -> _temp `us ]
-[e $UE 410  ]
-"226
-[; ;Mobbus_Slave.c: 226: }
-[e :UE 410 ]
-}
-"228
-[; ;Mobbus_Slave.c: 228: void ModbusSlave_Init(int8_t _SW_Ad) {
-[v _ModbusSlave_Init `(v ~T0 @X0 1 ef1`c ]
-{
-[e :U _ModbusSlave_Init ]
-[v __SW_Ad `c ~T0 @X0 1 r1 ]
-[f ]
-"229
-[; ;Mobbus_Slave.c: 229:     SES_Modbus.u8id = (uint8_t) _SW_Ad;
-[e = . _SES_Modbus 0 -> __SW_Ad `uc ]
-"230
-[; ;Mobbus_Slave.c: 230:     SES_Modbus.u8txenpin = RS485;
-[e = . _SES_Modbus 1 -> . `E3252 2 `uc ]
-"231
-[; ;Mobbus_Slave.c: 231:     SES_Modbus.u16timeOut = 1000;
-[e = . _SES_Modbus 11 -> -> 1000 `i `us ]
-"232
-[; ;Mobbus_Slave.c: 232:     SES_Modbus.u32overTime = 0;
-[e = . _SES_Modbus 14 -> -> -> 0 `i `l `ul ]
-"236
-[; ;Mobbus_Slave.c: 236:     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
-[e = . _SES_Modbus 6 = . _SES_Modbus 5 -> -> 0 `i `uc ]
-"237
-[; ;Mobbus_Slave.c: 237:     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
-[e = . _SES_Modbus 8 = . _SES_Modbus 9 = . _SES_Modbus 10 -> -> 0 `i `us ]
-"238
-[; ;Mobbus_Slave.c: 238: }
-[e :UE 419 ]
-}
-"240
-[; ;Mobbus_Slave.c: 240: static void ModbusSlave_Process(void) {
-[v _ModbusSlave_Process `(v ~T0 @X0 1 sf ]
-{
-[e :U _ModbusSlave_Process ]
-[f ]
-"242
-[; ;Mobbus_Slave.c: 242:     int8_t state = 0;
-[v _state `c ~T0 @X0 1 a ]
-[e = _state -> -> 0 `i `c ]
-"243
-[; ;Mobbus_Slave.c: 243:     MB_Register[0] = SensorAmbient.T.Val16;
-[e = *U + &U _MB_Register * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 0 1 ]
-"244
-[; ;Mobbus_Slave.c: 244:     MB_Register[1] = SensorAmbient.H.Val16;
-[e = *U + &U _MB_Register * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 1 1 ]
-"245
-[; ;Mobbus_Slave.c: 245:     state = ModbusRTU_Slave_Poll(MB_Register, 2);
-[e = _state ( _ModbusRTU_Slave_Poll (2 , &U _MB_Register -> -> 2 `i `us ]
-"247
-[; ;Mobbus_Slave.c: 247: }
-[e :UE 420 ]
-}
-"249
-[; ;Mobbus_Slave.c: 249: void Task_MB(void) {
-[v _Task_MB `(v ~T0 @X0 1 ef ]
-{
-[e :U _Task_MB ]
-[f ]
-"250
-[; ;Mobbus_Slave.c: 250:     static _Bool f_Modbus_Init = 0;
-[v F3341 `a ~T0 @X0 1 s f_Modbus_Init ]
-[i F3341
--> -> 0 `i `a
-]
-"251
-[; ;Mobbus_Slave.c: 251:     if (!f_Modbus_Init) {
-[e $ ! ! != -> F3341 `i -> 0 `i 422  ]
-{
-"252
-[; ;Mobbus_Slave.c: 252:         ModbusSlave_Init(SW_Ad);
-[e ( _ModbusSlave_Init (1 _SW_Ad ]
-"253
-[; ;Mobbus_Slave.c: 253:         f_Modbus_Init = 1;
-[e = F3341 -> -> 1 `i `a ]
-"254
-[; ;Mobbus_Slave.c: 254:     } else {
-}
-[e $U 423  ]
-[e :U 422 ]
-{
-"255
-[; ;Mobbus_Slave.c: 255:         ModbusSlave_Process();
-[e ( _ModbusSlave_Process ..  ]
-"256
-[; ;Mobbus_Slave.c: 256:     }
-}
-[e :U 423 ]
-"257
-[; ;Mobbus_Slave.c: 257: }
-[e :UE 421 ]
+[e :UE 391 ]
 }

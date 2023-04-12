@@ -13,21 +13,8 @@
 
 #define TICK1S              1000
 
-typedef union
-{
-    uint8_t _Byte[2];
-    int16_t Val16;
-}VALUE16;
 
-typedef struct
-{
-    VALUE16 T;
-    VALUE16 H;
-}SENSOR_AMBIENT;
-
-extern SENSOR_AMBIENT SensorAmbient;
-
-void ReadData (void);
+void ReadData(void);
 void Task_Sensor(void);
 
 #ifdef	__cplusplus
@@ -35,7 +22,7 @@ extern "C" {
 #endif
 
 
-    
+
 
 
 #ifdef	__cplusplus

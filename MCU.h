@@ -12,11 +12,7 @@
 #include "main.h"
 
 
-
-static void Device_Init(void);
-void Task_MB(void);
 void Task_Indicator(void);
-
 void App_Init(void);
 void App_Process(void);
 

@@ -5275,43 +5275,11 @@ void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t
 # 16 "./main.h" 2
 
 
-
-enum LED_STATUS {
-    OFF_Sensor = 0,
-    ON_Sensor = 1,
-    ERR_Sensor = 2
-};
-# 12 "./I2C_SHT30.h" 2
-
-
-
-
-typedef union
-{
-    uint8_t _Byte[2];
-    int16_t Val16;
-}VALUE16;
-
-typedef struct
-{
-    VALUE16 T;
-    VALUE16 H;
-}SENSOR_AMBIENT;
-
-extern SENSOR_AMBIENT SensorAmbient;
-
-void ReadData (void);
-void Task_Sensor(void);
-# 10 "./MCU.h" 2
-
-# 1 "./Modbus_Slave.h" 1
-# 13 "./Modbus_Slave.h"
 # 1 "./ModbusRTU/ModbusRTU.h" 1
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
 # 14 "./ModbusRTU/../Modbus.h"
-enum ERR_LIST
-{
+enum ERR_LIST {
     ERR_NOT_MASTER = -1,
     ERR_POLLING = -2,
     ERR_BUFF_OVERFLOW = -3,
@@ -5319,8 +5287,7 @@ enum ERR_LIST
     ERR_EXCEPTION = -5
 };
 
-enum MB_FC
-{
+enum MB_FC {
     MB_FC_NONE = 0,
     MB_FC_READ_COILS = 1,
     MB_FC_READ_DISCRETE_INPUT = 2,
@@ -5332,8 +5299,7 @@ enum MB_FC
     MB_FC_WRITE_MULTIPLE_REGISTERS = 16
 };
 
-enum
-{
+enum {
     NO_REPLY = 255,
     EXC_FUNC_CODE = 1,
     EXC_ADDR_RANGE = 2,
@@ -5341,8 +5307,7 @@ enum
     EXC_EXECUTE = 4
 };
 
-typedef struct
-{
+typedef struct {
     uint8_t u8id;
     uint8_t u8txenpin;
     uint8_t u8state;
@@ -5359,7 +5324,7 @@ typedef struct
     uint16_t *HOLDING_REGS;
     uint16_t *INPUT_REGS;
 
-}MODBUS;
+} MODBUS;
 # 11 "./ModbusRTU/ModbusRTU.h" 2
 
 
@@ -5399,21 +5364,51 @@ enum MESSAGE_MODBUS_RTU
     NB_LO,
     BYTE_CNT
 };
-# 13 "./Modbus_Slave.h" 2
+# 18 "./main.h" 2
 
 
-int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+int8_t SW_Ad;
+int8_t f_Indicator;
+int16_t MB_Register[2];
+
+enum LED_STATUS {
+    OFF_Sensor = 0,
+    ON_Sensor = 1,
+    ERR_Sensor = 2
+};
+
+typedef union {
+    uint8_t _Byte[2];
+    int16_t Val16;
+} VALUE16;
+
+typedef struct {
+    VALUE16 T;
+    VALUE16 H;
+} SENSOR_AMBIENT;
+
+SENSOR_AMBIENT SensorAmbient;
+# 12 "./I2C_SHT30.h" 2
+
+
+
+
+
+void ReadData(void);
+void Task_Sensor(void);
+# 10 "./MCU.h" 2
+
+# 1 "./Modbus_Slave.h" 1
+# 14 "./Modbus_Slave.h"
 void ModbusSlave_Init(int8_t _SW_Ad);
+int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+void Task_MB(void);
 # 11 "./MCU.h" 2
 
 
 
 
-
-static void Device_Init(void);
-void Task_MB(void);
 void Task_Indicator(void);
-
 void App_Init(void);
 void App_Process(void);
 # 45 "main.c" 2
@@ -5421,14 +5416,13 @@ void App_Process(void);
 
 
 
-void main(void)
-{
+
+void main(void) {
 
     SYSTEM_Initialize();
     App_Init();
 # 69 "main.c"
-    while (1)
-    {
+    while (1) {
 
         App_Process();
     }

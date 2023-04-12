@@ -5,7 +5,6 @@
 #define Address_and_Read_bit       0x89
 #define Timer_SCL_free             1
 
-SENSOR_AMBIENT SensorAmbient;
 
 /* Note:
  MSB_ENABLED = 0x2C;    
@@ -24,7 +23,6 @@ uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
 uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
 uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
-//extern int8_t f_Indicator;
 
 void ReadData(void) {
     uint8_t aData[6];
@@ -46,17 +44,17 @@ void ReadData(void) {
 void Task_Sensor(void) {
     static uint32_t valTime = 0;
 
-//    f_Indicator = OFF_Sensor;
+    f_Indicator = OFF_Sensor;
 
     /* Check Timer Tick*/
     if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2 * TICK1S)) {
         valTime = Get_millis();
-//        f_Indicator = ON_Sensor;
+        f_Indicator = ON_Sensor;
         ReadData();
         if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
             SensorAmbient.T.Val16 = 0x8000;
             SensorAmbient.H.Val16 = 0x8000;
-//            f_Indicator = ERR_Sensor;
+            f_Indicator = ERR_Sensor;
         }
     }
 }

@@ -12,6 +12,6 @@ tick.h  \
 main.h  \
 mcc_generated_files/examples/i2c_master_example.h  \
 mcc_generated_files/examples/../i2c_master.h  \
-Modbus_Slave.h  \
 ModbusRTU/ModbusRTU.h  \
-ModbusRTU/../Modbus.h 
+ModbusRTU/../Modbus.h  \
+Modbus_Slave.h 

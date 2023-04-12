@@ -5258,20 +5258,11 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 17 "./main.h" 2
 
-
-enum LED_STATUS {
-    OFF_Sensor = 0,
-    ON_Sensor = 1,
-    ERR_Sensor = 2
-};
-# 12 "./Modbus_Slave.h" 2
-
 # 1 "./ModbusRTU/ModbusRTU.h" 1
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
 # 14 "./ModbusRTU/../Modbus.h"
-enum ERR_LIST
-{
+enum ERR_LIST {
     ERR_NOT_MASTER = -1,
     ERR_POLLING = -2,
     ERR_BUFF_OVERFLOW = -3,
@@ -5279,8 +5270,7 @@ enum ERR_LIST
     ERR_EXCEPTION = -5
 };
 
-enum MB_FC
-{
+enum MB_FC {
     MB_FC_NONE = 0,
     MB_FC_READ_COILS = 1,
     MB_FC_READ_DISCRETE_INPUT = 2,
@@ -5292,8 +5282,7 @@ enum MB_FC
     MB_FC_WRITE_MULTIPLE_REGISTERS = 16
 };
 
-enum
-{
+enum {
     NO_REPLY = 255,
     EXC_FUNC_CODE = 1,
     EXC_ADDR_RANGE = 2,
@@ -5301,8 +5290,7 @@ enum
     EXC_EXECUTE = 4
 };
 
-typedef struct
-{
+typedef struct {
     uint8_t u8id;
     uint8_t u8txenpin;
     uint8_t u8state;
@@ -5319,7 +5307,7 @@ typedef struct
     uint16_t *HOLDING_REGS;
     uint16_t *INPUT_REGS;
 
-}MODBUS;
+} MODBUS;
 # 11 "./ModbusRTU/ModbusRTU.h" 2
 
 
@@ -5359,18 +5347,39 @@ enum MESSAGE_MODBUS_RTU
     NB_LO,
     BYTE_CNT
 };
-# 13 "./Modbus_Slave.h" 2
+# 18 "./main.h" 2
 
 
-int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+int8_t SW_Ad;
+int8_t f_Indicator;
+int16_t MB_Register[2];
+
+enum LED_STATUS {
+    OFF_Sensor = 0,
+    ON_Sensor = 1,
+    ERR_Sensor = 2
+};
+
+typedef union {
+    uint8_t _Byte[2];
+    int16_t Val16;
+} VALUE16;
+
+typedef struct {
+    VALUE16 T;
+    VALUE16 H;
+} SENSOR_AMBIENT;
+
+SENSOR_AMBIENT SensorAmbient;
+# 12 "./Modbus_Slave.h" 2
+
+
 void ModbusSlave_Init(int8_t _SW_Ad);
+int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+void Task_MB(void);
 # 1 "Mobbus_Slave.c" 2
-# 11 "Mobbus_Slave.c"
-static int8_t MB_UID;
-
-
-static const unsigned char fctsupported[] =
-{
+# 12 "Mobbus_Slave.c"
+static const unsigned char fctsupported[] = {
     MB_FC_READ_COILS,
     MB_FC_READ_DISCRETE_INPUT,
     MB_FC_READ_HOLD_REGISTERS,
@@ -5391,9 +5400,11 @@ static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
-# 47 "Mobbus_Slave.c"
-static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
-{
+static void ModbusSlave_Process(void);
+
+
+
+static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size) {
     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
     uint8_t u8regsno = (SES_Modbus.au8Buffer[ NB_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ NB_HI ] & 0xff) << 8);
     uint8_t u8CopyBufferSize;
@@ -5402,22 +5413,19 @@ static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
     SES_Modbus.au8Buffer[ 2 ] = u8regsno * 2;
     SES_Modbus.u8BufferSize = 3;
 
-    for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++)
-    {
+    for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++) {
         SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) >> 8));
         SES_Modbus.u8BufferSize++;
         SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) & 0xff));
         SES_Modbus.u8BufferSize++;
     }
-    u8CopyBufferSize = SES_Modbus.u8BufferSize +2;
+    u8CopyBufferSize = SES_Modbus.u8BufferSize + 2;
     Modbus_sendTxBuff();
 
     return u8CopyBufferSize;
 }
 
-
-static void buildException(uint8_t exception)
-{
+static void buildException(uint8_t exception) {
 
     uint8_t u8func = SES_Modbus.au8Buffer[ FUNC ];
 
@@ -5427,27 +5435,23 @@ static void buildException(uint8_t exception)
     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
 }
 
-static int8_t Modbus_getRxBuff(void)
-{
+static int8_t Modbus_getRxBuff(void) {
     _Bool bBuffOverflow = 0;
 
-    if (SES_Modbus.u8txenpin > 1)
-    {
+    if (SES_Modbus.u8txenpin > 1) {
 
     }
 
     SES_Modbus.u8BufferSize = 0;
-    while (eusartRxCount)
-    {
+    while (eusartRxCount) {
         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
         SES_Modbus.u8BufferSize++;
 
-        if(SES_Modbus.u8BufferSize >= 250) bBuffOverflow = 1;
+        if (SES_Modbus.u8BufferSize >= 250) bBuffOverflow = 1;
     }
     SES_Modbus.u16InCnt++;
 
-    if(bBuffOverflow)
-    {
+    if (bBuffOverflow) {
         SES_Modbus.u16errCnt++;
         return ERR_BUFF_OVERFLOW;
     }
@@ -5455,40 +5459,34 @@ static int8_t Modbus_getRxBuff(void)
     return SES_Modbus.u8BufferSize;
 }
 
-static uint8_t validateRequest(void)
-{
+static uint8_t validateRequest(void) {
 
-    uint16_t u16MsgCRC=
+    uint16_t u16MsgCRC =
             ((SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize - 2] << 8)
             | SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize - 1]);
-    if ( Modbus_calcCRC( SES_Modbus.u8BufferSize-2 ) != u16MsgCRC )
-    {
-        SES_Modbus.u16errCnt ++;
+    if (Modbus_calcCRC(SES_Modbus.u8BufferSize - 2) != u16MsgCRC) {
+        SES_Modbus.u16errCnt++;
         return NO_REPLY;
     }
 
 
     _Bool isSupported = 0;
-    uint8_t i=0;
-    for (i = 0; i< sizeof( fctsupported ); i++)
-    {
-        if (fctsupported[i] == SES_Modbus.au8Buffer[FUNC])
-        {
+    uint8_t i = 0;
+    for (i = 0; i< sizeof ( fctsupported); i++) {
+        if (fctsupported[i] == SES_Modbus.au8Buffer[FUNC]) {
             isSupported = 1;
             break;
         }
     }
-    if (!isSupported)
-    {
-        SES_Modbus.u16errCnt ++;
+    if (!isSupported) {
+        SES_Modbus.u16errCnt++;
         return EXC_FUNC_CODE;
     }
 
     return 0;
 }
 
- int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
-{
+int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
 
     SES_Modbus.u8regsize = size;
     uint8_t u8Current;
@@ -5498,13 +5496,12 @@ static uint8_t validateRequest(void)
     if (u8Current == 0) return 0;
 
 
-    if (u8Current != SES_Modbus.u8lastRec)
-    {
+    if (u8Current != SES_Modbus.u8lastRec) {
         SES_Modbus.u8lastRec = u8Current;
         SES_Modbus.u32time = Get_millis();
         return 0;
     }
-    if ((unsigned long)(Get_millis() - SES_Modbus.u32time) < (unsigned long)3) return 0;
+    if ((unsigned long) (Get_millis() - SES_Modbus.u32time) < (unsigned long) 3) return 0;
 
     SES_Modbus.u8lastRec = 0;
     int8_t i8state = Modbus_getRxBuff();
@@ -5516,11 +5513,9 @@ static uint8_t validateRequest(void)
 
 
     uint8_t u8exception = validateRequest();
-    if (u8exception > 0)
-    {
-        if (u8exception != NO_REPLY)
-        {
-            buildException( u8exception );
+    if (u8exception > 0) {
+        if (u8exception != NO_REPLY) {
+            buildException(u8exception);
             Modbus_sendTxBuff();
         }
         SES_Modbus.u8lastError = u8exception;
@@ -5530,42 +5525,38 @@ static uint8_t validateRequest(void)
     SES_Modbus.u32timeOut = Get_millis();
     SES_Modbus.u8lastError = 0;
 
-    ModbusSlaveF04((uint16_t) reg, size );
+    ModbusSlaveF04((uint16_t) reg, size);
 
     return i8state;
 }
-# 212 "Mobbus_Slave.c"
-static void Modbus_sendTxBuff(void)
-{
-    uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
+
+static void Modbus_sendTxBuff(void) {
+    uint16_t u16crc = Modbus_calcCRC(SES_Modbus.u8BufferSize);
     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc >> 8;
     SES_Modbus.u8BufferSize++;
     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc & 0x00ff;
     SES_Modbus.u8BufferSize++;
 
 
-    if (SES_Modbus.u8txenpin > 1)
-    {
+    if (SES_Modbus.u8txenpin > 1) {
         do { LATCbits.LATC5 = 1; } while(0);
 
 
     }
 
 
-    for (int index = 0; index < SES_Modbus.u8BufferSize; index++)
-    {
+    for (int index = 0; index < SES_Modbus.u8BufferSize; index++) {
         EUSART_Write(SES_Modbus.au8Buffer[index]);
     }
 
-    if (SES_Modbus.u8txenpin > 1)
-    {
+    if (SES_Modbus.u8txenpin > 1) {
 
 
 
 
 
 
-        while (! EUSART_is_tx_done());
+        while (!EUSART_is_tx_done());
         volatile uint32_t u32overTimecountDown = SES_Modbus.u32overTime;
 
         while (u32overTimecountDown-- > 0);
@@ -5581,19 +5572,16 @@ static void Modbus_sendTxBuff(void)
     SES_Modbus.u16OutCnt++;
 }
 
-static uint16_t Modbus_calcCRC(uint8_t len)
-{
+static uint16_t Modbus_calcCRC(uint8_t len) {
     unsigned int temp, temp2, flag;
     temp = 0xFFFF;
-    unsigned char i=0;
-    for (i = 0; i < len; i++)
-    {
+    unsigned char i = 0;
+    for (i = 0; i < len; i++) {
         temp = temp ^ SES_Modbus.au8Buffer[i];
-        unsigned char j=0;
-        for (j = 1; j <= 8; j++)
-        {
+        unsigned char j = 0;
+        for (j = 1; j <= 8; j++) {
             flag = temp & 0x0001;
-            temp >>=1;
+            temp >>= 1;
             if (flag)
                 temp ^= 0xA001;
         }
@@ -5607,8 +5595,7 @@ static uint16_t Modbus_calcCRC(uint8_t len)
     return temp;
 }
 
-void ModbusSlave_Init(int8_t _SW_Ad)
-{
+void ModbusSlave_Init(int8_t _SW_Ad) {
     SES_Modbus.u8id = (uint8_t) _SW_Ad;
     SES_Modbus.u8txenpin = RS485;
     SES_Modbus.u16timeOut = 1000;
@@ -5618,4 +5605,23 @@ void ModbusSlave_Init(int8_t _SW_Ad)
 
     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
+}
+
+static void ModbusSlave_Process(void) {
+
+    int8_t state = 0;
+    MB_Register[0] = SensorAmbient.T.Val16;
+    MB_Register[1] = SensorAmbient.H.Val16;
+    state = ModbusRTU_Slave_Poll(MB_Register, 2);
+
+}
+
+void Task_MB(void) {
+    static _Bool f_Modbus_Init = 0;
+    if (!f_Modbus_Init) {
+        ModbusSlave_Init(SW_Ad);
+        f_Modbus_Init = 1;
+    } else {
+        ModbusSlave_Process();
+    }
 }

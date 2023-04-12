@@ -1,4 +1,4 @@
-# 1 "I2C_SHT30.c"
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\sources\\c99\\pic\\__eeprom.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,286 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "I2C_SHT30.c" 2
-# 1 "./I2C_SHT30.h" 1
-# 11 "./I2C_SHT30.h"
-# 1 "./tick.h" 1
-# 11 "./tick.h"
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 1 3
-
-
-
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\musl_xc8.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
-# 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 127 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long uintptr_t;
-# 142 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long intptr_t;
-# 158 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef signed char int8_t;
-
-
-
-
-typedef short int16_t;
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-typedef long int32_t;
-
-
-
-
-
-typedef long long int64_t;
-# 188 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long intmax_t;
-
-
-
-
-
-typedef unsigned char uint8_t;
-
-
-
-
-typedef unsigned short uint16_t;
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-typedef unsigned long uint32_t;
-
-
-
-
-
-typedef unsigned long long uint64_t;
-# 229 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long long uintmax_t;
-# 23 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
-
-typedef int8_t int_fast8_t;
-
-typedef int64_t int_fast64_t;
-
-
-typedef int8_t int_least8_t;
-typedef int16_t int_least16_t;
-
-typedef int24_t int_least24_t;
-typedef int24_t int_fast24_t;
-
-typedef int32_t int_least32_t;
-
-typedef int64_t int_least64_t;
-
-
-typedef uint8_t uint_fast8_t;
-
-typedef uint64_t uint_fast64_t;
-
-
-typedef uint8_t uint_least8_t;
-typedef uint16_t uint_least16_t;
-
-typedef uint24_t uint_least24_t;
-typedef uint24_t uint_fast24_t;
-
-typedef uint32_t uint_least32_t;
-
-typedef uint64_t uint_least64_t;
-# 144 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/stdint.h" 1 3
-typedef int16_t int_fast16_t;
-typedef int32_t int_fast32_t;
-typedef uint16_t uint_fast16_t;
-typedef uint32_t uint_fast32_t;
-# 145 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
-# 11 "./tick.h" 2
-
-
-void Tick_Init_SES(void);
-void rtcc_handle(void);
-void delay_ms(uint16_t count);
-uint32_t Get_millis(void);
-# 11 "./I2C_SHT30.h" 2
-
-# 1 "./main.h" 1
-# 11 "./main.h"
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
-# 11 "./main.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 1 3
-# 10 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\features.h" 1 3
-# 11 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
-# 24 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 122 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned size_t;
-# 137 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 25 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-int getch(void);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-void putch(char);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 12 "./main.h" 2
-
-
-# 1 "./mcc_generated_files/eusart.h" 1
-# 54 "./mcc_generated_files/eusart.h"
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\sources\\c99\\pic\\__eeprom.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -299,10 +20,28 @@ extern double __fpnormalize(double);
 
 
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 1 3
+
+
+
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\musl_xc8.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 2 3
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\features.h" 1 3
+# 11 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 2 3
 # 21 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 3
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long int wchar_t;
+# 122 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned size_t;
+# 168 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef __int24 int24_t;
+# 204 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef __uint24 uint24_t;
 # 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 2 3
 
 int atoi (const char *);
@@ -375,7 +114,91 @@ extern void __builtin_software_breakpoint(void);
 
 
 
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 1 3
+# 22 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 127 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long uintptr_t;
+# 142 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long intptr_t;
+# 158 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef signed char int8_t;
 
+
+
+
+typedef short int16_t;
+# 173 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long int32_t;
+
+
+
+
+
+typedef long long int64_t;
+# 188 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long intmax_t;
+
+
+
+
+
+typedef unsigned char uint8_t;
+
+
+
+
+typedef unsigned short uint16_t;
+# 209 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long uint32_t;
+
+
+
+
+
+typedef unsigned long long uint64_t;
+# 229 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long long uintmax_t;
+# 23 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
+
+typedef int8_t int_fast8_t;
+
+typedef int64_t int_fast64_t;
+
+
+typedef int8_t int_least8_t;
+typedef int16_t int_least16_t;
+
+typedef int24_t int_least24_t;
+typedef int24_t int_fast24_t;
+
+typedef int32_t int_least32_t;
+
+typedef int64_t int_least64_t;
+
+
+typedef uint8_t uint_fast8_t;
+
+typedef uint64_t uint_fast64_t;
+
+
+typedef uint8_t uint_least8_t;
+typedef uint16_t uint_least16_t;
+
+typedef uint24_t uint_least24_t;
+typedef uint24_t uint_fast24_t;
+
+typedef uint32_t uint_least32_t;
+
+typedef uint64_t uint_least64_t;
+# 144 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/stdint.h" 1 3
+typedef int16_t int_fast16_t;
+typedef int32_t int_fast32_t;
+typedef uint16_t uint_fast16_t;
+typedef uint32_t uint_fast32_t;
+# 145 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
+# 5 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\builtins.h" 2 3
 
 
 #pragma intrinsic(__nop)
@@ -5085,341 +4908,176 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
-# 54 "./mcc_generated_files/eusart.h" 2
-# 75 "./mcc_generated_files/eusart.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}eusart_status_t;
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\sources\\c99\\pic\\__eeprom.c" 2
 
 
 
 
-extern volatile uint8_t eusartTxBufferRemaining;
-extern volatile uint8_t eusartRxCount;
-
-
-
-
-extern void (*EUSART_TxDefaultInterruptHandler)(void);
-extern void (*EUSART_RxDefaultInterruptHandler)(void);
-# 117 "./mcc_generated_files/eusart.h"
-void EUSART_Initialize(void);
-# 165 "./mcc_generated_files/eusart.h"
-_Bool EUSART_is_tx_ready(void);
-# 213 "./mcc_generated_files/eusart.h"
-_Bool EUSART_is_rx_ready(void);
-# 260 "./mcc_generated_files/eusart.h"
-_Bool EUSART_is_tx_done(void);
-# 308 "./mcc_generated_files/eusart.h"
-eusart_status_t EUSART_get_last_status(void);
-# 328 "./mcc_generated_files/eusart.h"
-uint8_t EUSART_Read(void);
-# 348 "./mcc_generated_files/eusart.h"
-void EUSART_Write(uint8_t txData);
-# 369 "./mcc_generated_files/eusart.h"
-void EUSART_Transmit_ISR(void);
-# 390 "./mcc_generated_files/eusart.h"
-void EUSART_Receive_ISR(void);
-# 411 "./mcc_generated_files/eusart.h"
-void EUSART_RxDataHandler(void);
-# 429 "./mcc_generated_files/eusart.h"
-void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "./mcc_generated_files/eusart.h"
-void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "./mcc_generated_files/eusart.h"
-void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "./mcc_generated_files/eusart.h"
-void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "./mcc_generated_files/eusart.h"
-void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 14 "./main.h" 2
-
-# 1 "./mcc_generated_files/pin_manager.h" 1
-# 199 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 211 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 15 "./main.h" 2
-
-# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
-# 52 "./mcc_generated_files/examples/i2c_master_example.h"
-# 1 "./mcc_generated_files/examples/../i2c_master.h" 1
-# 58 "./mcc_generated_files/examples/../i2c_master.h"
-typedef enum {
-    I2C_NOERR,
-    I2C_BUSY,
-    I2C_FAIL
-
-
-} i2c_error_t;
-
-typedef enum
+void
+__eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
 {
-    I2C_STOP=1,
-    I2C_RESTART_READ,
-    I2C_RESTART_WRITE,
-    I2C_CONTINUE,
-    I2C_RESET_LINK
-} i2c_operations_t;
+ volatile unsigned char *cp = to;
 
-typedef uint8_t i2c_address_t;
-typedef i2c_operations_t (*i2c_callback_t)(void *funPtr);
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)from;
+ while(size--) {
+  while (EECON1bits.WR) continue;
 
+  EECON1 &= 0x7F;
 
-i2c_operations_t I2C_CallbackReturnStop(void *funPtr);
-i2c_operations_t I2C_CallbackReturnReset(void *funPtr);
-i2c_operations_t I2C_CallbackRestartWrite(void *funPtr);
-i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
-
-
-
-
-
-
-void I2C_Initialize(void);
-# 101 "./mcc_generated_files/examples/../i2c_master.h"
-i2c_error_t I2C_Open(i2c_address_t address);
-# 111 "./mcc_generated_files/examples/../i2c_master.h"
-i2c_error_t I2C_Close(void);
-# 123 "./mcc_generated_files/examples/../i2c_master.h"
-i2c_error_t I2C_MasterOperation(_Bool read);
-
-
-
-
-i2c_error_t I2C_MasterWrite(void);
-
-
-
-
-i2c_error_t I2C_MasterRead(void);
-# 142 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetTimeout(uint8_t timeOut);
-# 152 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetBuffer(void *buffer, size_t bufferSize);
-# 164 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
-# 174 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
-# 184 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
-# 194 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
-# 204 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
-# 213 "./mcc_generated_files/examples/../i2c_master.h"
-void (*MSSP_InterruptHandler)(void);
-# 222 "./mcc_generated_files/examples/../i2c_master.h"
-void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
-# 52 "./mcc_generated_files/examples/i2c_master_example.h" 2
-
-
-uint8_t I2C_Read1ByteRegister(i2c_address_t address, uint8_t reg);
-uint16_t I2C_Read2ByteRegister(i2c_address_t address, uint8_t reg);
-void I2C_Write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
-void I2C_Write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
-void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
-void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
-void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t len);
-# 16 "./main.h" 2
-
-# 1 "./mcc_generated_files/tmr1.h" 1
-# 101 "./mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-# 130 "./mcc_generated_files/tmr1.h"
-void TMR1_StartTimer(void);
-# 162 "./mcc_generated_files/tmr1.h"
-void TMR1_StopTimer(void);
-# 197 "./mcc_generated_files/tmr1.h"
-uint16_t TMR1_ReadTimer(void);
-# 236 "./mcc_generated_files/tmr1.h"
-void TMR1_WriteTimer(uint16_t timerVal);
-# 272 "./mcc_generated_files/tmr1.h"
-void TMR1_Reload(void);
-# 311 "./mcc_generated_files/tmr1.h"
-void TMR1_StartSinglePulseAcquisition(void);
-# 350 "./mcc_generated_files/tmr1.h"
-uint8_t TMR1_CheckGateValueStatus(void);
-# 368 "./mcc_generated_files/tmr1.h"
-void TMR1_ISR(void);
-# 385 "./mcc_generated_files/tmr1.h"
-void TMR1_CallBack(void);
-# 403 "./mcc_generated_files/tmr1.h"
- void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 421 "./mcc_generated_files/tmr1.h"
-extern void (*TMR1_InterruptHandler)(void);
-# 439 "./mcc_generated_files/tmr1.h"
-void TMR1_DefaultInterruptHandler(void);
-# 17 "./main.h" 2
-
-# 1 "./ModbusRTU/ModbusRTU.h" 1
-# 11 "./ModbusRTU/ModbusRTU.h"
-# 1 "./ModbusRTU/../Modbus.h" 1
-# 14 "./ModbusRTU/../Modbus.h"
-enum ERR_LIST {
-    ERR_NOT_MASTER = -1,
-    ERR_POLLING = -2,
-    ERR_BUFF_OVERFLOW = -3,
-    ERR_BAD_CRC = -4,
-    ERR_EXCEPTION = -5
-};
-
-enum MB_FC {
-    MB_FC_NONE = 0,
-    MB_FC_READ_COILS = 1,
-    MB_FC_READ_DISCRETE_INPUT = 2,
-    MB_FC_READ_HOLD_REGISTERS = 3,
-    MB_FC_READ_INPUT_REGISTER = 4,
-    MB_FC_WRITE_COIL = 5,
-    MB_FC_WRITE_REGISTER = 6,
-    MB_FC_WRITE_MULTIPLE_COILS = 15,
-    MB_FC_WRITE_MULTIPLE_REGISTERS = 16
-};
-
-enum {
-    NO_REPLY = 255,
-    EXC_FUNC_CODE = 1,
-    EXC_ADDR_RANGE = 2,
-    EXC_REGS_QUANT = 3,
-    EXC_EXECUTE = 4
-};
-
-typedef struct {
-    uint8_t u8id;
-    uint8_t u8txenpin;
-    uint8_t u8state;
-    uint8_t u8lastError;
-    uint8_t au8Buffer[250];
-    uint8_t u8BufferSize;
-    uint8_t u8lastRec;
-    uint16_t *au16regs;
-    uint16_t u16InCnt, u16OutCnt, u16errCnt;
-    uint16_t u16timeOut;
-    uint32_t u32time, u32timeOut, u32overTime;
-    uint16_t u8regsize;
-
-    uint16_t *HOLDING_REGS;
-    uint16_t *INPUT_REGS;
-
-} MODBUS;
-# 11 "./ModbusRTU/ModbusRTU.h" 2
-
-
-
-
-
-
-
-
-enum TYPE_CONNECTION
-{
-    USB = 0,
-    RS232 = 1,
-    RS485 = 2
- };
-
-
-enum
-{
-    RESPONSE_SIZE = 6,
-    EXCEPTION_SIZE = 3,
-    CHECKSUM_SIZE = 2
-};
-
-
-
-
-
-
-enum MESSAGE_MODBUS_RTU
-{
-    ID = 0,
-    FUNC,
-    ADD_HI,
-    ADD_LO,
-    NB_HI,
-    NB_LO,
-    BYTE_CNT
-};
-# 18 "./main.h" 2
-
-
-int8_t SW_Ad;
-int8_t f_Indicator;
-int16_t MB_Register[2];
-
-enum LED_STATUS {
-    OFF_Sensor = 0,
-    ON_Sensor = 1,
-    ERR_Sensor = 2
-};
-
-typedef union {
-    uint8_t _Byte[2];
-    int16_t Val16;
-} VALUE16;
-
-typedef struct {
-    VALUE16 T;
-    VALUE16 H;
-} SENSOR_AMBIENT;
-
-SENSOR_AMBIENT SensorAmbient;
-# 12 "./I2C_SHT30.h" 2
-
-
-
-
-
-void ReadData(void);
-void Task_Sensor(void);
-# 1 "I2C_SHT30.c" 2
-# 19 "I2C_SHT30.c"
-uint8_t SHT30_CMD_MEASURE_H_Enable[2] = {0x2C, 0x06};
-uint8_t SHT30_CMD_MEASURE_M_Enable [2] = {0x2C, 0x0D};
-uint8_t SHT30_CMD_MEASURE_L_Enable [2] = {0x2C, 0x10};
-uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
-uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
-uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
-
-
-void ReadData(void) {
-    uint8_t aData[6];
-    uint32_t valTime;
-
-    I2C_WriteNBytes(0x88, SHT30_CMD_MEASURE_H_Disable, 2);
-    valTime = Get_millis();
-    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
-
-    I2C_ReadNBytes(0x89, aData, 6);
-
-    SensorAmbient.T._Byte[1] = aData[0];
-    SensorAmbient.T._Byte[0] = aData[1];
-
-    SensorAmbient.H._Byte[1] = aData[3];
-    SensorAmbient.H._Byte[0] = aData[4];
+  EECON1bits.RD = 1;
+  *cp++ = EEDATA;
+  ++EEADR;
+ }
+# 36 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\sources\\c99\\pic\\__eeprom.c"
 }
 
-void Task_Sensor(void) {
-    static uint32_t valTime = 0;
+void
+__memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
+{
+ const unsigned char *ptr =from;
 
-    f_Indicator = OFF_Sensor;
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)to - 1U;
 
+ EECON1 &= 0x7F;
 
-    if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2 * 1000)) {
-        valTime = Get_millis();
-        f_Indicator = ON_Sensor;
-        ReadData();
-        if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
-            SensorAmbient.T.Val16 = 0x8000;
-            SensorAmbient.H.Val16 = 0x8000;
-            f_Indicator = ERR_Sensor;
-        }
-    }
+ while(size--) {
+  while (EECON1bits.WR) {
+   continue;
+  }
+  EEDATA = *ptr++;
+  ++EEADR;
+  STATUSbits.CARRY = 0;
+  if (INTCONbits.GIE) {
+   STATUSbits.CARRY = 1;
+  }
+  INTCONbits.GIE = 0;
+  EECON1bits.WREN = 1;
+  EECON2 = 0x55;
+  EECON2 = 0xAA;
+  EECON1bits.WR = 1;
+  EECON1bits.WREN = 0;
+  if (STATUSbits.CARRY) {
+   INTCONbits.GIE = 1;
+  }
+ }
+# 101 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\sources\\c99\\pic\\__eeprom.c"
+}
+
+unsigned char
+__eetoc(__eeprom void *addr)
+{
+ unsigned char data;
+ __eecpymem((unsigned char *) &data,addr,1);
+ return data;
+}
+
+unsigned int
+__eetoi(__eeprom void *addr)
+{
+ unsigned int data;
+ __eecpymem((unsigned char *) &data,addr,2);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__eetom(__eeprom void *addr)
+{
+ __uint24 data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__eetol(__eeprom void *addr)
+{
+ unsigned long data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__eetoo(__eeprom void *addr)
+{
+ unsigned long long data;
+ __eecpymem((unsigned char *) &data,addr,8);
+ return data;
+}
+#pragma warning pop
+
+unsigned char
+__ctoee(__eeprom void *addr, unsigned char data)
+{
+ __memcpyee(addr,(unsigned char *) &data,1);
+ return data;
+}
+
+unsigned int
+__itoee(__eeprom void *addr, unsigned int data)
+{
+ __memcpyee(addr,(unsigned char *) &data,2);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__mtoee(__eeprom void *addr, __uint24 data)
+{
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__ltoee(__eeprom void *addr, unsigned long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__otoee(__eeprom void *addr, unsigned long long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,8);
+ return data;
+}
+#pragma warning pop
+
+float
+__eetoft(__eeprom void *addr)
+{
+ float data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+
+double
+__eetofl(__eeprom void *addr)
+{
+ double data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
+}
+
+float
+__fttoee(__eeprom void *addr, float data)
+{
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+
+double
+__fltoee(__eeprom void *addr, double data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
 }

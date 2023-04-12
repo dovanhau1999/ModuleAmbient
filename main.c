@@ -16,7 +16,7 @@
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16F1936
         Driver Version    :  2.00
-*/
+ */
 
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
@@ -39,15 +39,15 @@
     CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
     OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
     SOFTWARE.
-*/
+ */
 
 #include "mcc_generated_files/mcc.h"
 #include "MCU.h"
+
 /*
                          Main application
  */
-void main(void)
-{
+void main(void) {
     // initialize the device
     SYSTEM_Initialize();
     App_Init();
@@ -66,12 +66,11 @@ void main(void)
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
 
-    while (1)
-    {
+    while (1) {
         // Add your application code
         App_Process();
     }
 }
 /**
  End of File
-*/
+ */

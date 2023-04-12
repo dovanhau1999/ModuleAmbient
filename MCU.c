@@ -1,32 +1,8 @@
 #include "MCU.h"
 
 //bool LED_Statuc;
-static int8_t SW_Ad;
-int8_t f_Indicator;
 
-
-int16_t MB_Register[2];
-
-void ModbusSlave_Process(void) {
-
-    int8_t state = 0;
-
-    MB_Register[0] = SensorAmbient.T.Val16;
-    MB_Register[1] = SensorAmbient.H.Val16;
-    state = ModbusRTU_Slave_Poll(MB_Register, 2);
-    
-    return state;
-}
-
-void Task_MB(void) {
-    static bool f_Modbus_Init = false;
-    if (!f_Modbus_Init) {
-        ModbusSlave_Init(SW_Ad);
-        f_Modbus_Init = true;
-    } else {
-        ModbusSlave_Process();
-    }
-}
+static void Device_Init(void);
 
 void Task_Indicator() {
     switch (f_Indicator) {
