@@ -9,11 +9,12 @@
 #define	MCU_H
 #include "I2C_SHT30.h"
 #include "Modbus_Slave.h"
+#include "main.h"
+
 
 
 static void Device_Init(void);
 void Task_MB(void);
-void Task_Sensor(void);
 void Task_Indicator(void);
 
 void App_Init(void);

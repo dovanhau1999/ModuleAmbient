@@ -9,6 +9,8 @@
 # 1 "Mobbus_Slave.c" 2
 # 1 "./Modbus_Slave.h" 1
 # 11 "./Modbus_Slave.h"
+# 1 "./tick.h" 1
+# 11 "./tick.h"
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 1 3
 
 
@@ -114,64 +116,19 @@ typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 145 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdint.h" 2 3
+# 11 "./tick.h" 2
+
+
+void Tick_Init_SES(void);
+void rtcc_handle(void);
+void delay_ms(uint16_t count);
+uint32_t Get_millis(void);
 # 11 "./Modbus_Slave.h" 2
 
-# 1 "./ModbusRTU/ModbusRTU.h" 1
-# 11 "./ModbusRTU/ModbusRTU.h"
-# 1 "./ModbusRTU/../Modbus.h" 1
-# 14 "./ModbusRTU/../Modbus.h"
-enum ERR_LIST
-{
-    ERR_NOT_MASTER = -1,
-    ERR_POLLING = -2,
-    ERR_BUFF_OVERFLOW = -3,
-    ERR_BAD_CRC = -4,
-    ERR_EXCEPTION = -5
-};
-
-enum MB_FC
-{
-    MB_FC_NONE = 0,
-    MB_FC_READ_COILS = 1,
-    MB_FC_READ_DISCRETE_INPUT = 2,
-    MB_FC_READ_HOLD_REGISTERS = 3,
-    MB_FC_READ_INPUT_REGISTER = 4,
-    MB_FC_WRITE_COIL = 5,
-    MB_FC_WRITE_REGISTER = 6,
-    MB_FC_WRITE_MULTIPLE_COILS = 15,
-    MB_FC_WRITE_MULTIPLE_REGISTERS = 16
-};
-
-enum
-{
-    NO_REPLY = 255,
-    EXC_FUNC_CODE = 1,
-    EXC_ADDR_RANGE = 2,
-    EXC_REGS_QUANT = 3,
-    EXC_EXECUTE = 4
-};
-
-typedef struct
-{
-    uint8_t u8id;
-    uint8_t u8txenpin;
-    uint8_t u8state;
-    uint8_t u8lastError;
-    uint8_t au8Buffer[250];
-    uint8_t u8BufferSize;
-    uint8_t u8lastRec;
-    uint16_t *au16regs;
-    uint16_t u16InCnt, u16OutCnt, u16errCnt;
-    uint16_t u16timeOut;
-    uint32_t u32time, u32timeOut, u32overTime;
-    uint16_t u8regsize;
-
-    uint16_t *HOLDING_REGS;
-    uint16_t *INPUT_REGS;
-
-}MODBUS;
-# 11 "./ModbusRTU/ModbusRTU.h" 2
-
+# 1 "./main.h" 1
+# 11 "./main.h"
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
+# 11 "./main.h" 2
 
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 1 3
 # 10 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
@@ -324,52 +281,8 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 13 "./ModbusRTU/ModbusRTU.h" 2
+# 12 "./main.h" 2
 
-
-
-
-
-
-enum TYPE_CONNECTION
-{
-    USB = 0,
-    RS232 = 1,
-    RS485 = 2
- };
-
-
-enum
-{
-    RESPONSE_SIZE = 6,
-    EXCEPTION_SIZE = 3,
-    CHECKSUM_SIZE = 2
-};
-
-
-
-
-
-
-enum MESSAGE_MODBUS_RTU
-{
-    ID = 0,
-    FUNC,
-    ADD_HI,
-    ADD_LO,
-    NB_HI,
-    NB_LO,
-    BYTE_CNT
-};
-# 12 "./Modbus_Slave.h" 2
-
-# 1 "./tick.h" 1
-# 13 "./tick.h"
-void Tick_Init_SES(void);
-void rtcc_handle(void);
-void delay_ms(uint16_t count);
-uint32_t Get_millis(void);
-# 13 "./Modbus_Slave.h" 2
 
 # 1 "./mcc_generated_files/eusart.h" 1
 # 54 "./mcc_generated_files/eusart.h"
@@ -5173,9 +5086,6 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
 # 54 "./mcc_generated_files/eusart.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
-# 55 "./mcc_generated_files/eusart.h" 2
 # 75 "./mcc_generated_files/eusart.h"
 typedef union {
     struct {
@@ -5228,27 +5138,236 @@ void EUSART_SetErrorHandler(void (* interruptHandler)(void));
 void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 505 "./mcc_generated_files/eusart.h"
 void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 14 "./Modbus_Slave.h" 2
-
-
-
-
-void ModbusSlave_Init(int8_t _SW_Ad);
-void ModbusSlave_Process();
-# 1 "Mobbus_Slave.c" 2
+# 14 "./main.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
 # 199 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 211 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
-# 2 "Mobbus_Slave.c" 2
-# 11 "Mobbus_Slave.c"
-extern int16_t Temperature;
-extern int16_t Humidity;
+# 15 "./main.h" 2
 
+# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
+# 52 "./mcc_generated_files/examples/i2c_master_example.h"
+# 1 "./mcc_generated_files/examples/../i2c_master.h" 1
+# 58 "./mcc_generated_files/examples/../i2c_master.h"
+typedef enum {
+    I2C_NOERR,
+    I2C_BUSY,
+    I2C_FAIL
+
+
+} i2c_error_t;
+
+typedef enum
+{
+    I2C_STOP=1,
+    I2C_RESTART_READ,
+    I2C_RESTART_WRITE,
+    I2C_CONTINUE,
+    I2C_RESET_LINK
+} i2c_operations_t;
+
+typedef uint8_t i2c_address_t;
+typedef i2c_operations_t (*i2c_callback_t)(void *funPtr);
+
+
+i2c_operations_t I2C_CallbackReturnStop(void *funPtr);
+i2c_operations_t I2C_CallbackReturnReset(void *funPtr);
+i2c_operations_t I2C_CallbackRestartWrite(void *funPtr);
+i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
+
+
+
+
+
+
+void I2C_Initialize(void);
+# 101 "./mcc_generated_files/examples/../i2c_master.h"
+i2c_error_t I2C_Open(i2c_address_t address);
+# 111 "./mcc_generated_files/examples/../i2c_master.h"
+i2c_error_t I2C_Close(void);
+# 123 "./mcc_generated_files/examples/../i2c_master.h"
+i2c_error_t I2C_MasterOperation(_Bool read);
+
+
+
+
+i2c_error_t I2C_MasterWrite(void);
+
+
+
+
+i2c_error_t I2C_MasterRead(void);
+# 142 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetTimeout(uint8_t timeOut);
+# 152 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetBuffer(void *buffer, size_t bufferSize);
+# 164 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
+# 174 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
+# 184 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
+# 194 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
+# 204 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
+# 213 "./mcc_generated_files/examples/../i2c_master.h"
+void (*MSSP_InterruptHandler)(void);
+# 222 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
+# 52 "./mcc_generated_files/examples/i2c_master_example.h" 2
+
+
+uint8_t I2C_Read1ByteRegister(i2c_address_t address, uint8_t reg);
+uint16_t I2C_Read2ByteRegister(i2c_address_t address, uint8_t reg);
+void I2C_Write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
+void I2C_Write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
+void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
+void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
+void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t len);
+# 16 "./main.h" 2
+
+# 1 "./mcc_generated_files/tmr1.h" 1
+# 101 "./mcc_generated_files/tmr1.h"
+void TMR1_Initialize(void);
+# 130 "./mcc_generated_files/tmr1.h"
+void TMR1_StartTimer(void);
+# 162 "./mcc_generated_files/tmr1.h"
+void TMR1_StopTimer(void);
+# 197 "./mcc_generated_files/tmr1.h"
+uint16_t TMR1_ReadTimer(void);
+# 236 "./mcc_generated_files/tmr1.h"
+void TMR1_WriteTimer(uint16_t timerVal);
+# 272 "./mcc_generated_files/tmr1.h"
+void TMR1_Reload(void);
+# 311 "./mcc_generated_files/tmr1.h"
+void TMR1_StartSinglePulseAcquisition(void);
+# 350 "./mcc_generated_files/tmr1.h"
+uint8_t TMR1_CheckGateValueStatus(void);
+# 368 "./mcc_generated_files/tmr1.h"
+void TMR1_ISR(void);
+# 385 "./mcc_generated_files/tmr1.h"
+void TMR1_CallBack(void);
+# 403 "./mcc_generated_files/tmr1.h"
+ void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+# 421 "./mcc_generated_files/tmr1.h"
+extern void (*TMR1_InterruptHandler)(void);
+# 439 "./mcc_generated_files/tmr1.h"
+void TMR1_DefaultInterruptHandler(void);
+# 17 "./main.h" 2
+
+
+enum LED_STATUS {
+    OFF_Sensor = 0,
+    ON_Sensor = 1,
+    ERR_Sensor = 2
+};
+# 12 "./Modbus_Slave.h" 2
+
+# 1 "./ModbusRTU/ModbusRTU.h" 1
+# 11 "./ModbusRTU/ModbusRTU.h"
+# 1 "./ModbusRTU/../Modbus.h" 1
+# 14 "./ModbusRTU/../Modbus.h"
+enum ERR_LIST
+{
+    ERR_NOT_MASTER = -1,
+    ERR_POLLING = -2,
+    ERR_BUFF_OVERFLOW = -3,
+    ERR_BAD_CRC = -4,
+    ERR_EXCEPTION = -5
+};
+
+enum MB_FC
+{
+    MB_FC_NONE = 0,
+    MB_FC_READ_COILS = 1,
+    MB_FC_READ_DISCRETE_INPUT = 2,
+    MB_FC_READ_HOLD_REGISTERS = 3,
+    MB_FC_READ_INPUT_REGISTER = 4,
+    MB_FC_WRITE_COIL = 5,
+    MB_FC_WRITE_REGISTER = 6,
+    MB_FC_WRITE_MULTIPLE_COILS = 15,
+    MB_FC_WRITE_MULTIPLE_REGISTERS = 16
+};
+
+enum
+{
+    NO_REPLY = 255,
+    EXC_FUNC_CODE = 1,
+    EXC_ADDR_RANGE = 2,
+    EXC_REGS_QUANT = 3,
+    EXC_EXECUTE = 4
+};
+
+typedef struct
+{
+    uint8_t u8id;
+    uint8_t u8txenpin;
+    uint8_t u8state;
+    uint8_t u8lastError;
+    uint8_t au8Buffer[250];
+    uint8_t u8BufferSize;
+    uint8_t u8lastRec;
+    uint16_t *au16regs;
+    uint16_t u16InCnt, u16OutCnt, u16errCnt;
+    uint16_t u16timeOut;
+    uint32_t u32time, u32timeOut, u32overTime;
+    uint16_t u8regsize;
+
+    uint16_t *HOLDING_REGS;
+    uint16_t *INPUT_REGS;
+
+}MODBUS;
+# 11 "./ModbusRTU/ModbusRTU.h" 2
+
+
+
+
+
+
+
+
+enum TYPE_CONNECTION
+{
+    USB = 0,
+    RS232 = 1,
+    RS485 = 2
+ };
+
+
+enum
+{
+    RESPONSE_SIZE = 6,
+    EXCEPTION_SIZE = 3,
+    CHECKSUM_SIZE = 2
+};
+
+
+
+
+
+
+enum MESSAGE_MODBUS_RTU
+{
+    ID = 0,
+    FUNC,
+    ADD_HI,
+    ADD_LO,
+    NB_HI,
+    NB_LO,
+    BYTE_CNT
+};
+# 13 "./Modbus_Slave.h" 2
+
+
+int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+void ModbusSlave_Init(int8_t _SW_Ad);
+# 1 "Mobbus_Slave.c" 2
+# 11 "Mobbus_Slave.c"
 static int8_t MB_UID;
-static int16_t MB_Register[2];
+
 
 static const unsigned char fctsupported[] =
 {
@@ -5268,22 +5387,11 @@ static MODBUS SES_Modbus;
 
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
-
-
-
-
-
-extern volatile uint8_t eusartRxCount;
-
-
-
-
-
+# 47 "Mobbus_Slave.c"
 static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
 {
     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
@@ -5379,7 +5487,7 @@ static uint8_t validateRequest(void)
     return 0;
 }
 
-static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
+ int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 {
 
     SES_Modbus.u8regsize = size;
@@ -5426,7 +5534,7 @@ static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 
     return i8state;
 }
-# 216 "Mobbus_Slave.c"
+# 212 "Mobbus_Slave.c"
 static void Modbus_sendTxBuff(void)
 {
     uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
@@ -5510,12 +5618,4 @@ void ModbusSlave_Init(int8_t _SW_Ad)
 
     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
-}
-
-void ModbusSlave_Process(void)
-{
-    MB_Register[0] = Temperature;
-    MB_Register[1] = Humidity;
-    int8_t state = 0;
-    state = ModbusRTU_Slave_Poll(MB_Register, 2);
 }

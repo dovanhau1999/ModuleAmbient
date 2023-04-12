@@ -8,11 +8,8 @@
 #define word(h, l) (l & 0xff) | ((h & 0xff) << 8)
 #define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
-extern int16_t Temperature;
-extern int16_t Humidity; 
-
 static int8_t MB_UID;
-static int16_t MB_Register[2];
+
 
 static const unsigned char fctsupported[] =
 {
@@ -32,7 +29,6 @@ static MODBUS SES_Modbus;
 /*==================================================================================*/
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
 static int8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
@@ -42,7 +38,7 @@ static uint16_t Modbus_calcCRC(uint8_t len);
 /*==================================================================================*/
 //extern volatile uint8_t eusartRxTail;
 //extern volatile uint8_t eusartRxHead;
-extern volatile uint8_t eusartRxCount;
+//extern volatile uint8_t eusartRxCount;
 //static uint8_t EUSART_RxDataAvailable(void);
 
 
@@ -143,7 +139,7 @@ static uint8_t validateRequest(void)
     return 0;
 }
 
-static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
+ int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 {
     
     SES_Modbus.u8regsize = size;
@@ -298,10 +294,4 @@ void ModbusSlave_Init(int8_t _SW_Ad)
     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
 }
 
-void ModbusSlave_Process(void)
-{
-    MB_Register[0] = Temperature;
-    MB_Register[1] = Humidity;
-    int8_t state = 0;
-    state = ModbusRTU_Slave_Poll(MB_Register, 2);
-}
+

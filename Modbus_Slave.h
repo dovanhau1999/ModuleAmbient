@@ -8,15 +8,12 @@
 #ifndef MODBUS_SLAVE_H
 #define	MODBUS_SLAVE_H
 
-#include <stdint.h>
-#include "ModbusRTU/ModbusRTU.h"
 #include "tick.h"
-#include "mcc_generated_files/eusart.h"
-#include <stdbool.h>
-#include <stdio.h>
+#include "main.h"
+#include "ModbusRTU/ModbusRTU.h"
 
+int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 void ModbusSlave_Init(int8_t _SW_Ad);
-void ModbusSlave_Process();
 
 #ifdef	__cplusplus
 extern "C" {

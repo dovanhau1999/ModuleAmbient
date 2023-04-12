@@ -1,70 +1,65 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"17 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 17: static const unsigned char fctsupported[] =
-[c E42 0 1 2 3 4 5 6 15 16 .. ]
-[n E42 MB_FC MB_FC_NONE MB_FC_READ_COILS MB_FC_READ_DISCRETE_INPUT MB_FC_READ_HOLD_REGISTERS MB_FC_READ_INPUT_REGISTER MB_FC_WRITE_COIL MB_FC_WRITE_REGISTER MB_FC_WRITE_MULTIPLE_COILS MB_FC_WRITE_MULTIPLE_REGISTERS  ]
+[v F3160 `(v ~T0 @X0 0 tf ]
+"14 Mobbus_Slave.c
+[; ;Mobbus_Slave.c: 14: static const unsigned char fctsupported[] =
+[c E3220 0 1 2 3 4 5 6 15 16 .. ]
+[n E3220 MB_FC MB_FC_NONE MB_FC_READ_COILS MB_FC_READ_DISCRETE_INPUT MB_FC_READ_HOLD_REGISTERS MB_FC_READ_INPUT_REGISTER MB_FC_WRITE_COIL MB_FC_WRITE_REGISTER MB_FC_WRITE_MULTIPLE_COILS MB_FC_WRITE_MULTIPLE_REGISTERS  ]
 "46 ./ModbusRTU/../Modbus.h
 [; ;./ModbusRTU/../Modbus.h: 46: {
-[s S1 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 250 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
-[n S1 . u8id u8txenpin u8state u8lastError au8Buffer u8BufferSize u8lastRec au16regs u16InCnt u16OutCnt u16errCnt u16timeOut u32time u32timeOut u32overTime u8regsize HOLDING_REGS INPUT_REGS ]
-"53 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 53:     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
-[c E408 0 1 2 3 4 5 6 .. ]
-[n E408 MESSAGE_MODBUS_RTU ID FUNC ADD_HI ADD_LO NB_HI NB_LO BYTE_CNT  ]
-"38
-[; ;Mobbus_Slave.c: 38: static void Modbus_sendTxBuff(void);
+[s S360 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 250 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
+[n S360 . u8id u8txenpin u8state u8lastError au8Buffer u8BufferSize u8lastRec au16regs u16InCnt u16OutCnt u16errCnt u16timeOut u32time u32timeOut u32overTime u8regsize HOLDING_REGS INPUT_REGS ]
+"49 Mobbus_Slave.c
+[; ;Mobbus_Slave.c: 49:     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
+[c E3264 0 1 2 3 4 5 6 .. ]
+[n E3264 MESSAGE_MODBUS_RTU ID FUNC ADD_HI ADD_LO NB_HI NB_LO BYTE_CNT  ]
+"34
+[; ;Mobbus_Slave.c: 34: static void Modbus_sendTxBuff(void);
 [v _Modbus_sendTxBuff `(v ~T0 @X0 0 sf ]
-"83
-[; ;Mobbus_Slave.c: 83:     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
-[c E404 6 3 2 .. ]
-[n E404 . RESPONSE_SIZE EXCEPTION_SIZE CHECKSUM_SIZE  ]
+"79
+[; ;Mobbus_Slave.c: 79:     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
+[c E3260 6 3 2 .. ]
+[n E3260 . RESPONSE_SIZE EXCEPTION_SIZE CHECKSUM_SIZE  ]
 "328 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 328: uint8_t EUSART_Read(void);
 [v _EUSART_Read `(uc ~T0 @X0 0 ef ]
-"45 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 45: extern volatile uint8_t eusartRxCount;
+"89
+[; ;./mcc_generated_files/eusart.h: 89: extern volatile uint8_t eusartRxCount;
 [v _eusartRxCount `Vuc ~T0 @X0 0 e ]
-"108
-[; ;Mobbus_Slave.c: 108:         return ERR_BUFF_OVERFLOW;
-[c E36 -1 -2 -3 -4 -5 .. ]
-[n E36 ERR_LIST ERR_NOT_MASTER ERR_POLLING ERR_BUFF_OVERFLOW ERR_BAD_CRC ERR_EXCEPTION  ]
-"39
-[; ;Mobbus_Slave.c: 39: static uint16_t Modbus_calcCRC(uint8_t len);
+"104 Mobbus_Slave.c
+[; ;Mobbus_Slave.c: 104:         return ERR_BUFF_OVERFLOW;
+[c E3214 -1 -2 -3 -4 -5 .. ]
+[n E3214 ERR_LIST ERR_NOT_MASTER ERR_POLLING ERR_BUFF_OVERFLOW ERR_BAD_CRC ERR_EXCEPTION  ]
+"35
+[; ;Mobbus_Slave.c: 35: static uint16_t Modbus_calcCRC(uint8_t len);
 [v _Modbus_calcCRC `(us ~T0 @X0 0 sf1`uc ]
-"123
-[; ;Mobbus_Slave.c: 123:         return NO_REPLY;
-[c E52 255 1 2 3 4 .. ]
-[n E52 . NO_REPLY EXC_FUNC_CODE EXC_ADDR_RANGE EXC_REGS_QUANT EXC_EXECUTE  ]
+"119
+[; ;Mobbus_Slave.c: 119:         return NO_REPLY;
+[c E3230 255 1 2 3 4 .. ]
+[n E3230 . NO_REPLY EXC_FUNC_CODE EXC_ADDR_RANGE EXC_REGS_QUANT EXC_EXECUTE  ]
 "16 ./tick.h
 [; ;./tick.h: 16: uint32_t Get_millis(void);
 [v _Get_millis `(ul ~T0 @X0 0 ef ]
 "2318 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2318:     struct {
-[s S122 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S122 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S121 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
 "2317
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2317: typedef union {
-[u S121 `S122 1 ]
-[n S121 . . ]
+[u S120 `S121 1 ]
+[n S120 . . ]
 "2329
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2329: extern volatile LATCbits_t LATCbits __attribute__((address(0x10E)));
-[v _LATCbits `VS121 ~T0 @X0 0 e@270 ]
+[v _LATCbits `VS120 ~T0 @X0 0 e@270 ]
 "348 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 348: void EUSART_Write(uint8_t txData);
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
 "260
 [; ;./mcc_generated_files/eusart.h: 260: _Bool EUSART_is_tx_done(void);
 [v _EUSART_is_tx_done `(a ~T0 @X0 0 ef ]
-"291 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 291:     SES_Modbus.u8txenpin = RS485;
-[c E400 0 1 2 .. ]
-[n E400 TYPE_CONNECTION USB RS232 RS485  ]
-"11
-[; ;Mobbus_Slave.c: 11: extern int16_t Temperature;
-[v _Temperature `s ~T0 @X0 0 e ]
-"12
-[; ;Mobbus_Slave.c: 12: extern int16_t Humidity;
-[v _Humidity `s ~T0 @X0 0 e ]
+"287 Mobbus_Slave.c
+[; ;Mobbus_Slave.c: 287:     SES_Modbus.u8txenpin = RS485;
+[c E3256 0 1 2 .. ]
+[n E3256 TYPE_CONNECTION USB RS232 RS485  ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -560,708 +555,683 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7116
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"14 Mobbus_Slave.c
-[; ;Mobbus_Slave.c: 14: static int8_t MB_UID;
+"213 ./mcc_generated_files/examples/../i2c_master.h
+[; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
+[v _MSSP_InterruptHandler `*F3160 ~T0 @X0 1 e ]
+"11 Mobbus_Slave.c
+[; ;Mobbus_Slave.c: 11: static int8_t MB_UID;
 [v _MB_UID `c ~T0 @X0 1 s ]
-"15
-[; ;Mobbus_Slave.c: 15: static int16_t MB_Register[2];
-[v _MB_Register `s ~T0 @X0 -> 2 `i s ]
-"17
-[; ;Mobbus_Slave.c: 17: static const unsigned char fctsupported[] =
+"14
+[; ;Mobbus_Slave.c: 14: static const unsigned char fctsupported[] =
 [v _fctsupported `Cuc ~T0 @X0 -> 8 `i s ]
 [i _fctsupported
 :U ..
--> . `E42 1 `uc
--> . `E42 2 `uc
--> . `E42 3 `uc
--> . `E42 4 `uc
--> . `E42 5 `uc
--> . `E42 6 `uc
--> . `E42 7 `uc
--> . `E42 8 `uc
+-> . `E3220 1 `uc
+-> . `E3220 2 `uc
+-> . `E3220 3 `uc
+-> . `E3220 4 `uc
+-> . `E3220 5 `uc
+-> . `E3220 6 `uc
+-> . `E3220 7 `uc
+-> . `E3220 8 `uc
 ..
 ]
-"29
-[; ;Mobbus_Slave.c: 29: static MODBUS SES_Modbus;
-[v _SES_Modbus `S1 ~T0 @X0 1 s ]
-"51
-[; ;Mobbus_Slave.c: 51: static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
+"26
+[; ;Mobbus_Slave.c: 26: static MODBUS SES_Modbus;
+[v _SES_Modbus `S360 ~T0 @X0 1 s ]
+"47
+[; ;Mobbus_Slave.c: 47: static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
 [v _ModbusSlaveF04 `(c ~T0 @X0 1 sf2`*us`uc ]
-"52
-[; ;Mobbus_Slave.c: 52: {
+"48
+[; ;Mobbus_Slave.c: 48: {
 {
 [e :U _ModbusSlaveF04 ]
-"51
-[; ;Mobbus_Slave.c: 51: static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
+"47
+[; ;Mobbus_Slave.c: 47: static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size)
 [v _reg `*us ~T0 @X0 1 r1 ]
 [v _size `uc ~T0 @X0 1 r2 ]
-"52
-[; ;Mobbus_Slave.c: 52: {
+"48
+[; ;Mobbus_Slave.c: 48: {
 [f ]
-"53
-[; ;Mobbus_Slave.c: 53:     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
+"49
+[; ;Mobbus_Slave.c: 49:     uint16_t u8StartAdd = (SES_Modbus.au8Buffer[ ADD_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ ADD_HI ] & 0xff) << 8);
 [v _u8StartAdd `us ~T0 @X0 1 a ]
-[e = _u8StartAdd -> | & -> *U + &U . _SES_Modbus 4 * -> . `E408 3 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i << & -> *U + &U . _SES_Modbus 4 * -> . `E408 2 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i -> 8 `i `us ]
-"54
-[; ;Mobbus_Slave.c: 54:     uint8_t u8regsno = (SES_Modbus.au8Buffer[ NB_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ NB_HI ] & 0xff) << 8);
+[e = _u8StartAdd -> | & -> *U + &U . _SES_Modbus 4 * -> . `E3264 3 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i << & -> *U + &U . _SES_Modbus 4 * -> . `E3264 2 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i -> 8 `i `us ]
+"50
+[; ;Mobbus_Slave.c: 50:     uint8_t u8regsno = (SES_Modbus.au8Buffer[ NB_LO ] & 0xff) | ((SES_Modbus.au8Buffer[ NB_HI ] & 0xff) << 8);
 [v _u8regsno `uc ~T0 @X0 1 a ]
-[e = _u8regsno -> | & -> *U + &U . _SES_Modbus 4 * -> . `E408 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i << & -> *U + &U . _SES_Modbus 4 * -> . `E408 4 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i -> 8 `i `uc ]
-"55
-[; ;Mobbus_Slave.c: 55:     uint8_t u8CopyBufferSize;
+[e = _u8regsno -> | & -> *U + &U . _SES_Modbus 4 * -> . `E3264 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i << & -> *U + &U . _SES_Modbus 4 * -> . `E3264 4 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 255 `i -> 8 `i `uc ]
+"51
+[; ;Mobbus_Slave.c: 51:     uint8_t u8CopyBufferSize;
 [v _u8CopyBufferSize `uc ~T0 @X0 1 a ]
-"56
-[; ;Mobbus_Slave.c: 56:     uint16_t i;
+"52
+[; ;Mobbus_Slave.c: 52:     uint16_t i;
 [v _i `us ~T0 @X0 1 a ]
-"58
-[; ;Mobbus_Slave.c: 58:     SES_Modbus.au8Buffer[ 2 ] = u8regsno * 2;
+"54
+[; ;Mobbus_Slave.c: 54:     SES_Modbus.au8Buffer[ 2 ] = u8regsno * 2;
 [e = *U + &U . _SES_Modbus 4 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> * -> _u8regsno `i -> 2 `i `uc ]
-"59
-[; ;Mobbus_Slave.c: 59:     SES_Modbus.u8BufferSize = 3;
+"55
+[; ;Mobbus_Slave.c: 55:     SES_Modbus.u8BufferSize = 3;
 [e = . _SES_Modbus 5 -> -> 3 `i `uc ]
-"61
-[; ;Mobbus_Slave.c: 61:     for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++)
+"57
+[; ;Mobbus_Slave.c: 57:     for (i = u8StartAdd; i < u8StartAdd + u8regsno; i++)
 {
 [e = _i _u8StartAdd ]
 [e $U 365  ]
 [e :U 362 ]
-"62
-[; ;Mobbus_Slave.c: 62:     {
+"58
+[; ;Mobbus_Slave.c: 58:     {
 {
-"63
-[; ;Mobbus_Slave.c: 63:         SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) >> 8));
+"59
+[; ;Mobbus_Slave.c: 59:         SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) >> 8));
 [e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> >> -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `ui -> 8 `i `uc ]
-"64
-[; ;Mobbus_Slave.c: 64:         SES_Modbus.u8BufferSize++;
+"60
+[; ;Mobbus_Slave.c: 60:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"65
-[; ;Mobbus_Slave.c: 65:         SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) & 0xff));
+"61
+[; ;Mobbus_Slave.c: 61:         SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) & 0xff));
 [e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `ui -> -> 255 `i `ui `uc ]
-"66
-[; ;Mobbus_Slave.c: 66:         SES_Modbus.u8BufferSize++;
+"62
+[; ;Mobbus_Slave.c: 62:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"67
-[; ;Mobbus_Slave.c: 67:     }
+"63
+[; ;Mobbus_Slave.c: 63:     }
 }
 [e ++ _i -> -> 1 `i `us ]
 [e :U 365 ]
 [e $ < -> _i `ui + -> _u8StartAdd `ui -> _u8regsno `ui 362  ]
 [e :U 363 ]
 }
-"68
-[; ;Mobbus_Slave.c: 68:     u8CopyBufferSize = SES_Modbus.u8BufferSize +2;
+"64
+[; ;Mobbus_Slave.c: 64:     u8CopyBufferSize = SES_Modbus.u8BufferSize +2;
 [e = _u8CopyBufferSize -> + -> . _SES_Modbus 5 `i -> 2 `i `uc ]
-"69
-[; ;Mobbus_Slave.c: 69:     Modbus_sendTxBuff();
+"65
+[; ;Mobbus_Slave.c: 65:     Modbus_sendTxBuff();
 [e ( _Modbus_sendTxBuff ..  ]
-"71
-[; ;Mobbus_Slave.c: 71:     return u8CopyBufferSize;
+"67
+[; ;Mobbus_Slave.c: 67:     return u8CopyBufferSize;
 [e ) -> _u8CopyBufferSize `c ]
 [e $UE 361  ]
-"72
-[; ;Mobbus_Slave.c: 72: }
+"68
+[; ;Mobbus_Slave.c: 68: }
 [e :UE 361 ]
 }
-"75
-[; ;Mobbus_Slave.c: 75: static void buildException(uint8_t exception)
+"71
+[; ;Mobbus_Slave.c: 71: static void buildException(uint8_t exception)
 [v _buildException `(v ~T0 @X0 1 sf1`uc ]
-"76
-[; ;Mobbus_Slave.c: 76: {
+"72
+[; ;Mobbus_Slave.c: 72: {
 {
 [e :U _buildException ]
-"75
-[; ;Mobbus_Slave.c: 75: static void buildException(uint8_t exception)
+"71
+[; ;Mobbus_Slave.c: 71: static void buildException(uint8_t exception)
 [v _exception `uc ~T0 @X0 1 r1 ]
-"76
-[; ;Mobbus_Slave.c: 76: {
+"72
+[; ;Mobbus_Slave.c: 72: {
 [f ]
-"78
-[; ;Mobbus_Slave.c: 78:     uint8_t u8func = SES_Modbus.au8Buffer[ FUNC ];
+"74
+[; ;Mobbus_Slave.c: 74:     uint8_t u8func = SES_Modbus.au8Buffer[ FUNC ];
 [v _u8func `uc ~T0 @X0 1 a ]
-[e = _u8func *U + &U . _SES_Modbus 4 * -> . `E408 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ]
-"80
-[; ;Mobbus_Slave.c: 80:     SES_Modbus.au8Buffer[ ID ] = SES_Modbus.u8id;
-[e = *U + &U . _SES_Modbus 4 * -> . `E408 0 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux . _SES_Modbus 0 ]
-"81
-[; ;Mobbus_Slave.c: 81:     SES_Modbus.au8Buffer[ FUNC ] = u8func + 0x80;
-[e = *U + &U . _SES_Modbus 4 * -> . `E408 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> + -> _u8func `i -> 128 `i `uc ]
-"82
-[; ;Mobbus_Slave.c: 82:     SES_Modbus.au8Buffer[ 2 ] = exception;
+[e = _u8func *U + &U . _SES_Modbus 4 * -> . `E3264 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ]
+"76
+[; ;Mobbus_Slave.c: 76:     SES_Modbus.au8Buffer[ ID ] = SES_Modbus.u8id;
+[e = *U + &U . _SES_Modbus 4 * -> . `E3264 0 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux . _SES_Modbus 0 ]
+"77
+[; ;Mobbus_Slave.c: 77:     SES_Modbus.au8Buffer[ FUNC ] = u8func + 0x80;
+[e = *U + &U . _SES_Modbus 4 * -> . `E3264 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> + -> _u8func `i -> 128 `i `uc ]
+"78
+[; ;Mobbus_Slave.c: 78:     SES_Modbus.au8Buffer[ 2 ] = exception;
 [e = *U + &U . _SES_Modbus 4 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux _exception ]
-"83
-[; ;Mobbus_Slave.c: 83:     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
-[e = . _SES_Modbus 5 -> . `E404 1 `uc ]
-"84
-[; ;Mobbus_Slave.c: 84: }
+"79
+[; ;Mobbus_Slave.c: 79:     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
+[e = . _SES_Modbus 5 -> . `E3260 1 `uc ]
+"80
+[; ;Mobbus_Slave.c: 80: }
 [e :UE 366 ]
 }
-"86
-[; ;Mobbus_Slave.c: 86: static int8_t Modbus_getRxBuff(void)
+"82
+[; ;Mobbus_Slave.c: 82: static int8_t Modbus_getRxBuff(void)
 [v _Modbus_getRxBuff `(c ~T0 @X0 1 sf ]
-"87
-[; ;Mobbus_Slave.c: 87: {
+"83
+[; ;Mobbus_Slave.c: 83: {
 {
 [e :U _Modbus_getRxBuff ]
 [f ]
-"88
-[; ;Mobbus_Slave.c: 88:     _Bool bBuffOverflow = 0;
+"84
+[; ;Mobbus_Slave.c: 84:     _Bool bBuffOverflow = 0;
 [v _bBuffOverflow `a ~T0 @X0 1 a ]
 [e = _bBuffOverflow -> -> 0 `i `a ]
-"90
-[; ;Mobbus_Slave.c: 90:     if (SES_Modbus.u8txenpin > 1)
+"86
+[; ;Mobbus_Slave.c: 86:     if (SES_Modbus.u8txenpin > 1)
 [e $ ! > -> . _SES_Modbus 1 `i -> 1 `i 368  ]
-"91
-[; ;Mobbus_Slave.c: 91:     {
+"87
+[; ;Mobbus_Slave.c: 87:     {
 {
-"93
-[; ;Mobbus_Slave.c: 93:     }
+"89
+[; ;Mobbus_Slave.c: 89:     }
 }
 [e :U 368 ]
-"95
-[; ;Mobbus_Slave.c: 95:     SES_Modbus.u8BufferSize = 0;
+"91
+[; ;Mobbus_Slave.c: 91:     SES_Modbus.u8BufferSize = 0;
 [e = . _SES_Modbus 5 -> -> 0 `i `uc ]
-"96
-[; ;Mobbus_Slave.c: 96:     while (eusartRxCount)
+"92
+[; ;Mobbus_Slave.c: 92:     while (eusartRxCount)
 [e $U 369  ]
 [e :U 370 ]
-"97
-[; ;Mobbus_Slave.c: 97:     {
+"93
+[; ;Mobbus_Slave.c: 93:     {
 {
-"98
-[; ;Mobbus_Slave.c: 98:         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
+"94
+[; ;Mobbus_Slave.c: 94:         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
 [e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ( _EUSART_Read ..  ]
-"99
-[; ;Mobbus_Slave.c: 99:         SES_Modbus.u8BufferSize++;
+"95
+[; ;Mobbus_Slave.c: 95:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"101
-[; ;Mobbus_Slave.c: 101:         if(SES_Modbus.u8BufferSize >= 250) bBuffOverflow = 1;
+"97
+[; ;Mobbus_Slave.c: 97:         if(SES_Modbus.u8BufferSize >= 250) bBuffOverflow = 1;
 [e $ ! >= -> . _SES_Modbus 5 `i -> 250 `i 372  ]
 [e = _bBuffOverflow -> -> 1 `i `a ]
 [e :U 372 ]
-"102
-[; ;Mobbus_Slave.c: 102:     }
+"98
+[; ;Mobbus_Slave.c: 98:     }
 }
 [e :U 369 ]
-"96
-[; ;Mobbus_Slave.c: 96:     while (eusartRxCount)
+"92
+[; ;Mobbus_Slave.c: 92:     while (eusartRxCount)
 [e $ != -> _eusartRxCount `i -> 0 `i 370  ]
 [e :U 371 ]
-"103
-[; ;Mobbus_Slave.c: 103:     SES_Modbus.u16InCnt++;
+"99
+[; ;Mobbus_Slave.c: 99:     SES_Modbus.u16InCnt++;
 [e ++ . _SES_Modbus 8 -> -> 1 `i `us ]
-"105
-[; ;Mobbus_Slave.c: 105:     if(bBuffOverflow)
+"101
+[; ;Mobbus_Slave.c: 101:     if(bBuffOverflow)
 [e $ ! != -> _bBuffOverflow `i -> 0 `i 373  ]
-"106
-[; ;Mobbus_Slave.c: 106:     {
+"102
+[; ;Mobbus_Slave.c: 102:     {
 {
-"107
-[; ;Mobbus_Slave.c: 107:         SES_Modbus.u16errCnt++;
+"103
+[; ;Mobbus_Slave.c: 103:         SES_Modbus.u16errCnt++;
 [e ++ . _SES_Modbus 10 -> -> 1 `i `us ]
-"108
-[; ;Mobbus_Slave.c: 108:         return ERR_BUFF_OVERFLOW;
-[e ) -> . `E36 2 `c ]
+"104
+[; ;Mobbus_Slave.c: 104:         return ERR_BUFF_OVERFLOW;
+[e ) -> . `E3214 2 `c ]
 [e $UE 367  ]
-"109
-[; ;Mobbus_Slave.c: 109:     }
+"105
+[; ;Mobbus_Slave.c: 105:     }
 }
 [e :U 373 ]
-"111
-[; ;Mobbus_Slave.c: 111:     return SES_Modbus.u8BufferSize;
+"107
+[; ;Mobbus_Slave.c: 107:     return SES_Modbus.u8BufferSize;
 [e ) -> . _SES_Modbus 5 `c ]
 [e $UE 367  ]
-"112
-[; ;Mobbus_Slave.c: 112: }
+"108
+[; ;Mobbus_Slave.c: 108: }
 [e :UE 367 ]
 }
-"114
-[; ;Mobbus_Slave.c: 114: static uint8_t validateRequest(void)
+"110
+[; ;Mobbus_Slave.c: 110: static uint8_t validateRequest(void)
 [v _validateRequest `(uc ~T0 @X0 1 sf ]
-"115
-[; ;Mobbus_Slave.c: 115: {
+"111
+[; ;Mobbus_Slave.c: 111: {
 {
 [e :U _validateRequest ]
 [f ]
-"117
-[; ;Mobbus_Slave.c: 117:     uint16_t u16MsgCRC=
+"113
+[; ;Mobbus_Slave.c: 113:     uint16_t u16MsgCRC=
 [v _u16MsgCRC `us ~T0 @X0 1 a ]
 [e = _u16MsgCRC -> | << -> *U + &U . _SES_Modbus 4 * -> -> - -> . _SES_Modbus 5 `i -> 2 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> 8 `i -> *U + &U . _SES_Modbus 4 * -> -> - -> . _SES_Modbus 5 `i -> 1 `i `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i `us ]
-"120
-[; ;Mobbus_Slave.c: 120:     if ( Modbus_calcCRC( SES_Modbus.u8BufferSize-2 ) != u16MsgCRC )
+"116
+[; ;Mobbus_Slave.c: 116:     if ( Modbus_calcCRC( SES_Modbus.u8BufferSize-2 ) != u16MsgCRC )
 [e $ ! != -> ( _Modbus_calcCRC (1 -> - -> . _SES_Modbus 5 `i -> 2 `i `uc `ui -> _u16MsgCRC `ui 375  ]
-"121
-[; ;Mobbus_Slave.c: 121:     {
+"117
+[; ;Mobbus_Slave.c: 117:     {
 {
-"122
-[; ;Mobbus_Slave.c: 122:         SES_Modbus.u16errCnt ++;
+"118
+[; ;Mobbus_Slave.c: 118:         SES_Modbus.u16errCnt ++;
 [e ++ . _SES_Modbus 10 -> -> 1 `i `us ]
-"123
-[; ;Mobbus_Slave.c: 123:         return NO_REPLY;
-[e ) -> . `E52 0 `uc ]
+"119
+[; ;Mobbus_Slave.c: 119:         return NO_REPLY;
+[e ) -> . `E3230 0 `uc ]
 [e $UE 374  ]
-"124
-[; ;Mobbus_Slave.c: 124:     }
+"120
+[; ;Mobbus_Slave.c: 120:     }
 }
 [e :U 375 ]
-"127
-[; ;Mobbus_Slave.c: 127:     _Bool isSupported = 0;
+"123
+[; ;Mobbus_Slave.c: 123:     _Bool isSupported = 0;
 [v _isSupported `a ~T0 @X0 1 a ]
 [e = _isSupported -> -> 0 `i `a ]
-"128
-[; ;Mobbus_Slave.c: 128:     uint8_t i=0;
+"124
+[; ;Mobbus_Slave.c: 124:     uint8_t i=0;
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-"129
-[; ;Mobbus_Slave.c: 129:     for (i = 0; i< sizeof( fctsupported ); i++)
+"125
+[; ;Mobbus_Slave.c: 125:     for (i = 0; i< sizeof( fctsupported ); i++)
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `ui -> # _fctsupported `ui 376  ]
 [e $U 377  ]
 [e :U 376 ]
-"130
-[; ;Mobbus_Slave.c: 130:     {
+"126
+[; ;Mobbus_Slave.c: 126:     {
 {
-"131
-[; ;Mobbus_Slave.c: 131:         if (fctsupported[i] == SES_Modbus.au8Buffer[FUNC])
-[e $ ! == -> *U + &U _fctsupported * -> _i `ux -> -> # *U &U _fctsupported `ui `ux `i -> *U + &U . _SES_Modbus 4 * -> . `E408 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i 379  ]
-"132
-[; ;Mobbus_Slave.c: 132:         {
+"127
+[; ;Mobbus_Slave.c: 127:         if (fctsupported[i] == SES_Modbus.au8Buffer[FUNC])
+[e $ ! == -> *U + &U _fctsupported * -> _i `ux -> -> # *U &U _fctsupported `ui `ux `i -> *U + &U . _SES_Modbus 4 * -> . `E3264 1 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i 379  ]
+"128
+[; ;Mobbus_Slave.c: 128:         {
 {
-"133
-[; ;Mobbus_Slave.c: 133:             isSupported = 1;
+"129
+[; ;Mobbus_Slave.c: 129:             isSupported = 1;
 [e = _isSupported -> -> 1 `i `a ]
-"134
-[; ;Mobbus_Slave.c: 134:             break;
+"130
+[; ;Mobbus_Slave.c: 130:             break;
 [e $U 377  ]
-"135
-[; ;Mobbus_Slave.c: 135:         }
+"131
+[; ;Mobbus_Slave.c: 131:         }
 }
 [e :U 379 ]
-"136
-[; ;Mobbus_Slave.c: 136:     }
+"132
+[; ;Mobbus_Slave.c: 132:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `ui -> # _fctsupported `ui 376  ]
 [e :U 377 ]
 }
-"137
-[; ;Mobbus_Slave.c: 137:     if (!isSupported)
+"133
+[; ;Mobbus_Slave.c: 133:     if (!isSupported)
 [e $ ! ! != -> _isSupported `i -> 0 `i 380  ]
-"138
-[; ;Mobbus_Slave.c: 138:     {
+"134
+[; ;Mobbus_Slave.c: 134:     {
 {
-"139
-[; ;Mobbus_Slave.c: 139:         SES_Modbus.u16errCnt ++;
+"135
+[; ;Mobbus_Slave.c: 135:         SES_Modbus.u16errCnt ++;
 [e ++ . _SES_Modbus 10 -> -> 1 `i `us ]
-"140
-[; ;Mobbus_Slave.c: 140:         return EXC_FUNC_CODE;
-[e ) -> . `E52 1 `uc ]
+"136
+[; ;Mobbus_Slave.c: 136:         return EXC_FUNC_CODE;
+[e ) -> . `E3230 1 `uc ]
 [e $UE 374  ]
-"141
-[; ;Mobbus_Slave.c: 141:     }
+"137
+[; ;Mobbus_Slave.c: 137:     }
 }
 [e :U 380 ]
-"143
-[; ;Mobbus_Slave.c: 143:     return 0;
+"139
+[; ;Mobbus_Slave.c: 139:     return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 374  ]
-"144
-[; ;Mobbus_Slave.c: 144: }
+"140
+[; ;Mobbus_Slave.c: 140: }
 [e :UE 374 ]
 }
-"146
-[; ;Mobbus_Slave.c: 146: static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
-[v _ModbusRTU_Slave_Poll `(c ~T0 @X0 1 sf2`*s`us ]
-"147
-[; ;Mobbus_Slave.c: 147: {
+"142
+[; ;Mobbus_Slave.c: 142:  int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
+[v _ModbusRTU_Slave_Poll `(c ~T0 @X0 1 ef2`*s`us ]
+"143
+[; ;Mobbus_Slave.c: 143: {
 {
 [e :U _ModbusRTU_Slave_Poll ]
-"146
-[; ;Mobbus_Slave.c: 146: static int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
+"142
+[; ;Mobbus_Slave.c: 142:  int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size)
 [v _reg `*s ~T0 @X0 1 r1 ]
 [v _size `us ~T0 @X0 1 r2 ]
-"147
-[; ;Mobbus_Slave.c: 147: {
+"143
+[; ;Mobbus_Slave.c: 143: {
 [f ]
-"149
-[; ;Mobbus_Slave.c: 149:     SES_Modbus.u8regsize = size;
+"145
+[; ;Mobbus_Slave.c: 145:     SES_Modbus.u8regsize = size;
 [e = . _SES_Modbus 15 _size ]
-"150
-[; ;Mobbus_Slave.c: 150:     uint8_t u8Current;
+"146
+[; ;Mobbus_Slave.c: 146:     uint8_t u8Current;
 [v _u8Current `uc ~T0 @X0 1 a ]
-"152
-[; ;Mobbus_Slave.c: 152:     u8Current = eusartRxCount;
+"148
+[; ;Mobbus_Slave.c: 148:     u8Current = eusartRxCount;
 [e = _u8Current _eusartRxCount ]
-"154
-[; ;Mobbus_Slave.c: 154:     if (u8Current == 0) return 0;
+"150
+[; ;Mobbus_Slave.c: 150:     if (u8Current == 0) return 0;
 [e $ ! == -> _u8Current `i -> 0 `i 382  ]
 [e ) -> -> 0 `i `c ]
 [e $UE 381  ]
 [e :U 382 ]
-"157
-[; ;Mobbus_Slave.c: 157:     if (u8Current != SES_Modbus.u8lastRec)
+"153
+[; ;Mobbus_Slave.c: 153:     if (u8Current != SES_Modbus.u8lastRec)
 [e $ ! != -> _u8Current `i -> . _SES_Modbus 6 `i 383  ]
-"158
-[; ;Mobbus_Slave.c: 158:     {
+"154
+[; ;Mobbus_Slave.c: 154:     {
 {
-"159
-[; ;Mobbus_Slave.c: 159:         SES_Modbus.u8lastRec = u8Current;
+"155
+[; ;Mobbus_Slave.c: 155:         SES_Modbus.u8lastRec = u8Current;
 [e = . _SES_Modbus 6 _u8Current ]
-"160
-[; ;Mobbus_Slave.c: 160:         SES_Modbus.u32time = Get_millis();
+"156
+[; ;Mobbus_Slave.c: 156:         SES_Modbus.u32time = Get_millis();
 [e = . _SES_Modbus 12 ( _Get_millis ..  ]
-"161
-[; ;Mobbus_Slave.c: 161:         return 0;
+"157
+[; ;Mobbus_Slave.c: 157:         return 0;
 [e ) -> -> 0 `i `c ]
 [e $UE 381  ]
-"162
-[; ;Mobbus_Slave.c: 162:     }
+"158
+[; ;Mobbus_Slave.c: 158:     }
 }
 [e :U 383 ]
-"163
-[; ;Mobbus_Slave.c: 163:     if ((unsigned long)(Get_millis() - SES_Modbus.u32time) < (unsigned long)3) return 0;
+"159
+[; ;Mobbus_Slave.c: 159:     if ((unsigned long)(Get_millis() - SES_Modbus.u32time) < (unsigned long)3) return 0;
 [e $ ! < - ( _Get_millis ..  . _SES_Modbus 12 -> -> 3 `i `ul 384  ]
 [e ) -> -> 0 `i `c ]
 [e $UE 381  ]
 [e :U 384 ]
-"165
-[; ;Mobbus_Slave.c: 165:     SES_Modbus.u8lastRec = 0;
+"161
+[; ;Mobbus_Slave.c: 161:     SES_Modbus.u8lastRec = 0;
 [e = . _SES_Modbus 6 -> -> 0 `i `uc ]
-"166
-[; ;Mobbus_Slave.c: 166:     int8_t i8state = Modbus_getRxBuff();
+"162
+[; ;Mobbus_Slave.c: 162:     int8_t i8state = Modbus_getRxBuff();
 [v _i8state `c ~T0 @X0 1 a ]
 [e = _i8state ( _Modbus_getRxBuff ..  ]
-"167
-[; ;Mobbus_Slave.c: 167:     SES_Modbus.u8lastError = i8state;
+"163
+[; ;Mobbus_Slave.c: 163:     SES_Modbus.u8lastError = i8state;
 [e = . _SES_Modbus 3 -> _i8state `uc ]
-"168
-[; ;Mobbus_Slave.c: 168:     if (i8state < 7) return i8state;
+"164
+[; ;Mobbus_Slave.c: 164:     if (i8state < 7) return i8state;
 [e $ ! < -> _i8state `i -> 7 `i 385  ]
 [e ) _i8state ]
 [e $UE 381  ]
 [e :U 385 ]
-"171
-[; ;Mobbus_Slave.c: 171:     if (SES_Modbus.au8Buffer[ ID ] != SES_Modbus.u8id) return 0;
-[e $ ! != -> *U + &U . _SES_Modbus 4 * -> . `E408 0 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> . _SES_Modbus 0 `i 386  ]
+"167
+[; ;Mobbus_Slave.c: 167:     if (SES_Modbus.au8Buffer[ ID ] != SES_Modbus.u8id) return 0;
+[e $ ! != -> *U + &U . _SES_Modbus 4 * -> . `E3264 0 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `i -> . _SES_Modbus 0 `i 386  ]
 [e ) -> -> 0 `i `c ]
 [e $UE 381  ]
 [e :U 386 ]
-"174
-[; ;Mobbus_Slave.c: 174:     uint8_t u8exception = validateRequest();
+"170
+[; ;Mobbus_Slave.c: 170:     uint8_t u8exception = validateRequest();
 [v _u8exception `uc ~T0 @X0 1 a ]
 [e = _u8exception ( _validateRequest ..  ]
-"175
-[; ;Mobbus_Slave.c: 175:     if (u8exception > 0)
+"171
+[; ;Mobbus_Slave.c: 171:     if (u8exception > 0)
 [e $ ! > -> _u8exception `i -> 0 `i 387  ]
-"176
-[; ;Mobbus_Slave.c: 176:     {
+"172
+[; ;Mobbus_Slave.c: 172:     {
 {
-"177
-[; ;Mobbus_Slave.c: 177:         if (u8exception != NO_REPLY)
-[e $ ! != -> _u8exception `i -> . `E52 0 `i 388  ]
-"178
-[; ;Mobbus_Slave.c: 178:         {
+"173
+[; ;Mobbus_Slave.c: 173:         if (u8exception != NO_REPLY)
+[e $ ! != -> _u8exception `i -> . `E3230 0 `i 388  ]
+"174
+[; ;Mobbus_Slave.c: 174:         {
 {
-"179
-[; ;Mobbus_Slave.c: 179:             buildException( u8exception );
+"175
+[; ;Mobbus_Slave.c: 175:             buildException( u8exception );
 [e ( _buildException (1 _u8exception ]
-"180
-[; ;Mobbus_Slave.c: 180:             Modbus_sendTxBuff();
+"176
+[; ;Mobbus_Slave.c: 176:             Modbus_sendTxBuff();
 [e ( _Modbus_sendTxBuff ..  ]
-"181
-[; ;Mobbus_Slave.c: 181:         }
+"177
+[; ;Mobbus_Slave.c: 177:         }
 }
 [e :U 388 ]
-"182
-[; ;Mobbus_Slave.c: 182:         SES_Modbus.u8lastError = u8exception;
+"178
+[; ;Mobbus_Slave.c: 178:         SES_Modbus.u8lastError = u8exception;
 [e = . _SES_Modbus 3 _u8exception ]
-"183
-[; ;Mobbus_Slave.c: 183:         return u8exception;
+"179
+[; ;Mobbus_Slave.c: 179:         return u8exception;
 [e ) -> _u8exception `c ]
 [e $UE 381  ]
-"184
-[; ;Mobbus_Slave.c: 184:     }
+"180
+[; ;Mobbus_Slave.c: 180:     }
 }
 [e :U 387 ]
-"186
-[; ;Mobbus_Slave.c: 186:     SES_Modbus.u32timeOut = Get_millis();
+"182
+[; ;Mobbus_Slave.c: 182:     SES_Modbus.u32timeOut = Get_millis();
 [e = . _SES_Modbus 13 ( _Get_millis ..  ]
-"187
-[; ;Mobbus_Slave.c: 187:     SES_Modbus.u8lastError = 0;
+"183
+[; ;Mobbus_Slave.c: 183:     SES_Modbus.u8lastError = 0;
 [e = . _SES_Modbus 3 -> -> 0 `i `uc ]
-"189
-[; ;Mobbus_Slave.c: 189:     ModbusSlaveF04((uint16_t) reg, size );
+"185
+[; ;Mobbus_Slave.c: 185:     ModbusSlaveF04((uint16_t) reg, size );
 [e ( _ModbusSlaveF04 (2 , -> -> _reg `us `*us -> _size `uc ]
-"191
-[; ;Mobbus_Slave.c: 191:     return i8state;
+"187
+[; ;Mobbus_Slave.c: 187:     return i8state;
 [e ) _i8state ]
 [e $UE 381  ]
-"192
-[; ;Mobbus_Slave.c: 192: }
+"188
+[; ;Mobbus_Slave.c: 188: }
 [e :UE 381 ]
 }
-"216
-[; ;Mobbus_Slave.c: 216: static void Modbus_sendTxBuff(void)
+"212
+[; ;Mobbus_Slave.c: 212: static void Modbus_sendTxBuff(void)
 [v _Modbus_sendTxBuff `(v ~T0 @X0 1 sf ]
-"217
-[; ;Mobbus_Slave.c: 217: {
+"213
+[; ;Mobbus_Slave.c: 213: {
 {
 [e :U _Modbus_sendTxBuff ]
 [f ]
-"218
-[; ;Mobbus_Slave.c: 218:     uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
+"214
+[; ;Mobbus_Slave.c: 214:     uint16_t u16crc = Modbus_calcCRC( SES_Modbus.u8BufferSize );
 [v _u16crc `us ~T0 @X0 1 a ]
 [e = _u16crc ( _Modbus_calcCRC (1 . _SES_Modbus 5 ]
-"219
-[; ;Mobbus_Slave.c: 219:     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc >> 8;
+"215
+[; ;Mobbus_Slave.c: 215:     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc >> 8;
 [e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> >> -> _u16crc `ui -> 8 `i `uc ]
-"220
-[; ;Mobbus_Slave.c: 220:     SES_Modbus.u8BufferSize++;
+"216
+[; ;Mobbus_Slave.c: 216:     SES_Modbus.u8BufferSize++;
+[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
+"217
+[; ;Mobbus_Slave.c: 217:     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc & 0x00ff;
+[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> _u16crc `ui -> -> 255 `i `ui `uc ]
+"218
+[; ;Mobbus_Slave.c: 218:     SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
 "221
-[; ;Mobbus_Slave.c: 221:     SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = u16crc & 0x00ff;
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> _u16crc `ui -> -> 255 `i `ui `uc ]
-"222
-[; ;Mobbus_Slave.c: 222:     SES_Modbus.u8BufferSize++;
-[e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
-"225
-[; ;Mobbus_Slave.c: 225:     if (SES_Modbus.u8txenpin > 1)
+[; ;Mobbus_Slave.c: 221:     if (SES_Modbus.u8txenpin > 1)
 [e $ ! > -> . _SES_Modbus 1 `i -> 1 `i 390  ]
-"226
-[; ;Mobbus_Slave.c: 226:     {
+"222
+[; ;Mobbus_Slave.c: 222:     {
 {
-"227
-[; ;Mobbus_Slave.c: 227:         do { LATCbits.LATC5 = 1; } while(0);
+"223
+[; ;Mobbus_Slave.c: 223:         do { LATCbits.LATC5 = 1; } while(0);
 [e :U 393 ]
 {
 [e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
 }
 [e :U 392 ]
-"230
-[; ;Mobbus_Slave.c: 230:     }
+"226
+[; ;Mobbus_Slave.c: 226:     }
 }
 [e :U 390 ]
-"233
-[; ;Mobbus_Slave.c: 233:     for (int index = 0; index < SES_Modbus.u8BufferSize; index++)
+"229
+[; ;Mobbus_Slave.c: 229:     for (int index = 0; index < SES_Modbus.u8BufferSize; index++)
 {
 [v _index `i ~T0 @X0 1 a ]
 [e = _index -> 0 `i ]
 [e $U 397  ]
 [e :U 394 ]
-"234
-[; ;Mobbus_Slave.c: 234:     {
+"230
+[; ;Mobbus_Slave.c: 230:     {
 {
-"235
-[; ;Mobbus_Slave.c: 235:         EUSART_Write(SES_Modbus.au8Buffer[index]);
+"231
+[; ;Mobbus_Slave.c: 231:         EUSART_Write(SES_Modbus.au8Buffer[index]);
 [e ( _EUSART_Write (1 *U + &U . _SES_Modbus 4 * -> -> _index `ui `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux ]
-"236
-[; ;Mobbus_Slave.c: 236:     }
+"232
+[; ;Mobbus_Slave.c: 232:     }
 }
 [e ++ _index -> 1 `i ]
 [e :U 397 ]
 [e $ < _index -> . _SES_Modbus 5 `i 394  ]
 [e :U 395 ]
 }
-"238
-[; ;Mobbus_Slave.c: 238:     if (SES_Modbus.u8txenpin > 1)
+"234
+[; ;Mobbus_Slave.c: 234:     if (SES_Modbus.u8txenpin > 1)
 [e $ ! > -> . _SES_Modbus 1 `i -> 1 `i 398  ]
-"239
-[; ;Mobbus_Slave.c: 239:     {
+"235
+[; ;Mobbus_Slave.c: 235:     {
 {
-"246
-[; ;Mobbus_Slave.c: 246:         while (! EUSART_is_tx_done());
+"242
+[; ;Mobbus_Slave.c: 242:         while (! EUSART_is_tx_done());
 [e $U 399  ]
 [e :U 400 ]
 [e :U 399 ]
 [e $ ! != -> ( _EUSART_is_tx_done ..  `i -> 0 `i 400  ]
 [e :U 401 ]
-"247
-[; ;Mobbus_Slave.c: 247:         volatile uint32_t u32overTimecountDown = SES_Modbus.u32overTime;
+"243
+[; ;Mobbus_Slave.c: 243:         volatile uint32_t u32overTimecountDown = SES_Modbus.u32overTime;
 [v _u32overTimecountDown `Vul ~T0 @X0 1 a ]
 [e = _u32overTimecountDown . _SES_Modbus 14 ]
-"249
-[; ;Mobbus_Slave.c: 249:         while (u32overTimecountDown-- > 0);
+"245
+[; ;Mobbus_Slave.c: 245:         while (u32overTimecountDown-- > 0);
 [e $U 402  ]
 [e :U 403 ]
 [e :U 402 ]
 [e $ > -- _u32overTimecountDown -> -> 1 `i `Vul -> -> -> 0 `i `l `ul 403  ]
 [e :U 404 ]
-"250
-[; ;Mobbus_Slave.c: 250:         do { LATCbits.LATC5 = 0; } while(0);
+"246
+[; ;Mobbus_Slave.c: 246:         do { LATCbits.LATC5 = 0; } while(0);
 [e :U 407 ]
 {
 [e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 406 ]
-"251
-[; ;Mobbus_Slave.c: 251:     }
+"247
+[; ;Mobbus_Slave.c: 247:     }
 }
 [e :U 398 ]
-"253
-[; ;Mobbus_Slave.c: 253:     SES_Modbus.u8BufferSize = 0;
+"249
+[; ;Mobbus_Slave.c: 249:     SES_Modbus.u8BufferSize = 0;
 [e = . _SES_Modbus 5 -> -> 0 `i `uc ]
-"256
-[; ;Mobbus_Slave.c: 256:     SES_Modbus.u32timeOut = Get_millis();
+"252
+[; ;Mobbus_Slave.c: 252:     SES_Modbus.u32timeOut = Get_millis();
 [e = . _SES_Modbus 13 ( _Get_millis ..  ]
-"259
-[; ;Mobbus_Slave.c: 259:     SES_Modbus.u16OutCnt++;
+"255
+[; ;Mobbus_Slave.c: 255:     SES_Modbus.u16OutCnt++;
 [e ++ . _SES_Modbus 9 -> -> 1 `i `us ]
-"260
-[; ;Mobbus_Slave.c: 260: }
+"256
+[; ;Mobbus_Slave.c: 256: }
 [e :UE 389 ]
 }
-"262
-[; ;Mobbus_Slave.c: 262: static uint16_t Modbus_calcCRC(uint8_t len)
+"258
+[; ;Mobbus_Slave.c: 258: static uint16_t Modbus_calcCRC(uint8_t len)
 [v _Modbus_calcCRC `(us ~T0 @X0 1 sf1`uc ]
-"263
-[; ;Mobbus_Slave.c: 263: {
+"259
+[; ;Mobbus_Slave.c: 259: {
 {
 [e :U _Modbus_calcCRC ]
-"262
-[; ;Mobbus_Slave.c: 262: static uint16_t Modbus_calcCRC(uint8_t len)
+"258
+[; ;Mobbus_Slave.c: 258: static uint16_t Modbus_calcCRC(uint8_t len)
 [v _len `uc ~T0 @X0 1 r1 ]
-"263
-[; ;Mobbus_Slave.c: 263: {
+"259
+[; ;Mobbus_Slave.c: 259: {
 [f ]
-"264
-[; ;Mobbus_Slave.c: 264:     unsigned int temp, temp2, flag;
+"260
+[; ;Mobbus_Slave.c: 260:     unsigned int temp, temp2, flag;
 [v _temp `ui ~T0 @X0 1 a ]
 [v _temp2 `ui ~T0 @X0 1 a ]
 [v _flag `ui ~T0 @X0 1 a ]
-"265
-[; ;Mobbus_Slave.c: 265:     temp = 0xFFFF;
+"261
+[; ;Mobbus_Slave.c: 261:     temp = 0xFFFF;
 [e = _temp -> 65535 `ui ]
-"266
-[; ;Mobbus_Slave.c: 266:     unsigned char i=0;
+"262
+[; ;Mobbus_Slave.c: 262:     unsigned char i=0;
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-"267
-[; ;Mobbus_Slave.c: 267:     for (i = 0; i < len; i++)
+"263
+[; ;Mobbus_Slave.c: 263:     for (i = 0; i < len; i++)
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 412  ]
 [e :U 409 ]
-"268
-[; ;Mobbus_Slave.c: 268:     {
+"264
+[; ;Mobbus_Slave.c: 264:     {
 {
-"269
-[; ;Mobbus_Slave.c: 269:         temp = temp ^ SES_Modbus.au8Buffer[i];
+"265
+[; ;Mobbus_Slave.c: 265:         temp = temp ^ SES_Modbus.au8Buffer[i];
 [e = _temp ^ _temp -> *U + &U . _SES_Modbus 4 * -> _i `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux `ui ]
-"270
-[; ;Mobbus_Slave.c: 270:         unsigned char j=0;
+"266
+[; ;Mobbus_Slave.c: 266:         unsigned char j=0;
 [v _j `uc ~T0 @X0 1 a ]
 [e = _j -> -> 0 `i `uc ]
-"271
-[; ;Mobbus_Slave.c: 271:         for (j = 1; j <= 8; j++)
+"267
+[; ;Mobbus_Slave.c: 267:         for (j = 1; j <= 8; j++)
 {
 [e = _j -> -> 1 `i `uc ]
 [e $ <= -> _j `i -> 8 `i 413  ]
 [e $U 414  ]
 [e :U 413 ]
-"272
-[; ;Mobbus_Slave.c: 272:         {
+"268
+[; ;Mobbus_Slave.c: 268:         {
 {
-"273
-[; ;Mobbus_Slave.c: 273:             flag = temp & 0x0001;
+"269
+[; ;Mobbus_Slave.c: 269:             flag = temp & 0x0001;
 [e = _flag & _temp -> -> 1 `i `ui ]
-"274
-[; ;Mobbus_Slave.c: 274:             temp >>=1;
+"270
+[; ;Mobbus_Slave.c: 270:             temp >>=1;
 [e =>> _temp -> -> 1 `i `ui ]
-"275
-[; ;Mobbus_Slave.c: 275:             if (flag)
+"271
+[; ;Mobbus_Slave.c: 271:             if (flag)
 [e $ ! != _flag -> -> 0 `i `ui 416  ]
-"276
-[; ;Mobbus_Slave.c: 276:                 temp ^= 0xA001;
+"272
+[; ;Mobbus_Slave.c: 272:                 temp ^= 0xA001;
 [e =^ _temp -> 40961 `ui ]
 [e :U 416 ]
-"277
-[; ;Mobbus_Slave.c: 277:         }
+"273
+[; ;Mobbus_Slave.c: 273:         }
 }
 [e ++ _j -> -> 1 `i `uc ]
 [e $ <= -> _j `i -> 8 `i 413  ]
 [e :U 414 ]
 }
-"278
-[; ;Mobbus_Slave.c: 278:     }
+"274
+[; ;Mobbus_Slave.c: 274:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 412 ]
 [e $ < -> _i `i -> _len `i 409  ]
 [e :U 410 ]
 }
-"280
-[; ;Mobbus_Slave.c: 280:     temp2 = temp >> 8;
+"276
+[; ;Mobbus_Slave.c: 276:     temp2 = temp >> 8;
 [e = _temp2 >> _temp -> 8 `i ]
-"281
-[; ;Mobbus_Slave.c: 281:     temp = (temp << 8) | temp2;
+"277
+[; ;Mobbus_Slave.c: 277:     temp = (temp << 8) | temp2;
 [e = _temp | << _temp -> 8 `i _temp2 ]
-"282
-[; ;Mobbus_Slave.c: 282:     temp &= 0xFFFF;
+"278
+[; ;Mobbus_Slave.c: 278:     temp &= 0xFFFF;
 [e =& _temp -> 65535 `ui ]
-"285
-[; ;Mobbus_Slave.c: 285:     return temp;
+"281
+[; ;Mobbus_Slave.c: 281:     return temp;
 [e ) -> _temp `us ]
 [e $UE 408  ]
-"286
-[; ;Mobbus_Slave.c: 286: }
+"282
+[; ;Mobbus_Slave.c: 282: }
 [e :UE 408 ]
 }
-"288
-[; ;Mobbus_Slave.c: 288: void ModbusSlave_Init(int8_t _SW_Ad)
+"284
+[; ;Mobbus_Slave.c: 284: void ModbusSlave_Init(int8_t _SW_Ad)
 [v _ModbusSlave_Init `(v ~T0 @X0 1 ef1`c ]
-"289
-[; ;Mobbus_Slave.c: 289: {
+"285
+[; ;Mobbus_Slave.c: 285: {
 {
 [e :U _ModbusSlave_Init ]
-"288
-[; ;Mobbus_Slave.c: 288: void ModbusSlave_Init(int8_t _SW_Ad)
+"284
+[; ;Mobbus_Slave.c: 284: void ModbusSlave_Init(int8_t _SW_Ad)
 [v __SW_Ad `c ~T0 @X0 1 r1 ]
-"289
-[; ;Mobbus_Slave.c: 289: {
+"285
+[; ;Mobbus_Slave.c: 285: {
 [f ]
-"290
-[; ;Mobbus_Slave.c: 290:     SES_Modbus.u8id = (uint8_t) _SW_Ad;
+"286
+[; ;Mobbus_Slave.c: 286:     SES_Modbus.u8id = (uint8_t) _SW_Ad;
 [e = . _SES_Modbus 0 -> __SW_Ad `uc ]
-"291
-[; ;Mobbus_Slave.c: 291:     SES_Modbus.u8txenpin = RS485;
-[e = . _SES_Modbus 1 -> . `E400 2 `uc ]
-"292
-[; ;Mobbus_Slave.c: 292:     SES_Modbus.u16timeOut = 1000;
+"287
+[; ;Mobbus_Slave.c: 287:     SES_Modbus.u8txenpin = RS485;
+[e = . _SES_Modbus 1 -> . `E3256 2 `uc ]
+"288
+[; ;Mobbus_Slave.c: 288:     SES_Modbus.u16timeOut = 1000;
 [e = . _SES_Modbus 11 -> -> 1000 `i `us ]
-"293
-[; ;Mobbus_Slave.c: 293:     SES_Modbus.u32overTime = 0;
+"289
+[; ;Mobbus_Slave.c: 289:     SES_Modbus.u32overTime = 0;
 [e = . _SES_Modbus 14 -> -> -> 0 `i `l `ul ]
-"297
-[; ;Mobbus_Slave.c: 297:     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
+"293
+[; ;Mobbus_Slave.c: 293:     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
 [e = . _SES_Modbus 6 = . _SES_Modbus 5 -> -> 0 `i `uc ]
-"298
-[; ;Mobbus_Slave.c: 298:     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
+"294
+[; ;Mobbus_Slave.c: 294:     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
 [e = . _SES_Modbus 8 = . _SES_Modbus 9 = . _SES_Modbus 10 -> -> 0 `i `us ]
-"299
-[; ;Mobbus_Slave.c: 299: }
+"295
+[; ;Mobbus_Slave.c: 295: }
 [e :UE 417 ]
-}
-"301
-[; ;Mobbus_Slave.c: 301: void ModbusSlave_Process(void)
-[v _ModbusSlave_Process `(v ~T0 @X0 1 ef ]
-"302
-[; ;Mobbus_Slave.c: 302: {
-{
-[e :U _ModbusSlave_Process ]
-[f ]
-"303
-[; ;Mobbus_Slave.c: 303:     MB_Register[0] = Temperature;
-[e = *U + &U _MB_Register * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux _Temperature ]
-"304
-[; ;Mobbus_Slave.c: 304:     MB_Register[1] = Humidity;
-[e = *U + &U _MB_Register * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux _Humidity ]
-"305
-[; ;Mobbus_Slave.c: 305:     int8_t state = 0;
-[v _state `c ~T0 @X0 1 a ]
-[e = _state -> -> 0 `i `c ]
-"306
-[; ;Mobbus_Slave.c: 306:     state = ModbusRTU_Slave_Poll(MB_Register, 2);
-[e = _state ( _ModbusRTU_Slave_Poll (2 , &U _MB_Register -> -> 2 `i `us ]
-"307
-[; ;Mobbus_Slave.c: 307: }
-[e :UE 418 ]
 }

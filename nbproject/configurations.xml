@@ -26,6 +26,7 @@
       <itemPath>MCU.h</itemPath>
       <itemPath>Modbus_Slave.h</itemPath>
       <itemPath>tick.h</itemPath>
+      <itemPath>main.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
