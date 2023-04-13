@@ -52,8 +52,8 @@ void Task_Sensor(void) {
         f_Indicator = ON_Sensor;
         ReadData();
         if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
-            SensorAmbient.T.Val16 = 0x8000;
-            SensorAmbient.H.Val16 = 0x8000;
+            SensorAmbient.T.Val16 = (int16_t) 0x8000;
+            SensorAmbient.H.Val16 = (int16_t) 0x8000;
             f_Indicator = ERR_Sensor;
         }
     }

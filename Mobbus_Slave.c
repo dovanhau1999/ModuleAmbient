@@ -5,7 +5,6 @@
 
 #define lowByte(w) ((uint8_t) ((w) & 0xff))
 #define highByte(w) ((uint8_t) ((w) >> 8))
-#define word(h, l) (l & 0xff) | ((h & 0xff) << 8)
 #define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
 
@@ -26,17 +25,24 @@ static MODBUS SES_Modbus;
 /*==================================================================================*/
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size);
-static int8_t Modbus_getRxBuff(void);
+static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size);
+static uint8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
 static void ModbusSlave_Process(void);
 
 /*==================================================================================*/
 
-static int8_t ModbusSlaveF04(uint16_t *reg, uint8_t size) {
-    uint16_t u8StartAdd = word(SES_Modbus.au8Buffer[ ADD_HI ], SES_Modbus.au8Buffer[ ADD_LO ]);
-    uint8_t u8regsno = word(SES_Modbus.au8Buffer[ NB_HI ], SES_Modbus.au8Buffer[ NB_LO ]);
+static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size) {
+    VALUE16 valueAdd, valueRegsno;
+    valueAdd._Byte[1] = SES_Modbus.au8Buffer[ADD_HI];
+    valueAdd._Byte[0] = SES_Modbus.au8Buffer[ADD_LO];
+    uint16_t u8StartAdd = (uint16_t)valueAdd.Val16;
+    
+    valueRegsno._Byte[1] = SES_Modbus.au8Buffer[ NB_HI];
+    valueRegsno._Byte[0] = SES_Modbus.au8Buffer[ NB_LO];
+    uint8_t u8regsno = (uint8_t)valueRegsno.Val16;
+    
     uint8_t u8CopyBufferSize;
     uint16_t i;
 
@@ -65,7 +71,7 @@ static void buildException(uint8_t exception) {
     SES_Modbus.u8BufferSize = EXCEPTION_SIZE;
 }
 
-static int8_t Modbus_getRxBuff(void) {
+static uint8_t Modbus_getRxBuff(void) {
     bool bBuffOverflow = false;
 
     if (SES_Modbus.u8txenpin > 1) {
@@ -83,7 +89,7 @@ static int8_t Modbus_getRxBuff(void) {
 
     if (bBuffOverflow) {
         SES_Modbus.u16errCnt++;
-        return ERR_BUFF_OVERFLOW;
+        return (uint8_t)ERR_BUFF_OVERFLOW;
     }
 
     return SES_Modbus.u8BufferSize;
@@ -116,7 +122,7 @@ static uint8_t validateRequest(void) {
     return 0;
 }
 
-int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
+uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
 
     SES_Modbus.u8regsize = size;
     uint8_t u8Current;
@@ -134,7 +140,7 @@ int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
     if ((unsigned long) (millis() - SES_Modbus.u32time) < (unsigned long) T35) return 0;
 
     SES_Modbus.u8lastRec = 0;
-    int8_t i8state = Modbus_getRxBuff();
+    uint8_t i8state = Modbus_getRxBuff();
     SES_Modbus.u8lastError = i8state;
     if (i8state < 7) return i8state;
 
@@ -155,9 +161,9 @@ int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
     SES_Modbus.u32timeOut = millis();
     SES_Modbus.u8lastError = 0;
 
-    ModbusSlaveF04((uint16_t) reg, size);
+    ModbusSlaveF04(reg, size);
 
-    return i8state;
+    return (uint8_t)i8state;
 }
 
 static void Modbus_sendTxBuff(void) {
@@ -239,7 +245,7 @@ void ModbusSlave_Init(int8_t _SW_Ad) {
 
 static void ModbusSlave_Process(void) {
 
-    int8_t state = 0;
+    uint8_t state = 0;
     MB_Register[0] = SensorAmbient.T.Val16;
     MB_Register[1] = SensorAmbient.H.Val16;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);

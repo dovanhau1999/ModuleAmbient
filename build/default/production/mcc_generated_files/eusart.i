@@ -5014,7 +5014,7 @@ void EUSART_Initialize(void)
     TXSTA = 0x24;
 
 
-    SPBRGL = 0xCF;
+    SPBRGL = 0x0C;
 
 
     SPBRGH = 0x00;
@@ -5038,25 +5038,15 @@ void EUSART_Initialize(void)
 
     PIE1bits.RCIE = 1;
 }
-
-_Bool EUSART_is_tx_ready(void)
-{
-    return (eusartTxBufferRemaining ? 1 : 0);
-}
-
-_Bool EUSART_is_rx_ready(void)
-{
-    return (eusartRxCount ? 1 : 0);
-}
-
+# 142 "mcc_generated_files/eusart.c"
 _Bool EUSART_is_tx_done(void)
 {
     return TXSTAbits.TRMT;
 }
 
-eusart_status_t EUSART_get_last_status(void){
-    return eusartRxLastError;
-}
+
+
+
 
 uint8_t EUSART_Read(void)
 {

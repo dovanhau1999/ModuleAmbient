@@ -123,7 +123,6 @@ typedef uint32_t uint_fast32_t;
 
 void Tick_Init_SES(void);
 void rtcc_handle(void);
-void delay_ms(uint16_t count);
 uint32_t Get_millis(void);
 # 11 "./I2C_SHT30.h" 2
 
@@ -5386,7 +5385,7 @@ void Task_Sensor(void);
 # 1 "./Modbus_Slave.h" 1
 # 14 "./Modbus_Slave.h"
 void ModbusSlave_Init(int8_t _SW_Ad);
-int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 void Task_MB(void);
 # 11 "./MCU.h" 2
 

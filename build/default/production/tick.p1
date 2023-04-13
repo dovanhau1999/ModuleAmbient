@@ -547,27 +547,3 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;tick.c: 17: }
 [e :UE 362 ]
 }
-"19
-[; ;tick.c: 19: void delay_ms(uint16_t count) {
-[v _delay_ms `(v ~T0 @X0 1 ef1`us ]
-{
-[e :U _delay_ms ]
-[v _count `us ~T0 @X0 1 r1 ]
-[f ]
-"20
-[; ;tick.c: 20:     volatile uint32_t _DowCount;
-[v __DowCount `Vul ~T0 @X0 1 a ]
-"21
-[; ;tick.c: 21:     _DowCount = Get_millis();
-[e = __DowCount ( _Get_millis ..  ]
-"22
-[; ;tick.c: 22:     while (((uint32_t) Get_millis() - (uint32_t) _DowCount) <= (uint32_t) count);
-[e $U 364  ]
-[e :U 365 ]
-[e :U 364 ]
-[e $ <= - ( _Get_millis ..  __DowCount -> _count `ul 365  ]
-[e :U 366 ]
-"23
-[; ;tick.c: 23: }
-[e :UE 363 ]
-}

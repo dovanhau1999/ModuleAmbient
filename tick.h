@@ -12,7 +12,6 @@
 
 void Tick_Init_SES(void);
 void rtcc_handle(void);
-void delay_ms(uint16_t count);
 uint32_t Get_millis(void);
 
 

@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3160 `(v ~T0 @X0 0 tf ]
+[v F3158 `(v ~T0 @X0 0 tf ]
 "30 ./main.h
 [; ;./main.h: 30: typedef union {
 [u S361 `uc -> 2 `i `s 1 ]
@@ -11,16 +11,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "58 ./mcc_generated_files/examples/i2c_master_example.h
 [; ;./mcc_generated_files/examples/i2c_master_example.h: 58: void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
 [v _I2C_WriteNBytes `(v ~T0 @X0 0 ef3`uc`*uc`ui ]
-"16 ./tick.h
-[; ;./tick.h: 16: uint32_t Get_millis(void);
+"15 ./tick.h
+[; ;./tick.h: 15: uint32_t Get_millis(void);
 [v _Get_millis `(ul ~T0 @X0 0 ef ]
 "59 ./mcc_generated_files/examples/i2c_master_example.h
 [; ;./mcc_generated_files/examples/i2c_master_example.h: 59: void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
 [v _I2C_ReadNBytes `(v ~T0 @X0 0 ef3`uc`*uc`ui ]
 "47 I2C_SHT30.c
 [; ;I2C_SHT30.c: 47:     f_Indicator = OFF_Sensor;
-[c E3271 0 1 2 .. ]
-[n E3271 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
+[c E3269 0 1 2 .. ]
+[n E3269 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -518,7 +518,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FEFh ;# ">
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3160 ~T0 @X0 1 e ]
+[v _MSSP_InterruptHandler `*F3158 ~T0 @X0 1 e ]
 "20 ./main.h
 [; ;./main.h: 20: int8_t SW_Ad;
 [v _SW_Ad `c ~T0 @X0 1 e ]
@@ -637,23 +637,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "45
 [; ;I2C_SHT30.c: 45:     static uint32_t valTime = 0;
-[v F3296 `ul ~T0 @X0 1 s valTime ]
-[i F3296
+[v F3294 `ul ~T0 @X0 1 s valTime ]
+[i F3294
 -> -> -> 0 `i `l `ul
 ]
 "47
 [; ;I2C_SHT30.c: 47:     f_Indicator = OFF_Sensor;
-[e = _f_Indicator -> . `E3271 0 `c ]
+[e = _f_Indicator -> . `E3269 0 `c ]
 "50
 [; ;I2C_SHT30.c: 50:     if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2 * 1000)) {
-[e $ ! >= - ( _Get_millis ..  F3296 * -> -> 2 `i `ul -> -> -> 1000 `i `l `ul 368  ]
+[e $ ! >= - ( _Get_millis ..  F3294 * -> -> 2 `i `ul -> -> -> 1000 `i `l `ul 368  ]
 {
 "51
 [; ;I2C_SHT30.c: 51:         valTime = Get_millis();
-[e = F3296 ( _Get_millis ..  ]
+[e = F3294 ( _Get_millis ..  ]
 "52
 [; ;I2C_SHT30.c: 52:         f_Indicator = ON_Sensor;
-[e = _f_Indicator -> . `E3271 1 `c ]
+[e = _f_Indicator -> . `E3269 1 `c ]
 "53
 [; ;I2C_SHT30.c: 53:         ReadData();
 [e ( _ReadData ..  ]
@@ -662,14 +662,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! || < -> . . _SensorAmbient 0 1 `i -> 0 `i < -> . . _SensorAmbient 1 1 `i -> 0 `i 369  ]
 {
 "55
-[; ;I2C_SHT30.c: 55:             SensorAmbient.T.Val16 = 0x8000;
+[; ;I2C_SHT30.c: 55:             SensorAmbient.T.Val16 = (int16_t) 0x8000;
 [e = . . _SensorAmbient 0 1 -> -> 32768 `ui `s ]
 "56
-[; ;I2C_SHT30.c: 56:             SensorAmbient.H.Val16 = 0x8000;
+[; ;I2C_SHT30.c: 56:             SensorAmbient.H.Val16 = (int16_t) 0x8000;
 [e = . . _SensorAmbient 1 1 -> -> 32768 `ui `s ]
 "57
 [; ;I2C_SHT30.c: 57:             f_Indicator = ERR_Sensor;
-[e = _f_Indicator -> . `E3271 2 `c ]
+[e = _f_Indicator -> . `E3269 2 `c ]
 "58
 [; ;I2C_SHT30.c: 58:         }
 }

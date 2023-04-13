@@ -12,7 +12,7 @@
 #include "main.h"
 
 void ModbusSlave_Init(int8_t _SW_Ad);
-int8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
 void Task_MB(void);
 
 #ifdef	__cplusplus

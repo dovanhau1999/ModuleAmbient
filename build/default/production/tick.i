@@ -5181,7 +5181,6 @@ void WDT_Initialize(void);
 # 13 "./tick.h"
 void Tick_Init_SES(void);
 void rtcc_handle(void);
-void delay_ms(uint16_t count);
 uint32_t Get_millis(void);
 # 2 "tick.c" 2
 
@@ -5199,10 +5198,4 @@ void rtcc_handle(void) {
 
 uint32_t Get_millis(void) {
     return device_time;
-}
-
-void delay_ms(uint16_t count) {
-    volatile uint32_t _DowCount;
-    _DowCount = Get_millis();
-    while (((uint32_t) Get_millis() - (uint32_t) _DowCount) <= (uint32_t) count);
 }

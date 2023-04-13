@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3160 `(v ~T0 @X0 0 tf ]
+[v F3158 `(v ~T0 @X0 0 tf ]
 "30 ./main.h
 [; ;./main.h: 30: typedef union {
 [u S361 `uc -> 2 `i `s 1 ]
@@ -21,8 +21,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _LATCbits `VS120 ~T0 @X0 0 e@270 ]
 "27 MCU.c
 [; ;MCU.c: 27:     }
-[c E3271 0 1 2 .. ]
-[n E3271 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
+[c E3269 0 1 2 .. ]
+[n E3269 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
 "436 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 436:     struct {
 [s S36 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -543,7 +543,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FEFh ;# ">
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3160 ~T0 @X0 1 e ]
+[v _MSSP_InterruptHandler `*F3158 ~T0 @X0 1 e ]
 "20 ./main.h
 [; ;./main.h: 20: int8_t SW_Ad;
 [v _SW_Ad `c ~T0 @X0 1 e ]
@@ -649,9 +649,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 364  ]
 [e :U 365 ]
-[e [\ -> _f_Indicator `i , $ . `E3271 0 366
- , $ . `E3271 1 373
- , $ . `E3271 2 380
+[e [\ -> _f_Indicator `i , $ . `E3269 0 366
+ , $ . `E3269 1 373
+ , $ . `E3269 2 380
  364 ]
 [e :U 364 ]
 "28
@@ -666,25 +666,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "31
 [; ;MCU.c: 31:     static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
-[v F3298 `c ~T0 @X0 1 s value_SW1 ]
-[v F3299 `c ~T0 @X0 1 s value_SW2 ]
-[v F3300 `c ~T0 @X0 1 s value_SW3 ]
-[v F3301 `c ~T0 @X0 1 s value_SW4 ]
+[v F3296 `c ~T0 @X0 1 s value_SW1 ]
+[v F3297 `c ~T0 @X0 1 s value_SW2 ]
+[v F3298 `c ~T0 @X0 1 s value_SW3 ]
+[v F3299 `c ~T0 @X0 1 s value_SW4 ]
 "33
 [; ;MCU.c: 33:     value_SW1 = PORTAbits.RA0;
-[e = F3298 -> . . _PORTAbits 0 0 `c ]
+[e = F3296 -> . . _PORTAbits 0 0 `c ]
 "34
 [; ;MCU.c: 34:     value_SW2 = PORTAbits.RA1;
-[e = F3299 -> . . _PORTAbits 0 1 `c ]
+[e = F3297 -> . . _PORTAbits 0 1 `c ]
 "35
 [; ;MCU.c: 35:     value_SW3 = PORTAbits.RA2;
-[e = F3300 -> . . _PORTAbits 0 2 `c ]
+[e = F3298 -> . . _PORTAbits 0 2 `c ]
 "36
 [; ;MCU.c: 36:     value_SW4 = PORTAbits.RA3;
-[e = F3301 -> . . _PORTAbits 0 3 `c ]
+[e = F3299 -> . . _PORTAbits 0 3 `c ]
 "39
 [; ;MCU.c: 39:     SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
-[e = _SW_Ad -> & | | | & -> F3298 `i -> 1 `i & -> F3299 `i -> 2 `i & -> F3300 `i -> 4 `i & -> F3301 `i -> 8 `i -> 255 `i `c ]
+[e = _SW_Ad -> & | | | & -> F3296 `i -> 1 `i & -> F3297 `i -> 2 `i & -> F3298 `i -> 4 `i & -> F3299 `i -> 8 `i -> 255 `i `c ]
 "40
 [; ;MCU.c: 40: }
 [e :UE 387 ]

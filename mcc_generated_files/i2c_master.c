@@ -169,7 +169,7 @@ void I2C_Initialize()
     SSPSTAT = 0x00;
     SSPCON1 = 0x08;
     SSPCON2 = 0x00;
-    SSPADD  = 0x13;
+    SSPADD  = 0x03;
     SSPCON1bits.SSPEN = 0;
 }
 
@@ -548,7 +548,7 @@ static inline bool I2C_MasterOpen(void)
         SSPSTAT = 0x00;
         SSPCON1 = 0x08;
         SSPCON2 = 0x00;
-        SSPADD = 0x13;
+        SSPADD = 0x03;
         SSPCON1bits.SSPEN = 1;
         return true;
     }
@@ -629,10 +629,10 @@ static inline void I2C_MasterEnableIrq(void)
     PIE1bits.SSPIE = 1;
 }
 
-static inline bool I2C_MasterIsIrqEnabled(void)
-{
-    return PIE1bits.SSPIE;
-}
+//static inline bool I2C_MasterIsIrqEnabled(void)
+//{
+//    return PIE1bits.SSPIE;
+//}
 
 static inline void I2C_MasterDisableIrq(void)
 {
@@ -649,13 +649,13 @@ static inline void I2C_MasterSetIrq(void)
     PIR1bits.SSPIF = 1;
 }
 
-static inline void I2C_MasterWaitForEvent(void)
-{
-    while(1)
-    {
-        if(PIR1bits.SSPIF)
-        {    
-            break;
-        }
-    }
-}
+//static inline void I2C_MasterWaitForEvent(void)
+//{
+//    while(1)
+//    {
+//        if(PIR1bits.SSPIF)
+//        {    
+//            break;
+//        }
+//    }
+//}

@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3181 `(v ~T0 @X0 0 tf ]
+[v F3179 `(v ~T0 @X0 0 tf ]
 "30 ./main.h
 [; ;./main.h: 30: typedef union {
 [u S361 `uc -> 2 `i `s 1 ]
@@ -515,7 +515,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FEFh ;# ">
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3181 ~T0 @X0 1 e ]
+[v _MSSP_InterruptHandler `*F3179 ~T0 @X0 1 e ]
 "20 ./main.h
 [; ;./main.h: 20: int8_t SW_Ad;
 [v _SW_Ad `c ~T0 @X0 1 e ]

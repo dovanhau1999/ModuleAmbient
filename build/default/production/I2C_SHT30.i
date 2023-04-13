@@ -121,7 +121,6 @@ typedef uint32_t uint_fast32_t;
 
 void Tick_Init_SES(void);
 void rtcc_handle(void);
-void delay_ms(uint16_t count);
 uint32_t Get_millis(void);
 # 11 "./I2C_SHT30.h" 2
 
@@ -5417,8 +5416,8 @@ void Task_Sensor(void) {
         f_Indicator = ON_Sensor;
         ReadData();
         if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
-            SensorAmbient.T.Val16 = 0x8000;
-            SensorAmbient.H.Val16 = 0x8000;
+            SensorAmbient.T.Val16 = (int16_t) 0x8000;
+            SensorAmbient.H.Val16 = (int16_t) 0x8000;
             f_Indicator = ERR_Sensor;
         }
     }

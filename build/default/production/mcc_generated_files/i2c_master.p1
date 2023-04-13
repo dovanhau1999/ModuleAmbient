@@ -810,8 +810,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/i2c_master.c: 171:     SSPCON2 = 0x00;
 [e = _SSPCON2 -> -> 0 `i `uc ]
 "172
-[; ;mcc_generated_files/i2c_master.c: 172:     SSPADD = 0x13;
-[e = _SSPADD -> -> 19 `i `uc ]
+[; ;mcc_generated_files/i2c_master.c: 172:     SSPADD = 0x03;
+[e = _SSPADD -> -> 3 `i `uc ]
 "173
 [; ;mcc_generated_files/i2c_master.c: 173:     SSPCON1bits.SSPEN = 0;
 [e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
@@ -2091,8 +2091,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/i2c_master.c: 550:         SSPCON2 = 0x00;
 [e = _SSPCON2 -> -> 0 `i `uc ]
 "551
-[; ;mcc_generated_files/i2c_master.c: 551:         SSPADD = 0x13;
-[e = _SSPADD -> -> 19 `i `uc ]
+[; ;mcc_generated_files/i2c_master.c: 551:         SSPADD = 0x03;
+[e = _SSPADD -> -> 3 `i `uc ]
 "552
 [; ;mcc_generated_files/i2c_master.c: 552:         SSPCON1bits.SSPEN = 1;
 [e = . . _SSPCON1bits 0 5 -> -> 1 `i `uc ]
@@ -2350,27 +2350,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/i2c_master.c: 630: }
 [e :UE 460 ]
 }
-[v F3502 `(a ~T0 @X0 1 tf ]
-"632
-[; ;mcc_generated_files/i2c_master.c: 632: static __attribute__((inline)) _Bool I2C_MasterIsIrqEnabled(void)
-[v _I2C_MasterIsIrqEnabled `TF3502 ~T0 @X0 1 s ]
-"633
-[; ;mcc_generated_files/i2c_master.c: 633: {
-{
-[e :U _I2C_MasterIsIrqEnabled ]
-[f ]
-"634
-[; ;mcc_generated_files/i2c_master.c: 634:     return PIE1bits.SSPIE;
-[e ) -> . . _PIE1bits 0 3 `a ]
-[e $UE 461  ]
-"635
-[; ;mcc_generated_files/i2c_master.c: 635: }
-[e :UE 461 ]
-}
-[v F3504 `(v ~T0 @X0 1 tf ]
+[v F3502 `(v ~T0 @X0 1 tf ]
 "637
 [; ;mcc_generated_files/i2c_master.c: 637: static __attribute__((inline)) void I2C_MasterDisableIrq(void)
-[v _I2C_MasterDisableIrq `TF3504 ~T0 @X0 1 s ]
+[v _I2C_MasterDisableIrq `TF3502 ~T0 @X0 1 s ]
 "638
 [; ;mcc_generated_files/i2c_master.c: 638: {
 {
@@ -2381,12 +2364,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PIE1bits 0 3 -> -> 0 `i `uc ]
 "640
 [; ;mcc_generated_files/i2c_master.c: 640: }
-[e :UE 462 ]
+[e :UE 461 ]
 }
-[v F3506 `(v ~T0 @X0 1 tf ]
+[v F3504 `(v ~T0 @X0 1 tf ]
 "642
 [; ;mcc_generated_files/i2c_master.c: 642: static __attribute__((inline)) void I2C_MasterClearIrq(void)
-[v _I2C_MasterClearIrq `TF3506 ~T0 @X0 1 s ]
+[v _I2C_MasterClearIrq `TF3504 ~T0 @X0 1 s ]
 "643
 [; ;mcc_generated_files/i2c_master.c: 643: {
 {
@@ -2397,12 +2380,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
 "645
 [; ;mcc_generated_files/i2c_master.c: 645: }
-[e :UE 463 ]
+[e :UE 462 ]
 }
-[v F3508 `(v ~T0 @X0 1 tf ]
+[v F3506 `(v ~T0 @X0 1 tf ]
 "647
 [; ;mcc_generated_files/i2c_master.c: 647: static __attribute__((inline)) void I2C_MasterSetIrq(void)
-[v _I2C_MasterSetIrq `TF3508 ~T0 @X0 1 s ]
+[v _I2C_MasterSetIrq `TF3506 ~T0 @X0 1 s ]
 "648
 [; ;mcc_generated_files/i2c_master.c: 648: {
 {
@@ -2413,43 +2396,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PIR1bits 0 3 -> -> 1 `i `uc ]
 "650
 [; ;mcc_generated_files/i2c_master.c: 650: }
-[e :UE 464 ]
-}
-[v F3510 `(v ~T0 @X0 1 tf ]
-"652
-[; ;mcc_generated_files/i2c_master.c: 652: static __attribute__((inline)) void I2C_MasterWaitForEvent(void)
-[v _I2C_MasterWaitForEvent `TF3510 ~T0 @X0 1 s ]
-"653
-[; ;mcc_generated_files/i2c_master.c: 653: {
-{
-[e :U _I2C_MasterWaitForEvent ]
-[f ]
-"654
-[; ;mcc_generated_files/i2c_master.c: 654:     while(1)
-[e :U 467 ]
-"655
-[; ;mcc_generated_files/i2c_master.c: 655:     {
-{
-"656
-[; ;mcc_generated_files/i2c_master.c: 656:         if(PIR1bits.SSPIF)
-[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 469  ]
-"657
-[; ;mcc_generated_files/i2c_master.c: 657:         {
-{
-"658
-[; ;mcc_generated_files/i2c_master.c: 658:             break;
-[e $U 468  ]
-"659
-[; ;mcc_generated_files/i2c_master.c: 659:         }
-}
-[e :U 469 ]
-"660
-[; ;mcc_generated_files/i2c_master.c: 660:     }
-}
-[e :U 466 ]
-[e $U 467  ]
-[e :U 468 ]
-"661
-[; ;mcc_generated_files/i2c_master.c: 661: }
-[e :UE 465 ]
+[e :UE 463 ]
 }
