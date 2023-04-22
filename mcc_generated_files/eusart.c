@@ -103,8 +103,8 @@ void EUSART_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave; 
     TXSTA = 0x24;
 
-    // SPBRGL 207; 
-    SPBRGL = 0xCF;
+    // SPBRGL 12; 
+    SPBRGL = 0x0C;
 
     // SPBRGH 0; 
     SPBRGH = 0x00;
@@ -129,24 +129,24 @@ void EUSART_Initialize(void)
     PIE1bits.RCIE = 1;
 }
 
-bool EUSART_is_tx_ready(void)
-{
-    return (eusartTxBufferRemaining ? true : false);
-}
+//bool EUSART_is_tx_ready(void)
+//{
+//    return (eusartTxBufferRemaining ? true : false);
+//}
 
-bool EUSART_is_rx_ready(void)
-{
-    return (eusartRxCount ? true : false);
-}
+//bool EUSART_is_rx_ready(void)
+//{
+//    return (eusartRxCount ? true : false);
+//}
 
 bool EUSART_is_tx_done(void)
 {
     return TXSTAbits.TRMT;
 }
 
-eusart_status_t EUSART_get_last_status(void){
-    return eusartRxLastError;
-}
+//eusart_status_t EUSART_get_last_status(void){
+//    return eusartRxLastError;
+//}
 
 uint8_t EUSART_Read(void)
 {

@@ -7,18 +7,14 @@
 
 #ifndef MCU_H
 #define	MCU_H
-
 #include "I2C_SHT30.h"
 #include "Modbus_Slave.h"
+#include "main.h"
 
-bool LED_Statuc;
-int8_t SW_Ad;
-int8_t f_Indicator;
 
-void Device_Init(void);
-void Task_MB(void);
-void Task_Sensor(void);
 void Task_Indicator(void);
+void App_Init(void);
+void App_Process(void);
 
 #ifdef	__cplusplus
 extern "C" {

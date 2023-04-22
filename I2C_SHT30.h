@@ -8,17 +8,21 @@
 #ifndef I2C_SHT30_H
 #define	I2C_SHT30_H
 
-#include "stdio.h"
-#include "stdbool.h"
+#include "tick.h"
+#include "main.h"
 
-void ReadData (void);
+#define TICK1S              1000
+
+
+void ReadData(void);
+void Task_Sensor(void);
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
 
-    
+
 
 
 #ifdef	__cplusplus

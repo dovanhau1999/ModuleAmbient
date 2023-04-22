@@ -1,4 +1,51 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[v F3158 `(v ~T0 @X0 0 tf ]
+"30 ./main.h
+[; ;./main.h: 30: typedef union {
+[u S361 `uc -> 2 `i `s 1 ]
+[n S361 . _Byte Val16 ]
+"35
+[; ;./main.h: 35: typedef struct {
+[s S362 `S361 1 `S361 1 ]
+[n S362 . T H ]
+"2318 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2318:     struct {
+[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S121 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"2317
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2317: typedef union {
+[u S120 `S121 1 ]
+[n S120 . . ]
+"2329
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 2329: extern volatile LATCbits_t LATCbits __attribute__((address(0x10E)));
+[v _LATCbits `VS120 ~T0 @X0 0 e@270 ]
+"27 MCU.c
+[; ;MCU.c: 27:     }
+[c E3269 0 1 2 .. ]
+[n E3269 LED_STATUS OFF_Sensor ON_Sensor ERR_Sensor  ]
+"436 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 436:     struct {
+[s S36 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S36 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"435
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 435: typedef union {
+[u S35 `S36 1 ]
+[n S35 . . ]
+"447
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 447: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x00C)));
+[v _PORTAbits `VS35 ~T0 @X0 0 e@12 ]
+"130 ./mcc_generated_files/tmr1.h
+[; ;./mcc_generated_files/tmr1.h: 130: void TMR1_StartTimer(void);
+[v _TMR1_StartTimer `(v ~T0 @X0 0 ef ]
+"13 ./tick.h
+[; ;./tick.h: 13: void Tick_Init_SES(void);
+[v _Tick_Init_SES `(v ~T0 @X0 0 ef ]
+"18 ./I2C_SHT30.h
+[; ;./I2C_SHT30.h: 18: void Task_Sensor(void);
+[v _Task_Sensor `(v ~T0 @X0 0 ef ]
+"16 ./Modbus_Slave.h
+[; ;./Modbus_Slave.h: 16: void Task_MB(void);
+[v _Task_MB `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -494,12 +541,189 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7116
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"14 ./MCU.h
-[; ;./MCU.h: 14: _Bool LED_Statuc;
-[v _LED_Statuc `a ~T0 @X0 1 e ]
-"15
-[; ;./MCU.h: 15: int8_t SW_Ad;
+"213 ./mcc_generated_files/examples/../i2c_master.h
+[; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
+[v _MSSP_InterruptHandler `*F3158 ~T0 @X0 1 e ]
+"20 ./main.h
+[; ;./main.h: 20: int8_t SW_Ad;
 [v _SW_Ad `c ~T0 @X0 1 e ]
-"16
-[; ;./MCU.h: 16: int8_t f_Indicator;
+"21
+[; ;./main.h: 21: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
+"22
+[; ;./main.h: 22: int16_t MB_Register[2];
+[v _MB_Register `s ~T0 @X0 -> 2 `i e ]
+"40
+[; ;./main.h: 40: SENSOR_AMBIENT SensorAmbient;
+[v _SensorAmbient `S362 ~T0 @X0 1 e ]
+"7 MCU.c
+[; ;MCU.c: 7: void Task_Indicator() {
+[v _Task_Indicator `(v ~T0 @X0 1 ef ]
+{
+[e :U _Task_Indicator ]
+[f ]
+"8
+[; ;MCU.c: 8:     switch (f_Indicator) {
+[e $U 365  ]
+{
+"9
+[; ;MCU.c: 9:         case OFF_Sensor:
+[e :U 366 ]
+"10
+[; ;MCU.c: 10:         {
+{
+"11
+[; ;MCU.c: 11:             do { LATCbits.LATC1 = 1; } while(0);
+[e :U 369 ]
+{
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+}
+[e :U 368 ]
+"12
+[; ;MCU.c: 12:             do { LATCbits.LATC0 = 1; } while(0);
+[e :U 372 ]
+{
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+}
+[e :U 371 ]
+"13
+[; ;MCU.c: 13:             break;
+[e $U 364  ]
+"14
+[; ;MCU.c: 14:         }
+}
+"15
+[; ;MCU.c: 15:         case ON_Sensor:
+[e :U 373 ]
+"16
+[; ;MCU.c: 16:         {
+{
+"17
+[; ;MCU.c: 17:             do { LATCbits.LATC1 = 0; } while(0);
+[e :U 376 ]
+{
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+}
+[e :U 375 ]
+"18
+[; ;MCU.c: 18:             do { LATCbits.LATC0 = 1; } while(0);
+[e :U 379 ]
+{
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+}
+[e :U 378 ]
+"19
+[; ;MCU.c: 19:             break;
+[e $U 364  ]
+"20
+[; ;MCU.c: 20:         }
+}
+"21
+[; ;MCU.c: 21:         case ERR_Sensor:
+[e :U 380 ]
+"22
+[; ;MCU.c: 22:         {
+{
+"23
+[; ;MCU.c: 23:             do { LATCbits.LATC1 = 1; } while(0);
+[e :U 383 ]
+{
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+}
+[e :U 382 ]
+"24
+[; ;MCU.c: 24:             do { LATCbits.LATC0 = 0; } while(0);
+[e :U 386 ]
+{
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+}
+[e :U 385 ]
+"25
+[; ;MCU.c: 25:             break;
+[e $U 364  ]
+"26
+[; ;MCU.c: 26:         }
+}
+"27
+[; ;MCU.c: 27:     }
+}
+[e $U 364  ]
+[e :U 365 ]
+[e [\ -> _f_Indicator `i , $ . `E3269 0 366
+ , $ . `E3269 1 373
+ , $ . `E3269 2 380
+ 364 ]
+[e :U 364 ]
+"28
+[; ;MCU.c: 28: }
+[e :UE 363 ]
+}
+"30
+[; ;MCU.c: 30: static void Device_Init(void) {
+[v _Device_Init `(v ~T0 @X0 1 sf ]
+{
+[e :U _Device_Init ]
+[f ]
+"31
+[; ;MCU.c: 31:     static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
+[v F3296 `c ~T0 @X0 1 s value_SW1 ]
+[v F3297 `c ~T0 @X0 1 s value_SW2 ]
+[v F3298 `c ~T0 @X0 1 s value_SW3 ]
+[v F3299 `c ~T0 @X0 1 s value_SW4 ]
+"33
+[; ;MCU.c: 33:     value_SW1 = PORTAbits.RA0;
+[e = F3296 -> . . _PORTAbits 0 0 `c ]
+"34
+[; ;MCU.c: 34:     value_SW2 = PORTAbits.RA1;
+[e = F3297 -> . . _PORTAbits 0 1 `c ]
+"35
+[; ;MCU.c: 35:     value_SW3 = PORTAbits.RA2;
+[e = F3298 -> . . _PORTAbits 0 2 `c ]
+"36
+[; ;MCU.c: 36:     value_SW4 = PORTAbits.RA3;
+[e = F3299 -> . . _PORTAbits 0 3 `c ]
+"39
+[; ;MCU.c: 39:     SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
+[e = _SW_Ad -> & | | | & -> F3296 `i -> 1 `i & -> F3297 `i -> 2 `i & -> F3298 `i -> 4 `i & -> F3299 `i -> 8 `i -> 255 `i `c ]
+"40
+[; ;MCU.c: 40: }
+[e :UE 387 ]
+}
+"42
+[; ;MCU.c: 42: void App_Init(void) {
+[v _App_Init `(v ~T0 @X0 1 ef ]
+{
+[e :U _App_Init ]
+[f ]
+"43
+[; ;MCU.c: 43:     Device_Init();
+[e ( _Device_Init ..  ]
+"44
+[; ;MCU.c: 44:     TMR1_StartTimer();
+[e ( _TMR1_StartTimer ..  ]
+"45
+[; ;MCU.c: 45:     Tick_Init_SES();
+[e ( _Tick_Init_SES ..  ]
+"46
+[; ;MCU.c: 46: }
+[e :UE 388 ]
+}
+"48
+[; ;MCU.c: 48: void App_Process(void) {
+[v _App_Process `(v ~T0 @X0 1 ef ]
+{
+[e :U _App_Process ]
+[f ]
+"49
+[; ;MCU.c: 49:     Task_Sensor();
+[e ( _Task_Sensor ..  ]
+"50
+[; ;MCU.c: 50:     Task_MB();
+[e ( _Task_MB ..  ]
+"51
+[; ;MCU.c: 51:     Task_Indicator();
+[e ( _Task_Indicator ..  ]
+"52
+[; ;MCU.c: 52: }
+[e :UE 389 ]
+}

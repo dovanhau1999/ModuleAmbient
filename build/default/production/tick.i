@@ -5085,75 +5085,6 @@ char *tempnam(const char *, const char *);
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 55 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/i2c_master.h" 1
-# 58 "./mcc_generated_files/i2c_master.h"
-typedef enum {
-    I2C_NOERR,
-    I2C_BUSY,
-    I2C_FAIL
-
-
-} i2c_error_t;
-
-typedef enum
-{
-    I2C_STOP=1,
-    I2C_RESTART_READ,
-    I2C_RESTART_WRITE,
-    I2C_CONTINUE,
-    I2C_RESET_LINK
-} i2c_operations_t;
-
-typedef uint8_t i2c_address_t;
-typedef i2c_operations_t (*i2c_callback_t)(void *funPtr);
-
-
-i2c_operations_t I2C_CallbackReturnStop(void *funPtr);
-i2c_operations_t I2C_CallbackReturnReset(void *funPtr);
-i2c_operations_t I2C_CallbackRestartWrite(void *funPtr);
-i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
-
-
-
-
-
-
-void I2C_Initialize(void);
-# 101 "./mcc_generated_files/i2c_master.h"
-i2c_error_t I2C_Open(i2c_address_t address);
-# 111 "./mcc_generated_files/i2c_master.h"
-i2c_error_t I2C_Close(void);
-# 123 "./mcc_generated_files/i2c_master.h"
-i2c_error_t I2C_MasterOperation(_Bool read);
-
-
-
-
-i2c_error_t I2C_MasterWrite(void);
-
-
-
-
-i2c_error_t I2C_MasterRead(void);
-# 142 "./mcc_generated_files/i2c_master.h"
-void I2C_SetTimeout(uint8_t timeOut);
-# 152 "./mcc_generated_files/i2c_master.h"
-void I2C_SetBuffer(void *buffer, size_t bufferSize);
-# 164 "./mcc_generated_files/i2c_master.h"
-void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
-# 174 "./mcc_generated_files/i2c_master.h"
-void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
-# 184 "./mcc_generated_files/i2c_master.h"
-void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
-# 194 "./mcc_generated_files/i2c_master.h"
-void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
-# 204 "./mcc_generated_files/i2c_master.h"
-void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
-# 213 "./mcc_generated_files/i2c_master.h"
-void (*MSSP_InterruptHandler)(void);
-# 222 "./mcc_generated_files/i2c_master.h"
-void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
-# 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 101 "./mcc_generated_files/tmr1.h"
@@ -5247,7 +5178,7 @@ void WDT_Initialize(void);
 # 1 "tick.c" 2
 
 # 1 "./tick.h" 1
-# 11 "./tick.h"
+# 13 "./tick.h"
 void Tick_Init_SES(void);
 void rtcc_handle(void);
 uint32_t Get_millis(void);
@@ -5256,18 +5187,15 @@ uint32_t Get_millis(void);
 
 static volatile uint32_t device_time;
 
-void Tick_Init_SES(void)
-{
+void Tick_Init_SES(void) {
     device_time = 0;
     TMR1_SetInterruptHandler(&rtcc_handle);
 }
 
-void rtcc_handle(void)
-{
+void rtcc_handle(void) {
     device_time++;
 }
 
-uint32_t Get_millis(void)
-{
+uint32_t Get_millis(void) {
     return device_time;
 }

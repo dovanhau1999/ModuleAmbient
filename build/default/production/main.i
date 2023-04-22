@@ -5086,75 +5086,6 @@ char *tempnam(const char *, const char *);
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 55 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/i2c_master.h" 1
-# 58 "./mcc_generated_files/i2c_master.h"
-typedef enum {
-    I2C_NOERR,
-    I2C_BUSY,
-    I2C_FAIL
-
-
-} i2c_error_t;
-
-typedef enum
-{
-    I2C_STOP=1,
-    I2C_RESTART_READ,
-    I2C_RESTART_WRITE,
-    I2C_CONTINUE,
-    I2C_RESET_LINK
-} i2c_operations_t;
-
-typedef uint8_t i2c_address_t;
-typedef i2c_operations_t (*i2c_callback_t)(void *funPtr);
-
-
-i2c_operations_t I2C_CallbackReturnStop(void *funPtr);
-i2c_operations_t I2C_CallbackReturnReset(void *funPtr);
-i2c_operations_t I2C_CallbackRestartWrite(void *funPtr);
-i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
-
-
-
-
-
-
-void I2C_Initialize(void);
-# 101 "./mcc_generated_files/i2c_master.h"
-i2c_error_t I2C_Open(i2c_address_t address);
-# 111 "./mcc_generated_files/i2c_master.h"
-i2c_error_t I2C_Close(void);
-# 123 "./mcc_generated_files/i2c_master.h"
-i2c_error_t I2C_MasterOperation(_Bool read);
-
-
-
-
-i2c_error_t I2C_MasterWrite(void);
-
-
-
-
-i2c_error_t I2C_MasterRead(void);
-# 142 "./mcc_generated_files/i2c_master.h"
-void I2C_SetTimeout(uint8_t timeOut);
-# 152 "./mcc_generated_files/i2c_master.h"
-void I2C_SetBuffer(void *buffer, size_t bufferSize);
-# 164 "./mcc_generated_files/i2c_master.h"
-void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
-# 174 "./mcc_generated_files/i2c_master.h"
-void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
-# 184 "./mcc_generated_files/i2c_master.h"
-void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
-# 194 "./mcc_generated_files/i2c_master.h"
-void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
-# 204 "./mcc_generated_files/i2c_master.h"
-void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
-# 213 "./mcc_generated_files/i2c_master.h"
-void (*MSSP_InterruptHandler)(void);
-# 222 "./mcc_generated_files/i2c_master.h"
-void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
-# 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 101 "./mcc_generated_files/tmr1.h"
@@ -5248,20 +5179,106 @@ void WDT_Initialize(void);
 # 44 "main.c" 2
 
 # 1 "./MCU.h" 1
-# 11 "./MCU.h"
+# 10 "./MCU.h"
 # 1 "./I2C_SHT30.h" 1
-# 14 "./I2C_SHT30.h"
-void ReadData (void);
-# 11 "./MCU.h" 2
+# 11 "./I2C_SHT30.h"
+# 1 "./tick.h" 1
+# 13 "./tick.h"
+void Tick_Init_SES(void);
+void rtcc_handle(void);
+uint32_t Get_millis(void);
+# 11 "./I2C_SHT30.h" 2
 
-# 1 "./Modbus_Slave.h" 1
-# 12 "./Modbus_Slave.h"
+# 1 "./main.h" 1
+# 16 "./main.h"
+# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
+# 52 "./mcc_generated_files/examples/i2c_master_example.h"
+# 1 "./mcc_generated_files/examples/../i2c_master.h" 1
+# 58 "./mcc_generated_files/examples/../i2c_master.h"
+typedef enum {
+    I2C_NOERR,
+    I2C_BUSY,
+    I2C_FAIL
+
+
+} i2c_error_t;
+
+typedef enum
+{
+    I2C_STOP=1,
+    I2C_RESTART_READ,
+    I2C_RESTART_WRITE,
+    I2C_CONTINUE,
+    I2C_RESET_LINK
+} i2c_operations_t;
+
+typedef uint8_t i2c_address_t;
+typedef i2c_operations_t (*i2c_callback_t)(void *funPtr);
+
+
+i2c_operations_t I2C_CallbackReturnStop(void *funPtr);
+i2c_operations_t I2C_CallbackReturnReset(void *funPtr);
+i2c_operations_t I2C_CallbackRestartWrite(void *funPtr);
+i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
+
+
+
+
+
+
+void I2C_Initialize(void);
+# 101 "./mcc_generated_files/examples/../i2c_master.h"
+i2c_error_t I2C_Open(i2c_address_t address);
+# 111 "./mcc_generated_files/examples/../i2c_master.h"
+i2c_error_t I2C_Close(void);
+# 123 "./mcc_generated_files/examples/../i2c_master.h"
+i2c_error_t I2C_MasterOperation(_Bool read);
+
+
+
+
+i2c_error_t I2C_MasterWrite(void);
+
+
+
+
+i2c_error_t I2C_MasterRead(void);
+# 142 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetTimeout(uint8_t timeOut);
+# 152 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetBuffer(void *buffer, size_t bufferSize);
+# 164 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
+# 174 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
+# 184 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
+# 194 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
+# 204 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
+# 213 "./mcc_generated_files/examples/../i2c_master.h"
+void (*MSSP_InterruptHandler)(void);
+# 222 "./mcc_generated_files/examples/../i2c_master.h"
+void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
+# 52 "./mcc_generated_files/examples/i2c_master_example.h" 2
+
+
+uint8_t I2C_Read1ByteRegister(i2c_address_t address, uint8_t reg);
+uint16_t I2C_Read2ByteRegister(i2c_address_t address, uint8_t reg);
+void I2C_Write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
+void I2C_Write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
+void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
+void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
+void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t len);
+# 16 "./main.h" 2
+
+
 # 1 "./ModbusRTU/ModbusRTU.h" 1
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
 # 14 "./ModbusRTU/../Modbus.h"
-enum ERR_LIST
-{
+enum ERR_LIST {
     ERR_NOT_MASTER = -1,
     ERR_POLLING = -2,
     ERR_BUFF_OVERFLOW = -3,
@@ -5269,8 +5286,7 @@ enum ERR_LIST
     ERR_EXCEPTION = -5
 };
 
-enum MB_FC
-{
+enum MB_FC {
     MB_FC_NONE = 0,
     MB_FC_READ_COILS = 1,
     MB_FC_READ_DISCRETE_INPUT = 2,
@@ -5282,8 +5298,7 @@ enum MB_FC
     MB_FC_WRITE_MULTIPLE_REGISTERS = 16
 };
 
-enum
-{
+enum {
     NO_REPLY = 255,
     EXC_FUNC_CODE = 1,
     EXC_ADDR_RANGE = 2,
@@ -5291,8 +5306,7 @@ enum
     EXC_EXECUTE = 4
 };
 
-typedef struct
-{
+typedef struct {
     uint8_t u8id;
     uint8_t u8txenpin;
     uint8_t u8state;
@@ -5309,7 +5323,7 @@ typedef struct
     uint16_t *HOLDING_REGS;
     uint16_t *INPUT_REGS;
 
-}MODBUS;
+} MODBUS;
 # 11 "./ModbusRTU/ModbusRTU.h" 2
 
 
@@ -5349,44 +5363,66 @@ enum MESSAGE_MODBUS_RTU
     NB_LO,
     BYTE_CNT
 };
-# 12 "./Modbus_Slave.h" 2
-
-# 1 "./tick.h" 1
-# 11 "./tick.h"
-void Tick_Init_SES(void);
-void rtcc_handle(void);
-uint32_t Get_millis(void);
-# 13 "./Modbus_Slave.h" 2
+# 18 "./main.h" 2
 
 
-
-
-
-void ModbusSalve_Init(void);
-void ModbusSlave_Process();
-# 12 "./MCU.h" 2
-
-
-_Bool LED_Statuc;
 int8_t SW_Ad;
 int8_t f_Indicator;
+int16_t MB_Register[2];
 
-void Device_Init(void);
-void Task_MB(void);
+enum LED_STATUS {
+    OFF_Sensor = 0,
+    ON_Sensor = 1,
+    ERR_Sensor = 2
+};
+
+typedef union {
+    uint8_t _Byte[2];
+    int16_t Val16;
+} VALUE16;
+
+typedef struct {
+    VALUE16 T;
+    VALUE16 H;
+} SENSOR_AMBIENT;
+
+SENSOR_AMBIENT SensorAmbient;
+# 12 "./I2C_SHT30.h" 2
+
+
+
+
+
+void ReadData(void);
 void Task_Sensor(void);
+# 10 "./MCU.h" 2
+
+# 1 "./Modbus_Slave.h" 1
+# 14 "./Modbus_Slave.h"
+void ModbusSlave_Init(int8_t _SW_Ad);
+uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+void Task_MB(void);
+# 11 "./MCU.h" 2
+
+
+
+
 void Task_Indicator(void);
+void App_Init(void);
+void App_Process(void);
 # 45 "main.c" 2
 
 
 
 
-void main(void)
-{
+
+void main(void) {
 
     SYSTEM_Initialize();
+    App_Init();
 # 69 "main.c"
-    while (1)
-    {
+    while (1) {
 
+        App_Process();
     }
 }

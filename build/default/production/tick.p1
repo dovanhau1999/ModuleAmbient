@@ -1,11 +1,10 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3109 `(v ~T0 @X0 0 tf ]
-[v F3126 `(v ~T0 @X0 0 tf ]
+[v F3048 `(v ~T0 @X0 0 tf ]
 "403 ./mcc_generated_files/tmr1.h
 [; ;./mcc_generated_files/tmr1.h: 403:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F3126 ]
-"12 ./tick.h
-[; ;./tick.h: 12: void rtcc_handle(void);
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F3048 ]
+"14 ./tick.h
+[; ;./tick.h: 14: void rtcc_handle(void);
 [v _rtcc_handle `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 55: __asm("INDF0 equ 00h");
@@ -502,58 +501,49 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7116
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"213 ./mcc_generated_files/i2c_master.h
-[; ;./mcc_generated_files/i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3109 ~T0 @X0 1 e ]
 "4 tick.c
 [; ;tick.c: 4: static volatile uint32_t device_time;
 [v _device_time `Vul ~T0 @X0 1 s ]
 "6
-[; ;tick.c: 6: void Tick_Init_SES(void)
+[; ;tick.c: 6: void Tick_Init_SES(void) {
 [v _Tick_Init_SES `(v ~T0 @X0 1 ef ]
-"7
-[; ;tick.c: 7: {
 {
 [e :U _Tick_Init_SES ]
 [f ]
-"8
-[; ;tick.c: 8:     device_time = 0;
+"7
+[; ;tick.c: 7:     device_time = 0;
 [e = _device_time -> -> -> 0 `i `l `ul ]
-"9
-[; ;tick.c: 9:     TMR1_SetInterruptHandler(&rtcc_handle);
+"8
+[; ;tick.c: 8:     TMR1_SetInterruptHandler(&rtcc_handle);
 [e ( _TMR1_SetInterruptHandler (1 &U _rtcc_handle ]
-"10
-[; ;tick.c: 10: }
+"9
+[; ;tick.c: 9: }
 [e :UE 360 ]
 }
-"12
-[; ;tick.c: 12: void rtcc_handle(void)
+"11
+[; ;tick.c: 11: void rtcc_handle(void) {
 [v _rtcc_handle `(v ~T0 @X0 1 ef ]
-"13
-[; ;tick.c: 13: {
 {
 [e :U _rtcc_handle ]
 [f ]
-"14
-[; ;tick.c: 14:     device_time++;
+"12
+[; ;tick.c: 12:     device_time++;
 [e ++ _device_time -> -> 1 `i `Vul ]
-"15
-[; ;tick.c: 15: }
+"13
+[; ;tick.c: 13: }
 [e :UE 361 ]
 }
-"17
-[; ;tick.c: 17: uint32_t Get_millis(void)
+"15
+[; ;tick.c: 15: uint32_t Get_millis(void) {
 [v _Get_millis `(ul ~T0 @X0 1 ef ]
-"18
-[; ;tick.c: 18: {
 {
 [e :U _Get_millis ]
 [f ]
-"19
-[; ;tick.c: 19:     return device_time;
+"16
+[; ;tick.c: 16:     return device_time;
 [e ) _device_time ]
 [e $UE 362  ]
-"20
-[; ;tick.c: 20: }
+"17
+[; ;tick.c: 17: }
 [e :UE 362 ]
 }
