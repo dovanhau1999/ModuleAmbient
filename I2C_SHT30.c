@@ -1,9 +1,9 @@
 #include "I2C_SHT30.h"
 
 
-#define Address_and_Write_bit      0x88
-#define Address_and_Read_bit       0x89
-#define Timer_SCL_free             1
+#define Address_DFLT      0x44
+#define Address_ALT       0x45
+#define Timer_SCL_free             4
 
 
 /* Note:
@@ -23,22 +23,22 @@ uint8_t SHT30_CMD_MEASURE_H_Disable [2] = {0x24, 0x00};
 uint8_t SHT30_CMD_MEASURE_M_Disable [2] = {0x24, 0x0B};
 uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
-
 void ReadData(void) {
     uint8_t aData[6];
-    uint32_t valTime;
-
-    I2C_WriteNBytes(Address_and_Write_bit, SHT30_CMD_MEASURE_H_Disable, 2);
+    static uint32_t valTime = 0;
+    I2C_WriteNBytes(Address_DFLT, SHT30_CMD_MEASURE_H_Enable, 2);
     valTime = Get_millis();
     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * Timer_SCL_free);
 
-    I2C_ReadNBytes(Address_and_Read_bit, aData, 6);
+    I2C_ReadNBytes(Address_DFLT, aData, 6);
 
-    SensorAmbient.T._Byte[1] = aData[0];
     SensorAmbient.T._Byte[0] = aData[1];
+    SensorAmbient.T._Byte[1] = aData[0];
 
-    SensorAmbient.H._Byte[1] = aData[3];
     SensorAmbient.H._Byte[0] = aData[4];
+    SensorAmbient.H._Byte[1] = aData[3];
+
+//    printf("after2: 0x%x - 0x%x - 0x%x - 0x%x\n\r", aData[0], aData[1], aData[3], aData[4]);
 }
 
 void Task_Sensor(void) {
@@ -47,14 +47,25 @@ void Task_Sensor(void) {
     f_Indicator = OFF_Sensor;
 
     /* Check Timer Tick*/
-    if ((((uint32_t) Get_millis() - valTime) >= (uint32_t) 2 * TICK1S)) {
+    if ((llabs(((uint32_t) Get_millis() - valTime)) >= (uint32_t) 2 * TICK1S)) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
+
         ReadData();
-        if ((SensorAmbient.T.Val16 < 0) || (SensorAmbient.H.Val16 < 0)) {
-            SensorAmbient.T.Val16 = (int16_t) 0x8000;
-            SensorAmbient.H.Val16 = (int16_t) 0x8000;
+        if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)) {
+            SensorAmbient.T.Val16 = 0xFFFF;
+            SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
         }
+        /* Calib gia tri temp - humi*/
+//        double ctemp = (SensorAmbient.T.Val16 / 65535);
+//        ctemp *= 175;
+//        ctemp -= 45;
+//        double humidity = (SensorAmbient.H.Val16 / 65535);
+//        humidity *= 100;
+//        printf("Nhiet do: %0.2f\n\r", ctemp);
+//        printf("Do am: %0.2f\n\r", humidity);
+//        printf("Nhiet do: %d\n\r", SensorAmbient.T.Val16);
+//        printf("Do am: %d\n\r", SensorAmbient.H.Val16);
     }
 }

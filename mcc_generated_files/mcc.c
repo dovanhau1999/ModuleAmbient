@@ -50,7 +50,7 @@
 void SYSTEM_Initialize(void)
 {
 
-//    I2C_Initialize();
+    I2C_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     WDT_Initialize();
@@ -70,8 +70,8 @@ void OSCILLATOR_Initialize(void)
 
 void WDT_Initialize(void)
 {
-    // WDTPS 1:65536; SWDTEN OFF; 
-    WDTCON = 0x16;
+    // WDTPS 1:8388608; SWDTEN OFF; 
+    WDTCON = 0x24;
 }
 
 /**

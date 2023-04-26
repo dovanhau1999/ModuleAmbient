@@ -4915,7 +4915,156 @@ extern __bank0 __bit __timeout;
 
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdbool.h" 1 3
 # 55 "mcc_generated_files/eusart.h" 2
-# 75 "mcc_generated_files/eusart.h"
+
+
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+int getch(void);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+void putch(char);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 57 "mcc_generated_files/eusart.h" 2
+# 76 "mcc_generated_files/eusart.h"
 typedef union {
     struct {
         unsigned perr : 1;
@@ -4937,47 +5086,47 @@ extern volatile uint8_t eusartRxCount;
 
 extern void (*EUSART_TxDefaultInterruptHandler)(void);
 extern void (*EUSART_RxDefaultInterruptHandler)(void);
-# 117 "mcc_generated_files/eusart.h"
+# 118 "mcc_generated_files/eusart.h"
 void EUSART_Initialize(void);
-# 165 "mcc_generated_files/eusart.h"
+# 166 "mcc_generated_files/eusart.h"
 _Bool EUSART_is_tx_ready(void);
-# 213 "mcc_generated_files/eusart.h"
+# 214 "mcc_generated_files/eusart.h"
 _Bool EUSART_is_rx_ready(void);
-# 260 "mcc_generated_files/eusart.h"
+# 261 "mcc_generated_files/eusart.h"
 _Bool EUSART_is_tx_done(void);
-# 308 "mcc_generated_files/eusart.h"
+# 309 "mcc_generated_files/eusart.h"
 eusart_status_t EUSART_get_last_status(void);
-# 328 "mcc_generated_files/eusart.h"
+# 329 "mcc_generated_files/eusart.h"
 uint8_t EUSART_Read(void);
-# 348 "mcc_generated_files/eusart.h"
+# 349 "mcc_generated_files/eusart.h"
 void EUSART_Write(uint8_t txData);
-# 369 "mcc_generated_files/eusart.h"
+# 370 "mcc_generated_files/eusart.h"
 void EUSART_Transmit_ISR(void);
-# 390 "mcc_generated_files/eusart.h"
+# 391 "mcc_generated_files/eusart.h"
 void EUSART_Receive_ISR(void);
-# 411 "mcc_generated_files/eusart.h"
+# 412 "mcc_generated_files/eusart.h"
 void EUSART_RxDataHandler(void);
-# 429 "mcc_generated_files/eusart.h"
+# 430 "mcc_generated_files/eusart.h"
 void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "mcc_generated_files/eusart.h"
+# 448 "mcc_generated_files/eusart.h"
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "mcc_generated_files/eusart.h"
+# 466 "mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "mcc_generated_files/eusart.h"
+# 486 "mcc_generated_files/eusart.h"
 void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "mcc_generated_files/eusart.h"
+# 506 "mcc_generated_files/eusart.h"
 void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 50 "mcc_generated_files/eusart.c" 2
 # 62 "mcc_generated_files/eusart.c"
 volatile uint8_t eusartTxHead = 0;
 volatile uint8_t eusartTxTail = 0;
-volatile uint8_t eusartTxBuffer[16];
+volatile uint8_t eusartTxBuffer[8];
 volatile uint8_t eusartTxBufferRemaining;
 
 volatile uint8_t eusartRxHead = 0;
 volatile uint8_t eusartRxTail = 0;
-volatile uint8_t eusartRxBuffer[16];
-volatile eusart_status_t eusartRxStatusBuffer[16];
+volatile uint8_t eusartRxBuffer[8];
+volatile eusart_status_t eusartRxStatusBuffer[8];
 volatile uint8_t eusartRxCount;
 volatile eusart_status_t eusartRxLastError;
 
@@ -5014,7 +5163,7 @@ void EUSART_Initialize(void)
     TXSTA = 0x24;
 
 
-    SPBRGL = 0x0C;
+    SPBRGL = 0xCF;
 
 
     SPBRGH = 0x00;
@@ -5038,15 +5187,25 @@ void EUSART_Initialize(void)
 
     PIE1bits.RCIE = 1;
 }
-# 142 "mcc_generated_files/eusart.c"
+
+_Bool EUSART_is_tx_ready(void)
+{
+    return (eusartTxBufferRemaining ? 1 : 0);
+}
+
+_Bool EUSART_is_rx_ready(void)
+{
+    return (eusartRxCount ? 1 : 0);
+}
+
 _Bool EUSART_is_tx_done(void)
 {
     return TXSTAbits.TRMT;
 }
 
-
-
-
+eusart_status_t EUSART_get_last_status(void){
+    return eusartRxLastError;
+}
 
 uint8_t EUSART_Read(void)
 {
@@ -5093,6 +5252,15 @@ void EUSART_Write(uint8_t txData)
     PIE1bits.TXIE = 1;
 }
 
+int getch(void)
+{
+    return EUSART_Read();
+}
+
+void putch(char txData)
+{
+    EUSART_Write(txData);
+}
 
 void EUSART_Transmit_ISR(void)
 {

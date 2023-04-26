@@ -43,6 +43,7 @@ void App_Init(void) {
     Device_Init();
     TMR1_StartTimer();
     Tick_Init_SES();
+    /* Set En_HIGH de test sensor*/
 }
 
 void App_Process(void) {

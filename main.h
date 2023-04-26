@@ -11,6 +11,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include "mcc_generated_files/mcc.h"
 #include "mcc_generated_files/eusart.h"
 #include "mcc_generated_files/pin_manager.h"
 #include "mcc_generated_files/examples/i2c_master_example.h"
@@ -29,7 +31,7 @@ enum LED_STATUS {
 
 typedef union {
     uint8_t _Byte[2];
-    int16_t Val16;
+    uint16_t Val16;
 } VALUE16;
 
 typedef struct {

@@ -5086,6 +5086,75 @@ char *tempnam(const char *, const char *);
 # 1 "mcc_generated_files/interrupt_manager.h" 1
 # 55 "mcc_generated_files/mcc.h" 2
 
+# 1 "mcc_generated_files/i2c_master.h" 1
+# 58 "mcc_generated_files/i2c_master.h"
+typedef enum {
+    I2C_NOERR,
+    I2C_BUSY,
+    I2C_FAIL
+
+
+} i2c_error_t;
+
+typedef enum
+{
+    I2C_STOP=1,
+    I2C_RESTART_READ,
+    I2C_RESTART_WRITE,
+    I2C_CONTINUE,
+    I2C_RESET_LINK
+} i2c_operations_t;
+
+typedef uint8_t i2c_address_t;
+typedef i2c_operations_t (*i2c_callback_t)(void *funPtr);
+
+
+i2c_operations_t I2C_CallbackReturnStop(void *funPtr);
+i2c_operations_t I2C_CallbackReturnReset(void *funPtr);
+i2c_operations_t I2C_CallbackRestartWrite(void *funPtr);
+i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
+
+
+
+
+
+
+void I2C_Initialize(void);
+# 101 "mcc_generated_files/i2c_master.h"
+i2c_error_t I2C_Open(i2c_address_t address);
+# 111 "mcc_generated_files/i2c_master.h"
+i2c_error_t I2C_Close(void);
+# 123 "mcc_generated_files/i2c_master.h"
+i2c_error_t I2C_MasterOperation(_Bool read);
+
+
+
+
+i2c_error_t I2C_MasterWrite(void);
+
+
+
+
+i2c_error_t I2C_MasterRead(void);
+# 142 "mcc_generated_files/i2c_master.h"
+void I2C_SetTimeout(uint8_t timeOut);
+# 152 "mcc_generated_files/i2c_master.h"
+void I2C_SetBuffer(void *buffer, size_t bufferSize);
+# 164 "mcc_generated_files/i2c_master.h"
+void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
+# 174 "mcc_generated_files/i2c_master.h"
+void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
+# 184 "mcc_generated_files/i2c_master.h"
+void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
+# 194 "mcc_generated_files/i2c_master.h"
+void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
+# 204 "mcc_generated_files/i2c_master.h"
+void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
+# 213 "mcc_generated_files/i2c_master.h"
+void (*MSSP_InterruptHandler)(void);
+# 222 "mcc_generated_files/i2c_master.h"
+void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
+# 56 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/tmr1.h" 1
 # 101 "mcc_generated_files/tmr1.h"
@@ -5117,7 +5186,7 @@ void TMR1_DefaultInterruptHandler(void);
 # 57 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/eusart.h" 1
-# 75 "mcc_generated_files/eusart.h"
+# 76 "mcc_generated_files/eusart.h"
 typedef union {
     struct {
         unsigned perr : 1;
@@ -5139,35 +5208,35 @@ extern volatile uint8_t eusartRxCount;
 
 extern void (*EUSART_TxDefaultInterruptHandler)(void);
 extern void (*EUSART_RxDefaultInterruptHandler)(void);
-# 117 "mcc_generated_files/eusart.h"
+# 118 "mcc_generated_files/eusart.h"
 void EUSART_Initialize(void);
-# 165 "mcc_generated_files/eusart.h"
+# 166 "mcc_generated_files/eusart.h"
 _Bool EUSART_is_tx_ready(void);
-# 213 "mcc_generated_files/eusart.h"
+# 214 "mcc_generated_files/eusart.h"
 _Bool EUSART_is_rx_ready(void);
-# 260 "mcc_generated_files/eusart.h"
+# 261 "mcc_generated_files/eusart.h"
 _Bool EUSART_is_tx_done(void);
-# 308 "mcc_generated_files/eusart.h"
+# 309 "mcc_generated_files/eusart.h"
 eusart_status_t EUSART_get_last_status(void);
-# 328 "mcc_generated_files/eusart.h"
+# 329 "mcc_generated_files/eusart.h"
 uint8_t EUSART_Read(void);
-# 348 "mcc_generated_files/eusart.h"
+# 349 "mcc_generated_files/eusart.h"
 void EUSART_Write(uint8_t txData);
-# 369 "mcc_generated_files/eusart.h"
+# 370 "mcc_generated_files/eusart.h"
 void EUSART_Transmit_ISR(void);
-# 390 "mcc_generated_files/eusart.h"
+# 391 "mcc_generated_files/eusart.h"
 void EUSART_Receive_ISR(void);
-# 411 "mcc_generated_files/eusart.h"
+# 412 "mcc_generated_files/eusart.h"
 void EUSART_RxDataHandler(void);
-# 429 "mcc_generated_files/eusart.h"
+# 430 "mcc_generated_files/eusart.h"
 void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "mcc_generated_files/eusart.h"
+# 448 "mcc_generated_files/eusart.h"
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "mcc_generated_files/eusart.h"
+# 466 "mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "mcc_generated_files/eusart.h"
+# 486 "mcc_generated_files/eusart.h"
 void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "mcc_generated_files/eusart.h"
+# 506 "mcc_generated_files/eusart.h"
 void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 58 "mcc_generated_files/mcc.h" 2
 # 73 "mcc_generated_files/mcc.h"
@@ -5183,7 +5252,7 @@ void WDT_Initialize(void);
 void SYSTEM_Initialize(void)
 {
 
-
+    I2C_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     WDT_Initialize();
@@ -5204,5 +5273,5 @@ void OSCILLATOR_Initialize(void)
 void WDT_Initialize(void)
 {
 
-    WDTCON = 0x16;
+    WDTCON = 0x24;
 }

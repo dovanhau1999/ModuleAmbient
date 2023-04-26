@@ -11,7 +11,7 @@
 #include "tick.h"
 #include "main.h"
 
-#define TICK1S              1000
+#define TICK1S           1000
 
 
 void ReadData(void);

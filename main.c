@@ -41,7 +41,6 @@
     SOFTWARE.
  */
 
-#include "mcc_generated_files/mcc.h"
 #include "MCU.h"
 
 /*
@@ -55,10 +54,10 @@ void main(void) {
     // Use the following macros to:
 
     // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
 
     // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
 
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();

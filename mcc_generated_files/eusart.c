@@ -53,8 +53,8 @@
   Section: Macro Declarations
 */
 
-#define EUSART_TX_BUFFER_SIZE 16
-#define EUSART_RX_BUFFER_SIZE 16
+#define EUSART_TX_BUFFER_SIZE 8
+#define EUSART_RX_BUFFER_SIZE 8
 
 /**
   Section: Global Variables
@@ -103,8 +103,8 @@ void EUSART_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave; 
     TXSTA = 0x24;
 
-    // SPBRGL 12; 
-    SPBRGL = 0x0C;
+    // SPBRGL 207; 
+    SPBRGL = 0xCF;
 
     // SPBRGH 0; 
     SPBRGH = 0x00;
@@ -129,24 +129,24 @@ void EUSART_Initialize(void)
     PIE1bits.RCIE = 1;
 }
 
-//bool EUSART_is_tx_ready(void)
-//{
-//    return (eusartTxBufferRemaining ? true : false);
-//}
+bool EUSART_is_tx_ready(void)
+{
+    return (eusartTxBufferRemaining ? true : false);
+}
 
-//bool EUSART_is_rx_ready(void)
-//{
-//    return (eusartRxCount ? true : false);
-//}
+bool EUSART_is_rx_ready(void)
+{
+    return (eusartRxCount ? true : false);
+}
 
 bool EUSART_is_tx_done(void)
 {
     return TXSTAbits.TRMT;
 }
 
-//eusart_status_t EUSART_get_last_status(void){
-//    return eusartRxLastError;
-//}
+eusart_status_t EUSART_get_last_status(void){
+    return eusartRxLastError;
+}
 
 uint8_t EUSART_Read(void)
 {
@@ -193,6 +193,15 @@ void EUSART_Write(uint8_t txData)
     PIE1bits.TXIE = 1;
 }
 
+int getch(void)
+{
+    return EUSART_Read();
+}
+
+void putch(char txData)
+{
+    EUSART_Write(txData);
+}
 
 void EUSART_Transmit_ISR(void)
 {

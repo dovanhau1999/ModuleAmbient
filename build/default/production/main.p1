@@ -1,11 +1,11 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3179 `(v ~T0 @X0 0 tf ]
-"30 ./main.h
-[; ;./main.h: 30: typedef union {
-[u S361 `uc -> 2 `i `s 1 ]
+[v F3112 `(v ~T0 @X0 0 tf ]
+"32 ./main.h
+[; ;./main.h: 32: typedef union {
+[u S361 `uc -> 2 `i `us 1 ]
 [n S361 . _Byte Val16 ]
-"35
-[; ;./main.h: 35: typedef struct {
+"37
+[; ;./main.h: 37: typedef struct {
 [s S362 `S361 1 `S361 1 ]
 [n S362 . T H ]
 [p mainexit ]
@@ -15,7 +15,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 ./MCU.h
 [; ;./MCU.h: 16: void App_Init(void);
 [v _App_Init `(v ~T0 @X0 0 ef ]
-"17
+"358 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 358:     struct {
+[s S33 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S33 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
+"368
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 368:     struct {
+[s S34 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S34 . . T0IF . T0IE ]
+"357
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 357: typedef union {
+[u S32 `S33 1 `S34 1 ]
+[n S32 . . . ]
+"375
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 375: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS32 ~T0 @X0 0 e@11 ]
+"17 ./MCU.h
 [; ;./MCU.h: 17: void App_Process(void);
 [v _App_Process `(v ~T0 @X0 0 ef ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
@@ -514,47 +529,52 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
 "213 ./mcc_generated_files/examples/../i2c_master.h
-[; ;./mcc_generated_files/examples/../i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
-[v _MSSP_InterruptHandler `*F3179 ~T0 @X0 1 e ]
-"20 ./main.h
-[; ;./main.h: 20: int8_t SW_Ad;
+[v _MSSP_InterruptHandler `*F3112 ~T0 @X0 1 e ]
+"22 ./main.h
+[; ;./main.h: 22: int8_t SW_Ad;
 [v _SW_Ad `c ~T0 @X0 1 e ]
-"21
-[; ;./main.h: 21: int8_t f_Indicator;
+"23
+[; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
-"22
-[; ;./main.h: 22: int16_t MB_Register[2];
+"24
+[; ;./main.h: 24: int16_t MB_Register[2];
 [v _MB_Register `s ~T0 @X0 -> 2 `i e ]
-"40
-[; ;./main.h: 40: SENSOR_AMBIENT SensorAmbient;
+"42
+[; ;./main.h: 42: SENSOR_AMBIENT SensorAmbient;
 [v _SensorAmbient `S362 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"50 main.c
-[; ;main.c: 50: void main(void) {
+"49 main.c
+[; ;main.c: 49: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"52
-[; ;main.c: 52:     SYSTEM_Initialize();
+"51
+[; ;main.c: 51:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"53
-[; ;main.c: 53:     App_Init();
+"52
+[; ;main.c: 52:     App_Init();
 [e ( _App_Init ..  ]
-"69
-[; ;main.c: 69:     while (1) {
+"57
+[; ;main.c: 57:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"60
+[; ;main.c: 60:     (INTCONbits.PEIE = 1);
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"68
+[; ;main.c: 68:     while (1) {
 [e :U 365 ]
 {
-"71
-[; ;main.c: 71:         App_Process();
+"70
+[; ;main.c: 70:         App_Process();
 [e ( _App_Process ..  ]
-"72
-[; ;main.c: 72:     }
+"71
+[; ;main.c: 71:     }
 }
 [e :U 364 ]
 [e $U 365  ]
 [e :U 366 ]
-"73
-[; ;main.c: 73: }
+"72
+[; ;main.c: 72: }
 [e :UE 363 ]
 }
