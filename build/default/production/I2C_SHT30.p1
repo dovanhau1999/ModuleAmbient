@@ -528,8 +528,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
 "24
-[; ;./main.h: 24: int16_t MB_Register[2];
-[v _MB_Register `s ~T0 @X0 -> 2 `i e ]
+[; ;./main.h: 24: uint16_t MB_Register[2];
+[v _MB_Register `us ~T0 @X0 -> 2 `i e ]
 "42
 [; ;./main.h: 42: SENSOR_AMBIENT SensorAmbient;
 [v _SensorAmbient `S362 ~T0 @X0 1 e ]
@@ -659,31 +659,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 "52
 [; ;I2C_SHT30.c: 52:         f_Indicator = ON_Sensor;
 [e = _f_Indicator -> . `E3272 1 `c ]
-"54
-[; ;I2C_SHT30.c: 54:         ReadData();
+"53
+[; ;I2C_SHT30.c: 53:         ReadData();
 [e ( _ReadData ..  ]
-"55
-[; ;I2C_SHT30.c: 55:         if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)) {
+"54
+[; ;I2C_SHT30.c: 54:         if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)) {
 [e $ ! || != -> = . . _SensorAmbient 0 1 -> -> 0 `i `us `ui -> -> 0 `i `ui != -> = . . _SensorAmbient 1 1 -> -> 0 `i `us `ui -> -> 0 `i `ui 369  ]
 {
-"56
-[; ;I2C_SHT30.c: 56:             SensorAmbient.T.Val16 = 0xFFFF;
+"55
+[; ;I2C_SHT30.c: 55:             SensorAmbient.T.Val16 = 0xFFFF;
 [e = . . _SensorAmbient 0 1 -> -> 65535 `ui `us ]
-"57
-[; ;I2C_SHT30.c: 57:             SensorAmbient.H.Val16 = 0xFFFF;
+"56
+[; ;I2C_SHT30.c: 56:             SensorAmbient.H.Val16 = 0xFFFF;
 [e = . . _SensorAmbient 1 1 -> -> 65535 `ui `us ]
-"58
-[; ;I2C_SHT30.c: 58:             f_Indicator = ERR_Sensor;
+"57
+[; ;I2C_SHT30.c: 57:             f_Indicator = ERR_Sensor;
 [e = _f_Indicator -> . `E3272 2 `c ]
-"59
-[; ;I2C_SHT30.c: 59:         }
+"58
+[; ;I2C_SHT30.c: 58:         }
 }
 [e :U 369 ]
-"70
-[; ;I2C_SHT30.c: 70:     }
+"69
+[; ;I2C_SHT30.c: 69:     }
 }
 [e :U 368 ]
-"71
-[; ;I2C_SHT30.c: 71: }
+"70
+[; ;I2C_SHT30.c: 70: }
 [e :UE 367 ]
 }

@@ -5368,7 +5368,7 @@ enum MESSAGE_MODBUS_RTU
 
 int8_t SW_Ad;
 int8_t f_Indicator;
-int16_t MB_Register[2];
+uint16_t MB_Register[2];
 
 enum LED_STATUS {
     OFF_Sensor = 0,
@@ -5400,7 +5400,7 @@ void Task_Sensor(void);
 # 1 "./Modbus_Slave.h" 1
 # 14 "./Modbus_Slave.h"
 void ModbusSlave_Init(int8_t _SW_Ad);
-uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
 void Task_MB(void);
 # 11 "./MCU.h" 2
 

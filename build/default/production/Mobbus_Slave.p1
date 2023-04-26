@@ -572,8 +572,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
 "24
-[; ;./main.h: 24: int16_t MB_Register[2];
-[v _MB_Register `s ~T0 @X0 -> 2 `i e ]
+[; ;./main.h: 24: uint16_t MB_Register[2];
+[v _MB_Register `us ~T0 @X0 -> 2 `i e ]
 "42
 [; ;./main.h: 42: SENSOR_AMBIENT SensorAmbient;
 [v _SensorAmbient `S362 ~T0 @X0 1 e ]
@@ -596,11 +596,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Mobbus_Slave.c: 22: static MODBUS SES_Modbus;
 [v _SES_Modbus `S360 ~T0 @X0 1 s ]
 "36
-[; ;Mobbus_Slave.c: 36: static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size) {
-[v _ModbusSlaveF04 `(uc ~T0 @X0 1 sf2`*s`us ]
+[; ;Mobbus_Slave.c: 36: static uint8_t ModbusSlaveF04(uint16_t *reg, uint16_t size) {
+[v _ModbusSlaveF04 `(uc ~T0 @X0 1 sf2`*us`us ]
 {
 [e :U _ModbusSlaveF04 ]
-[v _reg `*s ~T0 @X0 1 r1 ]
+[v _reg `*us ~T0 @X0 1 r1 ]
 [v _size `us ~T0 @X0 1 r2 ]
 [f ]
 "37
@@ -648,13 +648,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "53
 [; ;Mobbus_Slave.c: 53:         SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) >> 8));
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> >> -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `i -> 8 `i `uc ]
+[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> >> -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `ui -> 8 `i `uc ]
 "54
 [; ;Mobbus_Slave.c: 54:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
 "55
 [; ;Mobbus_Slave.c: 55:         SES_Modbus.au8Buffer[ SES_Modbus.u8BufferSize ] = ((uint8_t) ((reg[i]) & 0xff));
-[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `i -> 255 `i `uc ]
+[e = *U + &U . _SES_Modbus 4 * -> . _SES_Modbus 5 `ux -> -> # *U &U . _SES_Modbus 4 `ui `ux -> & -> *U + _reg * -> _i `ux -> -> # *U _reg `ui `ux `ui -> -> 255 `i `ui `uc ]
 "56
 [; ;Mobbus_Slave.c: 56:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
@@ -864,11 +864,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 376 ]
 }
 "125
-[; ;Mobbus_Slave.c: 125: uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
-[v _ModbusRTU_Slave_Poll `(uc ~T0 @X0 1 ef2`*s`us ]
+[; ;Mobbus_Slave.c: 125: uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size) {
+[v _ModbusRTU_Slave_Poll `(uc ~T0 @X0 1 ef2`*us`us ]
 {
 [e :U _ModbusRTU_Slave_Poll ]
-[v _reg `*s ~T0 @X0 1 r1 ]
+[v _reg `*us ~T0 @X0 1 r1 ]
 [v _size `us ~T0 @X0 1 r2 ]
 [f ]
 "127
@@ -1228,11 +1228,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _state `uc ~T0 @X0 1 a ]
 [e = _state -> -> 0 `i `uc ]
 "250
-[; ;Mobbus_Slave.c: 250:     MB_Register[0] = (int16_t) SensorAmbient.T.Val16;
-[e = *U + &U _MB_Register * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux -> . . _SensorAmbient 0 1 `s ]
+[; ;Mobbus_Slave.c: 250:     MB_Register[0] = SensorAmbient.T.Val16;
+[e = *U + &U _MB_Register * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 0 1 ]
 "251
-[; ;Mobbus_Slave.c: 251:     MB_Register[1] = (int16_t) SensorAmbient.H.Val16;
-[e = *U + &U _MB_Register * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux -> . . _SensorAmbient 1 1 `s ]
+[; ;Mobbus_Slave.c: 251:     MB_Register[1] = SensorAmbient.H.Val16;
+[e = *U + &U _MB_Register * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 1 1 ]
 "252
 [; ;Mobbus_Slave.c: 252:     state = ModbusRTU_Slave_Poll(MB_Register, 2);
 [e = _state ( _ModbusRTU_Slave_Poll (2 , &U _MB_Register -> -> 2 `i `us ]

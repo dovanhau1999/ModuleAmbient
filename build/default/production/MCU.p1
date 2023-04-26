@@ -550,8 +550,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
 "24
-[; ;./main.h: 24: int16_t MB_Register[2];
-[v _MB_Register `s ~T0 @X0 -> 2 `i e ]
+[; ;./main.h: 24: uint16_t MB_Register[2];
+[v _MB_Register `us ~T0 @X0 -> 2 `i e ]
 "42
 [; ;./main.h: 42: SENSOR_AMBIENT SensorAmbient;
 [v _SensorAmbient `S362 ~T0 @X0 1 e ]

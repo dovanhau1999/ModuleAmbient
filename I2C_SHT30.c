@@ -50,7 +50,6 @@ void Task_Sensor(void) {
     if ((llabs(((uint32_t) Get_millis() - valTime)) >= (uint32_t) 2 * TICK1S)) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
-
         ReadData();
         if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;

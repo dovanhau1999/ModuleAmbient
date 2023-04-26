@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Wed Apr 26 08:58:31 2023
+                                                                                               Wed Apr 26 10:16:53 2023
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	16F1936
@@ -4515,11 +4515,11 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   4491     03D5  0AEB               	incf	_f_Indicator,f
   4492     03D6                     l4660:
   4493                           
-  4494                           ;I2C_SHT30.c: 54:         ReadData();
+  4494                           ;I2C_SHT30.c: 53:         ReadData();
   4495     03D6  3184  249A  3183   	fcall	_ReadData
   4496     03D9                     l4662:
   4497                           
-  4498                           ;I2C_SHT30.c: 55:         if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)
+  4498                           ;I2C_SHT30.c: 54:         if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)
       +                          ) {
   4499     03D9  0020               	movlb	0	; select bank0
   4500     03DA  01E2               	clrf	_SensorAmbient
@@ -6259,7 +6259,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   6183                           
   6184     0EB0                     l4556:
   6185                           
-  6186                           ;Mobbus_Slave.c: 250:     MB_Register[0] = (int16_t) SensorAmbient.T.Val16;
+  6186                           ;Mobbus_Slave.c: 250:     MB_Register[0] = SensorAmbient.T.Val16;
   6187     0EB0  0020               	movlb	0	; select bank0
   6188     0EB1  0863               	movf	_SensorAmbient+1,w
   6189     0EB2  0021               	movlb	1	; select bank1
@@ -6270,7 +6270,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   6194     0EB7  00DD               	movwf	_MB_Register^(0+128)
   6195     0EB8                     l4558:
   6196                           
-  6197                           ;Mobbus_Slave.c: 251:     MB_Register[1] = (int16_t) SensorAmbient.H.Val16;
+  6197                           ;Mobbus_Slave.c: 251:     MB_Register[1] = SensorAmbient.H.Val16;
   6198     0EB8  0020               	movlb	0	; select bank0
   6199     0EB9  0865               	movf	_SensorAmbient+3,w
   6200     0EBA  0021               	movlb	1	; select bank1
@@ -6297,11 +6297,11 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   6221 ;; Defined at:
   6222 ;;		line 125 in file "Mobbus_Slave.c"
   6223 ;; Parameters:    Size  Location     Type
-  6224 ;;  reg             1    wreg     PTR short 
+  6224 ;;  reg             1    wreg     PTR unsigned short 
   6225 ;;		 -> MB_Register(4), 
   6226 ;;  size            2   52[BANK0 ] unsigned short 
   6227 ;; Auto vars:     Size  Location     Type
-  6228 ;;  reg             1    0[BANK2 ] PTR short 
+  6228 ;;  reg             1    0[BANK2 ] PTR unsigned short 
   6229 ;;		 -> MB_Register(4), 
   6230 ;;  u8exception     1    3[BANK2 ] unsigned char 
   6231 ;;  i8state         1    2[BANK2 ] unsigned char 
@@ -7241,11 +7241,11 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   7159 ;; Defined at:
   7160 ;;		line 36 in file "Mobbus_Slave.c"
   7161 ;; Parameters:    Size  Location     Type
-  7162 ;;  reg             1    wreg     PTR short 
+  7162 ;;  reg             1    wreg     PTR unsigned short 
   7163 ;;		 -> MB_Register(4), 
   7164 ;;  size            2   30[BANK0 ] unsigned short 
   7165 ;; Auto vars:     Size  Location     Type
-  7166 ;;  reg             1   44[BANK0 ] PTR short 
+  7166 ;;  reg             1   44[BANK0 ] PTR unsigned short 
   7167 ;;		 -> MB_Register(4), 
   7168 ;;  i               2   50[BANK0 ] unsigned short 
   7169 ;;  valueRegsno     2   48[BANK0 ] struct .
@@ -12698,10 +12698,10 @@ Pointer List with Targets:
 		 -> I2C_DO_SEND_RESTART_READ(), I2C_DO_TX_EMPTY(), I2C_DO_RCEN(), I2C_DO_RX(), 
 		 -> I2C_DO_TX(), I2C_DO_SEND_ADR_WRITE(), I2C_DO_SEND_ADR_READ(), I2C_DO_IDLE(), 
 
-    ModbusRTU_Slave_Poll@reg	PTR short  size(1) Largest target is 4
+    ModbusRTU_Slave_Poll@reg	PTR unsigned short  size(1) Largest target is 4
 		 -> MB_Register(BANK1[4]), 
 
-    ModbusSlaveF04@reg	PTR short  size(1) Largest target is 4
+    ModbusSlaveF04@reg	PTR unsigned short  size(1) Largest target is 4
 		 -> MB_Register(BANK1[4]), 
 
     S814$INPUT_REGS	PTR unsigned short  size(2) Largest target is 0
@@ -13559,7 +13559,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Wed Apr 26 08:58:31 2023
+Symbol Table                                                                                   Wed Apr 26 10:16:53 2023
 
                             _Modbus_sendTxBuff 0091                           ?_ModbusSlave_Process 0070  
                 ?_EUSART_SetRxInterruptHandler 0020                         ??_I2C_DO_SEND_ADR_READ 0070  

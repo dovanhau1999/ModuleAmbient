@@ -21,7 +21,7 @@
 
 int8_t SW_Ad;
 int8_t f_Indicator;
-int16_t MB_Register[2];
+uint16_t MB_Register[2];
 
 enum LED_STATUS {
     OFF_Sensor = 0,

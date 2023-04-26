@@ -5,7 +5,7 @@
 
 #define lowByte(w) ((uint8_t) ((w) & 0xff))
 #define highByte(w) ((uint8_t) ((w) >> 8))
-#define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
+//#define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
 
 static const unsigned char fctsupported[] = {
@@ -25,7 +25,7 @@ static MODBUS SES_Modbus;
 /*==================================================================================*/
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size);
+static uint8_t ModbusSlaveF04(uint16_t *reg, uint16_t size);
 static uint8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
@@ -33,7 +33,7 @@ static void ModbusSlave_Process(void);
 
 /*==================================================================================*/
 
-static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size) {
+static uint8_t ModbusSlaveF04(uint16_t *reg, uint16_t size) {
     VALUE16 valueAdd, valueRegsno;
     valueAdd._Byte[1] = SES_Modbus.au8Buffer[ADD_HI];
     valueAdd._Byte[0] = SES_Modbus.au8Buffer[ADD_LO];
@@ -122,7 +122,7 @@ static uint8_t validateRequest(void) {
     return 0;
 }
 
-uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
+uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size) {
 
     SES_Modbus.u8regsize = size;
     uint8_t u8Current;
@@ -247,8 +247,8 @@ void ModbusSlave_Init(int8_t _SW_Ad) {
 static void ModbusSlave_Process(void) {
 
     uint8_t state = 0;
-    MB_Register[0] = (int16_t) SensorAmbient.T.Val16;
-    MB_Register[1] = (int16_t) SensorAmbient.H.Val16;
+    MB_Register[0] = SensorAmbient.T.Val16;
+    MB_Register[1] = SensorAmbient.H.Val16;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);
 
 }

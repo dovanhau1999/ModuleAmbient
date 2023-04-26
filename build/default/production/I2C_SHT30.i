@@ -5365,7 +5365,7 @@ enum MESSAGE_MODBUS_RTU
 
 int8_t SW_Ad;
 int8_t f_Indicator;
-int16_t MB_Register[2];
+uint16_t MB_Register[2];
 
 enum LED_STATUS {
     OFF_Sensor = 0,
@@ -5428,13 +5428,12 @@ void Task_Sensor(void) {
     if ((llabs(((uint32_t) Get_millis() - valTime)) >= (uint32_t) 2 * 1000)) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
-
         ReadData();
         if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
         }
-# 70 "I2C_SHT30.c"
+# 69 "I2C_SHT30.c"
     }
 }

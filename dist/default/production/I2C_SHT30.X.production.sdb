@@ -342,7 +342,7 @@ I2C_RESET_LINK 5
 "23
 [v _f_Indicator f_Indicator `c  1 e 1 0 ]
 "24
-[v _MB_Register MB_Register `[2]s  1 e 4 0 ]
+[v _MB_Register MB_Register `[2]us  1 e 4 0 ]
 [u S600 . 2 `[2]uc 1 _Byte 2 0 `us 1 Val16 2 0 ]
 "42
 [s S603 . 4 `S600 1 T 2 0 `S600 1 H 2 2 ]
@@ -737,7 +737,7 @@ I2C_RESET_LINK 5
 {
 "45
 [v Task_Sensor@valTime valTime `ul  1 s 4 valTime ]
-"71
+"70
 } 0
 "1 C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\common\llabs.c
 [v _llabs llabs `(o  1 e 8 0 ]
@@ -894,7 +894,7 @@ I2C_RESET_LINK 5
 "125
 [v _ModbusRTU_Slave_Poll ModbusRTU_Slave_Poll `(uc  1 e 1 0 ]
 {
-[v ModbusRTU_Slave_Poll@reg reg `*.4s  1 a 1 wreg ]
+[v ModbusRTU_Slave_Poll@reg reg `*.4us  1 a 1 wreg ]
 "151
 [v ModbusRTU_Slave_Poll@u8exception u8exception `uc  1 a 1 3 ]
 "143
@@ -902,10 +902,10 @@ I2C_RESET_LINK 5
 "128
 [v ModbusRTU_Slave_Poll@u8Current u8Current `uc  1 a 1 1 ]
 "125
-[v ModbusRTU_Slave_Poll@reg reg `*.4s  1 a 1 wreg ]
+[v ModbusRTU_Slave_Poll@reg reg `*.4us  1 a 1 wreg ]
 [v ModbusRTU_Slave_Poll@size size `us  1 p 2 52 ]
 "127
-[v ModbusRTU_Slave_Poll@reg reg `*.4s  1 a 1 0 ]
+[v ModbusRTU_Slave_Poll@reg reg `*.4us  1 a 1 0 ]
 "167
 } 0
 "98
@@ -948,7 +948,7 @@ I2C_RESET_LINK 5
 "36 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
 [v _ModbusSlaveF04 ModbusSlaveF04 `(uc  1 s 1 ModbusSlaveF04 ]
 {
-[v ModbusSlaveF04@reg reg `*.4s  1 a 1 wreg ]
+[v ModbusSlaveF04@reg reg `*.4us  1 a 1 wreg ]
 "47
 [v ModbusSlaveF04@i i `us  1 a 2 50 ]
 [u S600 . 2 `[2]uc 1 _Byte 2 0 `us 1 Val16 2 0 ]
@@ -960,10 +960,10 @@ I2C_RESET_LINK 5
 "44
 [v ModbusSlaveF04@u8regsno u8regsno `uc  1 a 1 45 ]
 "36
-[v ModbusSlaveF04@reg reg `*.4s  1 a 1 wreg ]
+[v ModbusSlaveF04@reg reg `*.4us  1 a 1 wreg ]
 [v ModbusSlaveF04@size size `us  1 p 2 30 ]
 "38
-[v ModbusSlaveF04@reg reg `*.4s  1 a 1 44 ]
+[v ModbusSlaveF04@reg reg `*.4us  1 a 1 44 ]
 "62
 } 0
 "169
