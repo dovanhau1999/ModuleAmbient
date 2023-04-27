@@ -544,8 +544,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [v _MSSP_InterruptHandler `*F3112 ~T0 @X0 1 e ]
 "22 ./main.h
-[; ;./main.h: 22: int8_t SW_Ad;
-[v _SW_Ad `c ~T0 @X0 1 e ]
+[; ;./main.h: 22:  uint8_t SW_Ad;
+[v _SW_Ad `uc ~T0 @X0 1 e ]
 "23
 [; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
@@ -598,10 +598,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCU.c: 16:         {
 {
 "17
-[; ;MCU.c: 17:             do { LATCbits.LATC1 = 0; } while(0);
+[; ;MCU.c: 17:             do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0);
 [e :U 376 ]
 {
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[e = . . _LATCbits 0 1 -> ~ -> . . _LATCbits 0 1 `i `uc ]
 }
 [e :U 375 ]
 "18
@@ -682,47 +682,96 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCU.c: 36:     value_SW4 = PORTAbits.RA3;
 [e = F3302 -> . . _PORTAbits 0 3 `c ]
 "39
-[; ;MCU.c: 39:     SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
-[e = _SW_Ad -> & | | | & -> F3299 `i -> 1 `i & -> F3300 `i -> 2 `i & -> F3301 `i -> 4 `i & -> F3302 `i -> 8 `i -> 255 `i `c ]
+[; ;MCU.c: 39:     if ((value_SW1 == 1) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 0))
+[e $ ! && && && == -> F3299 `i -> 1 `i == -> F3300 `i -> 0 `i == -> F3301 `i -> 0 `i == -> F3302 `i -> 0 `i 388  ]
 "40
-[; ;MCU.c: 40: }
+[; ;MCU.c: 40:     {
+{
+"41
+[; ;MCU.c: 41:         SW_Ad = 0x01;
+[e = _SW_Ad -> -> 1 `i `uc ]
+"42
+[; ;MCU.c: 42:     } else if ((value_SW1 == 0) && (value_SW2 == 1) && (value_SW3 == 0) && (value_SW4 == 0))
+}
+[e $U 389  ]
+[e :U 388 ]
+[e $ ! && && && == -> F3299 `i -> 0 `i == -> F3300 `i -> 1 `i == -> F3301 `i -> 0 `i == -> F3302 `i -> 0 `i 390  ]
+"43
+[; ;MCU.c: 43:     {
+{
+"44
+[; ;MCU.c: 44:         SW_Ad = 0x02;
+[e = _SW_Ad -> -> 2 `i `uc ]
+"45
+[; ;MCU.c: 45:     } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 1) && (value_SW4 == 0))
+}
+[e $U 391  ]
+[e :U 390 ]
+[e $ ! && && && == -> F3299 `i -> 0 `i == -> F3300 `i -> 0 `i == -> F3301 `i -> 1 `i == -> F3302 `i -> 0 `i 392  ]
+"46
+[; ;MCU.c: 46:     {
+{
+"47
+[; ;MCU.c: 47:         SW_Ad = 0x04;
+[e = _SW_Ad -> -> 4 `i `uc ]
+"48
+[; ;MCU.c: 48:     } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 1))
+}
+[e $U 393  ]
+[e :U 392 ]
+[e $ ! && && && == -> F3299 `i -> 0 `i == -> F3300 `i -> 0 `i == -> F3301 `i -> 0 `i == -> F3302 `i -> 1 `i 394  ]
+"49
+[; ;MCU.c: 49:     {
+{
+"50
+[; ;MCU.c: 50:         SW_Ad = 0x08;
+[e = _SW_Ad -> -> 8 `i `uc ]
+"51
+[; ;MCU.c: 51:     }
+}
+[e :U 394 ]
+[e :U 393 ]
+[e :U 391 ]
+[e :U 389 ]
+"52
+[; ;MCU.c: 52: }
 [e :UE 387 ]
 }
-"42
-[; ;MCU.c: 42: void App_Init(void) {
+"54
+[; ;MCU.c: 54: void App_Init(void) {
 [v _App_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _App_Init ]
 [f ]
-"43
-[; ;MCU.c: 43:     Device_Init();
+"55
+[; ;MCU.c: 55:     Device_Init();
 [e ( _Device_Init ..  ]
-"44
-[; ;MCU.c: 44:     TMR1_StartTimer();
+"56
+[; ;MCU.c: 56:     TMR1_StartTimer();
 [e ( _TMR1_StartTimer ..  ]
-"45
-[; ;MCU.c: 45:     Tick_Init_SES();
+"57
+[; ;MCU.c: 57:     Tick_Init_SES();
 [e ( _Tick_Init_SES ..  ]
-"47
-[; ;MCU.c: 47: }
-[e :UE 388 ]
+"59
+[; ;MCU.c: 59: }
+[e :UE 395 ]
 }
-"49
-[; ;MCU.c: 49: void App_Process(void) {
+"61
+[; ;MCU.c: 61: void App_Process(void) {
 [v _App_Process `(v ~T0 @X0 1 ef ]
 {
 [e :U _App_Process ]
 [f ]
-"50
-[; ;MCU.c: 50:     Task_Sensor();
+"62
+[; ;MCU.c: 62:     Task_Sensor();
 [e ( _Task_Sensor ..  ]
-"51
-[; ;MCU.c: 51:     Task_MB();
+"63
+[; ;MCU.c: 63:     Task_MB();
 [e ( _Task_MB ..  ]
-"52
-[; ;MCU.c: 52:     Task_Indicator();
+"64
+[; ;MCU.c: 64:     Task_Indicator();
 [e ( _Task_Indicator ..  ]
-"53
-[; ;MCU.c: 53: }
-[e :UE 389 ]
+"65
+[; ;MCU.c: 65: }
+[e :UE 396 ]
 }

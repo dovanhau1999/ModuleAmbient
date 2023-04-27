@@ -531,8 +531,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [v _MSSP_InterruptHandler `*F3112 ~T0 @X0 1 e ]
 "22 ./main.h
-[; ;./main.h: 22: int8_t SW_Ad;
-[v _SW_Ad `c ~T0 @X0 1 e ]
+[; ;./main.h: 22:  uint8_t SW_Ad;
+[v _SW_Ad `uc ~T0 @X0 1 e ]
 "23
 [; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]

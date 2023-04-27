@@ -14,7 +14,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n E3217 MB_FC MB_FC_NONE MB_FC_READ_COILS MB_FC_READ_DISCRETE_INPUT MB_FC_READ_HOLD_REGISTERS MB_FC_READ_INPUT_REGISTER MB_FC_WRITE_COIL MB_FC_WRITE_REGISTER MB_FC_WRITE_MULTIPLE_COILS MB_FC_WRITE_MULTIPLE_REGISTERS  ]
 "42 ./ModbusRTU/../Modbus.h
 [; ;./ModbusRTU/../Modbus.h: 42: typedef struct {
-[s S360 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 50 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
+[s S360 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 100 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
 [n S360 . u8id u8txenpin u8state u8lastError au8Buffer u8BufferSize u8lastRec au16regs u16InCnt u16OutCnt u16errCnt u16timeOut u32time u32timeOut u32overTime u8regsize HOLDING_REGS INPUT_REGS ]
 "38 Mobbus_Slave.c
 [; ;Mobbus_Slave.c: 38:     valueAdd._Byte[1] = SES_Modbus.au8Buffer[ADD_HI];
@@ -566,8 +566,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "213 ./mcc_generated_files/examples/../i2c_master.h
 [v _MSSP_InterruptHandler `*F3112 ~T0 @X0 1 e ]
 "22 ./main.h
-[; ;./main.h: 22: int8_t SW_Ad;
-[v _SW_Ad `c ~T0 @X0 1 e ]
+[; ;./main.h: 22:  uint8_t SW_Ad;
+[v _SW_Ad `uc ~T0 @X0 1 e ]
 "23
 [; ;./main.h: 23: int8_t f_Indicator;
 [v _f_Indicator `c ~T0 @X0 1 e ]
@@ -740,8 +740,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Mobbus_Slave.c: 84:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
 "86
-[; ;Mobbus_Slave.c: 86:         if (SES_Modbus.u8BufferSize >= 50) bBuffOverflow = 1;
-[e $ ! >= -> . _SES_Modbus 5 `i -> 50 `i 374  ]
+[; ;Mobbus_Slave.c: 86:         if (SES_Modbus.u8BufferSize >= 100) bBuffOverflow = 1;
+[e $ ! >= -> . _SES_Modbus 5 `i -> 100 `i 374  ]
 [e = _bBuffOverflow -> -> 1 `i `a ]
 [e :U 374 ]
 "87
@@ -1171,15 +1171,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 410 ]
 }
 "234
-[; ;Mobbus_Slave.c: 234: void ModbusSlave_Init(int8_t _SW_Ad) {
-[v _ModbusSlave_Init `(v ~T0 @X0 1 ef1`c ]
+[; ;Mobbus_Slave.c: 234: void ModbusSlave_Init(uint8_t _SW_Ad) {
+[v _ModbusSlave_Init `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _ModbusSlave_Init ]
-[v __SW_Ad `c ~T0 @X0 1 r1 ]
+[v __SW_Ad `uc ~T0 @X0 1 r1 ]
 [f ]
 "235
 [; ;Mobbus_Slave.c: 235:     SES_Modbus.u8id = (uint8_t) _SW_Ad;
-[e = . _SES_Modbus 0 -> __SW_Ad `uc ]
+[e = . _SES_Modbus 0 __SW_Ad ]
 "236
 [; ;Mobbus_Slave.c: 236:     SES_Modbus.u8txenpin = RS485;
 [e = . _SES_Modbus 1 -> . `E3253 2 `uc ]
@@ -1275,7 +1275,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Mobbus_Slave.c: 263:     }
 }
 [e :U 431 ]
-"264
-[; ;Mobbus_Slave.c: 264: }
+"268
+[; ;Mobbus_Slave.c: 268: }
 [e :UE 429 ]
 }

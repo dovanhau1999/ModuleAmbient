@@ -231,7 +231,7 @@ static uint16_t Modbus_calcCRC(uint8_t len) {
     return temp;
 }
 
-void ModbusSlave_Init(int8_t _SW_Ad) {
+void ModbusSlave_Init(uint8_t _SW_Ad) {
     SES_Modbus.u8id = (uint8_t) _SW_Ad; // slave number = 1...247
     SES_Modbus.u8txenpin = RS485; //Set pin EN of chip modbus
     SES_Modbus.u16timeOut = 1000;
@@ -261,4 +261,8 @@ void Task_MB(void) {
     } else {
         ModbusSlave_Process();
     }
+    
+    /* test MB */
+//    EN_SetHigh();
+//    printf("done MB\n\r");
 }

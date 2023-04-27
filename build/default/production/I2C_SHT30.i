@@ -5308,7 +5308,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[50];
+    uint8_t au8Buffer[100];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5363,7 +5363,7 @@ enum MESSAGE_MODBUS_RTU
 # 20 "./main.h" 2
 
 
-int8_t SW_Ad;
+ uint8_t SW_Ad;
 int8_t f_Indicator;
 uint16_t MB_Register[2];
 
@@ -5404,36 +5404,37 @@ uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 void ReadData(void) {
     uint8_t aData[6];
     static uint32_t valTime = 0;
-    I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_H_Enable, 2);
+    I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_M_Enable, 2);
     valTime = Get_millis();
     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 4);
 
     I2C_ReadNBytes(0x44, aData, 6);
 
-    SensorAmbient.T._Byte[0] = aData[1];
-    SensorAmbient.T._Byte[1] = aData[0];
 
-    SensorAmbient.H._Byte[0] = aData[4];
-    SensorAmbient.H._Byte[1] = aData[3];
 
+    double ctemp = (((((aData[0] * 256.0) + aData[1]) * 175) / 65535.0) - 45) * 10;
+    SensorAmbient.T.Val16 = (uint16_t) ctemp;
+
+
+
+    double humidity = ((((aData[3] * 256.0) + aData[4]) * 100) / 65535.0) * 10;
+    SensorAmbient.H.Val16 = (uint16_t) humidity;
 
 }
 
 void Task_Sensor(void) {
     static uint32_t valTime = 0;
 
-    f_Indicator = OFF_Sensor;
-
 
     if ((llabs(((uint32_t) Get_millis() - valTime)) >= (uint32_t) 2 * 1000)) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
-        if ((SensorAmbient.T.Val16 = 0) || (SensorAmbient.H.Val16 = 0)) {
+        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
         }
-# 69 "I2C_SHT30.c"
+# 70 "I2C_SHT30.c"
     }
 }

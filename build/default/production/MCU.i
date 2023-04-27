@@ -5310,7 +5310,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[50];
+    uint8_t au8Buffer[100];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5365,7 +5365,7 @@ enum MESSAGE_MODBUS_RTU
 # 20 "./main.h" 2
 
 
-int8_t SW_Ad;
+ uint8_t SW_Ad;
 int8_t f_Indicator;
 uint16_t MB_Register[2];
 
@@ -5398,7 +5398,7 @@ void Task_Sensor(void);
 
 # 1 "./Modbus_Slave.h" 1
 # 14 "./Modbus_Slave.h"
-void ModbusSlave_Init(int8_t _SW_Ad);
+void ModbusSlave_Init(uint8_t _SW_Ad);
 uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
 void Task_MB(void);
 # 11 "./MCU.h" 2
@@ -5426,7 +5426,7 @@ void Task_Indicator() {
         }
         case ON_Sensor:
         {
-            do { LATCbits.LATC1 = 0; } while(0);
+            do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0);
             do { LATCbits.LATC0 = 1; } while(0);
             break;
         }
@@ -5448,7 +5448,19 @@ static void Device_Init(void) {
     value_SW4 = PORTAbits.RA3;
 
 
-    SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
+    if ((value_SW1 == 1) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 0))
+    {
+        SW_Ad = 0x01;
+    } else if ((value_SW1 == 0) && (value_SW2 == 1) && (value_SW3 == 0) && (value_SW4 == 0))
+    {
+        SW_Ad = 0x02;
+    } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 1) && (value_SW4 == 0))
+    {
+        SW_Ad = 0x04;
+    } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 1))
+    {
+        SW_Ad = 0x08;
+    }
 }
 
 void App_Init(void) {

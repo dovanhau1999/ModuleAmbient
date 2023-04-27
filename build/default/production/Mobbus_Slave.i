@@ -5308,7 +5308,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[50];
+    uint8_t au8Buffer[100];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5363,7 +5363,7 @@ enum MESSAGE_MODBUS_RTU
 # 20 "./main.h" 2
 
 
-int8_t SW_Ad;
+ uint8_t SW_Ad;
 int8_t f_Indicator;
 uint16_t MB_Register[2];
 
@@ -5387,7 +5387,7 @@ SENSOR_AMBIENT SensorAmbient;
 # 12 "./Modbus_Slave.h" 2
 
 
-void ModbusSlave_Init(int8_t _SW_Ad);
+void ModbusSlave_Init(uint8_t _SW_Ad);
 uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
 void Task_MB(void);
 # 1 "Mobbus_Slave.c" 2
@@ -5467,7 +5467,7 @@ static uint8_t Modbus_getRxBuff(void) {
         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
         SES_Modbus.u8BufferSize++;
 
-        if (SES_Modbus.u8BufferSize >= 50) bBuffOverflow = 1;
+        if (SES_Modbus.u8BufferSize >= 100) bBuffOverflow = 1;
     }
     SES_Modbus.u16InCnt++;
 
@@ -5615,7 +5615,7 @@ static uint16_t Modbus_calcCRC(uint8_t len) {
     return temp;
 }
 
-void ModbusSlave_Init(int8_t _SW_Ad) {
+void ModbusSlave_Init(uint8_t _SW_Ad) {
     SES_Modbus.u8id = (uint8_t) _SW_Ad;
     SES_Modbus.u8txenpin = RS485;
     SES_Modbus.u16timeOut = 1000;
@@ -5645,4 +5645,8 @@ void Task_MB(void) {
     } else {
         ModbusSlave_Process();
     }
+
+
+
+
 }

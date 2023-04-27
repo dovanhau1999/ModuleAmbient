@@ -19,7 +19,7 @@
 #include "mcc_generated_files/tmr1.h"
 #include "ModbusRTU/ModbusRTU.h"
 
-int8_t SW_Ad;
+ uint8_t SW_Ad;
 int8_t f_Indicator;
 uint16_t MB_Register[2];
 
