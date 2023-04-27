@@ -7,7 +7,7 @@
 
 #ifndef MODBUS_H
 #define	MODBUS_H
-#include <stdint.h>
+#include "main.h"
 
 #define MAX_BUFFER 100
 
