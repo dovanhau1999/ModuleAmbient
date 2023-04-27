@@ -4954,23 +4954,24 @@ void (*TMR1_InterruptHandler)(void);
 
 
 
-void TMR1_Initialize(void) {
+void TMR1_Initialize(void)
+{
 
 
 
     T1GCON = 0x00;
 
 
-    TMR1H = 0xFE;
+    TMR1H = 0xE0;
 
 
-    TMR1L = 0x0C;
+    TMR1L = 0xC0;
 
 
     PIR1bits.TMR1IF = 0;
 
 
-    timer1ReloadVal = (uint16_t) ((TMR1H << 8) | TMR1L);
+    timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
 
 
     PIE1bits.TMR1IE = 1;
@@ -4982,30 +4983,51 @@ void TMR1_Initialize(void) {
     T1CON = 0x41;
 }
 
-void TMR1_StartTimer(void) {
+void TMR1_StartTimer(void)
+{
 
     T1CONbits.TMR1ON = 1;
 }
-# 116 "mcc_generated_files/tmr1.c"
-void TMR1_WriteTimer(uint16_t timerVal) {
-    if (T1CONbits.nT1SYNC == 1) {
+# 118 "mcc_generated_files/tmr1.c"
+uint16_t TMR1_ReadTimer(void)
+{
+    uint16_t readVal;
+    uint8_t readValHigh;
+    uint8_t readValLow;
+
+
+    readValLow = TMR1L;
+    readValHigh = TMR1H;
+
+    readVal = ((uint16_t)readValHigh << 8) | readValLow;
+
+    return readVal;
+}
+
+void TMR1_WriteTimer(uint16_t timerVal)
+{
+    if (T1CONbits.nT1SYNC == 1)
+    {
 
         T1CONbits.TMR1ON = 0;
 
 
-        TMR1H = (uint8_t) (timerVal >> 8);
-        TMR1L = (uint8_t) timerVal;
+        TMR1H = (uint8_t)(timerVal >> 8);
+        TMR1L = (uint8_t)timerVal;
 
 
-        T1CONbits.TMR1ON = 1;
-    } else {
+        T1CONbits.TMR1ON =1;
+    }
+    else
+    {
 
-        TMR1H = (uint8_t) (timerVal >> 8);
-        TMR1L = (uint8_t) timerVal;
+        TMR1H = (uint8_t)(timerVal >> 8);
+        TMR1L = (uint8_t)timerVal;
     }
 }
-# 146 "mcc_generated_files/tmr1.c"
-void TMR1_ISR(void) {
+# 167 "mcc_generated_files/tmr1.c"
+void TMR1_ISR(void)
+{
 
 
     PIR1bits.TMR1IF = 0;
@@ -5016,18 +5038,20 @@ void TMR1_ISR(void) {
     TMR1_CallBack();
 }
 
-void TMR1_CallBack(void) {
+void TMR1_CallBack(void)
+{
 
-    if (TMR1_InterruptHandler) {
+    if(TMR1_InterruptHandler)
+    {
         TMR1_InterruptHandler();
     }
 }
 
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)) {
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
     TMR1_InterruptHandler = InterruptHandler;
 }
 
-void TMR1_DefaultInterruptHandler(void) {
+void TMR1_DefaultInterruptHandler(void){
 
 
 }

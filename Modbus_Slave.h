@@ -11,8 +11,8 @@
 #include "tick.h"
 #include "main.h"
 
-void ModbusSlave_Init(int8_t _SW_Ad);
-uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+void ModbusSlave_Init(uint8_t _SW_Ad);
+uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
 void Task_MB(void);
 
 #ifdef	__cplusplus

@@ -1,4 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[v F3109 `(v ~T0 @X0 0 tf ]
+"89 mcc_generated_files/i2c_master.h
+[; ;mcc_generated_files/i2c_master.h: 89: void I2C_Initialize(void);
+[v _I2C_Initialize `(v ~T0 @X0 0 ef ]
 "199 mcc_generated_files/pin_manager.h
 [; ;mcc_generated_files/pin_manager.h: 199: void PIN_MANAGER_Initialize (void);
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
@@ -11,8 +15,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "101 mcc_generated_files/tmr1.h
 [; ;mcc_generated_files/tmr1.h: 101: void TMR1_Initialize(void);
 [v _TMR1_Initialize `(v ~T0 @X0 0 ef ]
-"117 mcc_generated_files/eusart.h
-[; ;mcc_generated_files/eusart.h: 117: void EUSART_Initialize(void);
+"118 mcc_generated_files/eusart.h
+[; ;mcc_generated_files/eusart.h: 118: void EUSART_Initialize(void);
 [v _EUSART_Initialize `(v ~T0 @X0 0 ef ]
 "1846 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 1846: extern volatile unsigned char OSCCON __attribute__((address(0x099)));
@@ -521,6 +525,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7116
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1936.h: 7116: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
+"213 mcc_generated_files/i2c_master.h
+[; ;mcc_generated_files/i2c_master.h: 213: void (*MSSP_InterruptHandler)(void);
+[v _MSSP_InterruptHandler `*F3109 ~T0 @X0 1 e ]
 "50 mcc_generated_files/mcc.c
 [; ;mcc_generated_files/mcc.c: 50: void SYSTEM_Initialize(void)
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
@@ -529,58 +536,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _SYSTEM_Initialize ]
 [f ]
-"54
-[; ;mcc_generated_files/mcc.c: 54:     PIN_MANAGER_Initialize();
+"52
+[; ;mcc_generated_files/mcc.c: 52:     I2C_Initialize();
+[e ( _I2C_Initialize ..  ]
+"53
+[; ;mcc_generated_files/mcc.c: 53:     PIN_MANAGER_Initialize();
 [e ( _PIN_MANAGER_Initialize ..  ]
-"55
-[; ;mcc_generated_files/mcc.c: 55:     OSCILLATOR_Initialize();
+"54
+[; ;mcc_generated_files/mcc.c: 54:     OSCILLATOR_Initialize();
 [e ( _OSCILLATOR_Initialize ..  ]
-"56
-[; ;mcc_generated_files/mcc.c: 56:     WDT_Initialize();
+"55
+[; ;mcc_generated_files/mcc.c: 55:     WDT_Initialize();
 [e ( _WDT_Initialize ..  ]
-"57
-[; ;mcc_generated_files/mcc.c: 57:     TMR1_Initialize();
+"56
+[; ;mcc_generated_files/mcc.c: 56:     TMR1_Initialize();
 [e ( _TMR1_Initialize ..  ]
-"58
-[; ;mcc_generated_files/mcc.c: 58:     EUSART_Initialize();
+"57
+[; ;mcc_generated_files/mcc.c: 57:     EUSART_Initialize();
 [e ( _EUSART_Initialize ..  ]
-"59
-[; ;mcc_generated_files/mcc.c: 59: }
+"58
+[; ;mcc_generated_files/mcc.c: 58: }
 [e :UE 360 ]
 }
-"61
-[; ;mcc_generated_files/mcc.c: 61: void OSCILLATOR_Initialize(void)
+"60
+[; ;mcc_generated_files/mcc.c: 60: void OSCILLATOR_Initialize(void)
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
-"62
-[; ;mcc_generated_files/mcc.c: 62: {
+"61
+[; ;mcc_generated_files/mcc.c: 61: {
 {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-"64
-[; ;mcc_generated_files/mcc.c: 64:     OSCCON = 0x70;
+"63
+[; ;mcc_generated_files/mcc.c: 63:     OSCCON = 0x70;
 [e = _OSCCON -> -> 112 `i `uc ]
-"66
-[; ;mcc_generated_files/mcc.c: 66:     OSCTUNE = 0x00;
+"65
+[; ;mcc_generated_files/mcc.c: 65:     OSCTUNE = 0x00;
 [e = _OSCTUNE -> -> 0 `i `uc ]
-"68
-[; ;mcc_generated_files/mcc.c: 68:     BORCON = 0x00;
+"67
+[; ;mcc_generated_files/mcc.c: 67:     BORCON = 0x00;
 [e = _BORCON -> -> 0 `i `uc ]
-"69
-[; ;mcc_generated_files/mcc.c: 69: }
+"68
+[; ;mcc_generated_files/mcc.c: 68: }
 [e :UE 361 ]
 }
-"71
-[; ;mcc_generated_files/mcc.c: 71: void WDT_Initialize(void)
+"70
+[; ;mcc_generated_files/mcc.c: 70: void WDT_Initialize(void)
 [v _WDT_Initialize `(v ~T0 @X0 1 ef ]
-"72
-[; ;mcc_generated_files/mcc.c: 72: {
+"71
+[; ;mcc_generated_files/mcc.c: 71: {
 {
 [e :U _WDT_Initialize ]
 [f ]
+"73
+[; ;mcc_generated_files/mcc.c: 73:     WDTCON = 0x24;
+[e = _WDTCON -> -> 36 `i `uc ]
 "74
-[; ;mcc_generated_files/mcc.c: 74:     WDTCON = 0x16;
-[e = _WDTCON -> -> 22 `i `uc ]
-"75
-[; ;mcc_generated_files/mcc.c: 75: }
+[; ;mcc_generated_files/mcc.c: 74: }
 [e :UE 362 ]
 }

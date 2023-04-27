@@ -285,20 +285,6 @@ char *tempnam(const char *, const char *);
 # 12 "./main.h" 2
 
 
-# 1 "./mcc_generated_files/eusart.h" 1
-# 54 "./mcc_generated_files/eusart.h"
-# 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
-# 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 3
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-
-# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\xc8debug.h" 1 3
-
-
-
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 1 3
 # 21 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\stdlib.h" 3
 # 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -361,14 +347,20 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
-# 5 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\xc8debug.h" 2 3
+# 14 "./main.h" 2
+
+# 1 "./mcc_generated_files/mcc.h" 1
+# 49 "./mcc_generated_files/mcc.h"
+# 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
+# 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 3
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
 
 
 
-
-
-
-
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\xc8debug.h" 1 3
+# 12 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\xc8debug.h" 3
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 # 24 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
@@ -5086,72 +5078,28 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
-# 54 "./mcc_generated_files/eusart.h" 2
-# 75 "./mcc_generated_files/eusart.h"
-typedef union {
-    struct {
-        unsigned perr : 1;
-        unsigned ferr : 1;
-        unsigned oerr : 1;
-        unsigned reserved : 5;
-    };
-    uint8_t status;
-}eusart_status_t;
+# 49 "./mcc_generated_files/mcc.h" 2
 
-
-
-
-extern volatile uint8_t eusartTxBufferRemaining;
-extern volatile uint8_t eusartRxCount;
-
-
-
-
-extern void (*EUSART_TxDefaultInterruptHandler)(void);
-extern void (*EUSART_RxDefaultInterruptHandler)(void);
-# 117 "./mcc_generated_files/eusart.h"
-void EUSART_Initialize(void);
-# 165 "./mcc_generated_files/eusart.h"
-_Bool EUSART_is_tx_ready(void);
-# 213 "./mcc_generated_files/eusart.h"
-_Bool EUSART_is_rx_ready(void);
-# 260 "./mcc_generated_files/eusart.h"
-_Bool EUSART_is_tx_done(void);
-# 308 "./mcc_generated_files/eusart.h"
-eusart_status_t EUSART_get_last_status(void);
-# 328 "./mcc_generated_files/eusart.h"
-uint8_t EUSART_Read(void);
-# 348 "./mcc_generated_files/eusart.h"
-void EUSART_Write(uint8_t txData);
-# 369 "./mcc_generated_files/eusart.h"
-void EUSART_Transmit_ISR(void);
-# 390 "./mcc_generated_files/eusart.h"
-void EUSART_Receive_ISR(void);
-# 411 "./mcc_generated_files/eusart.h"
-void EUSART_RxDataHandler(void);
-# 429 "./mcc_generated_files/eusart.h"
-void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "./mcc_generated_files/eusart.h"
-void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "./mcc_generated_files/eusart.h"
-void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "./mcc_generated_files/eusart.h"
-void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "./mcc_generated_files/eusart.h"
-void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
-# 14 "./main.h" 2
+# 1 "./mcc_generated_files/device_config.h" 1
+# 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
 # 199 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 # 211 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
-# 15 "./main.h" 2
+# 51 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
-# 52 "./mcc_generated_files/examples/i2c_master_example.h"
-# 1 "./mcc_generated_files/examples/../i2c_master.h" 1
-# 58 "./mcc_generated_files/examples/../i2c_master.h"
+
+
+# 1 "C:\\Program Files\\Microchip\\XC8_Ver2.41\\pic\\include\\c99\\conio.h" 1 3
+# 54 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/interrupt_manager.h" 1
+# 55 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/i2c_master.h" 1
+# 58 "./mcc_generated_files/i2c_master.h"
 typedef enum {
     I2C_NOERR,
     I2C_BUSY,
@@ -5184,11 +5132,11 @@ i2c_operations_t I2C_CallbackRestartRead(void *funPtr);
 
 
 void I2C_Initialize(void);
-# 101 "./mcc_generated_files/examples/../i2c_master.h"
+# 101 "./mcc_generated_files/i2c_master.h"
 i2c_error_t I2C_Open(i2c_address_t address);
-# 111 "./mcc_generated_files/examples/../i2c_master.h"
+# 111 "./mcc_generated_files/i2c_master.h"
 i2c_error_t I2C_Close(void);
-# 123 "./mcc_generated_files/examples/../i2c_master.h"
+# 123 "./mcc_generated_files/i2c_master.h"
 i2c_error_t I2C_MasterOperation(_Bool read);
 
 
@@ -5200,35 +5148,25 @@ i2c_error_t I2C_MasterWrite(void);
 
 
 i2c_error_t I2C_MasterRead(void);
-# 142 "./mcc_generated_files/examples/../i2c_master.h"
+# 142 "./mcc_generated_files/i2c_master.h"
 void I2C_SetTimeout(uint8_t timeOut);
-# 152 "./mcc_generated_files/examples/../i2c_master.h"
+# 152 "./mcc_generated_files/i2c_master.h"
 void I2C_SetBuffer(void *buffer, size_t bufferSize);
-# 164 "./mcc_generated_files/examples/../i2c_master.h"
+# 164 "./mcc_generated_files/i2c_master.h"
 void I2C_SetDataCompleteCallback(i2c_callback_t cb, void *ptr);
-# 174 "./mcc_generated_files/examples/../i2c_master.h"
+# 174 "./mcc_generated_files/i2c_master.h"
 void I2C_SetWriteCollisionCallback(i2c_callback_t cb, void *ptr);
-# 184 "./mcc_generated_files/examples/../i2c_master.h"
+# 184 "./mcc_generated_files/i2c_master.h"
 void I2C_SetAddressNackCallback(i2c_callback_t cb, void *ptr);
-# 194 "./mcc_generated_files/examples/../i2c_master.h"
+# 194 "./mcc_generated_files/i2c_master.h"
 void I2C_SetDataNackCallback(i2c_callback_t cb, void *ptr);
-# 204 "./mcc_generated_files/examples/../i2c_master.h"
+# 204 "./mcc_generated_files/i2c_master.h"
 void I2C_SetTimeoutCallback(i2c_callback_t cb, void *ptr);
-# 213 "./mcc_generated_files/examples/../i2c_master.h"
+# 213 "./mcc_generated_files/i2c_master.h"
 void (*MSSP_InterruptHandler)(void);
-# 222 "./mcc_generated_files/examples/../i2c_master.h"
+# 222 "./mcc_generated_files/i2c_master.h"
 void I2C_SetInterruptHandler(void (* InterruptHandler)(void));
-# 52 "./mcc_generated_files/examples/i2c_master_example.h" 2
-
-
-uint8_t I2C_Read1ByteRegister(i2c_address_t address, uint8_t reg);
-uint16_t I2C_Read2ByteRegister(i2c_address_t address, uint8_t reg);
-void I2C_Write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
-void I2C_Write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
-void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
-void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
-void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t len);
-# 16 "./main.h" 2
+# 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 101 "./mcc_generated_files/tmr1.h"
@@ -5257,7 +5195,83 @@ void TMR1_CallBack(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 439 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 17 "./main.h" 2
+# 57 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/eusart.h" 1
+# 76 "./mcc_generated_files/eusart.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart_status_t;
+
+
+
+
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
+
+
+
+
+extern void (*EUSART_TxDefaultInterruptHandler)(void);
+extern void (*EUSART_RxDefaultInterruptHandler)(void);
+# 118 "./mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+# 166 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_ready(void);
+# 214 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_rx_ready(void);
+# 261 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_done(void);
+# 309 "./mcc_generated_files/eusart.h"
+eusart_status_t EUSART_get_last_status(void);
+# 329 "./mcc_generated_files/eusart.h"
+uint8_t EUSART_Read(void);
+# 349 "./mcc_generated_files/eusart.h"
+void EUSART_Write(uint8_t txData);
+# 370 "./mcc_generated_files/eusart.h"
+void EUSART_Transmit_ISR(void);
+# 391 "./mcc_generated_files/eusart.h"
+void EUSART_Receive_ISR(void);
+# 412 "./mcc_generated_files/eusart.h"
+void EUSART_RxDataHandler(void);
+# 430 "./mcc_generated_files/eusart.h"
+void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 448 "./mcc_generated_files/eusart.h"
+void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 466 "./mcc_generated_files/eusart.h"
+void EUSART_SetErrorHandler(void (* interruptHandler)(void));
+# 486 "./mcc_generated_files/eusart.h"
+void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 506 "./mcc_generated_files/eusart.h"
+void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
+# 58 "./mcc_generated_files/mcc.h" 2
+# 73 "./mcc_generated_files/mcc.h"
+void SYSTEM_Initialize(void);
+# 86 "./mcc_generated_files/mcc.h"
+void OSCILLATOR_Initialize(void);
+# 98 "./mcc_generated_files/mcc.h"
+void WDT_Initialize(void);
+# 15 "./main.h" 2
+
+
+
+# 1 "./mcc_generated_files/examples/i2c_master_example.h" 1
+# 54 "./mcc_generated_files/examples/i2c_master_example.h"
+uint8_t I2C_Read1ByteRegister(i2c_address_t address, uint8_t reg);
+uint16_t I2C_Read2ByteRegister(i2c_address_t address, uint8_t reg);
+void I2C_Write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
+void I2C_Write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
+void I2C_WriteNBytes(i2c_address_t address, uint8_t *data, size_t len);
+void I2C_ReadNBytes(i2c_address_t address, uint8_t *data, size_t len);
+void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t len);
+# 18 "./main.h" 2
+
 
 # 1 "./ModbusRTU/ModbusRTU.h" 1
 # 11 "./ModbusRTU/ModbusRTU.h"
@@ -5296,7 +5310,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[250];
+    uint8_t au8Buffer[100];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5348,12 +5362,12 @@ enum MESSAGE_MODBUS_RTU
     NB_LO,
     BYTE_CNT
 };
-# 18 "./main.h" 2
+# 20 "./main.h" 2
 
 
-int8_t SW_Ad;
+ uint8_t SW_Ad;
 int8_t f_Indicator;
-int16_t MB_Register[2];
+uint16_t MB_Register[2];
 
 enum LED_STATUS {
     OFF_Sensor = 0,
@@ -5363,7 +5377,7 @@ enum LED_STATUS {
 
 typedef union {
     uint8_t _Byte[2];
-    int16_t Val16;
+    uint16_t Val16;
 } VALUE16;
 
 typedef struct {
@@ -5384,8 +5398,8 @@ void Task_Sensor(void);
 
 # 1 "./Modbus_Slave.h" 1
 # 14 "./Modbus_Slave.h"
-void ModbusSlave_Init(int8_t _SW_Ad);
-uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size);
+void ModbusSlave_Init(uint8_t _SW_Ad);
+uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size);
 void Task_MB(void);
 # 11 "./MCU.h" 2
 
@@ -5412,7 +5426,7 @@ void Task_Indicator() {
         }
         case ON_Sensor:
         {
-            do { LATCbits.LATC1 = 0; } while(0);
+            do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0);
             do { LATCbits.LATC0 = 1; } while(0);
             break;
         }
@@ -5434,13 +5448,26 @@ static void Device_Init(void) {
     value_SW4 = PORTAbits.RA3;
 
 
-    SW_Ad = (((value_SW1 & 0x01) | (value_SW2 & 0x02) | (value_SW3 & 0x04) | (value_SW4 & 0x08)) & (0xFF));
+    if ((value_SW1 == 1) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 0))
+    {
+        SW_Ad = 0x01;
+    } else if ((value_SW1 == 0) && (value_SW2 == 1) && (value_SW3 == 0) && (value_SW4 == 0))
+    {
+        SW_Ad = 0x02;
+    } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 1) && (value_SW4 == 0))
+    {
+        SW_Ad = 0x04;
+    } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 1))
+    {
+        SW_Ad = 0x08;
+    }
 }
 
 void App_Init(void) {
     Device_Init();
     TMR1_StartTimer();
     Tick_Init_SES();
+
 }
 
 void App_Process(void) {

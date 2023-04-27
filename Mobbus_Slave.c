@@ -5,7 +5,7 @@
 
 #define lowByte(w) ((uint8_t) ((w) & 0xff))
 #define highByte(w) ((uint8_t) ((w) >> 8))
-#define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
+//#define double(h,l) (l & 0xffff) | ((h & 0xffff) << 16) 
 
 
 static const unsigned char fctsupported[] = {
@@ -25,7 +25,7 @@ static MODBUS SES_Modbus;
 /*==================================================================================*/
 static uint8_t validateRequest(void);
 static void buildException(uint8_t exception);
-static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size);
+static uint8_t ModbusSlaveF04(uint16_t *reg, uint16_t size);
 static uint8_t Modbus_getRxBuff(void);
 static void Modbus_sendTxBuff(void);
 static uint16_t Modbus_calcCRC(uint8_t len);
@@ -33,16 +33,16 @@ static void ModbusSlave_Process(void);
 
 /*==================================================================================*/
 
-static uint8_t ModbusSlaveF04(int16_t *reg, uint16_t size) {
+static uint8_t ModbusSlaveF04(uint16_t *reg, uint16_t size) {
     VALUE16 valueAdd, valueRegsno;
     valueAdd._Byte[1] = SES_Modbus.au8Buffer[ADD_HI];
     valueAdd._Byte[0] = SES_Modbus.au8Buffer[ADD_LO];
-    uint16_t u8StartAdd = (uint16_t)valueAdd.Val16;
-    
+    uint16_t u8StartAdd = (uint16_t) valueAdd.Val16;
+
     valueRegsno._Byte[1] = SES_Modbus.au8Buffer[ NB_HI];
     valueRegsno._Byte[0] = SES_Modbus.au8Buffer[ NB_LO];
-    uint8_t u8regsno = (uint8_t)valueRegsno.Val16;
-    
+    uint8_t u8regsno = (uint8_t) valueRegsno.Val16;
+
     uint8_t u8CopyBufferSize;
     uint16_t i;
 
@@ -89,7 +89,7 @@ static uint8_t Modbus_getRxBuff(void) {
 
     if (bBuffOverflow) {
         SES_Modbus.u16errCnt++;
-        return (uint8_t)ERR_BUFF_OVERFLOW;
+        return (uint8_t) ERR_BUFF_OVERFLOW;
     }
 
     return SES_Modbus.u8BufferSize;
@@ -97,7 +97,7 @@ static uint8_t Modbus_getRxBuff(void) {
 
 static uint8_t validateRequest(void) {
     /* check message CRC vs calculated CRC */
-    uint16_t u16MsgCRC =
+    uint16_t u16MsgCRC = (uint16_t)
             ((SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize - 2] << 8)
             | SES_Modbus.au8Buffer[SES_Modbus.u8BufferSize - 1]); // combine the crc Low & High bytes
     if (Modbus_calcCRC(SES_Modbus.u8BufferSize - 2) != u16MsgCRC) {
@@ -122,7 +122,7 @@ static uint8_t validateRequest(void) {
     return 0;
 }
 
-uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
+uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size) {
 
     SES_Modbus.u8regsize = size;
     uint8_t u8Current;
@@ -163,7 +163,7 @@ uint8_t ModbusRTU_Slave_Poll(int16_t *reg, uint16_t size) {
 
     ModbusSlaveF04(reg, size);
 
-    return (uint8_t)i8state;
+    return (uint8_t) i8state;
 }
 
 static void Modbus_sendTxBuff(void) {
@@ -231,13 +231,14 @@ static uint16_t Modbus_calcCRC(uint8_t len) {
     return temp;
 }
 
-void ModbusSlave_Init(int8_t _SW_Ad) {
+void ModbusSlave_Init(uint8_t _SW_Ad) {
     SES_Modbus.u8id = (uint8_t) _SW_Ad; // slave number = 1...247
     SES_Modbus.u8txenpin = RS485; //Set pin EN of chip modbus
     SES_Modbus.u16timeOut = 1000;
     SES_Modbus.u32overTime = 0;
 
-    //    if (SES_Modbus.u8txenpin > 1) EN_SetLow(); else EN_SetHigh();
+    if (SES_Modbus.u8txenpin > 1) EN_SetLow();
+    else EN_SetHigh();
 
     SES_Modbus.u8lastRec = SES_Modbus.u8BufferSize = 0;
     SES_Modbus.u16InCnt = SES_Modbus.u16OutCnt = SES_Modbus.u16errCnt = 0;
@@ -260,4 +261,8 @@ void Task_MB(void) {
     } else {
         ModbusSlave_Process();
     }
+    
+    /* test MB */
+//    EN_SetHigh();
+//    printf("done MB\n\r");
 }
