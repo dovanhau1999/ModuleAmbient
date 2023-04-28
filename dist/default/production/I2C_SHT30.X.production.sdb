@@ -58,7 +58,7 @@ I2C_DATA_NACK 3
 I2C_TIMEOUT 4
 I2C_NULL 5
 ]
-"53 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
+"55 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
 [e E3272 LED_STATUS `uc
 OFF_Sensor 0
 ON_Sensor 1
@@ -140,7 +140,7 @@ RS485 2
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "26 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
 [v _ReadData ReadData `(v  1 e 1 0 ]
-"47
+"49
 [v _Task_Sensor Task_Sensor `(v  1 e 1 0 ]
 "49 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\main.c
 [v _main main `(v  1 e 1 0 ]
@@ -374,7 +374,7 @@ RS485 2
 ]
 [u S256 . 1 `S242 1 . 1 0 `S251 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES256  1 e 1 @11 ]
-[s S1398 . 1 `uc 1 RA0 1 0 :1:0 
+[s S1397 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -384,8 +384,8 @@ RS485 2
 `uc 1 RA7 1 0 :1:7 
 ]
 "447
-[u S1407 . 1 `S1398 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES1407  1 e 1 @12 ]
+[u S1406 . 1 `S1397 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES1406  1 e 1 @12 ]
 [s S295 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -495,7 +495,7 @@ RS485 2
 [v _LATB LATB `VEuc  1 e 1 @269 ]
 "2312
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S1373 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S1372 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -505,8 +505,8 @@ RS485 2
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2329
-[u S1382 . 1 `S1373 1 . 1 0 ]
-[v _LATCbits LATCbits `VES1382  1 e 1 @270 ]
+[u S1381 . 1 `S1372 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1381  1 e 1 @270 ]
 "2374
 [v _LATE LATE `VEuc  1 e 1 @272 ]
 "2667
@@ -660,9 +660,9 @@ RS485 2
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
 "11 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\Mobbus_Slave.c
 [v _fctsupported fctsupported `DC[8]uc  1 s 8 fctsupported ]
-[s S1479 . 184 `uc 1 u8id 1 0 `uc 1 u8txenpin 1 1 `uc 1 u8state 1 2 `uc 1 u8lastError 1 3 `[150]uc 1 au8Buffer 150 4 `uc 1 u8BufferSize 1 154 `uc 1 u8lastRec 1 155 `*.39us 1 au16regs 2 156 `us 1 u16InCnt 2 158 `us 1 u16OutCnt 2 160 `us 1 u16errCnt 2 162 `us 1 u16timeOut 2 164 `ul 1 u32time 4 166 `ul 1 u32timeOut 4 170 `ul 1 u32overTime 4 174 `us 1 u8regsize 2 178 `*.39us 1 HOLDING_REGS 2 180 `*.39us 1 INPUT_REGS 2 182 ]
+[s S1478 . 184 `uc 1 u8id 1 0 `uc 1 u8txenpin 1 1 `uc 1 u8state 1 2 `uc 1 u8lastError 1 3 `[150]uc 1 au8Buffer 150 4 `uc 1 u8BufferSize 1 154 `uc 1 u8lastRec 1 155 `*.39us 1 au16regs 2 156 `us 1 u16InCnt 2 158 `us 1 u16OutCnt 2 160 `us 1 u16errCnt 2 162 `us 1 u16timeOut 2 164 `ul 1 u32time 4 166 `ul 1 u32timeOut 4 170 `ul 1 u32overTime 4 174 `us 1 u8regsize 2 178 `*.39us 1 HOLDING_REGS 2 180 `*.39us 1 INPUT_REGS 2 182 ]
 "22
-[v _SES_Modbus SES_Modbus `S1479  1 s 184 SES_Modbus ]
+[v _SES_Modbus SES_Modbus `S1478  1 s 184 SES_Modbus ]
 "4 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\tick.c
 [v _device_time device_time `VEul  1 s 4 device_time ]
 "49 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\main.c
@@ -740,12 +740,12 @@ RS485 2
 {
 "65
 } 0
-"47 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
+"49 D:\1.COMPANY\8. HTR02\I2C_SHT30.X\I2C_SHT30.c
 [v _Task_Sensor Task_Sensor `(v  1 e 1 0 ]
 {
-"48
+"50
 [v Task_Sensor@valTime valTime `ul  1 s 4 valTime ]
-"71
+"73
 } 0
 "1 C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\common\llabs.c
 [v _llabs llabs `(o  1 e 8 0 ]
@@ -758,13 +758,11 @@ RS485 2
 {
 "27
 [v ReadData@aData aData `[6]uc  1 a 6 21 ]
-"42
+"44
 [v ReadData@humidity humidity `d  1 a 4 31 ]
-"37
+"39
 [v ReadData@ctemp ctemp `d  1 a 4 27 ]
-"28
-[v ReadData@valTime valTime `ul  1 s 4 valTime ]
-"45
+"47
 } 0
 "10 C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -794,17 +792,17 @@ RS485 2
 "8 C:\Program Files\Microchip\XC8_Ver2.41\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S1939 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S1938 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S1944 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S1947 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1939 1 fAsBytes 4 0 `S1944 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S1947  1 a 4 34 ]
+[s S1943 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S1946 . 4 `l 1 i 4 0 `d 1 f 4 0 `S1938 1 fAsBytes 4 0 `S1943 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S1946  1 a 4 34 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 28 ]
-[s S2016 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S2015 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S2019 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S2016 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S2019  1 a 2 38 ]
+[u S2018 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S2015 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S2018  1 a 2 38 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 33 ]
 "11

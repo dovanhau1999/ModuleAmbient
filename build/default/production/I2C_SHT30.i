@@ -5409,10 +5409,12 @@ uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
 void ReadData(void) {
     uint8_t aData[6];
-    static uint32_t valTime = 0;
+
+    SensorAmbient.T.Val16 = 0;
+    SensorAmbient.H.Val16 = 0;
     I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_H_Enable, 2);
-    valTime = Get_millis();
-    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
+
+
 
     I2C_ReadNBytes(0x44, aData, 6);
 
@@ -5441,6 +5443,6 @@ void Task_Sensor(void) {
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
         }
-# 70 "I2C_SHT30.c"
+# 72 "I2C_SHT30.c"
     }
 }
