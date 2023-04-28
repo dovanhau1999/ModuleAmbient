@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Fri Apr 28 09:47:53 2023
+                                                                                               Fri Apr 28 10:17:13 2023
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	16F1936
@@ -4727,7 +4727,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   4704     0BAF  3180  2096  318B   	fcall	_ReadData
   4705     0BB2                     l4925:
   4706                           
-  4707                           ;I2C_SHT30.c: 55:         if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 
+  4707                           ;I2C_SHT30.c: 55:         if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 <= 
       +                          0)) {
   4708     0BB2  0021               	movlb	1	; select bank1
   4709     0BB3  085B               	movf	_SensorAmbient^(0+128),w
@@ -4967,7 +4967,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   4942     00B2  0022               	movlb	2	; select bank2
   4943     00B3  00D9               	movwf	ReadData@valTime^(0+256)
   4944     00B4                     l4767:	
-  4945                           ;I2C_SHT30.c: 31:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 4);
+  4945                           ;I2C_SHT30.c: 31:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
   4946                           
   4947     00B4  3194  2408  3180   	fcall	_Get_millis
   4948     00B7  0022               	movlb	2	; select bank2
@@ -5003,7 +5003,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   4978     00D5  082E               	movf	(??_ReadData^(0+128)+1),w
   4979     00D6  1D03               	btfss	3,2
   4980     00D7  28DE               	goto	u4010
-  4981     00D8  3008               	movlw	8
+  4981     00D8  3002               	movlw	2
   4982     00D9  022D               	subwf	??_ReadData^(0+128),w
   4983     00DA  1C03               	btfss	3,0
   4984     00DB  28DD               	goto	u4011
@@ -17233,7 +17233,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Fri Apr 28 09:47:53 2023
+Symbol Table                                                                                   Fri Apr 28 10:17:13 2023
 
                             _Modbus_sendTxBuff 0D19                           ?_ModbusSlave_Process 0070  
                 ?_EUSART_SetRxInterruptHandler 0020                         ??_I2C_DO_SEND_ADR_READ 0070  

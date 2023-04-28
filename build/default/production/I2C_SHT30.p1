@@ -609,11 +609,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;I2C_SHT30.c: 30:     valTime = Get_millis();
 [e = F3295 ( _Get_millis ..  ]
 "31
-[; ;I2C_SHT30.c: 31:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 4);
+[; ;I2C_SHT30.c: 31:     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
 [e $U 364  ]
 [e :U 365 ]
 [e :U 364 ]
-[e $ < - ( _Get_millis ..  F3295 * -> -> 2 `i `ul -> -> -> 4 `i `l `ul 365  ]
+[e $ < - ( _Get_millis ..  F3295 * -> -> 2 `i `ul -> -> -> 1 `i `l `ul 365  ]
 [e :U 366 ]
 "33
 [; ;I2C_SHT30.c: 33:     I2C_ReadNBytes(0x44, aData, 6);
@@ -662,8 +662,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;I2C_SHT30.c: 54:         ReadData();
 [e ( _ReadData ..  ]
 "55
-[; ;I2C_SHT30.c: 55:         if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 0)) {
-[e $ ! || <= -> . . _SensorAmbient 0 1 `ui -> -> 0 `i `ui == -> . . _SensorAmbient 1 1 `ui -> -> 0 `i `ui 369  ]
+[; ;I2C_SHT30.c: 55:         if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 <= 0)) {
+[e $ ! || <= -> . . _SensorAmbient 0 1 `ui -> -> 0 `i `ui <= -> . . _SensorAmbient 1 1 `ui -> -> 0 `i `ui 369  ]
 {
 "56
 [; ;I2C_SHT30.c: 56:             SensorAmbient.T.Val16 = 0xFFFF;

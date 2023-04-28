@@ -5412,7 +5412,7 @@ void ReadData(void) {
     static uint32_t valTime = 0;
     I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_H_Enable, 2);
     valTime = Get_millis();
-    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 4);
+    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 1);
 
     I2C_ReadNBytes(0x44, aData, 6);
 
@@ -5436,7 +5436,7 @@ void Task_Sensor(void) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
-        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 0)) {
+        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 <= 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;

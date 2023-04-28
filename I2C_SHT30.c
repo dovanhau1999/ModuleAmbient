@@ -3,7 +3,7 @@
 
 #define Address_DFLT      0x44
 #define Address_ALT       0x45
-#define Timer_SCL_free             4
+#define Timer_SCL_free      1
 
 
 /* Note:
@@ -52,7 +52,7 @@ void Task_Sensor(void) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
-        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 0)) {
+        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 <= 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
