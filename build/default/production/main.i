@@ -5317,7 +5317,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[100];
+    uint8_t au8Buffer[150];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;

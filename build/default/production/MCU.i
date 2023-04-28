@@ -5316,7 +5316,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[100];
+    uint8_t au8Buffer[150];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5446,7 +5446,7 @@ void Task_Indicator() {
 }
 
 static void Device_Init(void) {
-    static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
+    int8_t value_SW1, value_SW2, value_SW3, value_SW4;
 
     value_SW1 = PORTAbits.RA0;
     value_SW2 = PORTAbits.RA1;

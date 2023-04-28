@@ -14,7 +14,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n E3217 MB_FC MB_FC_NONE MB_FC_READ_COILS MB_FC_READ_DISCRETE_INPUT MB_FC_READ_HOLD_REGISTERS MB_FC_READ_INPUT_REGISTER MB_FC_WRITE_COIL MB_FC_WRITE_REGISTER MB_FC_WRITE_MULTIPLE_COILS MB_FC_WRITE_MULTIPLE_REGISTERS  ]
 "42 ./ModbusRTU/../Modbus.h
 [; ;./ModbusRTU/../Modbus.h: 42: typedef struct {
-[s S360 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 100 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
+[s S360 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 150 `i `uc 1 `uc 1 `*us 1 `us 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `us 1 `*us 1 `*us 1 ]
 [n S360 . u8id u8txenpin u8state u8lastError au8Buffer u8BufferSize u8lastRec au16regs u16InCnt u16OutCnt u16errCnt u16timeOut u32time u32timeOut u32overTime u8regsize HOLDING_REGS INPUT_REGS ]
 "38 Mobbus_Slave.c
 [; ;Mobbus_Slave.c: 38:     valueAdd._Byte[1] = SES_Modbus.au8Buffer[ADD_HI];
@@ -740,8 +740,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Mobbus_Slave.c: 84:         SES_Modbus.u8BufferSize++;
 [e ++ . _SES_Modbus 5 -> -> 1 `i `uc ]
 "86
-[; ;Mobbus_Slave.c: 86:         if (SES_Modbus.u8BufferSize >= 100) bBuffOverflow = 1;
-[e $ ! >= -> . _SES_Modbus 5 `i -> 100 `i 374  ]
+[; ;Mobbus_Slave.c: 86:         if (SES_Modbus.u8BufferSize >= 150) bBuffOverflow = 1;
+[e $ ! >= -> . _SES_Modbus 5 `i -> 150 `i 374  ]
 [e = _bBuffOverflow -> -> 1 `i `a ]
 [e :U 374 ]
 "87
@@ -905,8 +905,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 385 ]
 "140
-[; ;Mobbus_Slave.c: 140:     if ((unsigned long) (Get_millis() - SES_Modbus.u32time) < (unsigned long) 3) return 0;
-[e $ ! < - ( _Get_millis ..  . _SES_Modbus 12 -> -> 3 `i `ul 386  ]
+[; ;Mobbus_Slave.c: 140:     if ((unsigned long) (Get_millis() - SES_Modbus.u32time) < (unsigned long) 4) return 0;
+[e $ ! < - ( _Get_millis ..  . _SES_Modbus 12 -> -> 4 `i `ul 386  ]
 [e ) -> -> 0 `i `uc ]
 [e $UE 383  ]
 [e :U 386 ]

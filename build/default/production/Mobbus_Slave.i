@@ -5314,7 +5314,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[100];
+    uint8_t au8Buffer[150];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5473,7 +5473,7 @@ static uint8_t Modbus_getRxBuff(void) {
         SES_Modbus.au8Buffer [SES_Modbus.u8BufferSize] = EUSART_Read();
         SES_Modbus.u8BufferSize++;
 
-        if (SES_Modbus.u8BufferSize >= 100) bBuffOverflow = 1;
+        if (SES_Modbus.u8BufferSize >= 150) bBuffOverflow = 1;
     }
     SES_Modbus.u16InCnt++;
 
@@ -5527,7 +5527,7 @@ uint8_t ModbusRTU_Slave_Poll(uint16_t *reg, uint16_t size) {
         SES_Modbus.u32time = Get_millis();
         return 0;
     }
-    if ((unsigned long) (Get_millis() - SES_Modbus.u32time) < (unsigned long) 3) return 0;
+    if ((unsigned long) (Get_millis() - SES_Modbus.u32time) < (unsigned long) 4) return 0;
 
     SES_Modbus.u8lastRec = 0;
     uint8_t i8state = Modbus_getRxBuff();

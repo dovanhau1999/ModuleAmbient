@@ -5314,7 +5314,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[100];
+    uint8_t au8Buffer[150];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5410,7 +5410,7 @@ uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 void ReadData(void) {
     uint8_t aData[6];
     static uint32_t valTime = 0;
-    I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_M_Enable, 2);
+    I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_H_Enable, 2);
     valTime = Get_millis();
     while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 4);
 

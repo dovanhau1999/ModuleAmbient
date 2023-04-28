@@ -9,7 +9,7 @@
 #define	MODBUS_H
 #include "main.h"
 
-#define MAX_BUFFER 100
+#define MAX_BUFFER 150
 
 enum ERR_LIST {
     ERR_NOT_MASTER = -1,

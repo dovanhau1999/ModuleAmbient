@@ -664,26 +664,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _Device_Init ]
 [f ]
 "31
-[; ;MCU.c: 31:     static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
-[v F3299 `c ~T0 @X0 1 s value_SW1 ]
-[v F3300 `c ~T0 @X0 1 s value_SW2 ]
-[v F3301 `c ~T0 @X0 1 s value_SW3 ]
-[v F3302 `c ~T0 @X0 1 s value_SW4 ]
+[; ;MCU.c: 31:     int8_t value_SW1, value_SW2, value_SW3, value_SW4;
+[v _value_SW1 `c ~T0 @X0 1 a ]
+[v _value_SW2 `c ~T0 @X0 1 a ]
+[v _value_SW3 `c ~T0 @X0 1 a ]
+[v _value_SW4 `c ~T0 @X0 1 a ]
 "33
 [; ;MCU.c: 33:     value_SW1 = PORTAbits.RA0;
-[e = F3299 -> . . _PORTAbits 0 0 `c ]
+[e = _value_SW1 -> . . _PORTAbits 0 0 `c ]
 "34
 [; ;MCU.c: 34:     value_SW2 = PORTAbits.RA1;
-[e = F3300 -> . . _PORTAbits 0 1 `c ]
+[e = _value_SW2 -> . . _PORTAbits 0 1 `c ]
 "35
 [; ;MCU.c: 35:     value_SW3 = PORTAbits.RA2;
-[e = F3301 -> . . _PORTAbits 0 2 `c ]
+[e = _value_SW3 -> . . _PORTAbits 0 2 `c ]
 "36
 [; ;MCU.c: 36:     value_SW4 = PORTAbits.RA3;
-[e = F3302 -> . . _PORTAbits 0 3 `c ]
+[e = _value_SW4 -> . . _PORTAbits 0 3 `c ]
 "39
 [; ;MCU.c: 39:     if ((value_SW1 == 1) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 0))
-[e $ ! && && && == -> F3299 `i -> 1 `i == -> F3300 `i -> 0 `i == -> F3301 `i -> 0 `i == -> F3302 `i -> 0 `i 388  ]
+[e $ ! && && && == -> _value_SW1 `i -> 1 `i == -> _value_SW2 `i -> 0 `i == -> _value_SW3 `i -> 0 `i == -> _value_SW4 `i -> 0 `i 388  ]
 "40
 [; ;MCU.c: 40:     {
 {
@@ -695,7 +695,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 389  ]
 [e :U 388 ]
-[e $ ! && && && == -> F3299 `i -> 0 `i == -> F3300 `i -> 1 `i == -> F3301 `i -> 0 `i == -> F3302 `i -> 0 `i 390  ]
+[e $ ! && && && == -> _value_SW1 `i -> 0 `i == -> _value_SW2 `i -> 1 `i == -> _value_SW3 `i -> 0 `i == -> _value_SW4 `i -> 0 `i 390  ]
 "43
 [; ;MCU.c: 43:     {
 {
@@ -707,7 +707,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 391  ]
 [e :U 390 ]
-[e $ ! && && && == -> F3299 `i -> 0 `i == -> F3300 `i -> 0 `i == -> F3301 `i -> 1 `i == -> F3302 `i -> 0 `i 392  ]
+[e $ ! && && && == -> _value_SW1 `i -> 0 `i == -> _value_SW2 `i -> 0 `i == -> _value_SW3 `i -> 1 `i == -> _value_SW4 `i -> 0 `i 392  ]
 "46
 [; ;MCU.c: 46:     {
 {
@@ -719,7 +719,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 393  ]
 [e :U 392 ]
-[e $ ! && && && == -> F3299 `i -> 0 `i == -> F3300 `i -> 0 `i == -> F3301 `i -> 0 `i == -> F3302 `i -> 1 `i 394  ]
+[e $ ! && && && == -> _value_SW1 `i -> 0 `i == -> _value_SW2 `i -> 0 `i == -> _value_SW3 `i -> 0 `i == -> _value_SW4 `i -> 1 `i 394  ]
 "49
 [; ;MCU.c: 49:     {
 {
