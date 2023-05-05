@@ -5258,7 +5258,7 @@ void I2C_Initialize()
     SSPSTAT = 0x00;
     SSPCON1 = 0x08;
     SSPCON2 = 0x00;
-    SSPADD = 0x13;
+    SSPADD = 0x9F;
     SSPCON1bits.SSPEN = 0;
 }
 
@@ -5637,7 +5637,7 @@ static __attribute__((inline)) _Bool I2C_MasterOpen(void)
         SSPSTAT = 0x00;
         SSPCON1 = 0x08;
         SSPCON2 = 0x00;
-        SSPADD = 0x13;
+        SSPADD = 0x9F;
         SSPCON1bits.SSPEN = 1;
         return 1;
     }

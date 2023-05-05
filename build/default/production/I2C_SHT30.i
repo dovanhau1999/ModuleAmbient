@@ -5274,7 +5274,13 @@ void I2C_ReadDataBlock(i2c_address_t address, uint8_t reg, uint8_t *data, size_t
 # 1 "./ModbusRTU/ModbusRTU.h" 1
 # 11 "./ModbusRTU/ModbusRTU.h"
 # 1 "./ModbusRTU/../Modbus.h" 1
-# 14 "./ModbusRTU/../Modbus.h"
+# 10 "./ModbusRTU/../Modbus.h"
+# 1 "./main.h" 1
+# 10 "./ModbusRTU/../Modbus.h" 2
+
+
+
+
 enum ERR_LIST {
     ERR_NOT_MASTER = -1,
     ERR_POLLING = -2,
@@ -5308,7 +5314,7 @@ typedef struct {
     uint8_t u8txenpin;
     uint8_t u8state;
     uint8_t u8lastError;
-    uint8_t au8Buffer[100];
+    uint8_t au8Buffer[150];
     uint8_t u8BufferSize;
     uint8_t u8lastRec;
     uint16_t *au16regs;
@@ -5403,10 +5409,12 @@ uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
 void ReadData(void) {
     uint8_t aData[6];
-    static uint32_t valTime = 0;
-    I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_M_Enable, 2);
-    valTime = Get_millis();
-    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * 4);
+
+    SensorAmbient.T.Val16 = 0;
+    SensorAmbient.H.Val16 = 0;
+    I2C_WriteNBytes(0x44, SHT30_CMD_MEASURE_H_Enable, 2);
+
+
 
     I2C_ReadNBytes(0x44, aData, 6);
 
@@ -5430,11 +5438,11 @@ void Task_Sensor(void) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
-        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 0)) {
+        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 <= 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
         }
-# 70 "I2C_SHT30.c"
+# 72 "I2C_SHT30.c"
     }
 }

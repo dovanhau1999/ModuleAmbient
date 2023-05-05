@@ -566,15 +566,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 365 ]
 {
 "70
-[; ;main.c: 70:         App_Process();
-[e ( _App_Process ..  ]
+[; ;main.c: 70:         __asm("clrwdt");
+[; <" clrwdt ;# ">
 "71
-[; ;main.c: 71:     }
+[; ;main.c: 71:         App_Process();
+[e ( _App_Process ..  ]
+"72
+[; ;main.c: 72:     }
 }
 [e :U 364 ]
 [e $U 365  ]
 [e :U 366 ]
-"72
-[; ;main.c: 72: }
+"73
+[; ;main.c: 73: }
 [e :UE 363 ]
 }

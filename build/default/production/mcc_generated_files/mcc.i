@@ -5251,6 +5251,7 @@ void WDT_Initialize(void);
 
 void SYSTEM_Initialize(void)
 {
+
     I2C_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
@@ -5267,10 +5268,14 @@ void OSCILLATOR_Initialize(void)
     OSCTUNE = 0x00;
 
     BORCON = 0x00;
+
+    while(PLLR == 0)
+    {
+    }
 }
 
 void WDT_Initialize(void)
 {
 
-    WDTCON = 0x24;
+    WDTCON = 0x1E;
 }

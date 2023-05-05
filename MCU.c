@@ -28,7 +28,7 @@ void Task_Indicator() {
 }
 
 static void Device_Init(void) {
-    static int8_t value_SW1, value_SW2, value_SW3, value_SW4;
+    int8_t value_SW1, value_SW2, value_SW3, value_SW4;
 
     value_SW1 = SW1_GetValue();
     value_SW2 = SW2_GetValue();

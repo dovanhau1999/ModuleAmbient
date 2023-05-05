@@ -4962,10 +4962,10 @@ void TMR1_Initialize(void)
     T1GCON = 0x00;
 
 
-    TMR1H = 0xE0;
+    TMR1H = 0x83;
 
 
-    TMR1L = 0xC0;
+    TMR1L = 0x00;
 
 
     PIR1bits.TMR1IF = 0;
@@ -4988,7 +4988,13 @@ void TMR1_StartTimer(void)
 
     T1CONbits.TMR1ON = 1;
 }
-# 118 "mcc_generated_files/tmr1.c"
+
+void TMR1_StopTimer(void)
+{
+
+    T1CONbits.TMR1ON = 0;
+}
+
 uint16_t TMR1_ReadTimer(void)
 {
     uint16_t readVal;
@@ -5025,7 +5031,22 @@ void TMR1_WriteTimer(uint16_t timerVal)
         TMR1L = (uint8_t)timerVal;
     }
 }
-# 167 "mcc_generated_files/tmr1.c"
+
+void TMR1_Reload(void)
+{
+    TMR1_WriteTimer(timer1ReloadVal);
+}
+
+void TMR1_StartSinglePulseAcquisition(void)
+{
+    T1GCONbits.T1GGO = 1;
+}
+
+uint8_t TMR1_CheckGateValueStatus(void)
+{
+    return (T1GCONbits.T1GVAL);
+}
+
 void TMR1_ISR(void)
 {
 

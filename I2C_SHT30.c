@@ -3,7 +3,7 @@
 
 #define Address_DFLT      0x44
 #define Address_ALT       0x45
-#define Timer_SCL_free             4
+#define Timer_SCL_free      1
 
 
 /* Note:
@@ -25,10 +25,12 @@ uint8_t SHT30_CMD_MEASURE_L_Disable [2] = {0x24, 0x16};
 
 void ReadData(void) {
     uint8_t aData[6];
-    static uint32_t valTime = 0;
-    I2C_WriteNBytes(Address_DFLT, SHT30_CMD_MEASURE_M_Enable, 2);
-    valTime = Get_millis();
-    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * Timer_SCL_free);
+//    static uint32_t valTime = 0;
+    SensorAmbient.T.Val16 = 0;
+    SensorAmbient.H.Val16 = 0;
+    I2C_WriteNBytes(Address_DFLT, SHT30_CMD_MEASURE_H_Enable, 2);
+//    valTime = Get_millis();
+//    while (((uint32_t) Get_millis() - valTime) < (uint32_t) 2 * Timer_SCL_free);
 
     I2C_ReadNBytes(Address_DFLT, aData, 6);
 
@@ -52,7 +54,7 @@ void Task_Sensor(void) {
         valTime = Get_millis();
         f_Indicator = ON_Sensor;
         ReadData();
-        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 == 0)) {
+        if ((SensorAmbient.T.Val16 <= 0) || (SensorAmbient.H.Val16 <= 0)) {
             SensorAmbient.T.Val16 = 0xFFFF;
             SensorAmbient.H.Val16 = 0xFFFF;
             f_Indicator = ERR_Sensor;
