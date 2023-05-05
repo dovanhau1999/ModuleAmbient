@@ -22,9 +22,9 @@
 
 #pragma config WRT = OFF
 #pragma config VCAPEN = RA5
-#pragma config PLLEN = OFF
+#pragma config PLLEN = ON
 #pragma config STVREN = ON
 #pragma config BORV = LO
-#pragma config LVP = ON
+#pragma config LVP = OFF
 # 67 "mcc_generated_files/device_config.c"
 

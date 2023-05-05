@@ -5443,6 +5443,7 @@ void main(void) {
 
     while (1) {
 
+        __asm("clrwdt");
         App_Process();
     }
 }

@@ -49,6 +49,7 @@
 
 void SYSTEM_Initialize(void)
 {
+
     I2C_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
@@ -65,12 +66,16 @@ void OSCILLATOR_Initialize(void)
     OSCTUNE = 0x00;
     // SBOREN disabled; 
     BORCON = 0x00;
+    // Wait for PLL to stabilize
+    while(PLLR == 0)
+    {
+    }
 }
 
 void WDT_Initialize(void)
 {
-    // WDTPS 1:8388608; SWDTEN OFF; 
-    WDTCON = 0x24;
+    // WDTPS 1:1048576; SWDTEN OFF; 
+    WDTCON = 0x1E;
 }
 
 /**

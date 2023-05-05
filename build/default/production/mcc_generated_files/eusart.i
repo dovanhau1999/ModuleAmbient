@@ -5163,10 +5163,10 @@ void EUSART_Initialize(void)
     TXSTA = 0x24;
 
 
-    SPBRGL = 0xCF;
+    SPBRGL = 0x40;
 
 
-    SPBRGH = 0x00;
+    SPBRGH = 0x03;
 
 
     EUSART_SetFramingErrorHandler(EUSART_DefaultFramingErrorHandler);

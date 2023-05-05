@@ -61,7 +61,7 @@
 // CONFIG2
 #pragma config WRT = OFF    // Flash Memory Self-Write Protection->Write protection off
 #pragma config VCAPEN = RA5    // Voltage Regulator Capacitor Enable->VCAP functionality is enabled on RA5
-#pragma config PLLEN = OFF    // PLL Enable->4x PLL disabled
+#pragma config PLLEN = ON    // PLL Enable->4x PLL enabled
 #pragma config STVREN = ON    // Stack Overflow/Underflow Reset Enable->Stack Overflow or Underflow will cause a Reset
 #pragma config BORV = LO    // Brown-out Reset Voltage Selection->Brown-out Reset Voltage (Vbor), low trip point selected.
-#pragma config LVP = ON    // Low-Voltage Programming Enable->Low-voltage programming enabled
+#pragma config LVP = OFF    // Low-Voltage Programming Enable->High-voltage on MCLR/VPP must be used for programming
