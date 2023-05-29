@@ -12,13 +12,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/Modbus.h</file>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/Mobbus_Slave.c</file>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/Modbus_Slave.h</file>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/main.c</file>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/I2C_SHT30.c</file>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/MCU.c</file>
-            <file>file:/D:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/main.h</file>
+            <file>file:/F:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/main.c</file>
+            <file>file:/F:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/MCU.c</file>
+            <file>file:/F:/1.COMPANY/8.%20HTR02/I2C_SHT30.X/I2C_SHT30.c</file>
         </group>
     </open-files>
 </project-private>
