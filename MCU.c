@@ -44,10 +44,10 @@ static void Device_Init(void) {
         SW_Ad = 0x02;
     } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 1) && (value_SW4 == 0))
     {
-        SW_Ad = 0x04;
+        SW_Ad = 0x03;
     } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 1))
     {
-        SW_Ad = 0x08;
+        SW_Ad = 0x04;
     }
 }
 

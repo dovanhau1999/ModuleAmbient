@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Fri May 26 15:49:09 2023
+                                                                                               Tue May 30 11:11:57 2023
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	16F1936
@@ -12341,8 +12341,8 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
  12238     0A39                     u4250:
  12239     0A39                     l5023:
  12240                           
- 12241                           ;MCU.c: 46:     {;MCU.c: 47:         SW_Ad = 0x04;
- 12242     0A39  3004               	movlw	4
+ 12241                           ;MCU.c: 46:     {;MCU.c: 47:         SW_Ad = 0x03;
+ 12242     0A39  3003               	movlw	3
  12243     0A3A  00E9               	movwf	_SW_Ad
  12244                           
  12245                           ;MCU.c: 48:     } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (
@@ -12382,8 +12382,8 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
  12278     0A50                     u4290:
  12279     0A50                     l5033:
  12280                           
- 12281                           ;MCU.c: 49:     {;MCU.c: 50:         SW_Ad = 0x08;
- 12282     0A50  3008               	movlw	8
+ 12281                           ;MCU.c: 49:     {;MCU.c: 50:         SW_Ad = 0x04;
+ 12282     0A50  3004               	movlw	4
  12283     0A51  00E9               	movwf	_SW_Ad
  12284     0A52  2A53               	goto	l883
  12285     0A53                     l879:
@@ -17209,7 +17209,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Fri May 26 15:49:09 2023
+Symbol Table                                                                                   Tue May 30 11:11:57 2023
 
                             _Modbus_sendTxBuff 06EA                           ?_ModbusSlave_Process 0070  
                 ?_EUSART_SetRxInterruptHandler 0020                         ??_I2C_DO_SEND_ADR_READ 0070  

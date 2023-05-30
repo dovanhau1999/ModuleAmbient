@@ -712,8 +712,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCU.c: 46:     {
 {
 "47
-[; ;MCU.c: 47:         SW_Ad = 0x04;
-[e = _SW_Ad -> -> 4 `i `uc ]
+[; ;MCU.c: 47:         SW_Ad = 0x03;
+[e = _SW_Ad -> -> 3 `i `uc ]
 "48
 [; ;MCU.c: 48:     } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 1))
 }
@@ -724,8 +724,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCU.c: 49:     {
 {
 "50
-[; ;MCU.c: 50:         SW_Ad = 0x08;
-[e = _SW_Ad -> -> 8 `i `uc ]
+[; ;MCU.c: 50:         SW_Ad = 0x04;
+[e = _SW_Ad -> -> 4 `i `uc ]
 "51
 [; ;MCU.c: 51:     }
 }
