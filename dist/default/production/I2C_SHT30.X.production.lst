@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Tue May 30 11:11:57 2023
+                                                                                               Fri Jun 02 11:32:39 2023
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	16F1936
@@ -9647,26 +9647,26 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   9570                           
   9571     14C6                     l4835:
   9572                           
-  9573                           ;Mobbus_Slave.c: 250:     MB_Register[0] = SensorAmbient.T.Val16;
+  9573                           ;Mobbus_Slave.c: 250:     MB_Register[1] = SensorAmbient.T.Val16;
   9574     14C6  0021               	movlb	1	; select bank1
   9575     14C7  085C               	movf	(_SensorAmbient+1)^(0+128),w
   9576     14C8  0022               	movlb	2	; select bank2
-  9577     14C9  00DB               	movwf	(_MB_Register+1)^(0+256)
+  9577     14C9  00DD               	movwf	((_MB_Register+1)^(0+256)+2)
   9578     14CA  0021               	movlb	1	; select bank1
   9579     14CB  085B               	movf	_SensorAmbient^(0+128),w
   9580     14CC  0022               	movlb	2	; select bank2
-  9581     14CD  00DA               	movwf	_MB_Register^(0+256)
+  9581     14CD  00DC               	movwf	(_MB_Register^(0+256)+2)
   9582     14CE                     l4837:
   9583                           
-  9584                           ;Mobbus_Slave.c: 251:     MB_Register[1] = SensorAmbient.H.Val16;
+  9584                           ;Mobbus_Slave.c: 251:     MB_Register[0] = SensorAmbient.H.Val16;
   9585     14CE  0021               	movlb	1	; select bank1
   9586     14CF  085E               	movf	((_SensorAmbient+1)^(0+128)+2),w
   9587     14D0  0022               	movlb	2	; select bank2
-  9588     14D1  00DD               	movwf	((_MB_Register+1)^(0+256)+2)
+  9588     14D1  00DB               	movwf	(_MB_Register+1)^(0+256)
   9589     14D2  0021               	movlb	1	; select bank1
   9590     14D3  085D               	movf	(_SensorAmbient^(0+128)+2),w
   9591     14D4  0022               	movlb	2	; select bank2
-  9592     14D5  00DC               	movwf	(_MB_Register^(0+256)+2)
+  9592     14D5  00DA               	movwf	_MB_Register^(0+256)
   9593     14D6                     l4839:
   9594     14D6  3002               	movlw	2
   9595     14D7  0020               	movlb	0	; select bank0
@@ -17209,7 +17209,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Tue May 30 11:11:57 2023
+Symbol Table                                                                                   Fri Jun 02 11:32:39 2023
 
                             _Modbus_sendTxBuff 06EA                           ?_ModbusSlave_Process 0070  
                 ?_EUSART_SetRxInterruptHandler 0020                         ??_I2C_DO_SEND_ADR_READ 0070  
