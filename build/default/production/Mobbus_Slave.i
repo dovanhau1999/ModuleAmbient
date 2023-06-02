@@ -5637,8 +5637,8 @@ void ModbusSlave_Init(uint8_t _SW_Ad) {
 static void ModbusSlave_Process(void) {
 
     uint8_t state = 0;
-    MB_Register[0] = SensorAmbient.T.Val16;
-    MB_Register[1] = SensorAmbient.H.Val16;
+    MB_Register[1] = SensorAmbient.T.Val16;
+    MB_Register[0] = SensorAmbient.H.Val16;
     state = ModbusRTU_Slave_Poll(MB_Register, 2);
 
 }

@@ -1228,11 +1228,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _state `uc ~T0 @X0 1 a ]
 [e = _state -> -> 0 `i `uc ]
 "250
-[; ;Mobbus_Slave.c: 250:     MB_Register[0] = SensorAmbient.T.Val16;
-[e = *U + &U _MB_Register * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 0 1 ]
+[; ;Mobbus_Slave.c: 250:     MB_Register[1] = SensorAmbient.T.Val16;
+[e = *U + &U _MB_Register * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 0 1 ]
 "251
-[; ;Mobbus_Slave.c: 251:     MB_Register[1] = SensorAmbient.H.Val16;
-[e = *U + &U _MB_Register * -> -> -> 1 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 1 1 ]
+[; ;Mobbus_Slave.c: 251:     MB_Register[0] = SensorAmbient.H.Val16;
+[e = *U + &U _MB_Register * -> -> -> 0 `i `ui `ux -> -> # *U &U _MB_Register `ui `ux . . _SensorAmbient 1 1 ]
 "252
 [; ;Mobbus_Slave.c: 252:     state = ModbusRTU_Slave_Poll(MB_Register, 2);
 [e = _state ( _ModbusRTU_Slave_Poll (2 , &U _MB_Register -> -> 2 `i `us ]
