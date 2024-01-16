@@ -36,19 +36,12 @@ static void Device_Init(void) {
     value_SW4 = SW4_GetValue();
 
     /* Tinh dia chi cua Device */
-    if ((value_SW1 == 1) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 0))
-    {
-        SW_Ad = 0x01;
-    } else if ((value_SW1 == 0) && (value_SW2 == 1) && (value_SW3 == 0) && (value_SW4 == 0))
-    {
-        SW_Ad = 0x02;
-    } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 1) && (value_SW4 == 0))
-    {
-        SW_Ad = 0x03;
-    } else if ((value_SW1 == 0) && (value_SW2 == 0) && (value_SW3 == 0) && (value_SW4 == 1))
-    {
-        SW_Ad = 0x04;
-    }
+    value_SW1 <<= 3;
+    value_SW2 <<= 2;
+    value_SW3 <<= 1;
+    
+    SW_Ad = value_SW1 | value_SW2 | value_SW3 | value_SW4;
+
 }
 
 void App_Init(void) {
